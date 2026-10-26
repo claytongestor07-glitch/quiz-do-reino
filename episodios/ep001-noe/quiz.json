@@ -1,0 +1,117 @@
+{
+  "id": "ep001-noe",
+  "canal": "Pequenos Sábios",
+  "titulo": "Quiz Bíblico: Noé e a Arca! 🌈 Você sabe tudo?",
+  "tema": "Noé e a Arca",
+  "fonte": "Gênesis 6–9 (paráfrase infantil; referências conferidas)",
+  "licao": "Obedecer a Deus mesmo quando ninguém mais obedece — e confiar nas promessas dele.",
+  "abertura": "Oi, pequenos sábios! Eu sou a Lulu, a ovelhinha curiosa, e este é o Leleco, o leãozinho corajoso! Hoje vamos descobrir quanto você sabe sobre Noé e a grande arca. Pegue papel e lápis, conte seus pontos, e vamos lá!",
+  "encerramento": "Uau, que aventura! Noé confiou em Deus e obedeceu, mesmo quando era difícil. E Deus cumpriu a promessa dele, com um lindo arco-íris! Quantos pontos você fez? Conte pra alguém da sua família! Até o próximo quiz, pequenos sábios!",
+  "perguntas": [
+    {
+      "pergunta": "O que Deus pediu para Noé construir?",
+      "alternativas": ["Uma torre bem alta", "Uma grande arca", "Um castelo"],
+      "correta": 1,
+      "explicacao": "Deus pediu que Noé construísse uma arca enorme, um grande barco de madeira, para salvar sua família e os animais.",
+      "referencia": "Gênesis 6:14"
+    },
+    {
+      "pergunta": "Por que Deus escolheu Noé?",
+      "alternativas": ["Porque Noé era justo e andava com Deus", "Porque Noé era o mais rico", "Porque Noé era o mais forte"],
+      "correta": 0,
+      "explicacao": "A Bíblia diz que Noé era um homem justo, que andava com Deus. Ele amava e obedecia ao Senhor.",
+      "referencia": "Gênesis 6:8-9"
+    },
+    {
+      "pergunta": "Quantos filhos Noé tinha?",
+      "alternativas": ["Dois", "Três", "Cinco"],
+      "correta": 1,
+      "explicacao": "Noé tinha três filhos: Sem, Cam e Jafé. Eles ajudaram o pai e também entraram na arca.",
+      "referencia": "Gênesis 6:10"
+    },
+    {
+      "pergunta": "De que material a arca foi feita?",
+      "alternativas": ["De pedra", "De ferro", "De madeira"],
+      "correta": 2,
+      "explicacao": "A arca foi feita de madeira, e Noé a cobriu com piche por dentro e por fora, para a água não entrar.",
+      "referencia": "Gênesis 6:14"
+    },
+    {
+      "pergunta": "Quantos animais de cada espécie entraram na arca?",
+      "alternativas": ["Pelo menos um casal", "Só um", "Dez"],
+      "correta": 0,
+      "explicacao": "Entrou pelo menos um casal, macho e fêmea, de cada espécie. De alguns animais, entraram até sete casais!",
+      "referencia": "Gênesis 6:19; 7:2"
+    },
+    {
+      "pergunta": "Quem fechou a porta da arca?",
+      "alternativas": ["O filho de Noé", "O próprio Deus", "Um elefante"],
+      "correta": 1,
+      "explicacao": "Depois que todos entraram, foi o próprio Deus quem fechou a porta da arca. Deus cuidou de tudo!",
+      "referencia": "Gênesis 7:16"
+    },
+    {
+      "pergunta": "Por quantos dias e noites choveu?",
+      "alternativas": ["Sete dias", "Cem dias", "Quarenta dias e quarenta noites"],
+      "correta": 2,
+      "explicacao": "Choveu sem parar por quarenta dias e quarenta noites! Mas dentro da arca, todos estavam seguros.",
+      "referencia": "Gênesis 7:12"
+    },
+    {
+      "pergunta": "Quantas pessoas estavam dentro da arca?",
+      "alternativas": ["Oito", "Duas", "Vinte"],
+      "correta": 0,
+      "explicacao": "Eram oito pessoas: Noé, sua esposa, os três filhos e as esposas dos filhos.",
+      "referencia": "Gênesis 7:13; 1 Pedro 3:20"
+    },
+    {
+      "pergunta": "Quantos anos Noé tinha quando o dilúvio começou?",
+      "alternativas": ["Trinta anos", "Seiscentos anos", "Cem anos"],
+      "correta": 1,
+      "explicacao": "Noé tinha seiscentos anos! Naquela época, as pessoas viviam muito, muito tempo.",
+      "referencia": "Gênesis 7:6"
+    },
+    {
+      "pergunta": "Onde a arca parou quando a água começou a baixar?",
+      "alternativas": ["Numa praia", "Numa cidade", "Nos montes de Ararate"],
+      "correta": 2,
+      "explicacao": "A arca parou sobre os montes de Ararate, bem lá no alto das montanhas.",
+      "referencia": "Gênesis 8:4"
+    },
+    {
+      "pergunta": "Qual foi a primeira ave que Noé soltou pela janela?",
+      "alternativas": ["Um corvo", "Um papagaio", "Uma águia"],
+      "correta": 0,
+      "explicacao": "Primeiro Noé soltou um corvo, que ficou voando de um lado para o outro até a terra secar.",
+      "referencia": "Gênesis 8:7"
+    },
+    {
+      "pergunta": "O que a pomba trouxe no bico?",
+      "alternativas": ["Uma flor", "Uma folha de oliveira", "Uma pedrinha"],
+      "correta": 1,
+      "explicacao": "A pomba voltou com uma folha nova de oliveira no bico. Assim Noé soube que a água estava baixando!",
+      "referencia": "Gênesis 8:11"
+    },
+    {
+      "pergunta": "O que Noé fez logo depois de sair da arca?",
+      "alternativas": ["Foi dormir", "Construiu uma casa", "Construiu um altar e adorou a Deus"],
+      "correta": 2,
+      "explicacao": "A primeira coisa que Noé fez foi construir um altar para agradecer e adorar a Deus. Que exemplo de gratidão!",
+      "referencia": "Gênesis 8:20"
+    },
+    {
+      "pergunta": "Qual foi o sinal da promessa de Deus?",
+      "alternativas": ["Uma estrela", "O arco-íris", "Um trovão"],
+      "correta": 1,
+      "explicacao": "Deus colocou o arco-íris nas nuvens como sinal da promessa de que nunca mais destruiria a terra com um dilúvio.",
+      "referencia": "Gênesis 9:13-15"
+    },
+    {
+      "pergunta": "O que aprendemos com a história de Noé?",
+      "alternativas": ["Que barcos são legais", "Que devemos obedecer e confiar em Deus", "Que chuva é perigosa"],
+      "correta": 1,
+      "explicacao": "Noé obedeceu a Deus mesmo quando ninguém mais obedecia. Quando confiamos em Deus, ele cuida de nós e cumpre suas promessas!",
+      "referencia": "Hebreus 11:7"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+node_modules/
+saida/
+modelos/
+.venv/
+.venv-kokoro/
+public/ep/
+logs/*
+!logs/agenda.json
+*.lock
+.DS_Store
+recortes/

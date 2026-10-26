@@ -1,0 +1,29 @@
+{
+  "name": "pequenos-sabios",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "validar": "node scripts/validar.mjs",
+    "narrar": "node scripts/narrar.mjs",
+    "render": "node scripts/render.mjs"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.538",
+    "@remotion/cli": "4.0.538",
+    "@remotion/google-fonts": "4.0.538",
+    "@remotion/media-utils": "4.0.538",
+    "@remotion/renderer": "4.0.538",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.538"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "firebase-tools": "15.34.1",
+    "typescript": "5.9.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
+  }
+}

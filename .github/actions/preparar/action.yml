@@ -1,0 +1,34 @@
+name: Preparar ambiente
+description: Node + dependências, FFmpeg, navegador do Remotion e voz Kokoro (modelo em cache)
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 24
+        cache: npm
+    - run: npm ci --no-audit --no-fund
+      shell: bash
+    - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+      shell: bash
+    - run: npx remotion browser ensure
+      shell: bash
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+    - name: Voz Kokoro
+      shell: bash
+      run: |
+        python -m venv .venv-kokoro
+        .venv-kokoro/bin/pip install -q kokoro-onnx==0.4.9 onnxruntime==1.23.2 numpy==2.5.4 phonemizer-fork==3.3.2 espeakng-loader==0.2.4
+    - uses: actions/cache@v4
+      with:
+        path: modelos/kokoro
+        key: kokoro-v1.0
+    - name: Modelo Kokoro
+      shell: bash
+      run: |
+        mkdir -p modelos/kokoro && cd modelos/kokoro
+        base=https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0
+        [ -s kokoro-v1.0.int8.onnx ] || curl -sSfLO $base/kokoro-v1.0.int8.onnx
+        [ -s voices-v1.0.bin ] || curl -sSfLO $base/voices-v1.0.bin

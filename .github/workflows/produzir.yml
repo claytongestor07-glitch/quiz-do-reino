@@ -1,0 +1,121 @@
+# Produção do Quiz do Reino nas máquinas do GitHub: nada é guardado no Mac.
+# planejar (narração) → render em paralelo (blocos de 50 s, 16:9 e vertical) → finalizar (junta, Shorts, envia ao YouTube)
+name: Produzir episódio
+
+on:
+  schedule:
+    - cron: '17 */4 * * *'
+  workflow_dispatch:
+    inputs:
+      episodio:
+        description: 'Episódio (vazio = próximo da fila)'
+        required: false
+
+concurrency:
+  group: produzir
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  planejar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    outputs:
+      id: ${{ steps.plano.outputs.id }}
+      matriz: ${{ steps.plano.outputs.matriz }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/preparar
+      - id: plano
+        run: node scripts/ci.mjs planejar "${{ inputs.episodio }}"
+      - if: steps.plano.outputs.id != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: narracao
+          retention-days: 2
+          path: |
+            public/ep/${{ steps.plano.outputs.id }}
+            public/emoji
+
+  render:
+    needs: planejar
+    if: needs.planejar.outputs.id != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.planejar.outputs.matriz) }}
+    env:
+      RENDER_CONCORRENCIA: 4
+    steps:
+      - if: matrix.variante != 'nada'
+        uses: actions/checkout@v4
+      - if: matrix.variante != 'nada'
+        uses: ./.github/actions/preparar
+      - if: matrix.variante != 'nada'
+        uses: actions/download-artifact@v4
+        with:
+          name: narracao
+          path: public
+      - if: matrix.variante != 'nada'
+        run: |
+          node scripts/render.mjs ${{ needs.planejar.outputs.id }} ${{ matrix.variante }} --blocos=${{ matrix.blocos }}
+          touch saida/raiz.txt
+      - if: matrix.variante != 'nada'
+        uses: actions/upload-artifact@v4
+        with:
+          name: blocos${{ matrix.variante }}-${{ matrix.blocos }}
+          retention-days: 2
+          path: |
+            saida/raiz.txt
+            saida/${{ needs.planejar.outputs.id }}/blocos-*/*.mp4
+
+  finalizar:
+    needs: [planejar, render]
+    if: needs.planejar.outputs.id != '' && !cancelled()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      RENDER_CONCORRENCIA: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/preparar
+      - uses: actions/download-artifact@v4
+        with:
+          name: narracao
+          path: public
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: blocos*
+          merge-multiple: true
+          path: saida
+      - name: Credenciais do YouTube
+        env:
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_TOKEN: ${{ secrets.YT_TOKEN }}
+        run: |
+          mkdir -p ~/.config/pequenos-sabios && chmod 700 ~/.config/pequenos-sabios
+          printf '%s' "$YT_CLIENT_SECRET" > ~/.config/pequenos-sabios/client_secret.json
+          printf '%s' "$YT_TOKEN" > ~/.config/pequenos-sabios/token.json
+          chmod 600 ~/.config/pequenos-sabios/*
+      - name: Juntar, gerar Shorts e enviar
+        run: node scripts/automacao.mjs --episodio=${{ needs.planejar.outputs.id }}
+      - name: Guardar agenda e envios no repositório
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add episodios logs/agenda.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Envios de ${{ needs.planejar.outputs.id }}"
+          git pull --rebase -q && git push -q
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: registro
+          retention-days: 14
+          path: |
+            logs/*.log
+            saida/*/relatorio*.json
