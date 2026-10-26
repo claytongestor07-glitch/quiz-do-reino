@@ -9,13 +9,20 @@ runs:
         cache: npm
     - run: npm ci --no-audit --no-fund
       shell: bash
-    # Sem o gatilho do man-db: ele travou a instalação por 20+ min nas máquinas do GitHub
+    # FFmpeg estático (build do BtbN, no próprio GitHub): o apt-get travou 10–20 min em algumas máquinas
+    - uses: actions/cache@v4
+      with:
+        path: ~/ffmpeg
+        key: ffmpeg-btbn-n7.1
     - name: FFmpeg
       shell: bash
       run: |
-        sudo rm -f /var/lib/man-db/auto-update
-        timeout 600 sudo apt-get update -qq
-        timeout 600 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends ffmpeg > /dev/null
+        if [ ! -x ~/ffmpeg/bin/ffmpeg ]; then
+          mkdir -p ~/ffmpeg
+          curl -sSfL --retry 3 https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n7.1-latest-linux64-gpl-7.1.tar.xz | tar -xJ --strip-components=1 -C ~/ffmpeg
+        fi
+        echo "$HOME/ffmpeg/bin" >> "$GITHUB_PATH"
+        ~/ffmpeg/bin/ffmpeg -version | head -1
     - run: npx remotion browser ensure
       shell: bash
     - uses: actions/setup-python@v5
