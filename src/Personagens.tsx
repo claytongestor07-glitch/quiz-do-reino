@@ -1,5 +1,5 @@
 import React from 'react';
-import {useCurrentFrame} from 'remotion';
+import {Img, staticFile, useCurrentFrame} from 'remotion';
 
 export type Humor = 'normal' | 'feliz' | 'pensando';
 
@@ -37,64 +37,29 @@ const Boca: React.FC<{x: number; y: number; abertura: number; humor: Humor}> = (
 			fill={humor === 'feliz' ? '#8a1c3a' : 'none'} stroke="#8a1c3a" strokeWidth={5} strokeLinecap="round" />
 	);
 
-// Lulu, a ovelhinha curiosa (narradora).
-export const Lulu: React.FC<{boca?: number; humor?: Humor; escala?: number; espelhar?: boolean}> = ({boca = 0, humor = 'normal', escala = 1, espelhar}) => {
-	const c = useCorpo(humor, 0);
-	const la = [[70, 170], [110, 140], [160, 128], [210, 140], [245, 175], [250, 225], [215, 262], [160, 272], [105, 262], [62, 225]];
+// Personagens 3D recortados da arte do canal (public/personagens/, gerados por scripts/recortar.py):
+// Davi com a ovelhinha Lulu (a narradora) e o leão Leleco. Fala = boca da timeline vira um "quique" de voz.
+const Recorte: React.FC<{arquivo: string; largura: number; altura: number; humor: Humor; boca: number; fase: number; espelhar?: boolean}> = ({arquivo, largura, altura, humor, boca, fase, espelhar}) => {
+	const c = useCorpo(humor, fase);
+	const fala = boca > 0.06 ? boca : 0;
 	return (
-		<svg width={300 * escala} height={360 * escala} viewBox="0 0 300 360" style={{overflow: 'visible'}}>
-			<g transform={`translate(0 ${c.y}) rotate(${c.inclinacao} 150 300) ${espelhar ? 'translate(300 0) scale(-1 1)' : ''}`}>
-				{[95, 130, 175, 210].map((x) => <rect key={x} x={x - 9} y={270} width={18} height={62} rx={9} fill="#5b4a5f" />)}
-				{la.map(([x, y], k) => <circle key={k} cx={x} cy={y} r={46} fill="#ffffff" stroke="#e4e0f0" strokeWidth={4} />)}
-				<circle cx={155} cy={205} r={78} fill="#ffffff" />
-				<ellipse cx={92} cy={118} rx={34} ry={17} fill="#f6c6d2" transform="rotate(-25 92 118)" />
-				<ellipse cx={208} cy={118} rx={34} ry={17} fill="#f6c6d2" transform="rotate(25 208 118)" />
-				<ellipse cx={150} cy={130} rx={62} ry={70} fill="#fbe3d4" />
-				{[[118, 64], [150, 54], [182, 64], [134, 74], [166, 74]].map(([x, y], k) => <circle key={k} cx={x} cy={y} r={22} fill="#fff" stroke="#e4e0f0" strokeWidth={3} />)}
-				<Olho x={127} y={125} piscando={c.piscando} olhar={humor === 'pensando' ? 1 : 0} />
-				<Olho x={173} y={125} piscando={c.piscando} olhar={humor === 'pensando' ? 1 : 0} />
-				<circle cx={106} cy={156} r={11} fill="#ff9fb5" opacity={0.7} />
-				<circle cx={194} cy={156} r={11} fill="#ff9fb5" opacity={0.7} />
-				<ellipse cx={150} cy={150} rx={8} ry={5} fill="#c9849a" />
-				<Boca x={150} y={172} abertura={boca} humor={humor} />
-				<path d="M 128 190 Q 150 206 172 190 L 168 210 Q 150 220 132 210 Z" fill="#ff6b9a" />
-			</g>
-		</svg>
+		<div style={{position: 'relative', width: largura, height: altura}}>
+			<Img src={staticFile(`personagens/${arquivo}`)} style={{position: 'absolute', left: 0, bottom: 0, width: largura,
+				transform: `translateY(${c.y - fala * 12}px) rotate(${c.inclinacao}deg) scale(${(1 + fala * 0.03) * (espelhar ? -1 : 1)}, ${1 + fala * 0.06})`,
+				transformOrigin: '50% 100%', filter: 'drop-shadow(0 12px 14px rgba(0,0,0,.25))'}} />
+		</div>
 	);
 };
 
+// Davi e Lulu juntos (a narradora é a Lulu): mesma área de antes (300x360 por escala), um pouco mais larga.
+export const Lulu: React.FC<{boca?: number; humor?: Humor; escala?: number; espelhar?: boolean}> = ({boca = 0, humor = 'normal', escala = 1, espelhar}) => (
+	<Recorte arquivo="davi-lulu.png" largura={430 * escala} altura={360 * escala} humor={humor} boca={boca} fase={0} espelhar={espelhar} />
+);
+
 // Leleco, o leãozinho corajoso.
-export const Leleco: React.FC<{boca?: number; humor?: Humor; escala?: number}> = ({boca = 0, humor = 'normal', escala = 1}) => {
-	const c = useCorpo(humor, 37);
-	const juba = Array.from({length: 14}, (_, k) => {
-		const a = (k / 14) * Math.PI * 2;
-		return [150 + Math.cos(a) * 88, 135 + Math.sin(a) * 88];
-	});
-	return (
-		<svg width={300 * escala} height={360 * escala} viewBox="0 0 300 360" style={{overflow: 'visible'}}>
-			<g transform={`translate(0 ${c.y}) rotate(${-c.inclinacao} 150 300)`}>
-				<path d="M 230 290 Q 285 280 278 230" stroke="#e8a33d" strokeWidth={12} fill="none" strokeLinecap="round" />
-				<circle cx={278} cy={226} r={14} fill="#b8642a" />
-				<ellipse cx={150} cy={278} rx={82} ry={62} fill="#ffc94d" />
-				<ellipse cx={150} cy={290} rx={46} ry={36} fill="#fff1c9" />
-				{[105, 195].map((x) => <ellipse key={x} cx={x} cy={334} rx={26} ry={16} fill="#ffc94d" />)}
-				{juba.map(([x, y], k) => <circle key={k} cx={x} cy={y} r={40} fill={k % 2 ? '#d9772b' : '#c4622a'} />)}
-				<circle cx={98} cy={72} r={22} fill="#ffc94d" /><circle cx={98} cy={72} r={11} fill="#ff9f68" />
-				<circle cx={202} cy={72} r={22} fill="#ffc94d" /><circle cx={202} cy={72} r={11} fill="#ff9f68" />
-				<circle cx={150} cy={135} r={76} fill="#ffcf5a" />
-				<Olho x={124} y={118} piscando={c.piscando} olhar={humor === 'pensando' ? -1 : 0} />
-				<Olho x={176} y={118} piscando={c.piscando} olhar={humor === 'pensando' ? -1 : 0} />
-				<path d="M 110 96 Q 124 88 138 96 M 162 96 Q 176 88 190 96" stroke="#8a4a1f" strokeWidth={5} fill="none" strokeLinecap="round" />
-				<ellipse cx={136} cy={162} rx={22} ry={17} fill="#fff4dc" />
-				<ellipse cx={164} cy={162} rx={22} ry={17} fill="#fff4dc" />
-				<path d="M 138 146 L 162 146 L 150 160 Z" fill="#6b3a1f" />
-				<circle cx={100} cy={150} r={11} fill="#ff9f68" opacity={0.6} />
-				<circle cx={200} cy={150} r={11} fill="#ff9f68" opacity={0.6} />
-				<Boca x={150} y={184} abertura={boca} humor={humor} />
-			</g>
-		</svg>
-	);
-};
+export const Leleco: React.FC<{boca?: number; humor?: Humor; escala?: number}> = ({boca = 0, humor = 'normal', escala = 1}) => (
+	<Recorte arquivo="leleco.png" largura={300 * escala} altura={360 * escala} humor={humor} boca={boca} fase={37} />
+);
 
 // Arca de Noé (cenário do episódio 1; reutilizável em outros temas de Noé).
 export const Arca: React.FC<{largura?: number}> = ({largura = 520}) => {

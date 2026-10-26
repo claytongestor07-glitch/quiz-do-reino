@@ -10,6 +10,10 @@ on:
       episodio:
         description: 'Episódio (vazio = próximo da fila)'
         required: false
+      enviar:
+        description: 'Enviar ao YouTube (desligado = só gera os vídeos para assistir)'
+        type: boolean
+        default: true
 
 concurrency:
   group: produzir
@@ -101,7 +105,15 @@ jobs:
           printf '%s' "$YT_TOKEN" > ~/.config/pequenos-sabios/token.json
           chmod 600 ~/.config/pequenos-sabios/*
       - name: Juntar, gerar Shorts e enviar
-        run: node scripts/automacao.mjs --episodio=${{ needs.planejar.outputs.id }}
+        run: node scripts/automacao.mjs --episodio=${{ needs.planejar.outputs.id }} ${{ inputs.enviar == false && '--sem-envio' || '' }}
+      - if: inputs.enviar == false
+        uses: actions/upload-artifact@v4
+        with:
+          name: videos
+          retention-days: 7
+          path: |
+            saida/*/*.mp4
+            saida/*/*.jpg
       - name: Guardar agenda e envios no repositório
         if: always()
         run: |

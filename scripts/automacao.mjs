@@ -94,6 +94,8 @@ async function processar(id) {
 		if (!relS?.pronto) node('scripts/render.mjs', id, `--short=${n}`);
 	}
 
+	// --sem-envio: só produz (prévia para o senhor assistir antes de ligar o envio)
+	if (process.argv.includes('--sem-envio')) return log('automacao', `${id} produzido; envio desligado nesta rodada`);
 	if (!fs.existsSync(path.join(process.env.HOME, '.config', 'pequenos-sabios', 'token.json'))) return alerta('canal não autorizado: rode node scripts/publicar.mjs autorizar');
 	// Fase de aprovação: o vídeo fica pronto e espera o senhor assistir (arquivo episodios/<id>/APROVADO libera o envio)
 	const canal = ler('config', 'canal.json');

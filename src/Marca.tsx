@@ -14,8 +14,8 @@ export const Logo: React.FC = () => (
 	<AbsoluteFill>
 		<Raios cor1="#2f6fe4" cor2="#4a86f0" giro={0} />
 		<Img src={emoji('Crown')} style={{position: 'absolute', left: 310, top: 40, width: 180, height: 180, filter: 'drop-shadow(0 10px 10px rgba(0,0,0,.3))'}} />
-		<div style={{position: 'absolute', left: 95, top: 150}}><Lulu humor="feliz" escala={1.05} /></div>
-		<div style={{position: 'absolute', right: 95, top: 150}}><Leleco humor="feliz" escala={1.05} /></div>
+		<div style={{position: 'absolute', left: 20, top: 175}}><Lulu humor="feliz" escala={0.95} /></div>
+		<div style={{position: 'absolute', right: 20, top: 175}}><Leleco humor="feliz" escala={0.95} /></div>
 		<div style={{position: 'absolute', bottom: 120, width: '100%', textAlign: 'center'}}>
 			<span style={{fontFamily: TITULO, fontSize: 96, color: '#ffd43b', textTransform: 'uppercase', lineHeight: 0.95, display: 'inline-block', ...contorno(12)}}>
 				Quiz do<br />Reino

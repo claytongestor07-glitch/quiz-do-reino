@@ -167,7 +167,7 @@ const Confete: React.FC = () => {
 	);
 };
 
-const Mascotes: React.FC<{boca?: number; humor?: 'normal' | 'feliz' | 'pensando'; escala?: number}> = ({boca = 0, humor = 'normal', escala = 0.62}) => (
+const Mascotes: React.FC<{boca?: number; humor?: 'normal' | 'feliz' | 'pensando'; escala?: number}> = ({boca = 0, humor = 'normal', escala = 0.75}) => (
 	<>
 		<div style={{position: 'absolute', left: 70, bottom: 120}}><Lulu boca={boca} humor={humor} escala={escala} /></div>
 		<div style={{position: 'absolute', right: 70, bottom: 120}}><Leleco humor={humor} escala={escala} /></div>
@@ -279,7 +279,7 @@ const CenaAbertura: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 			<div style={{position: 'absolute', top: 470, left: 0, right: 0}}>
 				<Pistas nomes={iconesDe(tl)} tamanho={300} atraso={30} />
 			</div>
-			<div style={{position: 'absolute', left: 60, bottom: 20}}><Lulu boca={boca} humor="feliz" escala={1.05} /></div>
+			<div style={{position: 'absolute', left: 60, bottom: 20}}><Lulu boca={boca} humor="feliz" escala={0.85} /></div>
 			<div style={{position: 'absolute', right: 60, bottom: 20}}><Leleco humor="feliz" escala={1.05} /></div>
 		</AbsoluteFill>
 	);
@@ -311,7 +311,7 @@ const CenaEncerramento: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 				})}
 			</div>
 			<div style={{position: 'absolute', bottom: 70, left: 420, right: 420, textAlign: 'center', fontFamily: FONTE, fontWeight: 700, fontSize: 44, color: '#fff', opacity: interpolate(frame, [40, 60], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})}}>{tl.quiz.licao}</div>
-			<div style={{position: 'absolute', left: 60, bottom: 20}}><Lulu boca={boca} humor="feliz" escala={1.05} /></div>
+			<div style={{position: 'absolute', left: 60, bottom: 20}}><Lulu boca={boca} humor="feliz" escala={0.85} /></div>
 			<div style={{position: 'absolute', right: 60, bottom: 20}}><Leleco humor="feliz" escala={1.05} /></div>
 		</AbsoluteFill>
 	);
@@ -367,7 +367,7 @@ const AberturaVertical: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 				</div>
 			</div>
 			<div style={{position: 'absolute', top: 1000, left: 0, right: 0}}><Pistas nomes={iconesDe(tl)} tamanho={260} atraso={30} /></div>
-			<div style={{position: 'absolute', left: 40, bottom: 90}}><Lulu boca={boca} humor="feliz" escala={1.05} /></div>
+			<div style={{position: 'absolute', left: 40, bottom: 90}}><Lulu boca={boca} humor="feliz" escala={0.85} /></div>
 			<div style={{position: 'absolute', right: 40, bottom: 90}}><Leleco humor="feliz" escala={1.05} /></div>
 		</AbsoluteFill>
 	);
@@ -399,7 +399,7 @@ const EncerramentoVertical: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) 
 				})}
 			</div>
 			<div style={{position: 'absolute', top: 1080, left: 80, right: 80, textAlign: 'center', fontFamily: FONTE, fontWeight: 700, fontSize: 52, lineHeight: 1.25, color: '#fff', ...contorno(8), opacity: interpolate(frame, [40, 60], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})}}>{tl.quiz.licao}</div>
-			<div style={{position: 'absolute', left: 40, bottom: 90}}><Lulu boca={boca} humor="feliz" escala={1.05} /></div>
+			<div style={{position: 'absolute', left: 40, bottom: 90}}><Lulu boca={boca} humor="feliz" escala={0.85} /></div>
 			<div style={{position: 'absolute', right: 40, bottom: 90}}><Leleco humor="feliz" escala={1.05} /></div>
 		</AbsoluteFill>
 	);
