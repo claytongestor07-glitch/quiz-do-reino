@@ -1,0 +1,79 @@
+# Teste único: gera uma música infantil cantada com o modelo aberto ACE-Step 1.5 (CPU) e guarda como artefato.
+name: Amostra de música (ACE-Step)
+on: workflow_dispatch
+jobs:
+  gerar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    steps:
+      - name: Liberar disco
+        run: sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc /opt/hostedtoolcache/CodeQL && df -h /
+      - uses: astral-sh/setup-uv@v6
+      - name: Instalar ACE-Step 1.5
+        run: |
+          git clone --depth 1 https://github.com/ACE-Step/ACE-Step-1.5.git ace
+          cd ace && uv python install 3.11 && uv sync
+      - name: Gerar música
+        working-directory: ace
+        env:
+          ACESTEP_DEVICE: cpu
+          ACESTEP_LM_BACKEND: pt
+          ACESTEP_LM_MODEL_PATH: acestep-5Hz-lm-0.6B
+          ACESTEP_CONFIG_PATH: acestep-v15-turbo
+        run: |
+          (uv run acestep-api > ../servidor.log 2>&1 &)
+          for i in $(seq 1 240); do curl -sf localhost:8001/health >/dev/null && break; sleep 15; done
+          tail -5 ../servidor.log
+          python3 - <<'PY'
+          import json, time, urllib.request, urllib.parse
+          letra = """[Intro]
+          Ê, criançada! Vamos cantar!
+
+          [Verse]
+          Davi era pequenininho
+          mas tinha um coração valente
+          pegou a funda e cinco pedras
+          e confiou no Deus da gente
+
+          [Chorus]
+          Pode ser pequeno, Deus é grande!
+          Pode ser pequeno, Deus é grande!
+          Ê, ê, ê, Deus é grande!
+          Pula, pula, Deus é grande!
+
+          [Verse]
+          O gigante gritou bem alto
+          mas Davi orou sem medo
+          com fé em Deus venceu o gigante
+          e a criançada cantou com ele
+
+          [Chorus]
+          Pode ser pequeno, Deus é grande!
+          Ê, ê, ê, Deus é grande!"""
+          corpo = {"prompt": "upbeat children's gospel song, catchy nursery pop, cheerful female singer, kids choir in chorus, 140 bpm, bright synths, claps, fun, energetic, brazilian portuguese",
+                   "lyrics": letra, "audio_duration": 60, "vocal_language": "pt", "thinking": True, "batch_size": 2}
+          def post(p, d):
+              r = urllib.request.Request(f"http://localhost:8001{p}", json.dumps(d).encode(), {"Content-Type": "application/json"})
+              return json.load(urllib.request.urlopen(r, timeout=600))
+          t = post("/release_task", corpo); print(t)
+          tid = (t.get("data") or t).get("task_id")
+          while True:
+              time.sleep(20)
+              q = post("/query_result", {"task_id_list": [tid]})
+              item = (q.get("data") or q)[0]
+              if item.get("status") in (1, 2): break
+          print(json.dumps(item)[:2000])
+          res = item.get("result")
+          res = json.loads(res) if isinstance(res, str) else res
+          for n, a in enumerate(res if isinstance(res, list) else [res]):
+              url = a["file"] if a["file"].startswith("http") else "http://localhost:8001" + a["file"]
+              urllib.request.urlretrieve(url, f"../amostra2-{n+1}.mp3")
+          PY
+          ls -la ..
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: amostra-musica
+          path: |
+            amostra2-*.mp3
+            servidor.log
