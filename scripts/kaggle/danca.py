@@ -3,6 +3,7 @@
 # sobre fundo verde liso; o GitHub depois remove o fundo e gera os loops transparentes.
 # Saída: /kaggle/working/<personagem>-<passo>.mp4
 import os, subprocess, sys, time
+os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 
 subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', '-U', 'diffusers>=0.32', 'transformers', 'accelerate', 'sentencepiece', 'imageio-ffmpeg'], check=True)
 
@@ -32,7 +33,8 @@ def preparar(nome):
 	fundo.paste(im, ((L - im.width) // 2, A - im.height - int(A * 0.05)), im)
 	return fundo
 
-dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
+# T4/P100 (< sm80) só "emulam" bf16: a atenção cai no modo lento que estoura a memória; fp16 usa o kernel econômico
+dtype = torch.bfloat16 if torch.cuda.get_device_capability()[0] >= 8 else torch.float16
 print('GPU:', torch.cuda.get_device_name(0), dtype, flush=True)
 pipe = LTXImageToVideoPipeline.from_pretrained('Lightricks/LTX-Video', torch_dtype=dtype)
 pipe.enable_model_cpu_offload()
