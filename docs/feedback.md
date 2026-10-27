@@ -17,3 +17,8 @@ Cada aprovação ou ajuste pedido entra aqui, para os próximos episódios segui
 - Abertura da Lulu: "Oi, criançada! Bem-vindos ao Quiz do Reino! Eu sou a Lulu! ..."
 - Encerramento: quem passa de ~2/3 dos pontos "é craque do Reino!". Nunca usar "pequeno sábio".
 - Trilha: `trilha-energia.wav` (150 BPM, agitada, "que gere dopamina").
+
+## Mudança de formato (senhor, 2026-10-27)
+- Referência: canal **Bento e Totó** (clipes musicais infantis de 2–3 min, 11 mi inscritos). O canal passa a ser de **clipes musicais cristãos** com Davi, Lulu e Leleco: músicas animadas e grudentas, refrão repetido, temas simples (bichos da arca, cores da criação, números, família, oração, gratidão).
+- Coletâneas de 15–25 min juntando os clipes; Shorts com o refrão.
+- Enquanto o novo formato não estiver pronto: NÃO escrever novos quizzes. Os quizzes já roteirizados terminam de ser publicados normalmente.
