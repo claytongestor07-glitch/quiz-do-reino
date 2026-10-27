@@ -20,6 +20,15 @@ const saida = (k, v) => process.env.GITHUB_OUTPUT ? fs.appendFileSync(process.en
 const completo = (id) => existe('episodios', id, 'publicado.json') && existe('episodios', id, 'publicado-vertical.json')
 	&& fs.readdirSync(path.join(RAIZ, 'episodios', id)).filter((f) => /^publicado-short\d+\.json$/.test(f)).length >= SHORTS_POR_EPISODIO;
 
+// Limite diário de envios do YouTube atingido há menos de 24 h: não adianta produzir agora
+const limite = path.join(RAIZ, 'logs', 'limite-envio.json');
+if (!process.argv[3] && fs.existsSync(limite) && Date.now() - Date.parse(JSON.parse(fs.readFileSync(limite, 'utf8')).quando) < 24 * 3600e3) {
+	log('ci', 'limite diário de envios do YouTube: aguardando 24 h');
+	saida('id', '');
+	saida('matriz', JSON.stringify({include: [{variante: 'nada', blocos: '0-0'}]}));
+	process.exit(0);
+}
+
 const pedido = process.argv[3];
 const id = pedido || fs.readdirSync(path.join(RAIZ, 'episodios'))
 	.filter((e) => existe('episodios', e, 'quiz.json') && !existe('episodios', e, 'IGNORAR') && !completo(e)).sort()

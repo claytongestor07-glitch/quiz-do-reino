@@ -119,6 +119,11 @@ async function processar(id) {
 			try { execFileSync('osascript', ['-e', `display notification "${id} ${tipo} agendado para ${new Date(quando).toLocaleString('pt-BR')}" with title "Quiz do Reino"`]); } catch {}
 		} catch (e) {
 			if (/autorizar|invalid_grant/i.test(String(e.stdout ?? '') + e.message)) alerta('autorização do YouTube venceu: rode node scripts/publicar.mjs autorizar');
+			// Limite diário de envios (canal sem verificação por telefone): para por hoje; a nuvem só tenta de novo em 24 h
+			if (fs.readFileSync(path.join(RAIZ, 'logs', new Date().toISOString().slice(0, 10) + '.log'), 'utf8').includes('uploadLimitExceeded')) {
+				fs.writeFileSync(path.join(RAIZ, 'logs', 'limite-envio.json'), JSON.stringify({quando: new Date().toISOString()}));
+				return log('automacao', `${id}: limite diário de envios do YouTube atingido; o restante sobe em 24 h`);
+			}
 			throw e;
 		}
 	}

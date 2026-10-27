@@ -119,7 +119,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add episodios logs/agenda.json
+          git add episodios logs/agenda.json; git add -f logs/limite-envio.json 2>/dev/null || true
           git diff --cached --quiet && exit 0
           git commit -m "Envios de ${{ needs.planejar.outputs.id }}"
           git pull --rebase -q && git push -q

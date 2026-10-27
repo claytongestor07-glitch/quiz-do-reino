@@ -148,6 +148,8 @@ async function enviar(id, quando, short = 0, vertical = false) {
 	const thumb = path.join(saida, `${id}-thumbnail.jpg`);
 	const t = await fetch(`https://www.googleapis.com/upload/youtube/v3/thumbnails/set?videoId=${resposta.id}`, {method: 'POST', headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'image/jpeg'}, body: fs.readFileSync(thumb)});
 	const pendente = path.join(dir, 'MINIATURA-PENDENTE');
+	// Guarda a miniatura junto do roteiro (vai para o repositório): na nuvem a pasta saida/ some ao fim da execução
+	if (!t.ok) fs.copyFileSync(thumb, path.join(dir, 'miniatura.jpg'));
 	if (t.ok) fs.rmSync(pendente, {force: true});
 	else fs.writeFileSync(pendente, resposta.id); // o robô tenta de novo em cada rodada
 	log('publicar', t.ok ? `${id}: miniatura aplicada` : `${id}: miniatura recusada (${t.status}); o canal precisa estar verificado por telefone (youtube.com/verify); tento de novo depois`);
@@ -160,9 +162,15 @@ async function miniaturas() {
 		const pendente = path.join(RAIZ, 'episodios', ep, 'MINIATURA-PENDENTE');
 		if (!fs.existsSync(pendente)) continue;
 		const videoId = fs.readFileSync(pendente, 'utf8').trim();
-		const t = await fetch(`https://www.googleapis.com/upload/youtube/v3/thumbnails/set?videoId=${videoId}`, {method: 'POST', headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'image/jpeg'}, body: fs.readFileSync(path.join(RAIZ, 'saida', ep, `${ep}-thumbnail.jpg`))});
+		const arquivo = [path.join(RAIZ, 'episodios', ep, 'miniatura.jpg'), path.join(RAIZ, 'saida', ep, `${ep}-thumbnail.jpg`)].find((f) => fs.existsSync(f));
+		if (!arquivo) {
+			log('publicar', `${ep}: miniatura pendente sem arquivo (episodios/${ep}/miniatura.jpg)`);
+			continue;
+		}
+		const t = await fetch(`https://www.googleapis.com/upload/youtube/v3/thumbnails/set?videoId=${videoId}`, {method: 'POST', headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'image/jpeg'}, body: fs.readFileSync(arquivo)});
 		if (t.ok) {
 			fs.rmSync(pendente);
+			fs.rmSync(path.join(RAIZ, 'episodios', ep, 'miniatura.jpg'), {force: true});
 			log('publicar', `${ep}: miniatura aplicada`);
 		}
 	}

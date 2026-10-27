@@ -6,6 +6,7 @@ modelos/
 public/ep/
 logs/*
 !logs/agenda.json
+!logs/limite-envio.json
 *.lock
 .DS_Store
 recortes/
