@@ -20,6 +20,7 @@ jobs:
           ACESTEP_LM_BACKEND: pt
           ACESTEP_LM_MODEL_PATH: acestep-5Hz-lm-0.6B
           ACESTEP_CONFIG_PATH: acestep-v15-turbo
+          ACESTEP_INIT_LLM: "true"
         run: |
           (uv run acestep-api > ../servidor.log 2>&1 &)
           for i in $(seq 1 240); do curl -sf localhost:8001/health >/dev/null && break; sleep 15; done
@@ -63,6 +64,7 @@ jobs:
               item = (q.get("data") or q)[0]
               if item.get("status") in (1, 2): break
           print(json.dumps(item)[:2000])
+          if item.get("status") == 2: raise SystemExit("falhou")
           res = item.get("result")
           res = json.loads(res) if isinstance(res, str) else res
           for n, a in enumerate(res if isinstance(res, list) else [res]):
