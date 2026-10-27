@@ -5,6 +5,7 @@ import torch
 from pathlib import Path
 from PIL import Image, ImageFilter
 from rembg import new_session, remove
+from scipy import ndimage
 from simple_lama_inpainting import SimpleLama
 
 arte = Image.open('docs/arte/clipe.webp').convert('RGB')
@@ -20,20 +21,39 @@ alvos = [
                                          ((1700, 450), 0), ((1250, 790), 0), ((1180, 680), 0), ((1680, 800), 0)]),
     ('biblia', (480, 690, 1340, 887), [((700, 760), 1), ((1100, 760), 1), ((920, 850), 1), ((300, 860), 0), ((1500, 860), 0)]),
 ]
+# Qual recorte usar em cada um (conferido a olho): o automático acertou o Davi com violão; o SAM acertou os outros
+MELHOR = {'davi-violao': 'isnet', 'menina': 'sam', 'leleco': 'sam', 'biblia': 'sam'}
+
+def limpar(rgba):
+    # Só o maior pedaço (tira restos soltos, como notas musicais vizinhas) e bordas semitransparentes
+    a = np.array(rgba)
+    rotulos, n = ndimage.label(a[:, :, 3] > 40)
+    if n > 1:
+        maior = 1 + np.argmax(ndimage.sum(np.ones_like(rotulos), rotulos, range(1, n + 1)))
+        a[:, :, 3] = np.where(rotulos == maior, a[:, :, 3], 0)
+    img = Image.fromarray(a)
+    return img.crop(img.getbbox())
+
+final = saida / 'final'; final.mkdir(exist_ok=True)
 total = np.zeros((arte.height, arte.width), np.uint8)
 for nome, (x0, y0, x1, y1), pontos in alvos:
     corte = arte.crop((x0, y0, x1, y1))
     prompt = [{'type': 'point', 'data': [x - x0, y - y0], 'label': l} for (x, y), l in pontos]
-    rgba = remove(corte, session=sam, sam_prompt=prompt)
-    rgba.crop(rgba.getbbox()).save(saida / f'{nome}.png')
-    remove(corte, session=isnet).save(saida / f'{nome}-isnet.png')
-    m = np.array(rgba)[:, :, 3]
+    feitos = {'sam': remove(corte, session=sam, sam_prompt=prompt), 'isnet': remove(corte, session=isnet)}
+    for tipo, rgba in feitos.items():
+        rgba.save(saida / f'{nome}-{tipo}.png')
+    escolhido = feitos[MELHOR[nome]]
+    limpar(escolhido).save(final / f'{nome}.png')
+    m = np.array(escolhido)[:, :, 3]
     total[y0:y1, x0:x1] = np.maximum(total[y0:y1, x0:x1], m)
     print('ok', nome, flush=True)
 # O modelo LaMa foi salvo em GPU: força a carga na CPU (as máquinas do GitHub não têm placa de vídeo)
 _carregar = torch.jit.load
 torch.jit.load = lambda f, *a, **k: _carregar(f, map_location='cpu')
-mascara = Image.fromarray(np.where(total > 20, 255, 0).astype(np.uint8)).filter(ImageFilter.MaxFilter(25))
+mascara = Image.fromarray(np.where(total > 20, 255, 0).astype(np.uint8)).filter(ImageFilter.MaxFilter(31))
 mascara.save(saida / 'mascara.png')
-SimpleLama(device=torch.device('cpu'))(arte, mascara).save(saida / 'cenario.jpg', quality=92)
+# LaMa preenche buracos grandes melhor em resolução menor; depois volta ao tamanho original
+meio = (arte.width // 2, arte.height // 2)
+cenario = SimpleLama(device=torch.device('cpu'))(arte.resize(meio, Image.LANCZOS), mascara.resize(meio, Image.NEAREST))
+cenario.resize(arte.size, Image.LANCZOS).save(final / 'cenario.jpg', quality=92)
 print('ok cenario', flush=True)

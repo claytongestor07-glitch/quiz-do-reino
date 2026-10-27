@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install -q "rembg[cpu]" pillow simple-lama-inpainting
+      - run: pip install -q "rembg[cpu]" pillow scipy simple-lama-inpainting
       - run: python scripts/recortar_clipe.py
       - uses: actions/upload-artifact@v4
         if: always()
