@@ -30,6 +30,9 @@ for nome, (x0, y0, x1, y1), pontos in alvos:
     m = np.array(rgba)[:, :, 3]
     total[y0:y1, x0:x1] = np.maximum(total[y0:y1, x0:x1], m)
     print('ok', nome, flush=True)
+# O modelo LaMa foi salvo em GPU: força a carga na CPU (as máquinas do GitHub não têm placa de vídeo)
+_carregar = torch.jit.load
+torch.jit.load = lambda f, *a, **k: _carregar(f, map_location='cpu')
 mascara = Image.fromarray(np.where(total > 20, 255, 0).astype(np.uint8)).filter(ImageFilter.MaxFilter(25))
 mascara.save(saida / 'mascara.png')
 SimpleLama(device=torch.device('cpu'))(arte, mascara).save(saida / 'cenario.jpg', quality=92)
