@@ -3,9 +3,8 @@
 name: Produzir episódio
 
 on:
-  # Agenda automática: religar depois que o senhor aprovar a prévia com os personagens novos
-  # schedule:
-  #   - cron: '17 */4 * * *'
+  schedule:
+    - cron: '17 */4 * * *'
   workflow_dispatch:
     inputs:
       episodio:
