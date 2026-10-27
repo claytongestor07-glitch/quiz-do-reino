@@ -1,0 +1,15 @@
+{
+  "id": "mu001-davi",
+  "titulo": "Deus é Grande!",
+  "tituloYoutube": "Quiz do Reino - Deus é Grande! Davi e o Gigante (Música Infantil Cristã)",
+  "estilo": "upbeat children's gospel song, catchy nursery pop, cheerful female singer, kids choir in chorus, 140 bpm, bright synths, claps, fun, energetic, brazilian portuguese",
+  "duracao": 120,
+  "partes": [
+    {"tipo": "intro", "emojis": ["Crown", "Sparkles", "Musical notes"], "letra": ["Ê, criançada! Vamos cantar!"]},
+    {"tipo": "verso", "emojis": ["Rock", "Ewe", "Musical notes"], "letra": ["Davi era pequenininho", "mas tinha um coração valente", "pegou a funda e cinco pedras", "e confiou no Deus da gente"]},
+    {"tipo": "refrao", "frase": "DEUS É GRANDE!", "emojis": ["Red heart", "Star-struck", "Clapping hands"], "letra": ["Pode ser pequeno, Deus é grande!", "Pode ser pequeno, Deus é grande!", "Ê, ê, ê, Deus é grande!", "Pula, pula, Deus é grande!"]},
+    {"tipo": "verso", "emojis": ["Lion", "Folded hands", "Sun"], "letra": ["O gigante gritou bem alto", "mas Davi orou sem medo", "com fé em Deus venceu o gigante", "e a criançada cantou com ele"]},
+    {"tipo": "refrao", "frase": "PODE SER PEQUENO!", "emojis": ["Party popper", "Red heart", "Clapping hands"], "letra": ["Pode ser pequeno, Deus é grande!", "Pode ser pequeno, Deus é grande!", "Ê, ê, ê, Deus é grande!", "Pula, pula, Deus é grande!"]},
+    {"tipo": "final", "emojis": ["Crown", "Sparkles", "Party popper"], "letra": ["Deus é grande! Uhuu!"]}
+  ]
+}

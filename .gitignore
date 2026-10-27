@@ -10,3 +10,5 @@ logs/*
 *.lock
 .DS_Store
 recortes/
+public/clipe/
+musicas/*/musica.mp3
