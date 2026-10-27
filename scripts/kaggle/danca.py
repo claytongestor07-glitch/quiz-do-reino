@@ -42,7 +42,7 @@ def preparar(nome):
 # T4/P100 (< sm80) só "emulam" bf16: a atenção cai no modo lento que estoura a memória; fp16 usa o kernel econômico
 dtype = torch.bfloat16 if torch.cuda.get_device_capability()[0] >= 8 else torch.float16
 print('GPU:', torch.cuda.get_device_name(0), dtype, flush=True)
-pipe = LTXImageToVideoPipeline.from_pretrained('Lightricks/LTX-Video', torch_dtype=dtype)
+pipe = LTXImageToVideoPipeline.from_pretrained('a-r-r-o-w/LTX-Video-0.9.1-diffusers', torch_dtype=dtype)
 pipe.enable_model_cpu_offload()
 pipe.vae.enable_tiling()
 

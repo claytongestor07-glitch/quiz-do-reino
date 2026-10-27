@@ -67,7 +67,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: sudo apt-get install -qq -y ffmpeg && pip install -q "rembg[cpu]" pillow
+      - run: sudo apt-get update -qq && sudo apt-get install -qq -y ffmpeg && pip install -q "rembg[cpu]" pillow
       - run: python scripts/dancas_alpha.py brutas
       - name: Salvar no repositório
         run: |
