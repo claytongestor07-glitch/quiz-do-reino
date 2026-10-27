@@ -12,3 +12,4 @@ logs/*
 recortes/
 public/clipe/
 musicas/*/musica.mp3
+__pycache__/
