@@ -56,6 +56,6 @@ for nome in PERSONAGENS:
 			negative_prompt='worst quality, blurry, motion blur, distorted, deformed face, morphing, extra limbs, jumping out of frame, camera movement, background change, text, watermark',
 			width=L, height=A, num_frames=49, num_inference_steps=50, guidance_scale=3.0,
 			decode_timestep=0.03, decode_noise_scale=0.025,
-			generator=torch.Generator('cpu').manual_seed(7)).frames[0]
+			generator=torch.Generator('cuda').manual_seed(7)).frames[0]
 		export_to_video(frames, f'/kaggle/working/{nome}-{passo}.mp4', fps=24)
 		print(f'{nome}-{passo}: {time.time() - t:.0f}s', flush=True)
