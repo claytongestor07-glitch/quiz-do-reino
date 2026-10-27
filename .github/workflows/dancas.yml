@@ -8,8 +8,8 @@ on:
         description: personagens (separados por vírgula)
         default: davi-violao,menina,leleco
       passos:
-        description: passos de dança (pula,balanca,palmas,gira,bracos)
-        default: pula,balanca,palmas,gira,bracos
+        description: passos de dança (balanca,pula,palmas,cabeca,bracos)
+        default: balanca,pula,palmas,cabeca,bracos
 permissions:
   contents: write
 jobs:
@@ -67,7 +67,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install -q "rembg[cpu]" pillow
+      - run: sudo apt-get install -qq -y ffmpeg && pip install -q "rembg[cpu]" pillow
       - run: python scripts/dancas_alpha.py brutas
       - name: Salvar no repositório
         run: |

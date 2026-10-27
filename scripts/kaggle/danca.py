@@ -15,12 +15,18 @@ from diffusers.utils import export_to_video
 
 RAW = 'https://raw.githubusercontent.com/claytongestor07-glitch/quiz-do-reino/main/public/personagens/clipe/'
 PERSONAGENS = os.environ.get('PERSONAGENS', 'davi-violao,menina,leleco').split(',')
+# Movimentos curtos e no lugar: pulos grandes fazem o modelo deformar o personagem
 PASSOS = {
-	'pula': 'jumping up and down happily to the music, bouncing',
-	'balanca': 'swaying side to side to the rhythm, cheerful dance',
-	'palmas': 'clapping hands above the head and dancing',
-	'gira': 'dancing and turning around joyfully',
-	'bracos': 'waving both arms in the air, dancing happily',
+	'balanca': 'sways gently side to side to the music, smiling, staying in the same place',
+	'pula': 'does small happy bounces in place to the beat, smiling',
+	'palmas': 'claps hands happily to the beat, staying in the same place',
+	'cabeca': 'nods the head to the rhythm and smiles, small body movement',
+	'bracos': 'raises one arm and waves happily, staying in the same place',
+}
+QUEM = {
+	'davi-violao': 'a cute cartoon boy with curly brown hair holding an acoustic guitar, sitting next to a fluffy white lamb',
+	'menina': 'a cute cartoon girl with a pink dress',
+	'leleco': 'a cute cartoon lion cub with a golden mane',
 }
 ESCOLHIDOS = os.environ.get('PASSOS', ','.join(PASSOS)).split(',')
 L, A = 512, 768  # múltiplos de 32
@@ -44,12 +50,12 @@ for nome in PERSONAGENS:
 	img = preparar(nome)
 	for passo in ESCOLHIDOS:
 		t = time.time()
-		prompt = (f'A cute 3D cartoon kids character {PASSOS[passo]}, full body visible, '
-			'smooth looping dance animation, the same character, plain solid bright green background, static camera, '
-			'high quality Pixar style animation')
+		prompt = (f'{QUEM.get(nome, "a cute cartoon character")} {PASSOS[passo]}. Full body visible, the character keeps '
+			'the same look, smooth gentle animation, plain solid bright green background, static camera, 3D Pixar style')
 		frames = pipe(image=img, prompt=prompt,
-			negative_prompt='worst quality, blurry, distorted, deformed, extra limbs, camera movement, background change, text, watermark',
-			width=L, height=A, num_frames=97, num_inference_steps=40, guidance_scale=3.0,
+			negative_prompt='worst quality, blurry, motion blur, distorted, deformed face, morphing, extra limbs, jumping out of frame, camera movement, background change, text, watermark',
+			width=L, height=A, num_frames=49, num_inference_steps=50, guidance_scale=3.0,
+			decode_timestep=0.03, decode_noise_scale=0.025,
 			generator=torch.Generator('cpu').manual_seed(7)).frames[0]
 		export_to_video(frames, f'/kaggle/working/{nome}-{passo}.mp4', fps=24)
 		print(f'{nome}-{passo}: {time.time() - t:.0f}s', flush=True)
