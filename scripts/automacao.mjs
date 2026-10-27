@@ -7,11 +7,10 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {RAIZ, log} from './lib.mjs';
+import {proximoHorario, reservar} from './agenda.mjs';
 
 const TRAVA = path.join(RAIZ, 'logs', 'automacao.lock');
-const AGENDA = path.join(RAIZ, 'logs', 'agenda.json');
 const ALERTA = path.join(RAIZ, 'logs', 'ALERTA.txt');
-const HORARIOS = {episodio: ['09:00', '17:00'], vertical: ['10:00', '18:00'], short: ['08:00', '11:00', '13:00', '15:00', '19:00', '21:00']};
 const SHORTS_POR_EPISODIO = 3;
 const VOZ = 'kokoro-dora';
 
@@ -39,26 +38,6 @@ const existe = (...p) => fs.existsSync(path.join(RAIZ, ...p));
 const alerta = (msg) => {
 	fs.appendFileSync(ALERTA, `${new Date().toISOString()} ${msg}\n`);
 	log('automacao', `ALERTA: ${msg}`);
-};
-
-// Próximo horário livre (>= agora + 1 h) para o tipo pedido; reserva na agenda
-function proximoHorario(tipo) {
-	const agenda = fs.existsSync(AGENDA) ? JSON.parse(fs.readFileSync(AGENDA, 'utf8')) : [];
-	const ocupados = new Set(agenda.map((a) => a.quando));
-	const minimo = Date.now() + 3600e3;
-	for (let d = 0; d < 60; d++) {
-		const dia = new Date(Date.now() + d * 86400e3).toLocaleDateString('sv-SE', {timeZone: 'America/Sao_Paulo'});
-		for (const h of HORARIOS[tipo]) {
-			const quando = `${dia}T${h}:00-03:00`;
-			if (new Date(quando).getTime() >= minimo && !ocupados.has(quando)) return quando;
-		}
-	}
-	throw new Error('agenda cheia nos próximos 60 dias');
-}
-const reservar = (quando, item) => {
-	const agenda = fs.existsSync(AGENDA) ? JSON.parse(fs.readFileSync(AGENDA, 'utf8')) : [];
-	agenda.push({quando, item});
-	fs.writeFileSync(AGENDA, JSON.stringify(agenda, null, 1));
 };
 
 // Perguntas dos Shorts: escolha fixa por episódio (sempre as mesmas se o robô rodar de novo), espalhadas pelo quiz

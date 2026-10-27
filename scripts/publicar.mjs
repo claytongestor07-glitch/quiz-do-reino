@@ -106,6 +106,66 @@ export function metadadosShort(id, n) {
 	};
 }
 
+// Envio retomável (se a conexão cair, continua de onde parou)
+async function subir(token, video, corpo, id) {
+	const tamanho = fs.statSync(video).size;
+	const ini = await fetch('https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status', {
+		method: 'POST', headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'application/json; charset=UTF-8', 'X-Upload-Content-Length': String(tamanho), 'X-Upload-Content-Type': 'video/mp4'}, body: JSON.stringify(corpo),
+	});
+	if (!ini.ok) throw new Error(`YouTube recusou o início do envio: ${ini.status} ${(await ini.text()).slice(0, 300)}`);
+	const sessao = ini.headers.get('location');
+	let resposta;
+	for (let tentativa = 1; tentativa <= 5; tentativa++) {
+		const status = await fetch(sessao, {method: 'PUT', headers: {Authorization: `Bearer ${token}`, 'Content-Range': `bytes */${tamanho}`}});
+		const enviado = status.status === 308 ? Number(status.headers.get('range')?.split('-')[1] ?? -1) + 1 : 0;
+		if (status.ok) { resposta = await status.json(); break; }
+		log('publicar', `${id}: enviando a partir de ${Math.round(enviado / 1e6)} MB (tentativa ${tentativa})`);
+		const blob = (await fs.openAsBlob(video)).slice(enviado);
+		const r = await fetch(sessao, {method: 'PUT', headers: {Authorization: `Bearer ${token}`, 'Content-Range': `bytes ${enviado}-${tamanho - 1}/${tamanho}`}, body: blob});
+		if (r.ok) { resposta = await r.json(); break; }
+		if (r.status < 500 && r.status !== 308) throw new Error(`Envio falhou: ${r.status} ${(await r.text()).slice(0, 300)}`);
+		await new Promise((ok) => setTimeout(ok, 5000 * tentativa));
+	}
+	if (!resposta?.id) throw new Error('Envio não concluído após 5 tentativas');
+	return resposta;
+}
+
+// Clipe musical (musicas/<id>/musica.json): variante '' (16:9), 'vertical' (celular) ou 'short' (refrão, < 60 s)
+async function enviarClipe(id, quando, variante) {
+	const dir = path.join(RAIZ, 'musicas', id);
+	const m = JSON.parse(fs.readFileSync(path.join(dir, 'musica.json'), 'utf8'));
+	const sufixo = variante ? `-${variante}` : '';
+	const registro = path.join(dir, `publicado${sufixo}.json`);
+	if (fs.existsSync(registro)) return log('publicar', `${id}${sufixo} já foi enviado; nada a fazer`);
+	const video = path.join(RAIZ, 'saida', 'clipes', `${id}${sufixo}.mp4`);
+	const letra = m.partes.filter((p) => p.tipo !== 'final').flatMap((p) => [...p.letra, '']).join('\n');
+	const titulo = variante === 'short' ? `${m.titulo} 🎵 Música Infantil Cristã #shorts` : variante === 'vertical' ? `${m.tituloYoutube} | Versão Celular` : m.tituloYoutube;
+	const corpo = {
+		snippet: {
+			title: titulo.slice(0, 100),
+			description: [m.descricao ?? `${m.titulo}: música infantil cristã para cantar e dançar com Davi, Lulu e Leleco!`, '', m.licao ? `Lição: ${m.licao}` : '', m.fonte ? `Base bíblica: ${m.fonte}.` : '', '',
+				'🎶 Letra:', letra, `${canal.nome}: louvor e Bíblia para crianças.`, '', [...canal.hashtags, '#MúsicaInfantil', '#LouvorInfantil', ...(variante === 'short' ? ['#shorts'] : [])].join(' ')].filter((l, k, a) => l || a[k - 1]).join('\n').slice(0, 4900),
+			tags: ['música infantil cristã', 'louvor infantil', 'música gospel infantil', 'desenho infantil cristão', 'música para crianças', m.titulo, ...(m.tags ?? []), ...canal.tags].slice(0, 20),
+			categoryId: '10', defaultLanguage: 'pt-BR', defaultAudioLanguage: 'pt-BR',
+		},
+		status: {privacyStatus: 'private', selfDeclaredMadeForKids: true, embeddable: true, license: 'youtube'},
+	};
+	if (quando) corpo.status.publishAt = new Date(quando).toISOString();
+	const token = await acesso();
+	const resposta = await subir(token, video, corpo, id);
+	fs.writeFileSync(registro, JSON.stringify({videoId: resposta.id, enviadoEm: new Date().toISOString(), publicarEm: corpo.status.publishAt ?? null}, null, 1));
+	log('publicar', `${id}${sufixo} enviado: https://youtu.be/${resposta.id}`, {videoId: resposta.id});
+	if (variante === 'short') return;
+	const thumb = path.join(RAIZ, 'saida', 'clipes', `${id}.jpg`);
+	const t = await fetch(`https://www.googleapis.com/upload/youtube/v3/thumbnails/set?videoId=${resposta.id}`, {method: 'POST', headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'image/jpeg'}, body: fs.readFileSync(thumb)});
+	if (!t.ok) {
+		// Canal sem verificação: guarda a capa e tenta de novo em cada rodada (miniaturas())
+		fs.copyFileSync(thumb, path.join(dir, `miniatura${sufixo}.jpg`));
+		fs.writeFileSync(path.join(dir, `MINIATURA-PENDENTE${sufixo}`), resposta.id);
+	}
+	log('publicar', t.ok ? `${id}${sufixo}: miniatura aplicada` : `${id}${sufixo}: miniatura recusada (${t.status}); tento de novo depois`);
+}
+
 async function enviar(id, quando, short = 0, vertical = false) {
 	const {dir} = episodio(id);
 	const saida = path.join(RAIZ, 'saida', id);
@@ -120,27 +180,7 @@ async function enviar(id, quando, short = 0, vertical = false) {
 	if (vertical) corpo.snippet.title = `${corpo.snippet.title.replace(/ \| Quiz Bíblico Infantil$/, '')} | Versão Celular`.slice(0, 100);
 	if (quando) corpo.status.publishAt = new Date(quando).toISOString(); // fica privado e o YouTube publica sozinho nessa hora
 	const token = await acesso();
-	const video = path.join(saida, rel.video);
-	const tamanho = fs.statSync(video).size;
-	const ini = await fetch('https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status', {
-		method: 'POST', headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'application/json; charset=UTF-8', 'X-Upload-Content-Length': String(tamanho), 'X-Upload-Content-Type': 'video/mp4'}, body: JSON.stringify(corpo),
-	});
-	if (!ini.ok) throw new Error(`YouTube recusou o início do envio: ${ini.status} ${(await ini.text()).slice(0, 300)}`);
-	const sessao = ini.headers.get('location');
-	let resposta;
-	for (let tentativa = 1; tentativa <= 5; tentativa++) {
-		// Retoma de onde parou se a conexão cair
-		const status = await fetch(sessao, {method: 'PUT', headers: {Authorization: `Bearer ${token}`, 'Content-Range': `bytes */${tamanho}`}});
-		const enviado = status.status === 308 ? Number(status.headers.get('range')?.split('-')[1] ?? -1) + 1 : 0;
-		if (status.ok) { resposta = await status.json(); break; }
-		log('publicar', `${id}: enviando a partir de ${Math.round(enviado / 1e6)} MB (tentativa ${tentativa})`);
-		const blob = (await fs.openAsBlob(video)).slice(enviado);
-		const r = await fetch(sessao, {method: 'PUT', headers: {Authorization: `Bearer ${token}`, 'Content-Range': `bytes ${enviado}-${tamanho - 1}/${tamanho}`}, body: blob});
-		if (r.ok) { resposta = await r.json(); break; }
-		if (r.status < 500 && r.status !== 308) throw new Error(`Envio falhou: ${r.status} ${(await r.text()).slice(0, 300)}`);
-		await new Promise((ok) => setTimeout(ok, 5000 * tentativa));
-	}
-	if (!resposta?.id) throw new Error('Envio não concluído após 5 tentativas');
+	const resposta = await subir(token, path.join(saida, rel.video), corpo, id);
 	fs.writeFileSync(registro, JSON.stringify({videoId: resposta.id, enviadoEm: new Date().toISOString(), publicarEm: corpo.status.publishAt ?? null}, null, 1));
 	log('publicar', `${id}${sufixo} enviado: https://youtu.be/${resposta.id}`, {videoId: resposta.id});
 	if (short) return; // Shorts usam um quadro do próprio vídeo como capa
@@ -174,6 +214,20 @@ async function miniaturas() {
 			log('publicar', `${ep}: miniatura aplicada`);
 		}
 	}
+	const musicas = path.join(RAIZ, 'musicas');
+	for (const mu of fs.existsSync(musicas) ? fs.readdirSync(musicas) : []) {
+		for (const f of fs.readdirSync(path.join(musicas, mu)).filter((f) => f.startsWith('MINIATURA-PENDENTE'))) {
+			const sufixo = f.replace('MINIATURA-PENDENTE', '');
+			const pendente = path.join(musicas, mu, f);
+			const capa = path.join(musicas, mu, `miniatura${sufixo}.jpg`);
+			const t = await fetch(`https://www.googleapis.com/upload/youtube/v3/thumbnails/set?videoId=${fs.readFileSync(pendente, 'utf8').trim()}`, {method: 'POST', headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'image/jpeg'}, body: fs.readFileSync(capa)});
+			if (t.ok) {
+				fs.rmSync(pendente);
+				fs.rmSync(capa, {force: true});
+				log('publicar', `${mu}${sufixo}: miniatura aplicada`);
+			}
+		}
+	}
 }
 
 async function metricas() {
@@ -197,6 +251,7 @@ const quando = process.argv.find((a) => a.startsWith('--quando='))?.split('=')[1
 try {
 	if (acao === 'autorizar') await autorizar();
 	else if (acao === 'enviar') await enviar(id, quando, Number(process.argv.find((a) => a.startsWith('--short='))?.split('=')[1]) || 0, process.argv.includes('--vertical'));
+	else if (acao === 'clipe') await enviarClipe(id, quando, process.argv.includes('--vertical') ? 'vertical' : process.argv.includes('--short') ? 'short' : '');
 	else if (acao === 'metricas') await metricas();
 	else if (acao === 'miniaturas') await miniaturas();
 	else if (acao === 'descricao') console.log(JSON.stringify(metadados(id), null, 1));

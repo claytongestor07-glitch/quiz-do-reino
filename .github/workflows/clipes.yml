@@ -1,0 +1,137 @@
+# Clipes musicais do canal (formato Bento e Totó), produzidos nas máquinas do GitHub: nada é guardado no Mac.
+# planejar → cantar (ACE-Step 1.5, modelo aberto) → render em paralelo (16:9, celular, Short) → enviar ao YouTube
+name: Produzir clipe
+
+on:
+  schedule:
+    - cron: '47 1,9,15,21 * * *'
+  workflow_dispatch:
+    inputs:
+      musica:
+        description: 'Música (vazio = próxima da fila)'
+        required: false
+      enviar:
+        description: 'Enviar ao YouTube (desligado = só gera os vídeos para assistir)'
+        type: boolean
+        default: true
+
+concurrency:
+  group: produzir
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  planejar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      id: ${{ steps.plano.outputs.id }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: plano
+        run: node scripts/clipes.mjs proximo "${{ inputs.musica }}"
+
+  cantar:
+    needs: planejar
+    if: needs.planejar.outputs.id != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - name: Liberar disco
+        run: sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc /opt/hostedtoolcache/CodeQL
+      - uses: astral-sh/setup-uv@v6
+      - uses: actions/cache@v4
+        with:
+          path: ace/checkpoints
+          key: ace-step-15-turbo-lm06-v1
+      - name: Instalar ACE-Step 1.5
+        run: |
+          git clone --depth 1 https://github.com/ACE-Step/ACE-Step-1.5.git ace-src
+          cp -r ace-src/. ace/ && rm -rf ace-src
+          cd ace && uv python install 3.11 && uv sync
+      - name: Cantar
+        env:
+          ACESTEP_DEVICE: cpu
+          ACESTEP_LM_BACKEND: pt
+          ACESTEP_LM_MODEL_PATH: acestep-5Hz-lm-0.6B
+          ACESTEP_CONFIG_PATH: acestep-v15-turbo
+          ACESTEP_INIT_LLM: 'true'
+        run: |
+          (cd ace && uv run acestep-api > ../ace.log 2>&1 &)
+          for i in $(seq 1 240); do curl -sf localhost:8001/health >/dev/null && break; sleep 15; done
+          python3 scripts/cantar.py ${{ needs.planejar.outputs.id }} || { tail -40 ace.log; exit 1; }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: musica
+          retention-days: 3
+          path: musicas/${{ needs.planejar.outputs.id }}/musica.mp3
+
+  render:
+    needs: [planejar, cantar]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        variante: ['', '--vertical', '--short']
+    env:
+      RENDER_CONCORRENCIA: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/preparar
+      - uses: actions/download-artifact@v4
+        with:
+          name: musica
+          path: musicas/${{ needs.planejar.outputs.id }}
+      - run: node scripts/clipe.mjs ${{ needs.planejar.outputs.id }} ${{ matrix.variante }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: clipe${{ matrix.variante }}
+          retention-days: 7
+          path: |
+            saida/clipes/*.mp4
+            saida/clipes/*.jpg
+
+  enviar:
+    needs: [planejar, render]
+    if: needs.planejar.outputs.id != '' && !cancelled()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    # Agendado: sempre envia. Manual: conforme a opção "enviar" (inputs vazios valem false nas comparações do GitHub)
+    env:
+      ENVIAR: ${{ github.event_name != 'workflow_dispatch' || inputs.enviar }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: clipe*
+          merge-multiple: true
+          path: saida/clipes
+      - name: Credenciais do YouTube
+        if: env.ENVIAR == 'true'
+        env:
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_TOKEN: ${{ secrets.YT_TOKEN }}
+        run: |
+          mkdir -p ~/.config/pequenos-sabios && chmod 700 ~/.config/pequenos-sabios
+          printf '%s' "$YT_CLIENT_SECRET" > ~/.config/pequenos-sabios/client_secret.json
+          printf '%s' "$YT_TOKEN" > ~/.config/pequenos-sabios/token.json
+          chmod 600 ~/.config/pequenos-sabios/*
+      - name: Agendar no YouTube
+        if: env.ENVIAR == 'true'
+        run: node scripts/clipes.mjs enviar ${{ needs.planejar.outputs.id }}
+      - name: Guardar agenda e envios no repositório
+        if: always() && env.ENVIAR == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add musicas logs/agenda.json; git add -f logs/limite-envio.json 2>/dev/null || true
+          git diff --cached --quiet && exit 0
+          git commit -m "Envios de ${{ needs.planejar.outputs.id }}"
+          git pull --rebase -q && git push -q

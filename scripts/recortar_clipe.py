@@ -1,6 +1,7 @@
 # Recorta os personagens da arte dos clipes (docs/arte/clipe.webp, 1774x887) e reconstrói o cenário sem eles (LaMa).
 # Saída em recortes/: <nome>.png (SAM guiado por pontos), <nome>-isnet.png (automático) e cenario.jpg.
 import numpy as np
+import torch
 from pathlib import Path
 from PIL import Image, ImageFilter
 from rembg import new_session, remove
@@ -31,5 +32,5 @@ for nome, (x0, y0, x1, y1), pontos in alvos:
     print('ok', nome, flush=True)
 mascara = Image.fromarray(np.where(total > 20, 255, 0).astype(np.uint8)).filter(ImageFilter.MaxFilter(25))
 mascara.save(saida / 'mascara.png')
-SimpleLama()(arte, mascara).save(saida / 'cenario.jpg', quality=92)
+SimpleLama(device=torch.device('cpu'))(arte, mascara).save(saida / 'cenario.jpg', quality=92)
 print('ok cenario', flush=True)

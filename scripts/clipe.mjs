@@ -1,5 +1,6 @@
 // Clipe musical: música cantada (musicas/<id>/musica.mp3) + Davi, Lulu e Leleco dançando no ritmo (src/Clipe.tsx).
-// Uso: node scripts/clipe.mjs mu001-davi [--vertical] [--dados]   (--dados: só gera public/clipe/<id>/clipe.json)
+// Uso: node scripts/clipe.mjs mu001-davi [--vertical | --short] [--dados]   (--dados: só gera public/clipe/<id>/clipe.json)
+// --short: vertical só com o primeiro refrão (até 55 s), para Shorts
 // A dança segue a "batida" medida na própria música (energia dos graves por quadro), não um BPM fixo.
 import fs from 'node:fs';
 import os from 'node:os';
@@ -11,7 +12,8 @@ import {RAIZ, FPS, duracaoAudio, log} from './lib.mjs';
 import {baixarEmojis} from './emojis.mjs';
 
 const id = process.argv[2];
-const vertical = process.argv.includes('--vertical');
+const short = process.argv.includes('--short');
+const vertical = short || process.argv.includes('--vertical');
 const dir = path.join(RAIZ, 'musicas', id);
 const musica = JSON.parse(fs.readFileSync(path.join(dir, 'musica.json'), 'utf8'));
 const audio = path.join(dir, 'musica.mp3');
@@ -59,20 +61,22 @@ const browserExecutable = fs.existsSync(CHROME) ? CHROME : null;
 const inputProps = {id, clipe};
 const serveUrl = await bundle({entryPoint: path.join(RAIZ, 'src', 'index.ts'), publicDir: path.join(RAIZ, 'public')});
 const comp = await selectComposition({serveUrl, id: vertical ? 'ClipeVertical' : 'Clipe', inputProps, browserExecutable});
+const refrao = partes.find((p) => p.tipo === 'refrao');
+const [ini, fim] = short ? [Math.max(0, Math.round(((refrao?.de ?? 0) - 1.5) * FPS)), Math.min(totalFrames - 1, Math.round(((refrao?.de ?? 0) + 53.5) * FPS))] : [0, totalFrames - 1];
 const quadros = fs.mkdtempSync(path.join(os.tmpdir(), `clipe-${id}-`));
 const inicio = Date.now();
 let feitos = 0;
 await renderFrames({
-	serveUrl, composition: comp, inputProps, browserExecutable, outputDir: null, imageFormat: 'jpeg', jpegQuality: 90,
+	serveUrl, composition: comp, inputProps, browserExecutable, outputDir: null, frameRange: [ini, fim], imageFormat: 'jpeg', jpegQuality: 90,
 	concurrency: Number(process.env.RENDER_CONCORRENCIA) || 2, timeoutInMilliseconds: 300000, onStart: () => {},
-	onFrameUpdate: (n) => { if (n - feitos >= 300) { feitos = n; log('clipe', `${n}/${totalFrames} quadros`); } },
+	onFrameUpdate: (n) => { if (n - feitos >= 300) { feitos = n; log('clipe', `${n}/${fim - ini + 1} quadros`); } },
 	onFrameBuffer: (buf, q) => fs.writeFileSync(path.join(quadros, `${String(q).padStart(6, '0')}.jpg`), buf),
 });
 const saida = path.join(RAIZ, 'saida', 'clipes');
 fs.mkdirSync(saida, {recursive: true});
-const video = path.join(saida, `${id}${vertical ? '-vertical' : ''}.mp4`);
-execFileSync('ffmpeg', ['-y', '-v', 'error', '-framerate', String(FPS), '-i', `${quadros}/%06d.jpg`, '-i', audio,
-	'-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', video]);
+const video = path.join(saida, `${id}${short ? '-short' : vertical ? '-vertical' : ''}.mp4`);
+execFileSync('ffmpeg', ['-y', '-v', 'error', '-framerate', String(FPS), '-start_number', String(ini), '-i', `${quadros}/%06d.jpg`, '-ss', String(ini / FPS), '-i', audio,
+	'-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', '-af', `afade=t=in:d=0.3,afade=t=out:st=${Math.max(0, (fim - ini) / FPS - 1.2)}:d=1.2`, '-shortest', '-movflags', '+faststart', video]);
 fs.rmSync(quadros, {recursive: true, force: true});
 if (!vertical) {
 	const mini = await selectComposition({serveUrl, id: 'MiniaturaClipe', inputProps, browserExecutable});

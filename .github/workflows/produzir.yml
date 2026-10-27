@@ -105,8 +105,8 @@ jobs:
           printf '%s' "$YT_TOKEN" > ~/.config/pequenos-sabios/token.json
           chmod 600 ~/.config/pequenos-sabios/*
       - name: Juntar, gerar Shorts e enviar
-        run: node scripts/automacao.mjs --episodio=${{ needs.planejar.outputs.id }} ${{ inputs.enviar == false && '--sem-envio' || '' }}
-      - if: inputs.enviar == false
+        run: node scripts/automacao.mjs --episodio=${{ needs.planejar.outputs.id }} ${{ github.event_name == 'workflow_dispatch' && inputs.enviar == false && '--sem-envio' || '' }}
+      - if: github.event_name == 'workflow_dispatch' && inputs.enviar == false
         uses: actions/upload-artifact@v4
         with:
           name: videos
