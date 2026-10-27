@@ -1,0 +1,83 @@
+# Uso único: gera a biblioteca de danças dos personagens na GPU gratuita do Kaggle (LTX-Video),
+# remove o fundo e grava os loops em public/personagens/clipe/dancas/.
+name: Gerar danças
+on:
+  workflow_dispatch:
+    inputs:
+      personagens:
+        description: personagens (separados por vírgula)
+        default: davi-violao,menina,leleco
+      passos:
+        description: passos de dança (pula,balanca,palmas,gira,bracos)
+        default: pula,balanca,palmas,gira,bracos
+permissions:
+  contents: write
+jobs:
+  kaggle:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    env:
+      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q -U kaggle
+      - name: Enviar para a GPU do Kaggle
+        run: |
+          USUARIO=$(python - <<'EOF'
+          from kaggle.api.kaggle_api_extended import KaggleApi
+          a = KaggleApi(); a.authenticate()
+          u = a.get_config_value('username') or ''
+          if not u:
+              try: u = a.get_current_user().user_name  # contas com token novo (KGAT_)
+              except Exception as e: print('sem get_current_user:', e, file=__import__('sys').stderr)
+          print(u)
+          EOF
+          )
+          echo "usuário Kaggle: $USUARIO"
+          test -n "$USUARIO"
+          echo "KERNEL=$USUARIO/quiz-do-reino-dancas" >> "$GITHUB_ENV"
+          mkdir k
+          { echo "import os"; echo "os.environ['PERSONAGENS'] = '${{ inputs.personagens }}'"; echo "os.environ['PASSOS'] = '${{ inputs.passos }}'"; cat scripts/kaggle/danca.py; } > k/danca.py
+          cat > k/kernel-metadata.json <<EOF
+          {"id": "$USUARIO/quiz-do-reino-dancas", "title": "quiz-do-reino-dancas", "code_file": "danca.py",
+           "language": "python", "kernel_type": "script", "is_private": true,
+           "enable_gpu": true, "enable_internet": true, "machine_shape": "NvidiaTeslaT4"}
+          EOF
+          kaggle kernels push -p k
+      - name: Aguardar a GPU
+        run: |
+          sleep 120
+          for i in $(seq 1 330); do
+            S=$(kaggle kernels status "$KERNEL" 2>&1 | tail -1); echo "$(date +%H:%M) $S"
+            case "$S" in *COMPLETE*) break;; *ERROR*|*CANCEL*) break;; esac
+            sleep 60
+          done
+          mkdir -p saida && kaggle kernels output "$KERNEL" -p saida
+          tail -50 saida/*.log || true
+          ls saida/*.mp4
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dancas-brutas
+          path: saida/*
+  transparente:
+    needs: kaggle
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dancas-brutas
+          path: brutas
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -q "rembg[cpu]" pillow
+      - run: python scripts/dancas_alpha.py brutas
+      - name: Salvar no repositório
+        run: |
+          git config user.name "Clayton Santos"
+          git config user.email "231254187+claytongestor07-glitch@users.noreply.github.com"
+          git add public/personagens/clipe/dancas
+          git commit -m "Danças dos personagens (Kaggle LTX-Video)"
+          git pull -q --rebase && git push
