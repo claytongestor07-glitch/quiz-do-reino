@@ -67,7 +67,7 @@ jobs:
         with:
           name: musica
           retention-days: 3
-          path: musicas/${{ needs.planejar.outputs.id }}/musica.mp3
+          path: musicas/${{ needs.planejar.outputs.id }}/musica.wav
 
   render:
     needs: [planejar, cantar]

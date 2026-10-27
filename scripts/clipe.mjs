@@ -1,4 +1,4 @@
-// Clipe musical: música cantada (musicas/<id>/musica.mp3) + Davi, Lulu e Leleco dançando no ritmo (src/Clipe.tsx).
+// Clipe musical: música cantada (musicas/<id>/musica.wav, gerada por scripts/cantar.py) + Davi, Lulu e Leleco dançando no ritmo (src/Clipe.tsx).
 // Uso: node scripts/clipe.mjs mu001-davi [--vertical | --short] [--dados]   (--dados: só gera public/clipe/<id>/clipe.json)
 // --short: vertical só com o primeiro refrão (até 55 s), para Shorts
 // A dança segue a "batida" medida na própria música (energia dos graves por quadro), não um BPM fixo.
@@ -16,7 +16,7 @@ const short = process.argv.includes('--short');
 const vertical = short || process.argv.includes('--vertical');
 const dir = path.join(RAIZ, 'musicas', id);
 const musica = JSON.parse(fs.readFileSync(path.join(dir, 'musica.json'), 'utf8'));
-const audio = path.join(dir, 'musica.mp3');
+const audio = ['musica.wav', 'musica.mp3'].map((f) => path.join(dir, f)).find((f) => fs.existsSync(f)) ?? path.join(dir, 'musica.wav');
 if (!fs.existsSync(audio)) throw new Error(`Falta a música: ${audio}`);
 
 // Batida: energia dos graves (até 150 Hz) por quadro, só a subida (ataque do bumbo), normalizada para 0–1

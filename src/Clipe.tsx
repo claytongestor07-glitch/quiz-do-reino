@@ -1,7 +1,6 @@
 import React from 'react';
 import {AbsoluteFill, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig, type CalculateMetadataFunction} from 'remotion';
 import {Raios, TITULO} from './Speed';
-import {Lulu, Leleco} from './Personagens';
 
 // Clipe musical (formato inspirado no canal Bento e Totó): música cantada de 2–3 min com Davi, Lulu e Leleco dançando.
 // Dados em public/clipe/<id>/clipe.json, gerado por scripts/clipe.mjs: a "batida" (0–1 por quadro) vem da própria música,
@@ -33,6 +32,23 @@ const parteAtual = (c: Clipe, s: number) => {
 	let k = 0;
 	c.partes.forEach((p, i) => { if (s >= p.de) k = i; });
 	return k;
+};
+
+// Personagens da arte dos clipes (docs/arte/clipe.webp, recortados por scripts/recortar_clipe.py)
+const FIGURA = {davi: ['davi-violao.png', 872], menina: ['menina.png', 500], leleco: ['leleco.png', 483], biblia: ['biblia.png', 809]} as const;
+const Figura: React.FC<{nome: keyof typeof FIGURA; escala: number}> = ({nome, escala}) => (
+	<Img src={staticFile(`personagens/clipe/${FIGURA[nome][0]}`)} style={{width: FIGURA[nome][1] * escala, display: 'block', filter: 'drop-shadow(0 14px 16px rgba(0,0,0,.28))'}} />
+);
+
+// Cenário da arte (castelo, cascata e notas) com zoom lento; desfocado de leve para destacar os personagens
+const Cenario: React.FC = () => {
+	const frame = useCurrentFrame();
+	return (
+		<AbsoluteFill style={{overflow: 'hidden'}}>
+			<Img src={staticFile('personagens/clipe/cenario.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover', filter: 'blur(3px) saturate(1.15)',
+				transform: `scale(${1.08 + Math.sin(frame / 240) * 0.04}) translateX(${Math.sin(frame / 300) * 20}px)`}} />
+		</AbsoluteFill>
+	);
 };
 
 // Emojis do tema flutuando e pulando no ritmo
@@ -151,21 +167,25 @@ export const Clipe: React.FC<PropsClipe> = ({clipe}) => {
 	const [c1, c2] = PALETAS[k % PALETAS.length];
 	const vertical = height > width;
 	const entrada = interpolate(frame - desde, [0, 8], [1.15, 1], {extrapolateRight: 'clamp'});
-	const escala = vertical ? 1.7 : 1.6;
+	const refrao = parte.tipo === 'refrao';
 	return (
 		<AbsoluteFill style={{overflow: 'hidden'}}>
 			<AbsoluteFill style={{transform: `scale(${(1 + pulso * 0.025) * entrada})`}}>
-				<Raios cor1={c1} cor2={c2} giro={0.4 + pulso * 0.3} />
+				{refrao ? <Raios cor1={c1} cor2={c2} giro={0.4 + pulso * 0.3} /> : <Cenario />}
 			</AbsoluteFill>
 			<Confete pulso={pulso} />
 			<Emojis nomes={parte.emojis} pulso={pulso} semente={k * 31} />
-			<Palco pulso={pulso} cor={c2} />
-			<Dancarino pulso={pulso} fase={0} x={vertical ? width * 0.36 : width * 0.4} base={vertical ? height * 0.16 : height * 0.04}>
-				<Lulu humor="feliz" escala={escala} />
+			{refrao && <Palco pulso={pulso} cor={c2} />}
+			<Dancarino pulso={pulso} fase={0} x={vertical ? width * 0.45 : width * 0.25} base={vertical ? height * 0.36 : height * 0.06}>
+				<Figura nome="davi" escala={vertical ? 1.05 : 0.82} />
 			</Dancarino>
-			<Dancarino pulso={pulso} fase={23} x={vertical ? width * 0.76 : width * 0.74} base={vertical ? height * 0.17 : height * 0.05}>
-				<Leleco humor="feliz" escala={escala * 0.9} />
+			<Dancarino pulso={pulso} fase={15} x={vertical ? width * 0.7 : width * 0.56} base={vertical ? height * 0.08 : height * 0.08}>
+				<Figura nome="menina" escala={vertical ? 1.2 : 1.12} />
 			</Dancarino>
+			<Dancarino pulso={pulso} fase={30} x={vertical ? width * 0.25 : width * 0.82} base={vertical ? height * 0.07 : height * 0.04}>
+				<Figura nome="leleco" escala={vertical ? 1.1 : 1.05} />
+			</Dancarino>
+			{!vertical && <div style={{position: 'absolute', left: width * 0.5, bottom: -20, transform: `translateX(-50%) scale(${1 + pulso * 0.03})`}}><Figura nome="biblia" escala={0.85} /></div>}
 			{parte.tipo === 'refrao' && parte.frase && <Frase texto={parte.frase} pulso={pulso} desde={desde} />}
 			{(parte.tipo === 'intro' || parte.tipo === 'final') && <Titulo titulo={clipe.titulo} desde={desde} />}
 			{/* Flash branco curto na troca de parte */}
@@ -180,15 +200,16 @@ export const MiniaturaClipe: React.FC<PropsClipe> = ({clipe}) => {
 	const emojis = [...new Set(clipe.partes.flatMap((p) => p.emojis))].slice(0, 4);
 	return (
 		<AbsoluteFill>
-			<Raios cor1="#ff7a1a" cor2="#ffa94d" giro={0} />
+			<Cenario />
 			<div style={{position: 'absolute', top: 40, width: '100%', textAlign: 'center', fontFamily: TITULO, fontSize: 170, lineHeight: 0.95, color: '#ffd43b', ...contorno(24), textShadow: '0 14px 0 rgba(0,0,0,.25)', transform: 'rotate(-3deg)', padding: '0 60px', boxSizing: 'border-box'}}>
 				{clipe.titulo}
 			</div>
 			{emojis.map((e, k) => (
 				<Img key={k} src={staticFile(arquivoEmoji(e))} style={{position: 'absolute', width: 200, height: 200, left: [60, 1660, 120, 1600][k], top: [520, 520, 820, 820][k], transform: `rotate(${k % 2 ? 12 : -12}deg)`, filter: 'drop-shadow(0 10px 12px rgba(0,0,0,.3))'}} />
 			))}
-			<div style={{position: 'absolute', left: 300, bottom: -20}}><Lulu humor="feliz" escala={2.4} /></div>
-			<div style={{position: 'absolute', left: 1200, bottom: -10}}><Leleco humor="feliz" escala={2.1} /></div>
+			<div style={{position: 'absolute', left: 30, bottom: 10}}><Figura nome="davi" escala={1.05} /></div>
+			<div style={{position: 'absolute', left: 900, bottom: 0}}><Figura nome="menina" escala={1.25} /></div>
+			<div style={{position: 'absolute', left: 1380, bottom: 0}}><Figura nome="leleco" escala={1.1} /></div>
 		</AbsoluteFill>
 	);
 };
