@@ -5,11 +5,117 @@
   "estilo": "upbeat children's gospel song, catchy nursery pop, cheerful female singer, kids choir in chorus, 140 bpm, bright synths, claps, fun, energetic, brazilian portuguese",
   "duracao": 120,
   "partes": [
-    {"tipo": "intro", "emojis": ["Crown", "Sparkles", "Musical notes"], "letra": ["Ê, criançada! Vamos cantar!"]},
-    {"tipo": "verso", "emojis": ["Rock", "Ewe", "Musical notes"], "letra": ["Davi era pequenininho", "mas tinha um coração valente", "pegou a funda e cinco pedras", "e confiou no Deus da gente"]},
-    {"tipo": "refrao", "frase": "DEUS É GRANDE!", "emojis": ["Red heart", "Star-struck", "Clapping hands"], "letra": ["Pode ser pequeno, Deus é grande!", "Pode ser pequeno, Deus é grande!", "Ê, ê, ê, Deus é grande!", "Pula, pula, Deus é grande!"]},
-    {"tipo": "verso", "emojis": ["Lion", "Folded hands", "Sun"], "letra": ["O gigante gritou bem alto", "mas Davi orou sem medo", "com fé em Deus venceu o gigante", "e a criançada cantou com ele"]},
-    {"tipo": "refrao", "frase": "PODE SER PEQUENO!", "emojis": ["Party popper", "Red heart", "Clapping hands"], "letra": ["Pode ser pequeno, Deus é grande!", "Pode ser pequeno, Deus é grande!", "Ê, ê, ê, Deus é grande!", "Pula, pula, Deus é grande!"]},
-    {"tipo": "final", "emojis": ["Crown", "Sparkles", "Party popper"], "letra": ["Deus é grande! Uhuu!"]}
-  ]
+    {
+      "tipo": "intro",
+      "emojis": [
+        "Crown",
+        "Sparkles",
+        "Musical notes"
+      ],
+      "letra": [
+        "Ê, criançada! Vamos cantar!"
+      ]
+    },
+    {
+      "tipo": "verso",
+      "emojis": [
+        "Rock",
+        "Ewe",
+        "Musical notes"
+      ],
+      "letra": [
+        "Davi era pequenininho",
+        "mas tinha um coração valente",
+        "pegou a funda e cinco pedras",
+        "e confiou no Deus da gente"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "DEUS É GRANDE!",
+      "emojis": [
+        "Red heart",
+        "Star-struck",
+        "Clapping hands"
+      ],
+      "letra": [
+        "Pode ser pequeno, Deus é grande!",
+        "Pode ser pequeno, Deus é grande!",
+        "Ê, ê, ê, Deus é grande!",
+        "Pula, pula, Deus é grande!"
+      ]
+    },
+    {
+      "tipo": "verso",
+      "emojis": [
+        "Lion",
+        "Folded hands",
+        "Sun"
+      ],
+      "letra": [
+        "O gigante gritou bem alto",
+        "mas Davi orou sem medo",
+        "com fé em Deus venceu o gigante",
+        "e a criançada cantou com ele"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "PODE SER PEQUENO!",
+      "emojis": [
+        "Party popper",
+        "Red heart",
+        "Clapping hands"
+      ],
+      "letra": [
+        "Pode ser pequeno, Deus é grande!",
+        "Pode ser pequeno, Deus é grande!",
+        "Ê, ê, ê, Deus é grande!",
+        "Pula, pula, Deus é grande!"
+      ]
+    },
+    {
+      "tipo": "ponte",
+      "emojis": [
+        "Clapping hands",
+        "Raising hands",
+        "Party popper"
+      ],
+      "letra": [
+        "Bate palma, bate palma!",
+        "Mãozinha pra cima, pula, pula!",
+        "Gira, gira, todo mundo!",
+        "Deus é grande, uhuu!"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "DEUS É GRANDE!",
+      "emojis": [
+        "Red heart",
+        "Star-struck",
+        "Clapping hands"
+      ],
+      "letra": [
+        "Pode ser pequeno, Deus é grande!",
+        "Pode ser pequeno, Deus é grande!",
+        "Ê, ê, ê, Deus é grande!",
+        "Pula, pula, Deus é grande!"
+      ]
+    },
+    {
+      "tipo": "final",
+      "emojis": [
+        "Crown",
+        "Sparkles",
+        "Party popper"
+      ],
+      "letra": [
+        "Deus é grande! Uhuu!"
+      ]
+    }
+  ],
+  "descricao": "Davi era pequenininho, mas confiou em Deus e venceu o gigante! Uma música para cantar, pular e aprender que Deus é grande.",
+  "licao": "Mesmo pequenos, podemos confiar em Deus, porque Ele é grande.",
+  "fonte": "1 Samuel 17:45"
 }

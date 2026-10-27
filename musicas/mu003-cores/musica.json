@@ -1,0 +1,121 @@
+{
+  "id": "mu003-cores",
+  "titulo": "As Cores do Arco-Íris",
+  "tituloYoutube": "Quiz do Reino - As Cores do Arco-Íris! Aprenda as Cores (Música Infantil Cristã)",
+  "estilo": "cheerful children's pop with brazilian forró rhythm, accordion, catchy kids song, cheerful female singer, kids choir in chorus, 125 bpm, claps, fun, brazilian portuguese",
+  "duracao": 130,
+  "descricao": "Vermelho, laranja, amarelo, verde, azul e roxo! Aprenda as cores do arco-íris que Deus colocou no céu como promessa de amor.",
+  "licao": "O arco-íris lembra que Deus sempre cumpre as suas promessas.",
+  "fonte": "Gênesis 9:13",
+  "partes": [
+    {
+      "tipo": "intro",
+      "emojis": [
+        "Rainbow",
+        "Sun",
+        "Musical notes"
+      ],
+      "letra": [
+        "Olha pro céu, criançada! Que lindo!"
+      ]
+    },
+    {
+      "tipo": "verso",
+      "emojis": [
+        "Red apple",
+        "Tangerine",
+        "Lemon"
+      ],
+      "letra": [
+        "Vermelho como a maçã",
+        "laranja da laranjinha",
+        "amarelo como o sol",
+        "brilhando de manhãzinha"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "ARCO-ÍRIS!",
+      "emojis": [
+        "Rainbow",
+        "Red heart",
+        "Sparkles"
+      ],
+      "letra": [
+        "Arco-íris, arco-íris, promessa do Senhor!",
+        "Arco-íris, arco-íris, cheio de cor!",
+        "Deus pintou o céu com amor!",
+        "Arco-íris, arco-íris, que lindo, que cor!"
+      ]
+    },
+    {
+      "tipo": "verso",
+      "emojis": [
+        "Leafy green",
+        "Water wave",
+        "Grapes"
+      ],
+      "letra": [
+        "Verde como a folhinha",
+        "azul do mar e do céu",
+        "roxo como a uvinha",
+        "Deus pintou com seu pincel"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "CHEIO DE COR!",
+      "emojis": [
+        "Rainbow",
+        "Artist palette",
+        "Sparkles"
+      ],
+      "letra": [
+        "Arco-íris, arco-íris, promessa do Senhor!",
+        "Arco-íris, arco-íris, cheio de cor!",
+        "Deus pintou o céu com amor!",
+        "Arco-íris, arco-íris, que lindo, que cor!"
+      ]
+    },
+    {
+      "tipo": "ponte",
+      "emojis": [
+        "Raising hands",
+        "Clapping hands",
+        "Rainbow"
+      ],
+      "letra": [
+        "Mãozinha pra cima, faz um arco!",
+        "Pro lado, pro outro, balança!",
+        "Bate palma, uma, duas!",
+        "Arco-íris na dança!"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "PROMESSA DO SENHOR!",
+      "emojis": [
+        "Rainbow",
+        "Red heart",
+        "Folded hands"
+      ],
+      "letra": [
+        "Arco-íris, arco-íris, promessa do Senhor!",
+        "Arco-íris, arco-íris, cheio de cor!",
+        "Deus pintou o céu com amor!",
+        "Arco-íris, arco-íris, que lindo, que cor!"
+      ]
+    },
+    {
+      "tipo": "final",
+      "emojis": [
+        "Rainbow",
+        "Sparkles",
+        "Party popper"
+      ],
+      "letra": [
+        "Deus cumpre o que promete! Uhuu!"
+      ]
+    }
+  ]
+}

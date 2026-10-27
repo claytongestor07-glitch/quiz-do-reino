@@ -22,3 +22,4 @@ Cada aprovação ou ajuste pedido entra aqui, para os próximos episódios segui
 - Referência: canal **Bento e Totó** (clipes musicais infantis de 2–3 min, 11 mi inscritos). O canal passa a ser de **clipes musicais cristãos** com Davi, Lulu e Leleco: músicas animadas e grudentas, refrão repetido, temas simples (bichos da arca, cores da criação, números, família, oração, gratidão).
 - Coletâneas de 15–25 min juntando os clipes; Shorts com o refrão.
 - Enquanto o novo formato não estiver pronto: NÃO escrever novos quizzes. Os quizzes já roteirizados terminam de ser publicados normalmente.
+- 27/10/2026: produção automática de clipes LIGADA (senhor: "músicas evangélicas e educativas"). Personagens e cenário da nova arte (docs/arte/clipe.webp): Davi com violão + Lulu, a menina, Leleco e a Bíblia. Músicas cantadas pelo ACE-Step 1.5 na nuvem; letras originais, sempre ensinando algo (números, cores, criação, corpo, boas maneiras…).

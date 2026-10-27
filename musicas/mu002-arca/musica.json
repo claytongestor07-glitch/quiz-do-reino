@@ -1,0 +1,121 @@
+{
+  "id": "mu002-arca",
+  "titulo": "Contando na Arca!",
+  "tituloYoutube": "Quiz do Reino - Contando na Arca! Aprenda os Números de 1 a 10 (Música Infantil Cristã)",
+  "estilo": "upbeat brazilian children's funk, catchy kids song, cheerful female singer, kids choir in chorus, 130 bpm, animal sound effects, claps, fun, brazilian portuguese",
+  "duracao": 135,
+  "descricao": "Vamos contar de 1 a 10 com os bichinhos da Arca de Noé! Uma música para aprender os números e cantar que Deus cuida de todos.",
+  "licao": "Deus cuidou de Noé e de cada bichinho, e cuida de nós também.",
+  "fonte": "Gênesis 7:15",
+  "partes": [
+    {
+      "tipo": "intro",
+      "emojis": [
+        "Water wave",
+        "Rainbow",
+        "Musical notes"
+      ],
+      "letra": [
+        "Ê, criançada! Vamos contar na arca!"
+      ]
+    },
+    {
+      "tipo": "verso",
+      "emojis": [
+        "Lion",
+        "Elephant",
+        "Giraffe"
+      ],
+      "letra": [
+        "Um leão, dois elefantes",
+        "três girafas bem gigantes",
+        "quatro patos, quá, quá, quá",
+        "cinco zebras vão entrar"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "UM, DOIS, TRÊS!",
+      "emojis": [
+        "Keycap 1",
+        "Keycap 2",
+        "Keycap 3"
+      ],
+      "letra": [
+        "Um, dois, três, entra na arca!",
+        "Quatro, cinco, entra na arca!",
+        "Deus cuida de todos, todos, todos!",
+        "Conta comigo, entra na arca!"
+      ]
+    },
+    {
+      "tipo": "verso",
+      "emojis": [
+        "Monkey",
+        "Rabbit",
+        "Cow"
+      ],
+      "letra": [
+        "Seis macacos pulando",
+        "sete coelhos saltando",
+        "oito vaquinhas, muu, muu",
+        "nove ovelhas, dez cangurus"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "ENTRA NA ARCA!",
+      "emojis": [
+        "Keycap 4",
+        "Keycap 5",
+        "Monkey"
+      ],
+      "letra": [
+        "Um, dois, três, entra na arca!",
+        "Quatro, cinco, entra na arca!",
+        "Deus cuida de todos, todos, todos!",
+        "Conta comigo, entra na arca!"
+      ]
+    },
+    {
+      "tipo": "ponte",
+      "emojis": [
+        "Raised hand",
+        "Clapping hands",
+        "Rainbow"
+      ],
+      "letra": [
+        "Mostra um dedinho, mostra dois!",
+        "Agora cinco, mãozinha aberta!",
+        "Agora dez, as duas mãos!",
+        "Bate palma pro arco-íris!"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "DEUS CUIDA DE TODOS!",
+      "emojis": [
+        "Keycap 10",
+        "Red heart",
+        "Rainbow"
+      ],
+      "letra": [
+        "Um, dois, três, entra na arca!",
+        "Quatro, cinco, entra na arca!",
+        "Deus cuida de todos, todos, todos!",
+        "Conta comigo, entra na arca!"
+      ]
+    },
+    {
+      "tipo": "final",
+      "emojis": [
+        "Rainbow",
+        "Sparkles",
+        "Party popper"
+      ],
+      "letra": [
+        "Contamos até dez! Uhuu!"
+      ]
+    }
+  ]
+}
