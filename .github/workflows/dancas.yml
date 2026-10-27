@@ -23,16 +23,7 @@ jobs:
       - run: pip install -q -U kaggle
       - name: Enviar para a GPU do Kaggle
         run: |
-          USUARIO=$(python - <<'EOF'
-          from kaggle.api.kaggle_api_extended import KaggleApi
-          a = KaggleApi(); a.authenticate()
-          u = a.get_config_value('username') or ''
-          if not u:
-              try: u = a.get_current_user().user_name  # contas com token novo (KGAT_)
-              except Exception as e: print('sem get_current_user:', e, file=__import__('sys').stderr)
-          print(u)
-          EOF
-          )
+          USUARIO=$(python -c "import kaggle; print(kaggle.api.get_config_value('username') or '')")
           echo "usuário Kaggle: $USUARIO"
           test -n "$USUARIO"
           echo "KERNEL=$USUARIO/quiz-do-reino-dancas" >> "$GITHUB_ENV"
