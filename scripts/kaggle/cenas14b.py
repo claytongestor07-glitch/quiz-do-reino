@@ -11,7 +11,10 @@ ARTE = RAW + 'docs/arte/clipe.webp'
 L, A, QUADROS = 832, 480, 81
 
 CENAS = {n: (tuple(c['recorte']), c['prompt']) for n, c in json.load(urlopen(RAW + 'src/cenas.json'))['cenas'].items()}
-ESTILO = (' Keep the exact characters and art style of the image. 3D Pixar style children music video, lively natural motion, '
+# Energia: o LoRA de 4 passos acalma o movimento; o pedido insiste em dança e o especialista de ruído alto (que decide o
+# movimento) roda com LoRA mais fraco e guia de texto (CFG) — custa ~50% mais tempo por cena
+ENERGIA = ' The characters dance energetically to the music: big joyful arm movements, bouncing, swaying, jumping, clapping, head bobbing.'
+ESTILO = (ENERGIA + ' Keep the exact characters and art style of the image. 3D Pixar style children music video, lively natural motion, '
 	'expressive faces, hair and fur moving, gentle camera move, warm cinematic light, vibrant colors, high quality.')
 NEGATIVO = ('worst quality, low quality, blurry, distorted, deformed face, extra fingers, extra limbs, morphing, flicker, '
 	'text, watermark, subtitles, static image, still picture')
@@ -59,7 +62,7 @@ pipe = WanImageToVideoPipeline.from_pretrained(MODELO, transformer=especialista(
 	transformer_2=especialista('LowNoise', 'transformer_2'), vae=vae, text_encoder=None, tokenizer=None, torch_dtype=torch.float16)
 pipe.load_lora_weights(RAPIDO, weight_name=f'{PASTA_RAPIDO}/high_noise_model.safetensors', adapter_name='rapido')
 pipe.load_lora_weights(RAPIDO, weight_name=f'{PASTA_RAPIDO}/low_noise_model.safetensors', adapter_name='rapido_2', load_into_transformer_2=True)
-pipe.set_adapters(['rapido', 'rapido_2'], adapter_weights=[1.0, 1.0])
+pipe.set_adapters(['rapido', 'rapido_2'], adapter_weights=[0.75, 1.0])
 from accelerate.hooks import AlignDevicesHook, add_hook_to_module
 segunda = 'cuda:1' if torch.cuda.device_count() > 1 else 'cuda:0'
 for modulo, dev in ((pipe.transformer, 'cuda:0'), (pipe.transformer_2, segunda), (pipe.vae, 'cuda:0')):
@@ -74,7 +77,7 @@ for nome in escolhidas:
 	img = arte.crop((int(x * k), int(y * k), int((x + w) * k), int((y + w * 9 / 16) * k))).resize((L, A), Image.LANCZOS)
 	p, n = embeds[nome]
 	frames = pipe(image=img, prompt_embeds=p.to('cuda:0'), negative_prompt_embeds=n.to('cuda:0'), height=A, width=L, num_frames=QUADROS,
-		num_inference_steps=4, guidance_scale=1.0, guidance_scale_2=1.0,
+		num_inference_steps=4, guidance_scale=2.5, guidance_scale_2=1.0,
 		generator=torch.Generator('cuda:0').manual_seed(11)).frames[0]
 	bruto = f'/kaggle/working/{nome}-16.mp4'
 	export_to_video(frames, bruto, fps=16)
