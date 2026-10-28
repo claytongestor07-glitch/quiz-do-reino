@@ -3,26 +3,15 @@
 # cada recorte vira uma "cena" de ~3,4 s (close do Davi, da menina, do Leleco, plano geral, castelo...).
 # Usa as duas T4 do Kaggle em paralelo (uma thread por GPU). Saída: /kaggle/working/<cena>.mp4 (832x480, 24 fps)
 import json, os, subprocess, sys, time
+from urllib.request import urlopen
 
 os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
-ARTE = 'https://raw.githubusercontent.com/claytongestor07-glitch/quiz-do-reino/main/docs/arte/clipe.webp'
+RAW = 'https://raw.githubusercontent.com/claytongestor07-glitch/quiz-do-reino/main/'
+ARTE = RAW + 'docs/arte/clipe.webp'
 L, A, QUADROS = 832, 480, 81
 
-# Recortes em coordenadas da arte reduzida para 1200 px de largura (x, y, largura); altura = largura * 9/16
-CENAS = {
-	'davi': ((20, 110, 600), 'The curly haired boy strums his acoustic guitar and sings happily, bobbing his head to the music'),
-	'davi-canta': ((120, 100, 420), 'Close-up: the curly haired boy sings joyfully with a big smile, moving his head to the rhythm'),
-	'lulu': ((270, 270, 400), 'The fluffy white lamb bounces happily and smiles, wiggling its ears'),
-	'menina': ((440, 150, 600), 'The girl in the pink dress sings and waves her arms joyfully, swaying side to side'),
-	'menina-canta': ((560, 160, 380), 'Close-up: the girl with the pink bow sings happily and smiles, tilting her head'),
-	'leleco': ((720, 230, 480), 'The friendly lion cub claps its paws and sways happily, smiling'),
-	'duo-esquerda': ((0, 80, 800), 'The boy plays guitar while the lamb bounces next to him, both singing happily'),
-	'duo-direita': ((500, 130, 700), 'The girl dances with raised arms next to the lion cub, who claps along'),
-	'geral': ((66, 0, 1067), 'The children and animals sing and dance together happily, slow camera push in'),
-	'geral-festa': ((0, 0, 1200), 'Everyone celebrates and dances, the music notes float and bounce in the air'),
-	'castelo': ((780, 20, 400), 'Slow camera pan across the shining castle and the waterfall, birds flying, sunny day'),
-	'biblia': ((350, 319, 500), 'The open Bible glows softly with golden sparkles floating up from the pages'),
-}
+# Tabela única de cenas (também usada pelo clipe), src/cenas.json: recorte (x, y, largura na arte a 1200 px) e pedido
+CENAS = {n: (tuple(c['recorte']), c['prompt']) for n, c in json.load(urlopen(RAW + 'src/cenas.json'))['cenas'].items()}
 ESTILO = ' 3D Pixar style children animation, smooth natural motion, consistent characters, vibrant colors, high quality.'
 NEGATIVO = ('worst quality, low quality, blurry, distorted, deformed face, extra fingers, extra limbs, morphing, flicker, '
 	'text, watermark, subtitles, static image, still picture')
@@ -31,7 +20,6 @@ subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', '-U', 'diffusers>=
 
 import threading
 from io import BytesIO
-from urllib.request import urlopen
 import torch
 from PIL import Image
 from diffusers import AutoencoderKLWan, WanImageToVideoPipeline

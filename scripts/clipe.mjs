@@ -1,6 +1,6 @@
-// Clipe musical: música cantada (musicas/<id>/musica.wav, gerada por scripts/cantar.py) + Davi, Lulu e Leleco dançando no ritmo (src/Clipe.tsx).
+// Clipe musical: música cantada (musicas/<id>/musica.wav, gerada por scripts/cantar.py) + cenas animadas cortadas na batida e letra em karaokê (src/Clipe.tsx).
 // Uso: node scripts/clipe.mjs mu001-davi [--vertical | --short] [--dados]   (--dados: só gera public/clipe/<id>/clipe.json)
-// --short: vertical só com o primeiro refrão (até 55 s), para Shorts
+// --short: vertical só com o primeiro refrão (até 55 s), para Shorts; --trecho=20-50: só esse intervalo (prévia)
 // A dança segue a "batida" medida na própria música (energia dos graves por quadro), não um BPM fixo.
 import fs from 'node:fs';
 import os from 'node:os';
@@ -38,22 +38,69 @@ function batida(arq, quadros) {
 
 const dur = duracaoAudio(audio);
 const totalFrames = Math.ceil(dur * FPS);
-// Partes distribuídas pelo número de versos (a intro e o final ficam curtos)
-const pesos = musica.partes.map((p) => Math.max(1, p.letra.length));
-const soma = pesos.reduce((s, v) => s + v, 0);
-let t = 0;
+const ritmo = batida(audio, totalFrames);
+const r2 = (v) => Math.round(v * 100) / 100;
+
+// Letra no tempo: palavras.json (scripts/alinhar.py, Whisper) quando existe; senão distribui pelo número de versos
+const arqPalavras = path.join(dir, 'palavras.json');
+let linhas;
+if (fs.existsSync(arqPalavras)) {
+	linhas = JSON.parse(fs.readFileSync(arqPalavras, 'utf8')).map((l) => ({parte: l.parte, palavras: l.palavras}));
+} else {
+	const pesos = musica.partes.map((p) => Math.max(1, p.letra.length));
+	const soma = pesos.reduce((s, v) => s + v, 0);
+	let t = 0;
+	linhas = musica.partes.flatMap((p, k) => {
+		const de = t, cada = (dur * pesos[k]) / soma / p.letra.length;
+		t += (dur * pesos[k]) / soma;
+		return p.letra.map((l, i) => {
+			const ws = l.split(' '), ini = de + i * cada;
+			return {parte: k, palavras: ws.map((w, j) => ({p: w, de: r2(ini + (j * cada * 0.85) / ws.length), ate: r2(ini + ((j + 1) * cada * 0.85) / ws.length)}))};
+		});
+	});
+}
+linhas = linhas.map((l) => ({...l, de: l.palavras[0].de, ate: l.palavras.at(-1).ate}));
+// Cada parte começa um pouco antes da primeira palavra cantada nela
 const partes = musica.partes.map((p, k) => {
-	const de = p.de ?? t;
-	t = de + (dur * pesos[k]) / soma;
-	return {de: Math.round(de * 100) / 100, tipo: p.tipo, emojis: p.emojis, frase: p.frase};
+	const primeira = linhas.find((l) => l.parte === k);
+	return {de: k === 0 ? 0 : r2(Math.max(0, (primeira?.de ?? 0) - 0.6)), tipo: p.tipo, emojis: p.emojis, frase: p.frase};
+});
+for (let k = 1; k < partes.length; k++) partes[k].de = Math.max(partes[k].de, partes[k - 1].de + 1);
+
+// Tomadas: a cada ~3 s troca de cena, cortando no bumbo mais forte por perto; cenas escolhidas pelo tipo da parte
+const {cenas: CENAS} = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src', 'cenas.json'), 'utf8'));
+const comVideo = (n) => fs.existsSync(path.join(RAIZ, 'public', 'cenas', `${n}.mp4`));
+const tomadas = [];
+let semente = [...id].reduce((s, c) => s + c.charCodeAt(0), 0);
+partes.forEach((p, k) => {
+	const fim = partes[k + 1]?.de ?? dur;
+	const tipo = p.tipo === 'ponte' ? 'ponte' : p.tipo;
+	const pool = Object.keys(CENAS).filter((n) => CENAS[n].partes.includes(tipo));
+	const fixas = tipo === 'intro' ? ['castelo', 'geral'] : tipo === 'final' ? ['geral-festa', 'castelo'] : tipo === 'refrao' ? ['geral-festa'] : [];
+	let t = p.de, i = 0;
+	while (t < fim - 0.8) {
+		let corte = Math.min(fim, t + 3);
+		if (fim - corte < 1.6) corte = fim;
+		else {
+			// bumbo mais forte a até 0,4 s do corte ideal
+			const a = Math.round((corte - 0.4) * FPS), b = Math.round((corte + 0.4) * FPS);
+			let melhor = Math.round(corte * FPS);
+			for (let f = a; f <= b; f++) if ((ritmo[f] ?? 0) > (ritmo[melhor] ?? 0)) melhor = f;
+			corte = melhor / FPS;
+		}
+		let cena = fixas[i] ?? pool[(semente++ * 7) % pool.length];
+		if (cena === tomadas.at(-1)?.cena) cena = pool[(semente++ * 7 + 3) % pool.length];
+		tomadas.push({de: r2(t), cena, video: comVideo(cena)});
+		t = corte; i++;
+	}
 });
 const faltando = await baixarEmojis(partes.flatMap((p) => p.emojis));
 if (faltando.length) throw new Error(`Emojis inexistentes no Fluent: ${faltando.join(', ')}`);
-const clipe = {id, titulo: musica.titulo, totalFrames, batida: batida(audio, totalFrames), partes};
+const clipe = {id, titulo: musica.titulo, totalFrames, batida: ritmo, partes, linhas, tomadas, cenas: CENAS};
 const pub = path.join(RAIZ, 'public', 'clipe', id);
 fs.mkdirSync(pub, {recursive: true});
 fs.writeFileSync(path.join(pub, 'clipe.json'), JSON.stringify(clipe));
-log('clipe', `${id}: ${dur.toFixed(1)} s, ${partes.length} partes`);
+log('clipe', `${id}: ${dur.toFixed(1)} s, ${partes.length} partes, ${tomadas.length} tomadas (${tomadas.filter((t) => t.video).length} animadas), letra ${fs.existsSync(arqPalavras) ? 'sincronizada' : 'estimada'}`);
 if (process.argv.includes('--dados')) process.exit(0);
 
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
@@ -62,7 +109,8 @@ const inputProps = {id, clipe};
 const serveUrl = await bundle({entryPoint: path.join(RAIZ, 'src', 'index.ts'), publicDir: path.join(RAIZ, 'public')});
 const comp = await selectComposition({serveUrl, id: vertical ? 'ClipeVertical' : 'Clipe', inputProps, browserExecutable});
 const refrao = partes.find((p) => p.tipo === 'refrao');
-const [ini, fim] = short ? [Math.max(0, Math.round(((refrao?.de ?? 0) - 1.5) * FPS)), Math.min(totalFrames - 1, Math.round(((refrao?.de ?? 0) + 53.5) * FPS))] : [0, totalFrames - 1];
+const trecho = process.argv.find((a) => a.startsWith('--trecho='))?.slice(9).split('-').map(Number);
+const [ini, fim] = trecho ? [Math.round(trecho[0] * FPS), Math.min(totalFrames - 1, Math.round(trecho[1] * FPS))] : short ? [Math.max(0, Math.round(((refrao?.de ?? 0) - 1.5) * FPS)), Math.min(totalFrames - 1, Math.round(((refrao?.de ?? 0) + 53.5) * FPS))] : [0, totalFrames - 1];
 const quadros = fs.mkdtempSync(path.join(os.tmpdir(), `clipe-${id}-`));
 const inicio = Date.now();
 let feitos = 0;
@@ -74,7 +122,7 @@ await renderFrames({
 });
 const saida = path.join(RAIZ, 'saida', 'clipes');
 fs.mkdirSync(saida, {recursive: true});
-const video = path.join(saida, `${id}${short ? '-short' : vertical ? '-vertical' : ''}.mp4`);
+const video = path.join(saida, `${id}${short ? '-short' : vertical ? '-vertical' : ''}${trecho ? '-trecho' : ''}.mp4`);
 execFileSync('ffmpeg', ['-y', '-v', 'error', '-framerate', String(FPS), '-start_number', String(ini), '-i', `${quadros}/%06d.jpg`, '-ss', String(ini / FPS), '-i', audio,
 	'-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', '-af', `afade=t=in:d=0.3,afade=t=out:st=${Math.max(0, (fim - ini) / FPS - 1.2)}:d=1.2`, '-shortest', '-movflags', '+faststart', video]);
 fs.rmSync(quadros, {recursive: true, force: true});

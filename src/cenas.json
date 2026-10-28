@@ -1,0 +1,164 @@
+{
+ "_doc": "Cenas dos clipes: recorte da arte docs/arte/clipe.webp (x, y, largura na arte reduzida a 1200 px; altura = largura*9/16), pedido de animação ao Wan 2.2 (scripts/kaggle/cenas.py), foco horizontal para o corte vertical e partes da música em que a cena entra (scripts/clipe.mjs).",
+ "cenas": {
+  "davi": {
+   "recorte": [
+    20,
+    110,
+    600
+   ],
+   "prompt": "The curly haired boy strums his acoustic guitar and sings happily, bobbing his head to the music",
+   "foco": 0.45,
+   "partes": [
+    "verso",
+    "ponte"
+   ]
+  },
+  "davi-canta": {
+   "recorte": [
+    60,
+    70,
+    560
+   ],
+   "prompt": "Close-up: the curly haired boy sings joyfully with a big smile, moving his head to the rhythm",
+   "foco": 0.5,
+   "partes": [
+    "verso",
+    "refrao"
+   ]
+  },
+  "lulu": {
+   "recorte": [
+    270,
+    270,
+    400
+   ],
+   "prompt": "The fluffy white lamb bounces happily and smiles, wiggling its ears",
+   "foco": 0.5,
+   "partes": [
+    "verso",
+    "ponte"
+   ]
+  },
+  "menina": {
+   "recorte": [
+    440,
+    150,
+    600
+   ],
+   "prompt": "The girl in the pink dress sings and waves her arms joyfully, swaying side to side",
+   "foco": 0.5,
+   "partes": [
+    "verso",
+    "refrao",
+    "ponte"
+   ]
+  },
+  "menina-canta": {
+   "recorte": [
+    500,
+    120,
+    480
+   ],
+   "prompt": "Close-up: the girl with the pink bow sings happily and smiles, tilting her head",
+   "foco": 0.5,
+   "partes": [
+    "verso",
+    "refrao"
+   ]
+  },
+  "leleco": {
+   "recorte": [
+    720,
+    230,
+    480
+   ],
+   "prompt": "The friendly lion cub claps its paws and sways happily, smiling",
+   "foco": 0.55,
+   "partes": [
+    "verso",
+    "ponte",
+    "refrao"
+   ]
+  },
+  "duo-esquerda": {
+   "recorte": [
+    0,
+    80,
+    800
+   ],
+   "prompt": "The boy plays guitar while the lamb bounces next to him, both singing happily",
+   "foco": 0.4,
+   "partes": [
+    "refrao",
+    "verso"
+   ]
+  },
+  "duo-direita": {
+   "recorte": [
+    500,
+    130,
+    700
+   ],
+   "prompt": "The girl dances with raised arms next to the lion cub, who claps along",
+   "foco": 0.45,
+   "partes": [
+    "refrao",
+    "ponte"
+   ]
+  },
+  "geral": {
+   "recorte": [
+    67,
+    0,
+    1066
+   ],
+   "prompt": "The children and animals sing and dance together happily, slow camera push in",
+   "foco": 0.5,
+   "partes": [
+    "intro",
+    "refrao",
+    "final"
+   ]
+  },
+  "geral-festa": {
+   "recorte": [
+    130,
+    40,
+    940
+   ],
+   "prompt": "Everyone celebrates and dances, the music notes float and bounce in the air",
+   "foco": 0.5,
+   "partes": [
+    "refrao",
+    "final"
+   ]
+  },
+  "castelo": {
+   "recorte": [
+    780,
+    20,
+    400
+   ],
+   "prompt": "Slow camera pan across the shining castle and the waterfall, birds flying, sunny day",
+   "foco": 0.5,
+   "partes": [
+    "intro",
+    "final"
+   ]
+  },
+  "biblia": {
+   "recorte": [
+    350,
+    318,
+    500
+   ],
+   "prompt": "The open Bible glows softly with golden sparkles floating up from the pages",
+   "foco": 0.5,
+   "partes": [
+    "verso",
+    "final"
+   ]
+  }
+ }
+}
