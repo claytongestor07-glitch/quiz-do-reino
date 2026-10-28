@@ -39,13 +39,17 @@ with torch.no_grad():
 		embeds[nome] = (p.to(torch.float16), n.to(torch.float16))
 del texto
 
-# 2. Um pipeline por GPU (o Kaggle dá duas T4), transformer em fp16 e VAE em fp32; cenas divididas entre elas
-def trabalhador(gpu, nomes):
-	dev = f'cuda:{gpu}'
+# 2. Um pipeline por GPU (o Kaggle dá duas T4), transformer em fp16 e VAE em fp32; carregados em série
+#    (inicializar a CUDA em duas threads ao mesmo tempo dá "operation not permitted") e depois gerando em paralelo
+def carregar(gpu):
 	vae = AutoencoderKLWan.from_pretrained(MODELO, subfolder='vae', torch_dtype=torch.float32)
-	pipe = WanImageToVideoPipeline.from_pretrained(MODELO, vae=vae, text_encoder=None, tokenizer=None, torch_dtype=torch.float16).to(dev)
+	pipe = WanImageToVideoPipeline.from_pretrained(MODELO, vae=vae, text_encoder=None, tokenizer=None, torch_dtype=torch.float16).to(f'cuda:{gpu}')
 	if hasattr(pipe.vae, 'enable_tiling'): pipe.vae.enable_tiling()
 	print(f'[gpu{gpu}] pronto: {torch.cuda.get_device_name(gpu)}', flush=True)
+	return pipe
+
+def trabalhador(gpu, pipe, nomes):
+	dev = f'cuda:{gpu}'
 	for nome in nomes:
 		t = time.time()
 		(x, y, w), _ = CENAS[nome]
@@ -57,11 +61,8 @@ def trabalhador(gpu, nomes):
 		export_to_video(frames, f'/kaggle/working/{nome}.mp4', fps=24)
 		print(f'[gpu{gpu}] {nome}: {time.time() - t:.0f}s', flush=True)
 
-gpus = max(1, torch.cuda.device_count())
-fios = []
-for g in range(gpus):
-	if escolhidas[g::gpus]:
-		fios.append(threading.Thread(target=trabalhador, args=(g, escolhidas[g::gpus])))
-		fios[-1].start()
-		time.sleep(60)  # carrega um de cada vez para não estourar a RAM
+gpus = min(max(1, torch.cuda.device_count()), len(escolhidas))
+pipes = [carregar(g) for g in range(gpus)]
+fios = [threading.Thread(target=trabalhador, args=(g, pipes[g], escolhidas[g::gpus])) for g in range(gpus)]
+for f in fios: f.start()
 for f in fios: f.join()
