@@ -107,7 +107,7 @@ const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const browserExecutable = fs.existsSync(CHROME) ? CHROME : null;
 const inputProps = {id, clipe};
 const serveUrl = await bundle({entryPoint: path.join(RAIZ, 'src', 'index.ts'), publicDir: path.join(RAIZ, 'public')});
-const comp = await selectComposition({serveUrl, id: vertical ? 'ClipeVertical' : 'Clipe', inputProps, browserExecutable});
+const comp = await selectComposition({serveUrl, id: vertical ? 'ClipeVertical' : 'Clipe', inputProps, browserExecutable, port: Number(process.env.REMOTION_PORTA) || null});
 const refrao = partes.find((p) => p.tipo === 'refrao');
 const trecho = process.argv.find((a) => a.startsWith('--trecho='))?.slice(9).split('-').map(Number);
 const [ini, fim] = trecho ? [Math.round(trecho[0] * FPS), Math.min(totalFrames - 1, Math.round(trecho[1] * FPS))] : short ? [Math.max(0, Math.round(((refrao?.de ?? 0) - 1.5) * FPS)), Math.min(totalFrames - 1, Math.round(((refrao?.de ?? 0) + 53.5) * FPS))] : [0, totalFrames - 1];
@@ -115,7 +115,7 @@ const quadros = fs.mkdtempSync(path.join(os.tmpdir(), `clipe-${id}-`));
 const inicio = Date.now();
 let feitos = 0;
 await renderFrames({
-	serveUrl, composition: comp, inputProps, browserExecutable, outputDir: null, frameRange: [ini, fim], imageFormat: 'jpeg', jpegQuality: 90,
+	serveUrl, composition: comp, inputProps, browserExecutable, port: Number(process.env.REMOTION_PORTA) || null, outputDir: null, frameRange: [ini, fim], imageFormat: 'jpeg', jpegQuality: 90,
 	concurrency: Number(process.env.RENDER_CONCORRENCIA) || 2, timeoutInMilliseconds: 300000, onStart: () => {},
 	onFrameUpdate: (n) => { if (n - feitos >= 300) { feitos = n; log('clipe', `${n}/${fim - ini + 1} quadros`); } },
 	onFrameBuffer: (buf, q) => fs.writeFileSync(path.join(quadros, `${String(q).padStart(6, '0')}.jpg`), buf),
@@ -127,7 +127,7 @@ execFileSync('ffmpeg', ['-y', '-v', 'error', '-framerate', String(FPS), '-start_
 	'-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', '-af', `afade=t=in:d=0.3,afade=t=out:st=${Math.max(0, (fim - ini) / FPS - 1.2)}:d=1.2`, '-shortest', '-movflags', '+faststart', video]);
 fs.rmSync(quadros, {recursive: true, force: true});
 if (!vertical) {
-	const mini = await selectComposition({serveUrl, id: 'MiniaturaClipe', inputProps, browserExecutable});
-	await renderStill({serveUrl, composition: mini, inputProps, browserExecutable, output: path.join(saida, `${id}.jpg`), imageFormat: 'jpeg', jpegQuality: 88, scale: 2 / 3});
+	const mini = await selectComposition({serveUrl, id: 'MiniaturaClipe', inputProps, browserExecutable, port: Number(process.env.REMOTION_PORTA) || null});
+	await renderStill({serveUrl, composition: mini, inputProps, browserExecutable, port: Number(process.env.REMOTION_PORTA) || null, output: path.join(saida, `${id}.jpg`), imageFormat: 'jpeg', jpegQuality: 88, scale: 2 / 3});
 }
 log('clipe', `pronto: ${video} em ${Math.round((Date.now() - inicio) / 60000)} min`);
