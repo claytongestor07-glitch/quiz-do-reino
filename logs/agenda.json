@@ -38,5 +38,25 @@
  {
   "quando": "2026-10-27T17:00:00-03:00",
   "item": "ep003-moises"
+ },
+ {
+  "quando": "2026-10-28T09:00:00-03:00",
+  "item": "ep004-antigo"
+ },
+ {
+  "quando": "2026-10-28T10:00:00-03:00",
+  "item": "ep004-antigo-vertical"
+ },
+ {
+  "quando": "2026-10-28T08:00:00-03:00",
+  "item": "ep004-antigo-short3"
+ },
+ {
+  "quando": "2026-10-28T11:00:00-03:00",
+  "item": "ep004-antigo-short13"
+ },
+ {
+  "quando": "2026-10-28T13:00:00-03:00",
+  "item": "ep004-antigo-short23"
  }
 ]
