@@ -1,0 +1,50 @@
+# Cenas dos clipes em modelo premium (fal.ai, pago por uso — segredo FAL_KEY). Manual: cada execução gasta crédito.
+# "salvar" desligado = só gera para assistir (artefato); ligado = substitui public/cenas/ e os clipes passam a usá-las.
+name: Gerar cenas premium
+on:
+  workflow_dispatch:
+    inputs:
+      cenas:
+        description: 'Cenas separadas por vírgula (vazio = todas de src/cenas.json)'
+        required: false
+      modelo:
+        description: 'Modelo do fal.ai (vazio = Kling 2.5 Turbo Pro)'
+        required: false
+      duracao:
+        description: 'Segundos por cena (5 ou 10)'
+        default: '5'
+      salvar:
+        description: 'Guardar no repositório (usar nos clipes)'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+jobs:
+  gerar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q pillow && sudo apt-get update -qq && sudo apt-get install -qq -y ffmpeg
+      - name: Gerar no fal.ai
+        env:
+          FAL_KEY: ${{ secrets.FAL_KEY }}
+          FAL_MODELO: ${{ inputs.modelo }}
+          FAL_DURACAO: ${{ inputs.duracao }}
+        run: python scripts/fal_cenas.py brutas "${{ inputs.cenas }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cenas-premium
+          retention-days: 7
+          path: brutas/*.mp4
+      - name: Salvar no repositório
+        if: inputs.salvar
+        run: |
+          mkdir -p public/cenas
+          # H.264 leve para o Remotion (sem áudio)
+          for f in brutas/*.mp4; do ffmpeg -v error -nostdin -y -i "$f" -an -c:v libx264 -crf 20 -preset slow -pix_fmt yuv420p "public/cenas/$(basename "$f")"; done
+          git config user.name "Clayton Santos"
+          git config user.email "231254187+claytongestor07-glitch@users.noreply.github.com"
+          git add public/cenas
+          git commit -m "Cenas premium dos clipes (fal.ai)"
+          git pull -q --rebase && git push
