@@ -46,8 +46,9 @@ with torch.no_grad():
 del texto
 print('textos prontos', flush=True)
 
-# 2. Os dois especialistas (ruído alto / baixo) em GGUF, VAE em fp32, LoRA Lightning em cada um; descarga para a CPU
-#    entre etapas para caber nos 15 GB da T4
+# 2. Os dois especialistas (ruído alto / baixo) em GGUF, VAE em fp32, LoRA Lightning em cada um.
+#    Cada especialista fica numa T4 (o Kaggle dá duas); ganchos do accelerate levam as entradas para a placa certa e
+#    devolvem a saída onde estava (a descarga automática para a CPU deixava tensores na CPU e quebrava)
 def especialista(nivel, sub):
 	arq = hf_hub_download(GGUF, f'{nivel}/Wan2.2-I2V-A14B-{nivel}-Q4_K_M.gguf')
 	return WanTransformer3DModel.from_single_file(arq, quantization_config=GGUFQuantizationConfig(compute_dtype=torch.float16),
@@ -59,18 +60,22 @@ pipe = WanImageToVideoPipeline.from_pretrained(MODELO, transformer=especialista(
 pipe.load_lora_weights(RAPIDO, weight_name=f'{PASTA_RAPIDO}/high_noise_model.safetensors', adapter_name='rapido')
 pipe.load_lora_weights(RAPIDO, weight_name=f'{PASTA_RAPIDO}/low_noise_model.safetensors', adapter_name='rapido_2', load_into_transformer_2=True)
 pipe.set_adapters(['rapido', 'rapido_2'], adapter_weights=[1.0, 1.0])
-pipe.enable_model_cpu_offload()
+from accelerate.hooks import AlignDevicesHook, add_hook_to_module
+segunda = 'cuda:1' if torch.cuda.device_count() > 1 else 'cuda:0'
+for modulo, dev in ((pipe.transformer, 'cuda:0'), (pipe.transformer_2, segunda), (pipe.vae, 'cuda:0')):
+	modulo.to(dev)
+	add_hook_to_module(modulo, AlignDevicesHook(execution_device=dev, io_same_device=True))
 if hasattr(pipe.vae, 'enable_tiling'): pipe.vae.enable_tiling()
-print(f'pronto: {torch.cuda.get_device_name(0)}', flush=True)
+print(f'pronto: {torch.cuda.device_count()}x {torch.cuda.get_device_name(0)}', flush=True)
 
 for nome in escolhidas:
 	t = time.time()
 	(x, y, w), _ = CENAS[nome]
 	img = arte.crop((int(x * k), int(y * k), int((x + w) * k), int((y + w * 9 / 16) * k))).resize((L, A), Image.LANCZOS)
 	p, n = embeds[nome]
-	frames = pipe(image=img, prompt_embeds=p, negative_prompt_embeds=n, height=A, width=L, num_frames=QUADROS,
+	frames = pipe(image=img, prompt_embeds=p.to('cuda:0'), negative_prompt_embeds=n.to('cuda:0'), height=A, width=L, num_frames=QUADROS,
 		num_inference_steps=4, guidance_scale=1.0, guidance_scale_2=1.0,
-		generator=torch.Generator('cuda').manual_seed(11)).frames[0]
+		generator=torch.Generator('cuda:0').manual_seed(11)).frames[0]
 	bruto = f'/kaggle/working/{nome}-16.mp4'
 	export_to_video(frames, bruto, fps=16)
 	# 16 fps nativos → 24 fps com interpolação de movimento (fica fluido no clipe)
