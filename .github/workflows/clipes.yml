@@ -66,11 +66,15 @@ jobs:
           (cd ace && uv run acestep-api > ../ace.log 2>&1 &)
           for i in $(seq 1 240); do curl -sf localhost:8001/health >/dev/null && break; sleep 15; done
           python3 scripts/cantar.py ${{ needs.planejar.outputs.id }} || { tail -40 ace.log; exit 1; }
+      - name: Sincronizar a letra (karaokê)
+        run: uv run --python 3.11 --with faster-whisper python scripts/alinhar.py ${{ needs.planejar.outputs.id }}
       - uses: actions/upload-artifact@v4
         with:
           name: musica
           retention-days: 3
-          path: musicas/${{ needs.planejar.outputs.id }}/musica.wav
+          path: |
+            musicas/${{ needs.planejar.outputs.id }}/musica.wav
+            musicas/${{ needs.planejar.outputs.id }}/palavras.json
 
   render:
     needs: [planejar, cantar]

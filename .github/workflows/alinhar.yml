@@ -1,0 +1,35 @@
+# Sincroniza a letra de uma música já cantada (artefato "musica" de uma execução do "Produzir clipe") e guarda palavras.json.
+name: Sincronizar letra
+on:
+  workflow_dispatch:
+    inputs:
+      musica:
+        description: id da música
+        required: true
+      execucao:
+        description: id da execução do "Produzir clipe" que cantou a música
+        required: true
+permissions:
+  contents: write
+  actions: read
+jobs:
+  alinhar:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: musica
+          run-id: ${{ inputs.execucao }}
+          github-token: ${{ github.token }}
+          path: musicas/${{ inputs.musica }}
+      - run: uv run --python 3.11 --with faster-whisper python scripts/alinhar.py ${{ inputs.musica }}
+      - run: |
+          git config user.name "Clayton Santos"
+          git config user.email "231254187+claytongestor07-glitch@users.noreply.github.com"
+          git add musicas/${{ inputs.musica }}/palavras.json
+          git commit -m "Letra sincronizada de ${{ inputs.musica }}"
+          git pull -q --rebase && git push
