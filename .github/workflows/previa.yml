@@ -1,0 +1,43 @@
+# Renderiza um clipe de uma música já cantada (artefato "musica" de uma execução do "Produzir clipe"), sem enviar ao YouTube.
+# Serve para revisar o visual: o Mac não roda o decodificador de vídeo do Remotion (exige macOS 15).
+name: Prévia do clipe
+on:
+  workflow_dispatch:
+    inputs:
+      musica:
+        description: id da música
+        required: true
+      execucao:
+        description: id da execução do "Produzir clipe" que cantou a música
+        required: true
+      variante:
+        description: 'vazio = 16:9; --vertical; --short; --trecho=A-B'
+        required: false
+permissions:
+  contents: read
+  actions: read
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      RENDER_CONCORRENCIA: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/preparar
+      - uses: actions/download-artifact@v4
+        with:
+          name: musica
+          run-id: ${{ inputs.execucao }}
+          github-token: ${{ github.token }}
+          path: musicas/${{ inputs.musica }}
+      # palavras.json do repositório vale mais que o do artefato (pode ter sido corrigido depois)
+      - run: git checkout -- musicas/${{ inputs.musica }}/palavras.json 2>/dev/null || true
+      - run: node scripts/clipe.mjs ${{ inputs.musica }} ${{ inputs.variante }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: previa
+          retention-days: 7
+          path: |
+            saida/clipes/*.mp4
+            saida/clipes/*.jpg
