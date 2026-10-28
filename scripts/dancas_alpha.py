@@ -16,6 +16,8 @@ for mp4 in sorted(entrada.glob('*.mp4')):
 		tmp = Path(tmp)
 		subprocess.run(['ffmpeg', '-v', 'error', '-nostdin', '-i', mp4, tmp / 'q%04d.png'], check=True)
 		quadros = sorted(tmp.glob('q*.png'))
+		for q in quadros[-8:]: q.unlink()  # o fim do vídeo gerado costuma borrar o cabelo/rosto
+		quadros = quadros[:-8]
 		for q in quadros:
 			remove(Image.open(q), session=sessao).save(q)
 		# ida e volta: quadros 1..N e N-1..2
