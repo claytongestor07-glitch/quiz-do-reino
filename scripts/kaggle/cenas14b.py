@@ -18,6 +18,8 @@ NEGATIVO = ('worst quality, low quality, blurry, distorted, deformed face, extra
 
 subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', '-U', 'diffusers>=0.35', 'transformers', 'accelerate', 'peft',
 	'gguf', 'ftfy', 'imageio-ffmpeg'], check=True)
+# o torchao antigo do Kaggle faz o peft recusar o LoRA ("only versions above 0.16.0"); não usamos torchao
+subprocess.run([sys.executable, '-m', 'pip', 'uninstall', '-q', '-y', 'torchao'])
 
 from io import BytesIO
 import torch
