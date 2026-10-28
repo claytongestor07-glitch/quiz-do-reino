@@ -6,6 +6,13 @@ on:
       cenas:
         description: cenas (vazio = todas; ex. davi,menina)
         default: ''
+      motor:
+        description: 'cenas.py (Wan 5B, rápido) ou cenas14b.py (Wan 14B, qualidade máxima)'
+        default: cenas.py
+      salvar:
+        description: 'Guardar em public/cenas (desligado = só gera para assistir)'
+        type: boolean
+        default: true
 permissions:
   contents: write
 jobs:
@@ -28,7 +35,7 @@ jobs:
           test -n "$USUARIO"
           echo "KERNEL=$USUARIO/quiz-do-reino-cenas" >> "$GITHUB_ENV"
           mkdir k
-          { echo "import os"; [ -n "${{ inputs.cenas }}" ] && echo "os.environ['CENAS'] = '${{ inputs.cenas }}'"; cat scripts/kaggle/cenas.py; } > k/cenas.py
+          { echo "import os"; [ -n "${{ inputs.cenas }}" ] && echo "os.environ['CENAS'] = '${{ inputs.cenas }}'"; cat scripts/kaggle/${{ inputs.motor || 'cenas.py' }}; } > k/cenas.py
           cat > k/kernel-metadata.json <<EOF
           {"id": "$USUARIO/quiz-do-reino-cenas", "title": "quiz-do-reino-cenas", "code_file": "cenas.py",
            "language": "python", "kernel_type": "script", "is_private": true,
@@ -53,6 +60,7 @@ jobs:
           path: saida/*
   salvar:
     needs: kaggle
+    if: inputs.salvar
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
