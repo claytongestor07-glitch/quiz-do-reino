@@ -1,0 +1,73 @@
+# Gera a biblioteca de cenas animadas dos clipes na GPU gratuita do Kaggle (Wan 2.2) e grava em public/cenas/.
+name: Gerar cenas
+on:
+  workflow_dispatch:
+    inputs:
+      cenas:
+        description: cenas (vazio = todas; ex. davi,menina)
+        default: ''
+permissions:
+  contents: write
+jobs:
+  kaggle:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 355
+    env:
+      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q -U kaggle
+      - name: Enviar para a GPU do Kaggle
+        run: |
+          # aceita a chave nova (KGAT_…) ou o conteúdo do kaggle.json, sem mostrar o valor
+          python scripts/kaggle/chave.py mascarar
+          python scripts/kaggle/chave.py >> "$GITHUB_ENV"
+          set -a; . <(python scripts/kaggle/chave.py); set +a
+          USUARIO=$(python -c "import kaggle; print(kaggle.api.get_config_value('username') or '')")
+          echo "usuário Kaggle: $USUARIO"
+          test -n "$USUARIO"
+          echo "KERNEL=$USUARIO/quiz-do-reino-cenas" >> "$GITHUB_ENV"
+          mkdir k
+          { echo "import os"; [ -n "${{ inputs.cenas }}" ] && echo "os.environ['CENAS'] = '${{ inputs.cenas }}'"; cat scripts/kaggle/cenas.py; } > k/cenas.py
+          cat > k/kernel-metadata.json <<EOF
+          {"id": "$USUARIO/quiz-do-reino-cenas", "title": "quiz-do-reino-cenas", "code_file": "cenas.py",
+           "language": "python", "kernel_type": "script", "is_private": true,
+           "enable_gpu": true, "enable_internet": true, "machine_shape": "NvidiaTeslaT4"}
+          EOF
+          kaggle kernels push -p k
+      - name: Aguardar a GPU
+        run: |
+          sleep 120
+          for i in $(seq 1 340); do
+            S=$(kaggle kernels status "$KERNEL" 2>&1 | tail -1); echo "$(date +%H:%M) $S"
+            case "$S" in *COMPLETE*) break;; *ERROR*|*CANCEL*) break;; esac
+            sleep 60
+          done
+          mkdir -p saida && kaggle kernels output "$KERNEL" -p saida
+          tail -50 saida/*.log || true
+          ls saida/*.mp4
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cenas
+          path: saida/*
+  salvar:
+    needs: kaggle
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: cenas
+          path: brutas
+      - name: Salvar no repositório
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -qq -y ffmpeg
+          mkdir -p public/cenas
+          # H.264 leve para o Remotion (sem áudio)
+          for f in brutas/*.mp4; do ffmpeg -v error -nostdin -y -i "$f" -an -c:v libx264 -crf 20 -preset slow -pix_fmt yuv420p "public/cenas/$(basename "$f")"; done
+          git config user.name "Clayton Santos"
+          git config user.email "231254187+claytongestor07-glitch@users.noreply.github.com"
+          git add public/cenas
+          git commit -m "Cenas animadas dos clipes (Kaggle Wan 2.2)"
+          git pull -q --rebase && git push
