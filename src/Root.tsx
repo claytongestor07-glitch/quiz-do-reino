@@ -6,6 +6,7 @@ import {RenderCenaSpeed, ThumbnailSpeed, ShortSpeed} from './Speed';
 import {Logo, Banner} from './Marca';
 import {Lulu, Leleco, Arca} from './Personagens';
 import {Clipe, MiniaturaClipe, carregarClipe} from './Clipe';
+import {ClipeDesenho} from './Desenho';
 
 // semAudio: o render final desenha só a imagem; o áudio é mixado por scripts/mixar.mjs com o FFmpeg do sistema
 // (o FFmpeg embutido no Remotion exige macOS 15).
@@ -94,6 +95,8 @@ export const Root: React.FC = () => (
 		<Composition id="Short" component={Short} width={1080} height={1920} fps={30} durationInFrames={300} defaultProps={{id: 'ep001-noe'}} calculateMetadata={async ({props}) => ({durationInFrames: props.timeline?.totalFrames ?? 300})} />
 		<Composition id="Clipe" component={Clipe} width={1920} height={1080} fps={30} durationInFrames={300} defaultProps={{id: 'mu001-davi'}} calculateMetadata={carregarClipe} />
 		<Composition id="ClipeVertical" component={Clipe} width={1080} height={1920} fps={30} durationInFrames={300} defaultProps={{id: 'mu001-davi'}} calculateMetadata={carregarClipe} />
+		<Composition id="ClipeDesenho" component={ClipeDesenho} width={1920} height={1080} fps={30} durationInFrames={300} defaultProps={{id: 'mu001-davi'}} calculateMetadata={carregarClipe} />
+		<Composition id="ClipeDesenhoVertical" component={ClipeDesenho} width={1080} height={1920} fps={30} durationInFrames={300} defaultProps={{id: 'mu001-davi'}} calculateMetadata={carregarClipe} />
 		<Still id="MiniaturaClipe" component={MiniaturaClipe} width={1920} height={1080} defaultProps={{id: 'mu001-davi'}} calculateMetadata={carregarClipe} />
 		<Still id="Logo" component={Logo} width={800} height={800} />
 		<Still id="Banner" component={Banner} width={2560} height={1440} />

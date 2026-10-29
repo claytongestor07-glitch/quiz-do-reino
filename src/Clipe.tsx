@@ -14,7 +14,7 @@ export type Palavra = {p: string; de: number; ate: number};
 export type Linha = {parte: number; de: number; ate: number; palavras: Palavra[]};
 export type Tomada = {de: number; cena: string; video: boolean};
 export type Cena = {recorte: [number, number, number]; foco: number};
-export type Clipe = {id: string; titulo: string; totalFrames: number; batida: number[]; partes: Parte[]; linhas: Linha[]; tomadas: Tomada[]; cenas: Record<string, Cena>};
+export type Clipe = {id: string; titulo: string; totalFrames: number; batida: number[]; bpm?: number; inicioBatida?: number; partes: Parte[]; linhas: Linha[]; tomadas: Tomada[]; cenas: Record<string, Cena>};
 export type PropsClipe = {id: string; clipe?: Clipe};
 
 export const carregarClipe: CalculateMetadataFunction<PropsClipe> = async ({props}) => {
@@ -97,7 +97,7 @@ const Brilhos: React.FC<{pulso: number}> = ({pulso}) => {
 };
 
 // Letra em karaokê: a linha cantada num balão; cada palavra acende em amarelo no tempo da voz
-const Karaoke: React.FC<{linhas: Linha[]}> = ({linhas}) => {
+export const Karaoke: React.FC<{linhas: Linha[]}> = ({linhas}) => {
 	const frame = useCurrentFrame();
 	const {fps, width, height} = useVideoConfig();
 	const vertical = height > width;
@@ -128,7 +128,7 @@ const Karaoke: React.FC<{linhas: Linha[]}> = ({linhas}) => {
 };
 
 // Frase do refrão em destaque por ~2,5 s no começo de cada refrão
-const Frase: React.FC<{texto: string; desde: number; pulso: number}> = ({texto, desde, pulso}) => {
+export const Frase: React.FC<{texto: string; desde: number; pulso: number}> = ({texto, desde, pulso}) => {
 	const frame = useCurrentFrame();
 	const {fps, width, height} = useVideoConfig();
 	const vertical = height > width;
@@ -167,7 +167,7 @@ const Adesivos: React.FC<{nomes: string[]; desde: number; pulso: number}> = ({no
 };
 
 // Selo do canal no canto
-const Selo: React.FC = () => {
+export const Selo: React.FC = () => {
 	const {width, height} = useVideoConfig();
 	const vertical = height > width;
 	return (
@@ -179,7 +179,7 @@ const Selo: React.FC = () => {
 };
 
 // Abertura e final: logo e título da música
-const Titulo: React.FC<{titulo: string; desde: number; ate: number}> = ({titulo, desde, ate}) => {
+export const Titulo: React.FC<{titulo: string; desde: number; ate: number}> = ({titulo, desde, ate}) => {
 	const frame = useCurrentFrame();
 	const {fps, width, height} = useVideoConfig();
 	const vertical = height > width;

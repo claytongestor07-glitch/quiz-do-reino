@@ -40,6 +40,21 @@ const dur = duracaoAudio(audio);
 const totalFrames = Math.ceil(dur * FPS);
 const ritmo = batida(audio, totalFrames);
 const r2 = (v) => Math.round(v * 100) / 100;
+const desenho = process.argv.includes('--desenho');
+
+// Andamento: o intervalo entre bumbos que mais se repete (80–180 bpm) e a fase que mais acerta os bumbos
+function andamento(r) {
+	const nota = (L, t0) => { let s = 0; for (let t = t0; t < r.length; t += L) s += r[Math.round(t)] ?? 0; return s; };
+	let melhor = {bpm: 120, inicio: 0, nota: -1};
+	for (let bpm = 80; bpm <= 180; bpm += 0.5) {
+		const L = (FPS * 60) / bpm;
+		for (let t0 = 0; t0 < L; t0 += 0.5) {
+			const n = nota(L, t0) / (r.length / L);
+			if (n > melhor.nota) melhor = {bpm, inicio: t0 / FPS, nota: n};
+		}
+	}
+	return melhor;
+}
 
 // Letra no tempo: palavras.json (scripts/alinhar.py, Whisper) quando existe; senão distribui pelo número de versos
 const arqPalavras = path.join(dir, 'palavras.json');
@@ -96,18 +111,19 @@ partes.forEach((p, k) => {
 });
 const faltando = await baixarEmojis(partes.flatMap((p) => p.emojis));
 if (faltando.length) throw new Error(`Emojis inexistentes no Fluent: ${faltando.join(', ')}`);
-const clipe = {id, titulo: musica.titulo, totalFrames, batida: ritmo, partes, linhas, tomadas, cenas: CENAS};
+const {bpm, inicio: inicioBatida} = andamento(ritmo);
+const clipe = {id, titulo: musica.titulo, totalFrames, batida: ritmo, bpm, inicioBatida: r2(inicioBatida), partes, linhas, tomadas, cenas: CENAS};
 const pub = path.join(RAIZ, 'public', 'clipe', id);
 fs.mkdirSync(pub, {recursive: true});
 fs.writeFileSync(path.join(pub, 'clipe.json'), JSON.stringify(clipe));
-log('clipe', `${id}: ${dur.toFixed(1)} s, ${partes.length} partes, ${tomadas.length} tomadas (${tomadas.filter((t) => t.video).length} animadas), letra ${fs.existsSync(arqPalavras) ? 'sincronizada' : 'estimada'}`);
+log('clipe', `${id}: ${dur.toFixed(1)} s, ${bpm} bpm, ${partes.length} partes, ${tomadas.length} tomadas (${tomadas.filter((t) => t.video).length} animadas), letra ${fs.existsSync(arqPalavras) ? 'sincronizada' : 'estimada'}`);
 if (process.argv.includes('--dados')) process.exit(0);
 
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const browserExecutable = fs.existsSync(CHROME) ? CHROME : null;
 const inputProps = {id, clipe};
 const serveUrl = await bundle({entryPoint: path.join(RAIZ, 'src', 'index.ts'), publicDir: path.join(RAIZ, 'public')});
-const comp = await selectComposition({serveUrl, id: vertical ? 'ClipeVertical' : 'Clipe', inputProps, browserExecutable, port: Number(process.env.REMOTION_PORTA) || null});
+const comp = await selectComposition({serveUrl, id: `Clipe${desenho ? 'Desenho' : ''}${vertical ? 'Vertical' : ''}`, inputProps, browserExecutable, port: Number(process.env.REMOTION_PORTA) || null});
 const refrao = partes.find((p) => p.tipo === 'refrao');
 const trecho = process.argv.find((a) => a.startsWith('--trecho='))?.slice(9).split('-').map(Number);
 const [ini, fim] = trecho ? [Math.round(trecho[0] * FPS), Math.min(totalFrames - 1, Math.round(trecho[1] * FPS))] : short ? [Math.max(0, Math.round(((refrao?.de ?? 0) - 1.5) * FPS)), Math.min(totalFrames - 1, Math.round(((refrao?.de ?? 0) + 53.5) * FPS))] : [0, totalFrames - 1];
@@ -122,7 +138,7 @@ await renderFrames({
 });
 const saida = path.join(RAIZ, 'saida', 'clipes');
 fs.mkdirSync(saida, {recursive: true});
-const video = path.join(saida, `${id}${short ? '-short' : vertical ? '-vertical' : ''}${trecho ? '-trecho' : ''}.mp4`);
+const video = path.join(saida, `${id}${desenho ? '-desenho' : ''}${short ? '-short' : vertical ? '-vertical' : ''}${trecho ? '-trecho' : ''}.mp4`);
 execFileSync('ffmpeg', ['-y', '-v', 'error', '-framerate', String(FPS), '-start_number', String(ini), '-i', `${quadros}/%06d.jpg`, '-ss', String(ini / FPS), '-i', audio,
 	'-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', '-af', `afade=t=in:d=0.3,afade=t=out:st=${Math.max(0, (fim - ini) / FPS - 1.2)}:d=1.2`, '-shortest', '-movflags', '+faststart', video]);
 fs.rmSync(quadros, {recursive: true, force: true});
