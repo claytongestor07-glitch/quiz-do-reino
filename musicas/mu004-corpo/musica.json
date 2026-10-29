@@ -1,0 +1,121 @@
+{
+  "id": "mu004-corpo",
+  "titulo": "Meu Corpo Louva!",
+  "tituloYoutube": "Quiz do Reino - Meu Corpo Louva! Partes do Corpo (Música Infantil Cristã)",
+  "estilo": "upbeat brazilian axé children's song, catchy kids song, cheerful female singer, kids choir in chorus, 135 bpm, percussion, drums, claps, fun, energetic, brazilian portuguese",
+  "duracao": 135,
+  "partes": [
+    {
+      "tipo": "intro",
+      "emojis": [
+        "Musical notes",
+        "Sparkles",
+        "Waving hand"
+      ],
+      "letra": [
+        "Ê, criançada! Mexe o corpo pra Jesus!"
+      ]
+    },
+    {
+      "tipo": "verso",
+      "emojis": [
+        "Eyes",
+        "Ear",
+        "Nose"
+      ],
+      "letra": [
+        "Deus fez meus olhinhos pra ver",
+        "fez minha orelha pra escutar",
+        "fez o nariz pra cheirar a flor",
+        "e a boquinha pra cantar"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "MEU CORPO LOUVA!",
+      "emojis": [
+        "Red heart",
+        "Raising hands",
+        "Clapping hands"
+      ],
+      "letra": [
+        "Meu corpo louva, louva a Deus!",
+        "Meu corpo louva, louva a Deus!",
+        "Da cabeça até o pé,",
+        "meu corpo louva, louva a Deus!"
+      ]
+    },
+    {
+      "tipo": "verso",
+      "emojis": [
+        "Flexed biceps",
+        "Leg",
+        "Foot"
+      ],
+      "letra": [
+        "Deus fez meus braços pra abraçar",
+        "fez minhas mãos pra ajudar",
+        "fez as perninhas pra correr",
+        "e os pezinhos pra dançar"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "DA CABEÇA AO PÉ!",
+      "emojis": [
+        "Red heart",
+        "Raising hands",
+        "Clapping hands"
+      ],
+      "letra": [
+        "Meu corpo louva, louva a Deus!",
+        "Meu corpo louva, louva a Deus!",
+        "Da cabeça até o pé,",
+        "meu corpo louva, louva a Deus!"
+      ]
+    },
+    {
+      "tipo": "ponte",
+      "emojis": [
+        "Clapping hands",
+        "Raising hands",
+        "Person bouncing ball"
+      ],
+      "letra": [
+        "Mão na cabeça, mão no joelho!",
+        "Bate palma, bate o pé!",
+        "Mãozinha pra cima, pula, pula!",
+        "Gira, gira, uhuu!"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "MEU CORPO LOUVA!",
+      "emojis": [
+        "Red heart",
+        "Raising hands",
+        "Clapping hands"
+      ],
+      "letra": [
+        "Meu corpo louva, louva a Deus!",
+        "Meu corpo louva, louva a Deus!",
+        "Da cabeça até o pé,",
+        "meu corpo louva, louva a Deus!"
+      ]
+    },
+    {
+      "tipo": "final",
+      "emojis": [
+        "Smiling face with hearts",
+        "Sparkles",
+        "Party popper"
+      ],
+      "letra": [
+        "Obrigado, Deus, por meu corpinho! Uhuu!"
+      ]
+    }
+  ],
+  "descricao": "Olhos, orelhas, nariz, boca, braços, mãos, pernas e pés: vamos aprender as partes do corpo e louvar a Deus com cada uma delas!",
+  "licao": "Deus fez cada parte do nosso corpo com amor, e podemos usá-lo para louvar e ajudar.",
+  "fonte": "Salmos 139:14"
+}
