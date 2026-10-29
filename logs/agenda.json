@@ -70,5 +70,17 @@
  {
   "quando": "2026-10-28T15:00:00-03:00",
   "item": "mu001-davi-short"
+ },
+ {
+  "quando": "2026-10-29T08:00:00-03:00",
+  "item": "ep003-moises-short15"
+ },
+ {
+  "quando": "2026-10-29T11:00:00-03:00",
+  "item": "ep003-moises-short23"
+ },
+ {
+  "quando": "2026-10-29T13:00:00-03:00",
+  "item": "ep003-moises-short6"
  }
 ]
