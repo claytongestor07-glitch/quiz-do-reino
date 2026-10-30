@@ -47,7 +47,7 @@ async function autorizar() {
 	const estado = crypto.randomBytes(16).toString('hex');
 	const porta = 8765;
 	const redirect = `http://127.0.0.1:${porta}`;
-	const url = `https://accounts.google.com/o/oauth2/v2/auth?${new URLSearchParams({client_id: c.client_id, redirect_uri: redirect, response_type: 'code', scope: ESCOPOS.join(' '), access_type: 'offline', prompt: 'consent', state: estado, code_challenge: desafio, code_challenge_method: 'S256'})}`;
+	const url = `https://accounts.google.com/o/oauth2/v2/auth?${new URLSearchParams({client_id: c.client_id, redirect_uri: redirect, response_type: 'code', scope: ESCOPOS.join(' '), access_type: 'offline', prompt: 'select_account consent', state: estado, code_challenge: desafio, code_challenge_method: 'S256'})}`;
 	const codigo = await new Promise((ok, falha) => {
 		const srv = http.createServer((req, res) => {
 			const q = new URL(req.url, redirect).searchParams;
@@ -309,10 +309,21 @@ async function seo() {
 	for (const chave of Object.keys(s.playlists)) {
 		const alvo = s.playlists[chave].regra && new RegExp(s.playlists[chave].regra, 'i');
 		const pl = await playlist(token, idioma, chave);
-		const ja = new Set((await api(token, 'GET', `playlistItems?part=contentDetails&maxResults=50&playlistId=${pl}`)).items.map((i) => i.contentDetails.videoId));
+		// Playlist recém-criada demora alguns segundos para existir na API: começa vazia
+		const ja = new Set(((await api(token, 'GET', `playlistItems?part=contentDetails&maxResults=50&playlistId=${pl}`).catch(() => ({}))).items ?? []).map((i) => i.contentDetails.videoId));
 		// Versões celular repetem o vídeo horizontal: ficam fora das playlists
 		const novos = enviados.filter((v) => alvo?.test(v.titulo) && !/Versão Celular|Phone Version|Versión Celular/.test(v.titulo) && !ja.has(v.id));
-		for (const v of novos.reverse()) await api(token, 'POST', 'playlistItems?part=snippet', {snippet: {playlistId: pl, resourceId: {kind: 'youtube#video', videoId: v.id}}});
+		for (const v of novos.reverse()) {
+			for (let t = 1; ; t++) {
+				try {
+					await api(token, 'POST', 'playlistItems?part=snippet', {snippet: {playlistId: pl, resourceId: {kind: 'youtube#video', videoId: v.id}}});
+					break;
+				} catch (e) {
+					if (t === 5 || !/cannot be found|aborted/.test(e.message)) throw e;
+					await new Promise((ok) => setTimeout(ok, 5000 * t));
+				}
+			}
+		}
 		log('publicar', `playlist ${s.playlists[chave].titulo}: +${novos.length} vídeo(s)`);
 	}
 }
