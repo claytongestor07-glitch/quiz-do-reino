@@ -24,6 +24,8 @@ if (acao === 'proximo') {
 		const id = pedido || fs.readdirSync(MUSICAS).filter((m) => existe(m, 'musica.json') && !existe(m, 'IGNORAR') && !completa(m)).sort()[0] || '';
 		log('clipes', id ? `próxima música: ${id}` : 'nenhuma música pendente');
 		saida('id', id);
+		// idioma escolhe o canal (token) no envio: pt = canal principal; en/es = canais separados
+		saida('idioma', id ? JSON.parse(fs.readFileSync(path.join(MUSICAS, id, 'musica.json'), 'utf8')).idioma ?? 'pt' : '');
 	}
 } else if (acao === 'enviar') {
 	const id = pedido;

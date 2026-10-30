@@ -1,7 +1,8 @@
 // Publicação no YouTube pela API oficial (OAuth do próprio canal; sem bibliotecas extras).
 // Credenciais ficam fora do projeto, em ~/.config/pequenos-sabios/ (permissão 600). Nada é impresso no terminal.
 //
-//   node scripts/publicar.mjs autorizar                   uma vez: abre o consentimento do Google
+//   node scripts/publicar.mjs autorizar [--idioma=en|es]  uma vez: abre o consentimento do Google (com --idioma: canal
+//                                                         separado daquele idioma, token em token-<idioma>.json)
 //   node scripts/publicar.mjs enviar ep001-noe [--quando=2026-10-25T12:00:00-03:00]
 //   node scripts/publicar.mjs metricas                    salva visualizações/likes em logs/metricas.csv
 //
@@ -19,7 +20,9 @@ import {RAIZ, FPS, episodio, log} from './lib.mjs';
 
 const CONF = path.join(os.homedir(), '.config', 'pequenos-sabios');
 const CLIENTE = path.join(CONF, 'client_secret.json');
-const TOKEN = path.join(CONF, 'token.json');
+// Um token por canal: português (token.json) e os canais separados em inglês e espanhol (token-en.json, token-es.json)
+const tokenDe = (idioma) => path.join(CONF, idioma && idioma !== 'pt' ? `token-${idioma}.json` : 'token.json');
+let TOKEN = tokenDe(process.argv.find((a) => a.startsWith('--idioma='))?.split('=')[1]);
 const ESCOPOS = ['https://www.googleapis.com/auth/youtube.upload', 'https://www.googleapis.com/auth/youtube.readonly', 'https://www.googleapis.com/auth/yt-analytics.readonly'];
 const canal = JSON.parse(fs.readFileSync(path.join(RAIZ, 'config', 'canal.json'), 'utf8'));
 
@@ -130,6 +133,18 @@ async function subir(token, video, corpo, id) {
 	return resposta;
 }
 
+const TEXTOS = {
+	pt: {codigo: 'pt-BR', short: 'Música Infantil Cristã', celular: 'Versão Celular', letra: '🎶 Letra:', licao: 'Lição', fonte: 'Base bíblica',
+		descricao: (t) => `${t}: música infantil cristã para cantar e dançar com Davi, Lulu e Leleco!`, hashtags: ['#MúsicaInfantil', '#LouvorInfantil'],
+		tags: ['música infantil cristã', 'louvor infantil', 'música gospel infantil', 'desenho infantil cristão', 'música para crianças']},
+	en: {codigo: 'en', short: 'Christian Kids Song', celular: 'Phone Version', letra: '🎶 Lyrics:', licao: 'Lesson', fonte: 'Bible story',
+		descricao: (t) => `${t}: a Christian song for kids to sing and dance along with David, Lulu and Leleco!`, hashtags: ['#KidsSongs', '#ChristianKidsSongs', '#BibleStoriesForKids'],
+		tags: ['christian kids songs', 'bible songs for kids', 'kids worship songs', 'sunday school songs', 'nursery rhymes', 'kids songs', 'bible stories for kids', 'cartoon for kids']},
+	es: {codigo: 'es', short: 'Canción Infantil Cristiana', celular: 'Versión Celular', letra: '🎶 Letra:', licao: 'Lección', fonte: 'Historia bíblica',
+		descricao: (t) => `${t}: ¡una canción cristiana para que los niños canten y bailen con David, Lulu y Leleco!`, hashtags: ['#CancionesInfantiles', '#CancionesCristianasParaNiños', '#BibliaParaNiños'],
+		tags: ['canciones cristianas para niños', 'canciones infantiles cristianas', 'alabanza infantil', 'canciones bíblicas para niños', 'canciones infantiles', 'historias bíblicas para niños', 'dibujos animados cristianos']},
+};
+
 // Clipe musical (musicas/<id>/musica.json): variante '' (16:9), 'vertical' (celular) ou 'short' (refrão, < 60 s)
 async function enviarClipe(id, quando, variante) {
 	const dir = path.join(RAIZ, 'musicas', id);
@@ -139,14 +154,18 @@ async function enviarClipe(id, quando, variante) {
 	if (fs.existsSync(registro)) return log('publicar', `${id}${sufixo} já foi enviado; nada a fazer`);
 	const video = path.join(RAIZ, 'saida', 'clipes', `${id}${sufixo}.mp4`);
 	const letra = m.partes.filter((p) => p.tipo !== 'final').flatMap((p) => [...p.letra, '']).join('\n');
-	const titulo = variante === 'short' ? `${m.titulo} 🎵 Música Infantil Cristã #shorts` : variante === 'vertical' ? `${m.tituloYoutube} | Versão Celular` : m.tituloYoutube;
+	// Versões em inglês/espanhol vão para o canal daquele idioma (token próprio), com textos no idioma
+	const L = TEXTOS[m.idioma ?? 'pt'];
+	TOKEN = tokenDe(m.idioma);
+	const titulo = variante === 'short' ? `${m.titulo} 🎵 ${L.short} #shorts` : variante === 'vertical' ? `${m.tituloYoutube} | ${L.celular}` : m.tituloYoutube;
+	const ptBR = !m.idioma || m.idioma === 'pt';
 	const corpo = {
 		snippet: {
 			title: titulo.slice(0, 100),
-			description: [m.descricao ?? `${m.titulo}: música infantil cristã para cantar e dançar com Davi, Lulu e Leleco!`, '', m.licao ? `Lição: ${m.licao}` : '', m.fonte ? `Base bíblica: ${m.fonte}.` : '', '',
-				'🎶 Letra:', letra, `${canal.nome}: louvor e Bíblia para crianças.`, '', [...canal.hashtags, '#MúsicaInfantil', '#LouvorInfantil', ...(variante === 'short' ? ['#shorts'] : [])].join(' ')].filter((l, k, a) => l || a[k - 1]).join('\n').slice(0, 4900),
-			tags: ['música infantil cristã', 'louvor infantil', 'música gospel infantil', 'desenho infantil cristão', 'música para crianças', m.titulo, ...(m.tags ?? []), ...canal.tags].slice(0, 20),
-			categoryId: '10', defaultLanguage: 'pt-BR', defaultAudioLanguage: 'pt-BR',
+			description: [m.descricao ?? L.descricao(m.titulo), '', m.licao ? `${L.licao}: ${m.licao}` : '', m.fonte ? `${L.fonte}: ${m.fonte}.` : '', '',
+				L.letra, letra, ptBR ? `${canal.nome}: louvor e Bíblia para crianças.` : '', '', [...(ptBR ? canal.hashtags : []), ...L.hashtags, ...(variante === 'short' ? ['#shorts'] : [])].join(' ')].filter((l, k, a) => l || a[k - 1]).join('\n').slice(0, 4900),
+			tags: [...L.tags, m.titulo, ...(m.tags ?? []), ...(ptBR ? canal.tags : [])].slice(0, 20),
+			categoryId: '10', defaultLanguage: L.codigo, defaultAudioLanguage: L.codigo,
 		},
 		status: {privacyStatus: 'private', selfDeclaredMadeForKids: true, embeddable: true, license: 'youtube'},
 	};
@@ -216,6 +235,9 @@ async function miniaturas() {
 	}
 	const musicas = path.join(RAIZ, 'musicas');
 	for (const mu of fs.existsSync(musicas) ? fs.readdirSync(musicas) : []) {
+		// versões de outros idiomas estão em outros canais (outro token): ficam para quando houver rotina por canal
+		const idioma = fs.existsSync(path.join(musicas, mu, 'musica.json')) ? JSON.parse(fs.readFileSync(path.join(musicas, mu, 'musica.json'), 'utf8')).idioma : undefined;
+		if (idioma && idioma !== 'pt') continue;
 		for (const f of fs.readdirSync(path.join(musicas, mu)).filter((f) => f.startsWith('MINIATURA-PENDENTE'))) {
 			const sufixo = f.replace('MINIATURA-PENDENTE', '');
 			const pendente = path.join(musicas, mu, f);

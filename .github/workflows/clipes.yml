@@ -29,6 +29,7 @@ jobs:
     timeout-minutes: 10
     outputs:
       id: ${{ steps.plano.outputs.id }}
+      idioma: ${{ steps.plano.outputs.idioma }}
     steps:
       - uses: actions/checkout@v4
       - id: plano
@@ -128,10 +129,23 @@ jobs:
         env:
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_TOKEN: ${{ secrets.YT_TOKEN }}
+          YT_TOKEN_EN: ${{ secrets.YT_TOKEN_EN }}
+          YT_TOKEN_ES: ${{ secrets.YT_TOKEN_ES }}
+          IDIOMA: ${{ needs.planejar.outputs.idioma }}
         run: |
           mkdir -p ~/.config/pequenos-sabios && chmod 700 ~/.config/pequenos-sabios
           printf '%s' "$YT_CLIENT_SECRET" > ~/.config/pequenos-sabios/client_secret.json
           printf '%s' "$YT_TOKEN" > ~/.config/pequenos-sabios/token.json
+          # Canais separados por idioma: sem o token do canal daquele idioma, não envia (nunca cai no canal em português)
+          case "$IDIOMA" in
+            en) TOKEN_IDIOMA="$YT_TOKEN_EN" ;;
+            es) TOKEN_IDIOMA="$YT_TOKEN_ES" ;;
+            *) TOKEN_IDIOMA="" ;;
+          esac
+          if [ -n "$IDIOMA" ] && [ "$IDIOMA" != pt ]; then
+            [ -n "$TOKEN_IDIOMA" ] || { echo "Canal $IDIOMA ainda não conectado (segredo YT_TOKEN_$(echo $IDIOMA | tr a-z A-Z))"; exit 1; }
+            printf '%s' "$TOKEN_IDIOMA" > ~/.config/pequenos-sabios/token-$IDIOMA.json
+          fi
           chmod 600 ~/.config/pequenos-sabios/*
       - name: Agendar no YouTube
         if: env.ENVIAR == 'true'
