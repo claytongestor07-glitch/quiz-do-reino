@@ -1,0 +1,565 @@
+{
+ "id": "ep005-animais",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "titulo": "🦈 Adivinhe o Animal pelos Emojis! 🔨 | 60 Desafios | Quiz de Animais para Crianças",
+ "tema": "Animais",
+ "chamada": "ADIVINHE O ANIMAL",
+ "icones": [
+  "Shark",
+  "Hammer"
+ ],
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "licao": "Cada animal é único e especial: cuidar da natureza é cuidar deles!",
+ "abertura": "Oi, criançada! Bem-vindos ao Quiz do Reino Animal! Eu sou a Lulu! Junte os dois emojis e descubra o nome do animal. São sessenta desafios! Conte seus pontos e vamos lá!",
+ "encerramento": "Ufa, que safári! Quantos animais você acertou? Se fez mais de quarenta pontos, você é craque dos animais! Desafie sua família e até o próximo quiz!",
+ "pergunta": "Que animal é esse?",
+ "perguntas": [
+  {
+   "pistas": [
+    "Shark",
+    "Hammer"
+   ],
+   "resposta": "Tubarão-Martelo",
+   "explicacao": "A cabeça dele tem formato de martelo e ajuda a achar comida na areia.",
+   "referencia": "Vive no mar"
+  },
+  {
+   "pistas": [
+    "Salt",
+    "Raised hand"
+   ],
+   "resposta": "Salmão",
+   "explicacao": "O salmão nada contra a correnteza e até pula cachoeiras!",
+   "referencia": "Rios e mares"
+  },
+  {
+   "pistas": [
+    "Kiss mark",
+    "Tulip"
+   ],
+   "resposta": "Beija-Flor",
+   "explicacao": "O beija-flor bate as asas tão rápido que consegue ficar parado no ar.",
+   "referencia": "Jardins e matas"
+  },
+  {
+   "pistas": [
+    "Horse",
+    "Water wave"
+   ],
+   "resposta": "Cavalo-Marinho",
+   "explicacao": "No cavalo-marinho, quem carrega os filhotes na barriga é o papai!",
+   "referencia": "Vive no mar"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Ox"
+   ],
+   "resposta": "Peixe-Boi",
+   "explicacao": "O peixe-boi é um mamífero gigante e calmo que come plantas aquáticas.",
+   "referencia": "Rios e mares"
+  },
+  {
+   "pistas": [
+    "Thumbs up",
+    "Eyes"
+   ],
+   "resposta": "Bem-Te-Vi",
+   "explicacao": "Esse passarinho parece cantar o próprio nome: bem-te-vi!",
+   "referencia": "Cidades e matas"
+  },
+  {
+   "pistas": [
+    "Star",
+    "Water wave"
+   ],
+   "resposta": "Estrela-do-Mar",
+   "explicacao": "Se a estrela-do-mar perde um braço, nasce outro no lugar!",
+   "referencia": "Vive no mar"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Clown face"
+   ],
+   "resposta": "Peixe-Palhaço",
+   "explicacao": "O peixe-palhaço mora escondido entre os tentáculos da anêmona.",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "Pig",
+    "Cactus"
+   ],
+   "resposta": "Porco-Espinho",
+   "explicacao": "O corpo do porco-espinho é coberto de espinhos para se proteger.",
+   "referencia": "Florestas"
+  },
+  {
+   "pistas": [
+    "Honeybee",
+    "Crown"
+   ],
+   "resposta": "Abelha-Rainha",
+   "explicacao": "A abelha-rainha é a mãe de quase todas as abelhas da colmeia.",
+   "referencia": "Colmeias"
+  },
+  {
+   "pistas": [
+    "Bug",
+    "Wood"
+   ],
+   "resposta": "Bicho-Pau",
+   "explicacao": "O bicho-pau parece um galhinho e se esconde nas árvores.",
+   "referencia": "Florestas"
+  },
+  {
+   "pistas": [
+    "Whale",
+    "Blue heart"
+   ],
+   "resposta": "Baleia-Azul",
+   "explicacao": "A baleia-azul é o maior animal que já viveu na Terra!",
+   "referencia": "Oceanos"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Cat"
+   ],
+   "resposta": "Peixe-Gato",
+   "explicacao": "Ele tem fios no rosto que parecem bigodes de gato.",
+   "referencia": "Rios e lagos"
+  },
+  {
+   "pistas": [
+    "Monkey",
+    "Lion",
+    "Coin"
+   ],
+   "resposta": "Mico-Leão-Dourado",
+   "explicacao": "Esse macaquinho brasileiro tem juba dourada de leão!",
+   "referencia": "Mata Atlântica"
+  },
+  {
+   "pistas": [
+    "Penguin",
+    "Crown"
+   ],
+   "resposta": "Pinguim-Imperador",
+   "explicacao": "É o maior pinguim do mundo e aguenta um frio enorme.",
+   "referencia": "Antártida"
+  },
+  {
+   "pistas": [
+    "Lion",
+    "Water wave"
+   ],
+   "resposta": "Leão-Marinho",
+   "explicacao": "O leão-marinho tem bigodes, nada muito bem e adora tomar sol.",
+   "referencia": "Costas do mar"
+  },
+  {
+   "pistas": [
+    "Droplet",
+    "Party popper"
+   ],
+   "resposta": "Água-Viva",
+   "explicacao": "A água-viva não tem cérebro nem ossos, e é quase toda feita de água.",
+   "referencia": "Vive no mar"
+  },
+  {
+   "pistas": [
+    "Dog",
+    "Hot dog"
+   ],
+   "resposta": "Cão-Salsicha",
+   "explicacao": "O cão-salsicha tem o corpo comprido e as perninhas curtinhas.",
+   "referencia": "Casas"
+  },
+  {
+   "pistas": [
+    "Shark",
+    "Whale"
+   ],
+   "resposta": "Tubarão-Baleia",
+   "explicacao": "É o maior peixe do mundo e come bichinhos bem pequenos.",
+   "referencia": "Oceanos"
+  },
+  {
+   "pistas": [
+    "Snake",
+    "Coral"
+   ],
+   "resposta": "Cobra-Coral",
+   "explicacao": "A cobra-coral tem listras coloridas que avisam: cuidado!",
+   "referencia": "Matas"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Crescent moon"
+   ],
+   "resposta": "Peixe-Lua",
+   "explicacao": "O peixe-lua é redondo, enorme e pesa mais que um carro!",
+   "referencia": "Oceanos"
+  },
+  {
+   "pistas": [
+    "Bear",
+    "Glasses"
+   ],
+   "resposta": "Urso-de-Óculos",
+   "explicacao": "As manchas claras em volta dos olhos parecem óculos.",
+   "referencia": "Montanhas"
+  },
+  {
+   "pistas": [
+    "Monkey",
+    "Spider"
+   ],
+   "resposta": "Macaco-Aranha",
+   "explicacao": "Tem braços longos e usa o rabo como se fosse uma mão.",
+   "referencia": "Florestas"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Sewing needle"
+   ],
+   "resposta": "Peixe-Agulha",
+   "explicacao": "O peixe-agulha tem o bico fininho e comprido como uma agulha.",
+   "referencia": "Vive no mar"
+  },
+  {
+   "pistas": [
+    "Owl",
+    "Snowflake"
+   ],
+   "resposta": "Coruja-das-Neves",
+   "explicacao": "Suas penas brancas ajudam a se esconder na neve.",
+   "referencia": "Lugares gelados"
+  },
+  {
+   "pistas": [
+    "Frog",
+    "Ox"
+   ],
+   "resposta": "Sapo-Boi",
+   "explicacao": "O sapo-boi é bem grande e tem um coaxar grosso, parecido com um mugido.",
+   "referencia": "Lagoas"
+  },
+  {
+   "pistas": [
+    "Hedgehog",
+    "Water wave"
+   ],
+   "resposta": "Ouriço-do-Mar",
+   "explicacao": "O ouriço-do-mar é uma bolinha cheia de espinhos que vive nas pedras.",
+   "referencia": "Vive no mar"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Lion"
+   ],
+   "resposta": "Peixe-Leão",
+   "explicacao": "Suas nadadeiras parecem a juba de um leão, mas têm espinhos.",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "Cat",
+    "Evergreen tree"
+   ],
+   "resposta": "Gato-do-Mato",
+   "explicacao": "Parece um gato de casa, mas é selvagem e vive escondido na mata.",
+   "referencia": "Florestas"
+  },
+  {
+   "pistas": [
+    "Ant",
+    "Fire"
+   ],
+   "resposta": "Formiga-de-Fogo",
+   "explicacao": "A picada dessa formiguinha arde como fogo!",
+   "referencia": "Campos"
+  },
+  {
+   "pistas": [
+    "Shark",
+    "Tiger"
+   ],
+   "resposta": "Tubarão-Tigre",
+   "explicacao": "Quando é jovem, ele tem listras como as do tigre.",
+   "referencia": "Mares quentes"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Butterfly"
+   ],
+   "resposta": "Peixe-Borboleta",
+   "explicacao": "É colorido como uma borboleta e vive nos recifes.",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "Bat",
+    "Drop of blood"
+   ],
+   "resposta": "Morcego-Vampiro",
+   "explicacao": "Esse morcego sai à noite e se alimenta de sangue de animais.",
+   "referencia": "Cavernas"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Zebra"
+   ],
+   "resposta": "Peixe-Zebra",
+   "explicacao": "O peixinho-zebra tem listras como a zebra.",
+   "referencia": "Rios"
+  },
+  {
+   "pistas": [
+    "Fox",
+    "Snowflake"
+   ],
+   "resposta": "Raposa-do-Ártico",
+   "explicacao": "Seu pelo fica branquinho no inverno para combinar com a neve.",
+   "referencia": "Ártico"
+  },
+  {
+   "pistas": [
+    "Spider",
+    "Crab"
+   ],
+   "resposta": "Aranha-Caranguejeira",
+   "explicacao": "É uma aranha grande e peluda, que anda devagar.",
+   "referencia": "Matas"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Parrot"
+   ],
+   "resposta": "Peixe-Papagaio",
+   "explicacao": "O peixe-papagaio tem um bico como o do papagaio e come algas.",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "Snake",
+    "Crown"
+   ],
+   "resposta": "Cobra-Rei",
+   "explicacao": "A cobra-rei é a maior cobra venenosa do mundo.",
+   "referencia": "Florestas da Ásia"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Soccer ball"
+   ],
+   "resposta": "Peixe-Bola",
+   "explicacao": "Quando se assusta, ele se enche de água e vira uma bola!",
+   "referencia": "Vive no mar"
+  },
+  {
+   "pistas": [
+    "Rat",
+    "Kangaroo"
+   ],
+   "resposta": "Rato-Canguru",
+   "explicacao": "Esse ratinho pula com as patas de trás como um canguru.",
+   "referencia": "Desertos"
+  },
+  {
+   "pistas": [
+    "Shark",
+    "Lemon"
+   ],
+   "resposta": "Tubarão-Limão",
+   "explicacao": "Sua pele é amarelada, da cor de um limão.",
+   "referencia": "Mares quentes"
+  },
+  {
+   "pistas": [
+    "Dog",
+    "Evergreen tree"
+   ],
+   "resposta": "Cachorro-do-Mato",
+   "explicacao": "Parece uma raposinha e vive nas matas do Brasil.",
+   "referencia": "Matas"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Baby angel"
+   ],
+   "resposta": "Peixe-Anjo",
+   "explicacao": "O peixe-anjo tem nadadeiras compridas e cores lindas.",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "Ant",
+    "Lion"
+   ],
+   "resposta": "Formiga-Leão",
+   "explicacao": "É uma larvinha que faz um buraco na areia para pegar formigas.",
+   "referencia": "Areia"
+  },
+  {
+   "pistas": [
+    "Crab",
+    "Coconut"
+   ],
+   "resposta": "Caranguejo-do-Coco",
+   "explicacao": "É o maior caranguejo da terra e consegue abrir cocos!",
+   "referencia": "Ilhas tropicais"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Flashlight"
+   ],
+   "resposta": "Peixe-Lanterna",
+   "explicacao": "Ele tem luzinhas no corpo que brilham no fundo escuro do mar.",
+   "referencia": "Fundo do mar"
+  },
+  {
+   "pistas": [
+    "Lion",
+    "Mountain"
+   ],
+   "resposta": "Leão-da-Montanha",
+   "explicacao": "É a onça-parda, um felino forte que vive nas montanhas.",
+   "referencia": "Montanhas"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Rock"
+   ],
+   "resposta": "Peixe-Pedra",
+   "explicacao": "Ele parece uma pedra e se esconde muito bem no fundo do mar.",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "Fly",
+    "Grapes"
+   ],
+   "resposta": "Mosca-das-Frutas",
+   "explicacao": "Essa mosquinha adora frutas bem maduras.",
+   "referencia": "Pomares"
+  },
+  {
+   "pistas": [
+    "Snake",
+    "Droplet"
+   ],
+   "resposta": "Cobra-d'Água",
+   "explicacao": "A cobra-d'água nada muito bem e caça nos rios.",
+   "referencia": "Rios e lagos"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Wing"
+   ],
+   "resposta": "Peixe-Voador",
+   "explicacao": "Ele salta da água e plana no ar com as nadadeiras.",
+   "referencia": "Oceanos"
+  },
+  {
+   "pistas": [
+    "Parrot",
+    "Blue heart"
+   ],
+   "resposta": "Arara-Azul",
+   "explicacao": "A arara-azul é a maior arara do mundo e vive no Pantanal.",
+   "referencia": "Pantanal"
+  },
+  {
+   "pistas": [
+    "Goat",
+    "Mountain"
+   ],
+   "resposta": "Cabra-Montesa",
+   "explicacao": "Ela escala montanhas bem altas e pula de pedra em pedra.",
+   "referencia": "Montanhas"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Frog"
+   ],
+   "resposta": "Peixe-Sapo",
+   "explicacao": "Ele anda no fundo do mar usando as nadadeiras como patinhas.",
+   "referencia": "Fundo do mar"
+  },
+  {
+   "pistas": [
+    "Shark",
+    "White circle"
+   ],
+   "resposta": "Tubarão-Branco",
+   "explicacao": "O tubarão-branco tem fileiras de dentes que nascem de novo.",
+   "referencia": "Oceanos"
+  },
+  {
+   "pistas": [
+    "Bird",
+    "Black circle"
+   ],
+   "resposta": "Pássaro-Preto",
+   "explicacao": "Ele é todo pretinho e canta muito bonito.",
+   "referencia": "Campos"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Rooster"
+   ],
+   "resposta": "Peixe-Galo",
+   "explicacao": "Ele tem uma nadadeira comprida como a crista de um galo.",
+   "referencia": "Vive no mar"
+  },
+  {
+   "pistas": [
+    "Fish",
+    "Health worker"
+   ],
+   "resposta": "Peixe-Cirurgião",
+   "explicacao": "Tem um espinho afiado no rabo, parecido com um bisturi.",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "Dog",
+    "Droplet"
+   ],
+   "resposta": "Cão-d'Água",
+   "explicacao": "Esse cachorro adora nadar e ajudava pescadores.",
+   "referencia": "Casas"
+  },
+  {
+   "pistas": [
+    "Tiger",
+    "Tooth"
+   ],
+   "resposta": "Tigre-Dente-de-Sabre",
+   "explicacao": "Ele viveu há muito tempo e tinha dentes enormes.",
+   "referencia": "Pré-história"
+  }
+ ],
+ "faixa": "60 Animais"
+}

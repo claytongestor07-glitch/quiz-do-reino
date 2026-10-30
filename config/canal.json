@@ -34,23 +34,27 @@
       "nome": "Quiz do Reino",
       "idioma": "pt-BR",
       "pais": "BR",
-      "descricao": "Músicas infantis cristãs e desenho bíblico para crianças! 🐑🦁🎵\n\nNo Quiz do Reino, Davi, a ovelhinha Lulu e o leãozinho Leleco cantam e dançam as grandes histórias da Bíblia: Davi e Golias, a Arca de Noé, Moisés, Jesus e muito mais. Tem música de gesto para bater palma, pular e dançar junto, além de quiz bíblico com emojis para crianças de 3 a 9 anos.\n\n✔ Louvor infantil animado, com letra na tela\n✔ Histórias bíblicas contadas em desenho\n✔ Quiz bíblico infantil: perguntas e respostas da Bíblia\n✔ Conteúdo feito para crianças, seguro para assistir em família\n\nAssista junto com seu filho, cante e conversem sobre cada história! 💛 Novos vídeos toda semana.",
+      "descricao": "Quiz de animais para crianças! 🦁🐶🐳\n\nNo Quiz do Reino Animal, a ovelhinha Lulu e o leãozinho Leleco desafiam você: junte os emojis e adivinhe o animal! Tem tubarão-martelo, beija-flor, cavalo-marinho, animais do mar, da floresta, do gelo e do Brasil.\n\n✔ Adivinhe o animal pelos emojis\n✔ Maratonas com 50+ desafios e cronômetro\n✔ Uma curiosidade divertida em cada resposta\n✔ Feito para crianças, seguro para jogar em família\n\nConte seus pontos e desafie a família! 💛 Novos quizzes toda semana.",
       "palavrasChave": [
-        "música infantil cristã",
-        "louvor infantil",
-        "desenho bíblico",
-        "histórias bíblicas para crianças",
-        "música gospel infantil",
-        "quiz bíblico infantil",
-        "bíblia para crianças",
-        "desenho cristão infantil",
-        "músicas para crianças",
-        "escola bíblica infantil",
-        "Davi e Golias",
-        "Arca de Noé",
+        "quiz de animais",
+        "adivinhe o animal",
+        "adivinhe o animal pelos emojis",
+        "quiz para crianças",
+        "animais para crianças",
+        "quiz de emojis",
+        "desafio de emojis",
+        "nomes de animais",
+        "animais do mar",
+        "quiz infantil",
+        "curiosidades de animais",
         "Quiz do Reino"
       ],
       "playlists": {
+        "animais": {
+          "titulo": "Adivinhe o Animal 🦁 Quiz de Animais para Crianças",
+          "descricao": "Maratonas de quiz de animais: junte os emojis e adivinhe o animal! Animais do mar, da floresta, do gelo e do Brasil, com curiosidades em cada resposta.",
+          "regra": "^(?!.*#shorts).*Adivinhe o Animal"
+        },
         "musicas": {
           "titulo": "Músicas Infantis Cristãs 🎵 Louvor Infantil em Desenho",
           "descricao": "Músicas infantis cristãs para cantar e dançar: louvor infantil com histórias da Bíblia em desenho animado. Davi, Lulu e Leleco cantam com as crianças!",
@@ -67,8 +71,8 @@
           "regra": "^(?!.*#shorts).*Emojis"
         },
         "shorts": {
-          "titulo": "Shorts Bíblicos para Crianças ⚡",
-          "descricao": "Desafios bíblicos rápidos e refrões das músicas infantis cristãs do Quiz do Reino.",
+          "titulo": "Shorts de Quiz para Crianças ⚡",
+          "descricao": "Desafios rápidos de quiz: adivinhe o animal pelos emojis e muito mais.",
           "regra": "#shorts"
         }
       }

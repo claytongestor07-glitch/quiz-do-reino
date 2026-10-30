@@ -14,7 +14,8 @@ export function validar(id) {
 	const n = quiz.perguntas?.length ?? 0;
 	const emoji = quiz.tipo === 'emoji';
 	const abc = quiz.tipo === 'abc'; // alternativas no visual colorido: mais perguntas, textos mais curtos
-	const [min, max] = emoji ? [20, 60] : abc ? [20, 30] : [15, 20];
+	const animais = quiz.categoria === 'animais'; // quiz de animais: sem referência bíblica, maratonas maiores
+	const [min, max] = emoji ? [20, animais ? 120 : 60] : abc ? [20, 30] : [15, 20];
 	if (n < min || n > max) erros.push(`precisa de ${min} a ${max} ${emoji ? 'desafios' : 'perguntas'} (tem ${n})`);
 	(quiz.icones ?? []).forEach((e) => !fs.existsSync(path.join(RAIZ, 'public', 'emoji', arquivoEmoji(e))) && erros.push(`ícone "${e}" não baixado (rode scripts/emojis.mjs)`));
 	for (const campo of ['titulo', 'tema', 'abertura', 'encerramento', 'licao']) if (!quiz[campo]?.trim()) erros.push(`campo vazio: ${campo}`);
@@ -42,7 +43,9 @@ export function validar(id) {
 			if (p.pergunta?.length > maxPerg) erros.push(`${q}: pergunta longa demais para a tela (${p.pergunta.length} > ${maxPerg})`);
 			if (!p.explicacao?.trim()) erros.push(`${q}: falta explicação`);
 		}
-		for (const ref of (p.referencia ?? '').split(';').map((r) => r.trim())) {
+		if (animais) {
+			if (!p.referencia?.trim() || p.referencia.length > 24) erros.push(`${q}: "referencia" (onde vive) vazia ou longa demais (máx. 24)`);
+		} else for (const ref of (p.referencia ?? '').split(';').map((r) => r.trim())) {
 			// "Gênesis 6:19; 7:2" — a segunda parte herda o livro
 			const completa = /^\d/.test(ref) && !/^\d \D/.test(ref) ? `${p.referencia.split(' ')[0]} ${ref}` : ref;
 			if (!LIVROS.test(completa)) erros.push(`${q}: referência bíblica inválida "${ref}"`);

@@ -25,6 +25,10 @@ const iconesDe = (tl: Timeline) => {
 	const q = tl.quiz as unknown as QuizSpeed;
 	return q.icones ?? q.perguntas[0].pistas ?? ['Open book', 'Red question mark'];
 };
+// Textos de marca por episódio (quiz.json): o padrão é o do quiz bíblico
+const marcaDe = (tl: Timeline) => (tl.quiz as unknown as {marca?: string}).marca ?? 'Quiz do Reino';
+const seloDe = (tl: Timeline) => (tl.quiz as unknown as {selo?: string}).selo ?? '📖';
+const craqueDe = (tl: Timeline) => (tl.quiz as unknown as {craque?: string}).craque ?? 'Craque do Reino';
 const unidade = (tl: Timeline) => (ehAbc(tl) ? 'perguntas' : 'desafios');
 
 // Pergunta + alternativas (formato abc). revelar: mostra a certa em verde e apaga as outras.
@@ -100,12 +104,12 @@ const FundoCor: React.FC<{cor: string}> = ({cor}) => {
 	);
 };
 
-const Laterais: React.FC = () => (
+const Laterais: React.FC<{texto: string}> = ({texto}) => (
 	<>
 		{[0, 1].map((lado) => (
 			<div key={lado} style={{...titulo, ...contorno(8), position: 'absolute', top: 540, [lado ? 'right' : 'left']: 78, fontSize: 46, color: '#ffd43b', whiteSpace: 'nowrap',
 				transform: `translate(${lado ? '50%' : '-50%'}, -50%) rotate(${lado ? 90 : -90}deg) translateY(${lado ? -30 : -30}px)`, transformOrigin: 'center'}}>
-				Quiz do Reino
+				{texto}
 			</div>
 		))}
 	</>
@@ -198,7 +202,7 @@ const CenaDesafio: React.FC<{tl: Timeline; cena: Cena; cronometro?: boolean}> = 
 	return (
 		<AbsoluteFill>
 			<FundoCor cor={corDe(i)} />
-			<Laterais />
+			<Laterais texto={marcaDe(tl)} />
 			<Cabecalho n={i + 1} texto={chamadaDe(tl)} />
 			<AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', paddingBottom: ehAbc(tl) ? 90 : 40}}>
 				{ehAbc(tl) ? <QuestaoABC tl={tl} i={i} visivel={cronometro} /> : <Pistas nomes={p.pistas} tamanho={380} atraso={cronometro ? -100 : 8} />}
@@ -222,13 +226,13 @@ const CenaRevelacao: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 		return (
 			<AbsoluteFill>
 				<FundoCor cor={corDe(i)} />
-				<Laterais />
+				<Laterais texto={marcaDe(tl)} />
 				<Cabecalho n={i + 1} texto={chamadaDe(tl)} />
 				<div style={{position: 'absolute', top: 175, left: 0, right: 0}}><QuestaoABC tl={tl} i={i} revelar visivel /></div>
 				<div style={{position: 'absolute', top: 660, left: 330, right: 330, opacity: Math.min(1, cartao * 2), transform: `translateY(${(1 - cartao) * 50}px)`,
 					background: '#fff', borderRadius: 40, border: `8px solid ${TINTA}`, padding: '22px 40px', textAlign: 'center', fontFamily: FONTE, fontWeight: 600, fontSize: 42, lineHeight: 1.22, color: TINTA}}>
 					{p.explicacao}
-					<div style={{marginTop: 12}}><span style={{...titulo, fontSize: 36, background: '#e8336d', borderRadius: 30, padding: '6px 28px', border: `5px solid ${TINTA}`, display: 'inline-block', transform: `scale(${selo})`, ...contorno(4)}}>📖 {p.referencia}</span></div>
+					<div style={{marginTop: 12}}><span style={{...titulo, fontSize: 36, background: '#e8336d', borderRadius: 30, padding: '6px 28px', border: `5px solid ${TINTA}`, display: 'inline-block', transform: `scale(${selo})`, ...contorno(4)}}>{seloDe(tl)} {p.referencia}</span></div>
 				</div>
 				<Mascotes boca={boca} humor="feliz" />
 				<Sequence durationInFrames={70}><Confete /></Sequence>
@@ -238,7 +242,7 @@ const CenaRevelacao: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 	return (
 		<AbsoluteFill>
 			<FundoCor cor={corDe(i)} />
-			<Laterais />
+			<Laterais texto={marcaDe(tl)} />
 			<Cabecalho n={i + 1} texto={chamadaDe(tl)} />
 			<div style={{position: 'absolute', top: 175, left: 0, right: 0, display: 'flex', justifyContent: 'center'}}>
 				<Pistas nomes={p.pistas} tamanho={110} atraso={-100} />
@@ -250,7 +254,7 @@ const CenaRevelacao: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 				<div style={{fontFamily: FONTE, fontWeight: 600, fontSize: 48, lineHeight: 1.2, color: TINTA, marginTop: 26}}>{p.explicacao}</div>
 			</div>
 			<div style={{position: 'absolute', top: 742, left: 0, right: 0, display: 'flex', justifyContent: 'center'}}>
-				<div style={{...titulo, fontSize: 44, background: '#e8336d', borderRadius: 40, padding: '10px 40px', border: `6px solid ${TINTA}`, transform: `scale(${selo})`, ...contorno(5)}}>📖 {p.referencia}</div>
+				<div style={{...titulo, fontSize: 44, background: '#e8336d', borderRadius: 40, padding: '10px 40px', border: `6px solid ${TINTA}`, transform: `scale(${selo})`, ...contorno(5)}}>{seloDe(tl)} {p.referencia}</div>
 			</div>
 			<Mascotes boca={boca} humor="feliz" />
 			<Sequence durationInFrames={70}><Confete /></Sequence>
@@ -293,7 +297,7 @@ const CenaEncerramento: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 	const faixas = [
 		{txt: `0 a ${Math.round(n / 3)}: Aprendiz`, cor: '#4dabf7', e: 'Ewe'},
 		{txt: `${Math.round(n / 3) + 1} a ${Math.round((2 * n) / 3)}: Explorador`, cor: '#ff7a1a', e: 'Lion'},
-		{txt: `${Math.round((2 * n) / 3) + 1} a ${n}: Craque do Reino`, cor: '#1fb35a', e: 'Crown'},
+		{txt: `${Math.round((2 * n) / 3) + 1} a ${n}: ${craqueDe(tl)}`, cor: '#1fb35a', e: 'Crown'},
 	];
 	return (
 		<AbsoluteFill>
@@ -339,7 +343,7 @@ export const ThumbnailSpeed: React.FC<{tl: Timeline}> = ({tl}) => {
 			</div>
 			<div style={{position: 'absolute', top: 330, left: 0, right: 0}}><Pistas nomes={iconesDe(tl)} tamanho={480} atraso={-100} /></div>
 			<div style={{position: 'absolute', bottom: 40, width: '100%', textAlign: 'center'}}>
-				<span style={{...titulo, fontSize: 84, background: '#e8336d', borderRadius: 60, padding: '10px 56px', border: `9px solid ${TINTA}`, ...contorno(8)}}>{q.tema}</span>
+				<span style={{...titulo, fontSize: 84, background: '#e8336d', borderRadius: 60, padding: '10px 56px', border: `9px solid ${TINTA}`, ...contorno(8)}}>{(q as unknown as {faixa?: string}).faixa ?? q.tema}</span>
 			</div>
 		</AbsoluteFill>
 	);
@@ -381,7 +385,7 @@ const EncerramentoVertical: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) 
 	const faixas = [
 		{txt: `0 a ${Math.round(n / 3)}: Aprendiz`, cor: '#4dabf7', e: 'Ewe'},
 		{txt: `${Math.round(n / 3) + 1} a ${Math.round((2 * n) / 3)}: Explorador`, cor: '#ff7a1a', e: 'Lion'},
-		{txt: `${Math.round((2 * n) / 3) + 1} a ${n}: Craque do Reino`, cor: '#1fb35a', e: 'Crown'},
+		{txt: `${Math.round((2 * n) / 3) + 1} a ${n}: ${craqueDe(tl)}`, cor: '#1fb35a', e: 'Crown'},
 	];
 	return (
 		<AbsoluteFill>
@@ -446,7 +450,7 @@ const DesafioVertical: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 				{revelar && (
 					<div style={{opacity: Math.min(1, s * 2), background: '#fff', borderRadius: 36, border: `7px solid ${TINTA}`, padding: '18px 34px', width: 900, textAlign: 'center', fontFamily: FONTE, fontWeight: 600, fontSize: 42, lineHeight: 1.2, color: TINTA}}>
 						{p.explicacao}
-						<div style={{marginTop: 10, fontFamily: TITULO, fontSize: 36, color: '#e8336d'}}>📖 {p.referencia}</div>
+						<div style={{marginTop: 10, fontFamily: TITULO, fontSize: 36, color: '#e8336d'}}>{seloDe(tl)} {p.referencia}</div>
 					</div>
 				)}
 			</div>

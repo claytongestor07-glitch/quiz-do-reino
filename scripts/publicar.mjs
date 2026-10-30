@@ -83,6 +83,17 @@ export function metadados(id) {
 	const {quiz} = episodio(id);
 	const tl = JSON.parse(fs.readFileSync(path.join(RAIZ, 'public', 'ep', id, 'timeline.json'), 'utf8'));
 	const capitulos = [`0:00 Abertura`, ...tl.cenas.filter((c) => c.tipo === 'numero').map((c) => `${mmss(c.inicio)} ${quiz.tipo === 'emoji' ? `Desafio ${c.i + 1}` : `Pergunta ${c.i + 1}`}`), `${mmss(tl.cenas.at(-1).inicio)} Lição de hoje`];
+	if (quiz.categoria === 'animais') {
+		const desc = [
+			`Você consegue adivinhar o animal juntando os emojis? São ${quiz.perguntas.length} desafios de animais para crianças: do mar, da floresta, do gelo e do Brasil, com cronômetro e uma curiosidade em cada resposta.`,
+			'', `🐾 ${quiz.licao}`, '', 'Jogue junto com a família e contem os pontos! 💛', '', ...capitulos, '',
+			`${canal.nome}: o quiz do reino animal.`, '', '#QuizDeAnimais #AdivinheOAnimal #QuizParaCrianças',
+		].join('\n');
+		return {
+			snippet: {title: quiz.titulo, description: desc.slice(0, 4900), tags: ['quiz de animais', 'adivinhe o animal', 'adivinhe o animal pelos emojis', 'quiz para crianças', 'animais para crianças', 'quiz de emojis', 'desafio de emojis', 'nomes de animais', 'animais do mar', 'quiz infantil', quiz.tema, canal.nome].slice(0, 20), categoryId: '27', defaultLanguage: 'pt-BR', defaultAudioLanguage: 'pt-BR'},
+			status: {privacyStatus: 'private', selfDeclaredMadeForKids: true, embeddable: true, license: 'youtube'},
+		};
+	}
 	const descricao = [
 		quiz.tipo === 'emoji'
 			? `Você consegue adivinhar o personagem ou a história da Bíblia só pelos emojis? São ${quiz.perguntas.length} desafios para crianças de 5 a 9 anos, com cronômetro e uma explicação bíblica em cada resposta.`
@@ -102,6 +113,14 @@ export function metadadosShort(id, n) {
 	const {quiz} = episodio(id);
 	const p = quiz.perguntas[n - 1];
 	const emoji = quiz.tipo === 'emoji';
+	if (quiz.categoria === 'animais') return {
+		snippet: {
+			title: `Que animal é esse? Adivinhe pelos Emojis 🤔 Desafio ${n} | Quiz de Animais #shorts`.slice(0, 100),
+			description: ['Junte os emojis e descubra o animal! Um desafio do quiz de animais para crianças.', '', `${canal.nome}: o quiz do reino animal.`, '', '#QuizDeAnimais #AdivinheOAnimal #shorts'].join('\n'),
+			tags: ['quiz de animais', 'adivinhe o animal', 'quiz de emojis', 'animais para crianças', 'shorts'], categoryId: '27', defaultLanguage: 'pt-BR', defaultAudioLanguage: 'pt-BR',
+		},
+		status: {privacyStatus: 'private', selfDeclaredMadeForKids: true, embeddable: true, license: 'youtube'},
+	};
 	return {
 		snippet: {
 			// Título único por short: o tema entra no título (antes vários saíam iguais, "Que história é essa?")
@@ -207,7 +226,7 @@ async function enviar(id, quando, short = 0, vertical = false) {
 	const resposta = await subir(token, path.join(saida, rel.video), corpo, id);
 	fs.writeFileSync(registro, JSON.stringify({videoId: resposta.id, enviadoEm: new Date().toISOString(), publicarEm: corpo.status.publishAt ?? null}, null, 1));
 	log('publicar', `${id}${sufixo} enviado: https://youtu.be/${resposta.id}`, {videoId: resposta.id});
-	if (!vertical) await naPlaylist(token, 'pt', short ? 'shorts' : episodio(id).quiz.tipo === 'emoji' ? 'emojis' : 'quiz', resposta.id);
+	if (!vertical) await naPlaylist(token, 'pt', short ? 'shorts' : episodio(id).quiz.categoria === 'animais' ? 'animais' : episodio(id).quiz.tipo === 'emoji' ? 'emojis' : 'quiz', resposta.id);
 	if (short) return; // Shorts usam um quadro do próprio vídeo como capa
 
 	const thumb = path.join(saida, `${id}-thumbnail.jpg`);
