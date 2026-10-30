@@ -1,0 +1,121 @@
+{
+  "id": "mu001-davi-en",
+  "titulo": "God Is Great!",
+  "roteiro": "davi",
+  "tituloYoutube": "God Is Great! David and Goliath | Christian Kids Song | Quiz do Reino",
+  "estilo": "upbeat children's gospel song, catchy nursery pop, cheerful female singer, kids choir in chorus, 140 bpm, bright synths, claps, fun, energetic, english",
+  "duracao": 120,
+  "partes": [
+    {
+      "tipo": "intro",
+      "emojis": [
+        "Crown",
+        "Sparkles",
+        "Musical notes"
+      ],
+      "letra": [
+        "Hey, little friends! Let's sing along!"
+      ]
+    },
+    {
+      "tipo": "verso",
+      "emojis": [
+        "Rock",
+        "Ewe",
+        "Musical notes"
+      ],
+      "letra": [
+        "David was a little boy",
+        "but he had a brave, brave heart",
+        "he took his sling and five smooth stones",
+        "and he trusted God from the start"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "GOD IS GREAT!",
+      "emojis": [
+        "Red heart",
+        "Star-struck",
+        "Clapping hands"
+      ],
+      "letra": [
+        "I may be little, God is great!",
+        "I may be little, God is great!",
+        "Hey, hey, hey, God is great!",
+        "Jump, jump, God is great!"
+      ]
+    },
+    {
+      "tipo": "verso",
+      "emojis": [
+        "Lion",
+        "Folded hands",
+        "Sun"
+      ],
+      "letra": [
+        "The giant shouted really loud",
+        "but David prayed without a fear",
+        "with faith in God he beat the giant",
+        "and all the children gave a cheer"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "I MAY BE LITTLE!",
+      "emojis": [
+        "Party popper",
+        "Red heart",
+        "Clapping hands"
+      ],
+      "letra": [
+        "I may be little, God is great!",
+        "I may be little, God is great!",
+        "Hey, hey, hey, God is great!",
+        "Jump, jump, God is great!"
+      ]
+    },
+    {
+      "tipo": "ponte",
+      "emojis": [
+        "Clapping hands",
+        "Raising hands",
+        "Party popper"
+      ],
+      "letra": [
+        "Clap your hands, clap your hands!",
+        "Little hands up high, jump, jump!",
+        "Spin around, everybody!",
+        "God is great, woohoo!"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": null,
+      "emojis": [
+        "Red heart",
+        "Star-struck",
+        "Clapping hands"
+      ],
+      "letra": [
+        "I may be little, God is great!",
+        "I may be little, God is great!",
+        "Hey, hey, hey, God is great!",
+        "Jump, jump, God is great!"
+      ]
+    },
+    {
+      "tipo": "final",
+      "emojis": [
+        "Crown",
+        "Sparkles",
+        "Party popper"
+      ],
+      "letra": [
+        "God is great! Woohoo!"
+      ]
+    }
+  ],
+  "fonte": "1 Samuel 17:45",
+  "idioma": "en"
+}

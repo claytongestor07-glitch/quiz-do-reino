@@ -18,7 +18,7 @@ linhas = [(k, i, l) for k, parte in enumerate(musica['partes']) for i, l in enum
 letra = [(n, w) for n, (_, _, l) in enumerate(linhas) for w in l.split()]
 
 modelo = WhisperModel('small', device='cpu', compute_type='int8')
-segs, _ = modelo.transcribe(str(audio), language='pt', word_timestamps=True, vad_filter=False, beam_size=5,
+segs, _ = modelo.transcribe(str(audio), language=musica.get('idioma', 'pt'), word_timestamps=True, vad_filter=False, beam_size=5,
 	initial_prompt=' '.join(l for _, _, l in linhas)[:800])
 ouvidas = [(norm(w.word), w.start, w.end) for s in segs for w in (s.words or []) if norm(w.word)]
 print(f'{len(ouvidas)} palavras ouvidas, {len(letra)} na letra', flush=True)

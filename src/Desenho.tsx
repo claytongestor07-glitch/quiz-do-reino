@@ -51,18 +51,18 @@ const gestoDaLetra = (linha: Linha | undefined, s: number, padrao: Gesto): Gesto
 	const atual = linha.palavras.find((w) => s >= w.de - 0.15 && s <= w.ate + 0.35)?.p.toLowerCase() ?? '';
 	const tudo = linha.palavras.map((w) => w.p.toLowerCase()).join(' ');
 	// partes do corpo e ações (músicas de "cabeça, ombro, joelho e pé")
-	if (/cabe[çc]a/.test(atual) && /m[ãa]o/.test(tudo)) return 'cabeca';
-	if (/joelho/.test(atual)) return 'joelho';
-	if (/^p[ée]s?[,!.]?$|pezinho/.test(atual) || /bate o p[ée]/.test(tudo)) return 'pe';
-	if (/abra[çc]/.test(tudo)) return 'abraca';
-	if (/corr|perninha/.test(tudo)) return 'corre';
-	if (/olh|orelha|nariz|boquinha|escutar|cheirar/.test(tudo)) return 'aponta';
-	if (/dan[çc]/.test(tudo)) return 'danca';
-	if (/palma/.test(tudo)) return 'palmas';
-	if (/gira/.test(tudo)) return 'gira';
-	if (/cima/.test(tudo) && !/pula/.test(atual)) return 'cima';
-	if (/grande/.test(atual)) return 'abre';
-	if (/pula/.test(tudo)) return 'pula';
+	if (/cabe[çcz]a|head/.test(atual) && /m[ãa]o|hand|mano/.test(tudo)) return 'cabeca';
+	if (/joelho|knee|rodilla/.test(atual)) return 'joelho';
+	if (/^(p[ée]s?|pie|feet|foot)[,!.]?$|pezinho|piecito/.test(atual) || /bate o p[ée]|stomp/.test(tudo)) return 'pe';
+	if (/abra[çcz]|hug/.test(tudo)) return 'abraca';
+	if (/corr|perninha|piernita|run/.test(tudo)) return 'corre';
+	if (/olh|orelha|nariz|boquinha|escutar|cheirar|eyes|ears|nose|mouth|ojo|oreja|boca/.test(tudo)) return 'aponta';
+	if (/dan[çc]|dance|baila/.test(tudo)) return 'danca';
+	if (/palma|clap|aplaud/.test(tudo)) return 'palmas';
+	if (/gira|spin/.test(tudo)) return 'gira';
+	if (/cima|high|arriba/.test(tudo) && !/pula|jump|salta/.test(atual)) return 'cima';
+	if (/grande|great|big/.test(atual)) return 'abre';
+	if (/pula|jump|salta/.test(tudo)) return 'pula';
 	return padrao;
 };
 

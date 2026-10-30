@@ -14,7 +14,7 @@ def post(caminho, dados):
     return json.load(urllib.request.urlopen(r, timeout=600))
 
 t = post('/release_task', {'prompt': m['estilo'], 'lyrics': letra, 'audio_duration': m.get('duracao', 120),
-                           'vocal_language': 'pt', 'thinking': True, 'batch_size': 1, 'audio_format': 'wav'})
+                           'vocal_language': m.get('idioma', 'pt'), 'thinking': True, 'batch_size': 1, 'audio_format': 'wav'})
 tid = (t.get('data') or t)['task_id']
 inicio = time.time()
 while True:

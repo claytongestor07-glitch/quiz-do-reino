@@ -1,0 +1,121 @@
+{
+  "id": "mu001-davi-es",
+  "titulo": "¡Dios es Grande!",
+  "roteiro": "davi",
+  "tituloYoutube": "¡Dios es Grande! David y Goliat | Canción Infantil Cristiana | Quiz do Reino",
+  "estilo": "upbeat children's gospel song, catchy nursery pop, cheerful female singer, kids choir in chorus, 140 bpm, bright synths, claps, fun, energetic, latin american spanish",
+  "duracao": 120,
+  "partes": [
+    {
+      "tipo": "intro",
+      "emojis": [
+        "Crown",
+        "Sparkles",
+        "Musical notes"
+      ],
+      "letra": [
+        "¡Ey, niños! ¡Vamos a cantar!"
+      ]
+    },
+    {
+      "tipo": "verso",
+      "emojis": [
+        "Rock",
+        "Ewe",
+        "Musical notes"
+      ],
+      "letra": [
+        "David era pequeñito",
+        "pero tenía un corazón valiente",
+        "tomó su honda y cinco piedras",
+        "y confió en Dios fielmente"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "¡DIOS ES GRANDE!",
+      "emojis": [
+        "Red heart",
+        "Star-struck",
+        "Clapping hands"
+      ],
+      "letra": [
+        "Puedo ser pequeño, ¡Dios es grande!",
+        "Puedo ser pequeño, ¡Dios es grande!",
+        "Ey, ey, ey, ¡Dios es grande!",
+        "Salta, salta, ¡Dios es grande!"
+      ]
+    },
+    {
+      "tipo": "verso",
+      "emojis": [
+        "Lion",
+        "Folded hands",
+        "Sun"
+      ],
+      "letra": [
+        "El gigante gritó muy fuerte",
+        "pero David oró sin miedo",
+        "con fe en Dios venció al gigante",
+        "y los niños cantaron con él"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "¡PUEDO SER PEQUEÑO!",
+      "emojis": [
+        "Party popper",
+        "Red heart",
+        "Clapping hands"
+      ],
+      "letra": [
+        "Puedo ser pequeño, ¡Dios es grande!",
+        "Puedo ser pequeño, ¡Dios es grande!",
+        "Ey, ey, ey, ¡Dios es grande!",
+        "Salta, salta, ¡Dios es grande!"
+      ]
+    },
+    {
+      "tipo": "ponte",
+      "emojis": [
+        "Clapping hands",
+        "Raising hands",
+        "Party popper"
+      ],
+      "letra": [
+        "¡Aplaude, aplaude!",
+        "¡Manitas arriba, salta, salta!",
+        "¡Gira, gira, todo el mundo!",
+        "¡Dios es grande, uhuu!"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": null,
+      "emojis": [
+        "Red heart",
+        "Star-struck",
+        "Clapping hands"
+      ],
+      "letra": [
+        "Puedo ser pequeño, ¡Dios es grande!",
+        "Puedo ser pequeño, ¡Dios es grande!",
+        "Ey, ey, ey, ¡Dios es grande!",
+        "Salta, salta, ¡Dios es grande!"
+      ]
+    },
+    {
+      "tipo": "final",
+      "emojis": [
+        "Crown",
+        "Sparkles",
+        "Party popper"
+      ],
+      "letra": [
+        "¡Dios es grande! ¡Uhuu!"
+      ]
+    }
+  ],
+  "fonte": "1 Samuel 17:45",
+  "idioma": "es"
+}

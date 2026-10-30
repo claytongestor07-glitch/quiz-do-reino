@@ -16,7 +16,8 @@ on:
         default: true
 
 concurrency:
-  group: produzir
+  # Prévias manuais (sem enviar) não esperam nem cancelam a fila de publicação
+  group: ${{ github.event_name == 'workflow_dispatch' && !inputs.enviar && format('previa-{0}', inputs.musica) || 'produzir' }}
   cancel-in-progress: false
 
 permissions:
