@@ -13,7 +13,8 @@ export type Parte = {de: number; tipo: 'intro' | 'verso' | 'refrao' | 'ponte' | 
 export type Palavra = {p: string; de: number; ate: number};
 export type Linha = {parte: number; de: number; ate: number; palavras: Palavra[]};
 export type Tomada = {de: number; cena: string; video: boolean};
-export type Cena = {recorte: [number, number, number]; foco: number};
+// arte/arteAltura: arte própria da cena parada (histórias); padrão = arte do canal 1200x600
+export type Cena = {recorte: [number, number, number]; foco: number; arte?: string; arteAltura?: number};
 export type Clipe = {id: string; titulo: string; totalFrames: number; batida: number[]; bpm?: number; inicioBatida?: number; partes: Parte[]; linhas: Linha[]; tomadas: Tomada[]; cenas: Record<string, Cena>};
 export type PropsClipe = {id: string; clipe?: Clipe};
 
@@ -65,11 +66,12 @@ const Tomada: React.FC<{tomada: Tomada; cena: Cena; quadros: number; pulso: numb
 	} else {
 		const [x, y, w] = cena.recorte;
 		const h = (w * 9) / 16;
-		// pixels por unidade da arte (1200 x 600); no vertical abre mais o quadro para não ficar só um rosto
-		const k = H > W ? Math.max(H / 600, H / (h * 2.2)) : W / w;
+		// pixels por unidade da arte (1200 x AH); no vertical abre mais o quadro para não ficar só um rosto
+		const AH = cena.arteAltura ?? 600;
+		const k = H > W ? Math.max(H / AH, H / (h * 2.2)) : W / w;
 		const esquerda = H > W ? Math.min(0, Math.max(W - 1200 * k, W / 2 - (x + w * cena.foco) * k)) : -x * k;
-		const topo = H > W ? Math.min(0, Math.max(H - 600 * k, H / 2 - (y + h / 2) * k)) : -y * k;
-		midia = <Img src={staticFile('personagens/clipe/arte.webp')} style={{position: 'absolute', left: esquerda, top: topo, width: 1200 * k}} />;
+		const topo = H > W ? Math.min(0, Math.max(H - AH * k, H / 2 - (y + h / 2) * k)) : -y * k;
+		midia = <Img src={staticFile(cena.arte ?? 'personagens/clipe/arte.webp')} style={{position: 'absolute', left: esquerda, top: topo, width: 1200 * k}} />;
 	}
 	return (
 		<AbsoluteFill style={{overflow: 'hidden', filter: 'saturate(1.08) contrast(1.04)'}}>

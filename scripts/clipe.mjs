@@ -82,15 +82,17 @@ const partes = musica.partes.map((p, k) => {
 });
 for (let k = 1; k < partes.length; k++) partes[k].de = Math.max(partes[k].de, partes[k - 1].de + 1);
 
-// Tomadas: a cada ~3 s troca de cena, cortando no bumbo mais forte por perto; cenas escolhidas pelo tipo da parte
-const {cenas: CENAS} = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src', 'cenas.json'), 'utf8'));
+// Tomadas: a cada ~3 s troca de cena, cortando no bumbo mais forte por perto; cenas escolhidas pelo tipo da parte.
+// História (musicas/<id>/cenas.json existe): cenas próprias da história, e cada parte passa pelas suas cenas na ordem do roteiro
+const historia = fs.existsSync(path.join(dir, 'cenas.json'));
+const {cenas: CENAS} = JSON.parse(fs.readFileSync(historia ? path.join(dir, 'cenas.json') : path.join(RAIZ, 'src', 'cenas.json'), 'utf8'));
 const comVideo = (n) => fs.existsSync(path.join(RAIZ, 'public', 'cenas', `${n}.mp4`));
 const tomadas = [];
 let semente = [...id].reduce((s, c) => s + c.charCodeAt(0), 0);
 partes.forEach((p, k) => {
 	const fim = partes[k + 1]?.de ?? dur;
 	const tipo = p.tipo === 'ponte' ? 'ponte' : p.tipo;
-	const pool = Object.keys(CENAS).filter((n) => CENAS[n].partes.includes(tipo));
+	const pool = historia ? [] : Object.keys(CENAS).filter((n) => CENAS[n].partes.includes(tipo));
 	const fixas = tipo === 'intro' ? ['castelo', 'geral'] : tipo === 'final' ? ['geral-festa', 'castelo'] : tipo === 'refrao' ? ['geral-festa'] : [];
 	let t = p.de, i = 0;
 	while (t < fim - 0.8) {
@@ -103,8 +105,12 @@ partes.forEach((p, k) => {
 			for (let f = a; f <= b; f++) if ((ritmo[f] ?? 0) > (ritmo[melhor] ?? 0)) melhor = f;
 			corte = melhor / FPS;
 		}
-		let cena = fixas[i] ?? pool[(semente++ * 7) % pool.length];
-		if (cena === tomadas.at(-1)?.cena) cena = pool[(semente++ * 7 + 3) % pool.length];
+		let cena;
+		if (historia) cena = musica.partes[k].cenas[i % musica.partes[k].cenas.length];
+		else {
+			cena = fixas[i] ?? pool[(semente++ * 7) % pool.length];
+			if (cena === tomadas.at(-1)?.cena) cena = pool[(semente++ * 7 + 3) % pool.length];
+		}
 		tomadas.push({de: r2(t), cena, video: comVideo(cena)});
 		t = corte; i++;
 	}

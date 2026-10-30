@@ -1,0 +1,21 @@
+{
+  "_doc": "Cenas da história de Moisés: recorte do roteiro visual docs/arte/moises-roteiro.webp (x, y, largura na arte reduzida a 1200 px de largura; altura = largura*9/16). 'arte'/'arteAltura' = versão 1200x900 em public/ para a cena parada; 'arteOriginal' = fonte do recorte enviado ao Kling (scripts/fal_cenas.py). Se existir docs/arte/moises/<cena>.png (quadro 16:9 em alta, ver docs/historias-biblicas.md), ele substitui o recorte. Vídeos prontos vão em public/cenas/<cena>.mp4.",
+  "cenas": {
+    "moises-1-egito": {"recorte": [9.9, 178.2, 285.1], "foco": 0.4, "arte": "personagens/moises/roteiro.webp", "arteAltura": 900, "arteOriginal": "docs/arte/moises-roteiro.webp",
+      "prompt": "A Hebrew family in ancient Egypt: the bearded father carrying heavy stones looks up worried, the mother in a white veil hugs her little curly haired son tightly; behind them the Pharaoh points sternly while guards stand on the brick walls; slow push-in, gentle and child-friendly, no violence"},
+    "moises-2-cesto": {"recorte": [306.6, 174.0, 285.1], "foco": 0.45, "arte": "personagens/moises/roteiro.webp", "arteAltura": 900, "arteOriginal": "docs/arte/moises-roteiro.webp",
+      "prompt": "Young Miriam with long curly hair gently places baby Moses in a woven basket among the tall reeds of the Nile; the baby giggles and kicks his little feet, the reeds sway in the breeze and the water ripples sparkle in the sun"},
+    "moises-3-princesa": {"recorte": [604.1, 182.3, 285.1], "foco": 0.55, "arte": "personagens/moises/roteiro.webp", "arteAltura": 900, "arteOriginal": "docs/arte/moises-roteiro.webp",
+      "prompt": "The Egyptian princess in gold jewelry kneels by the basket and smiles tenderly at baby Moses, who reaches up to her and laughs; her servants watch behind her, palm trees and a temple across the river, soft morning light"},
+    "moises-4-chamado": {"recorte": [901.7, 165.7, 285.1], "foco": 0.4, "arte": "personagens/moises/roteiro.webp", "arteAltura": 900, "arteOriginal": "docs/arte/moises-roteiro.webp",
+      "prompt": "Adult Moses holding his wooden staff looks up in awe at the burning bush in the desert; golden flames dance on the bush without burning it, his blue cloak and curly hair move in the warm wind, he slowly raises his open hand"},
+    "moises-5-farao": {"recorte": [9.9, 455.8, 285.1], "foco": 0.5, "arte": "personagens/moises/roteiro.webp", "arteAltura": 900, "arteOriginal": "docs/arte/moises-roteiro.webp",
+      "prompt": "In the Egyptian palace, Moses with his staff speaks firmly and calmly to the Pharaoh, gesturing with an open hand; the Pharaoh crosses his arms and turns his head proudly; guards stand still in the background, torchlight flickers"},
+    "moises-6-mar": {"recorte": [306.6, 464.1, 285.1], "foco": 0.5, "arte": "personagens/moises/roteiro.webp", "arteAltura": 900, "arteOriginal": "docs/arte/moises-roteiro.webp",
+      "prompt": "Moses raises his staff high and the sea parts into two towering walls of blue water, spray and sunlight pouring down the middle, the huge crowd watches in wonder; epic slow camera push forward"},
+    "moises-7-travessia": {"recorte": [604.1, 464.1, 285.1], "foco": 0.45, "arte": "personagens/moises/roteiro.webp", "arteAltura": 900, "arteOriginal": "docs/arte/moises-roteiro.webp",
+      "prompt": "The happy crowd walks across the dry seabed between the walls of water; a boy and a girl run laughing hand in hand toward the camera, Moses leads the people with his staff raised, families smiling"},
+    "moises-8-miria": {"recorte": [901.7, 459.9, 285.1], "foco": 0.55, "arte": "personagens/moises/roteiro.webp", "arteAltura": 900, "arteOriginal": "docs/arte/moises-roteiro.webp",
+      "prompt": "Miriam dances joyfully shaking her tambourine with colorful ribbons flying, children and women dance and clap around her, palm trees, festive celebration full of music and laughter"}
+  }
+}

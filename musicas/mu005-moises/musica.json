@@ -1,0 +1,85 @@
+{
+  "id": "mu005-moises",
+  "titulo": "Com Deus o Mar se Abre!",
+  "tituloYoutube": "Quiz do Reino - A História de Moisés: Com Deus o Mar se Abre! (Música Infantil Cristã)",
+  "estilo": "joyful brazilian children's gospel song, cheerful male lead singer with kids choir in the chorus, 120 bpm, acoustic guitar, tambourine, claps, epic orchestral swell in the chorus, catchy and simple, brazilian portuguese",
+  "duracao": 150,
+  "descricao": "A história de Moisés cantada para crianças: o bebê no cestinho, a sarça ardente, a conversa com o Faraó, o mar que se abriu e a festa de Miriã. Uma música para aprender que Deus cuida de nós desde pequenos.",
+  "licao": "Deus cuida de nós desde pequenos e abre caminho quando confiamos nEle.",
+  "fonte": "Êxodo 2–15",
+  "partes": [
+    {
+      "tipo": "intro",
+      "emojis": ["Water wave", "Palm tree", "Musical notes"],
+      "cenas": ["moises-1-egito"],
+      "letra": ["Ê, criançada! Vem ouvir a história de Moisés!"]
+    },
+    {
+      "tipo": "verso",
+      "emojis": ["Basket", "Water wave", "Folded hands"],
+      "cenas": ["moises-1-egito", "moises-2-cesto", "moises-3-princesa"],
+      "letra": [
+        "Lá no Egito o povo sofria",
+        "mas Deus ouvia o seu clamor",
+        "num cestinho, no rio Nilo",
+        "o bebê Moisés boiou",
+        "Miriã ficou olhando",
+        "a princesa o encontrou",
+        "desde pequenininho",
+        "Deus cuidou, Deus cuidou!"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "O MAR SE ABRIU!",
+      "emojis": ["Water wave", "Raising hands", "Sparkles"],
+      "cenas": ["moises-6-mar", "moises-7-travessia"],
+      "letra": [
+        "Com Deus o mar se abre, o mar se abre!",
+        "O povo passa cantando, aleluia!",
+        "Com Deus não tem medo, não tem medo!",
+        "Ele abre caminho pra mim!"
+      ]
+    },
+    {
+      "tipo": "verso",
+      "emojis": ["Fire", "Crown", "Folded hands"],
+      "cenas": ["moises-4-chamado", "moises-5-farao"],
+      "letra": [
+        "Moisés cresceu e no deserto",
+        "viu a sarça pegando fogo",
+        "Deus falou: Vai, Moisés",
+        "liberta o meu povo!",
+        "Diante do Faraó",
+        "com coragem ele falou:",
+        "Deixa o povo ir embora",
+        "quem me mandou foi o Senhor!"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "O MAR SE ABRIU!",
+      "emojis": ["Water wave", "Raising hands", "Sparkles"],
+      "cenas": ["moises-6-mar", "moises-7-travessia"],
+      "letra": [
+        "Com Deus o mar se abre, o mar se abre!",
+        "O povo passa cantando, aleluia!",
+        "Com Deus não tem medo, não tem medo!",
+        "Ele abre caminho pra mim!"
+      ]
+    },
+    {
+      "tipo": "final",
+      "emojis": ["Musical notes", "Raising hands", "Dove"],
+      "cenas": ["moises-8-miria", "moises-7-travessia"],
+      "letra": [
+        "Miriã pegou o pandeiro",
+        "todo o povo foi dançar",
+        "obrigado, meu Deus",
+        "por sempre me cuidar!",
+        "Lá-lá-lá, aleluia!",
+        "Lá-lá-lá, vamos louvar!"
+      ]
+    }
+  ]
+}

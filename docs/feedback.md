@@ -23,3 +23,9 @@ Cada aprovação ou ajuste pedido entra aqui, para os próximos episódios segui
 - Coletâneas de 15–25 min juntando os clipes; Shorts com o refrão.
 - Enquanto o novo formato não estiver pronto: NÃO escrever novos quizzes. Os quizzes já roteirizados terminam de ser publicados normalmente.
 - 27/10/2026: produção automática de clipes LIGADA (senhor: "músicas evangélicas e educativas"). Personagens e cenário da nova arte (docs/arte/clipe.webp): Davi com violão + Lulu, a menina, Leleco e a Bíblia. Músicas cantadas pelo ACE-Step 1.5 na nuvem; letras originais, sempre ensinando algo (números, cores, criação, corpo, boas maneiras…).
+
+## Histórias bíblicas animadas (senhor, 2026-10-30)
+- Novo formato: clipe musical que conta uma história bíblica inteira, com personagens fixos em 3D estilo Pixar ("super realista") e cenas animadas no Kling. Modelo: folha de personagens + roteiro visual de 8 quadros (docs/arte/moises-*.webp).
+- Primeira história: mu005-moises ("Com Deus o Mar se Abre!", Êxodo 2–15). Guia completo em docs/historias-biblicas.md.
+- Várias personagens juntas em cena, sempre com a mesma aparência da folha de personagens. Objetivo: monetizar e viralizar, com conteúdo original a cada vídeo.
+- Não publicar sem o senhor assistir: cada história nova nasce com o arquivo IGNORAR.
