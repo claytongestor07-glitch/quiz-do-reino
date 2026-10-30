@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
+import {AbsoluteFill, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import {Frase, Karaoke, Selo, Titulo, type Clipe, type Linha, type PropsClipe} from './Clipe';
 import {TITULO} from './Speed';
 
@@ -42,14 +42,22 @@ const bocaCantando = (linhas: Linha[], s: number) => {
 
 // ---------- pose e dança ----------
 
-type Pose = {y: number; giro: number; escalaX: number; amassa: number; bracoE: number; bracoD: number; cabeca: number; boca: number; olhar: number; olharY: number; piscar: boolean};
-type Gesto = 'leve' | 'danca' | 'palmas' | 'cima' | 'pula' | 'gira' | 'abre' | 'ora' | 'funda' | 'comemora';
+type Pose = {y: number; giro: number; escalaX: number; amassa: number; bracoE: number; bracoD: number; cotE: number; cotD: number; cabeca: number; boca: number; olhar: number; olharY: number; piscar: boolean};
+type Gesto = 'leve' | 'danca' | 'palmas' | 'cima' | 'pula' | 'gira' | 'abre' | 'ora' | 'funda' | 'comemora' | 'cabeca' | 'joelho' | 'pe' | 'abraca' | 'corre' | 'aponta';
 
 // Gesto puxado pela palavra cantada agora (ou pela linha) — o que as crianças imitam em casa
 const gestoDaLetra = (linha: Linha | undefined, s: number, padrao: Gesto): Gesto => {
 	if (!linha || s > linha.ate + 0.5) return padrao;
 	const atual = linha.palavras.find((w) => s >= w.de - 0.15 && s <= w.ate + 0.35)?.p.toLowerCase() ?? '';
 	const tudo = linha.palavras.map((w) => w.p.toLowerCase()).join(' ');
+	// partes do corpo e ações (músicas de "cabeça, ombro, joelho e pé")
+	if (/cabe[çc]a/.test(atual) && /m[ãa]o/.test(tudo)) return 'cabeca';
+	if (/joelho/.test(atual)) return 'joelho';
+	if (/^p[ée]s?[,!.]?$|pezinho/.test(atual) || /bate o p[ée]/.test(tudo)) return 'pe';
+	if (/abra[çc]/.test(tudo)) return 'abraca';
+	if (/corr|perninha/.test(tudo)) return 'corre';
+	if (/olh|orelha|nariz|boquinha|escutar|cheirar/.test(tudo)) return 'aponta';
+	if (/dan[çc]/.test(tudo)) return 'danca';
 	if (/palma/.test(tudo)) return 'palmas';
 	if (/gira/.test(tudo)) return 'gira';
 	if (/cima/.test(tudo) && !/pula/.test(atual)) return 'cima';
@@ -62,17 +70,17 @@ const pose = (c: Contexto, gesto: Gesto, energia: number, semente: number, boca:
 	const b = c.fase + semente * 0.05;
 	const meia = Math.abs(Math.sin(Math.PI * b)); // 0 na batida, 1 entre batidas
 	const piscar = (c.frame + semente * 37) % 97 >= 93;
-	const base: Pose = {y: 0, giro: 0, escalaX: 1, amassa: 0, bracoE: 12, bracoD: 12, cabeca: 0, boca, olhar: 0, olharY: 0, piscar};
+	const base: Pose = {y: 0, giro: 0, escalaX: 1, amassa: 0, bracoE: 12, bracoD: 12, cotE: 0, cotD: 0, cabeca: 0, boca, olhar: 0, olharY: 0, piscar};
 	const lado = Math.sin((Math.PI * b) / 2);
 	switch (gesto) {
 		case 'leve':
 			return {...base, y: -meia * 6 * energia, giro: lado * 3, cabeca: lado * 4, bracoE: 14 + meia * 6, bracoD: 14 + meia * 6};
 		case 'danca':
 			return {...base, y: -meia * 26 * energia, amassa: (1 - meia) * 0.06 * energia, giro: lado * 7 * energia, cabeca: -lado * 8,
-				bracoE: 40 + Math.max(0, lado) * 110 * energia, bracoD: 40 + Math.max(0, -lado) * 110 * energia};
+				bracoE: 40 + Math.max(0, lado) * 110 * energia, bracoD: 40 + Math.max(0, -lado) * 110 * energia, cotE: 30 + meia * 30, cotD: 30 + meia * 30};
 		case 'palmas': {
 			const bate = Math.abs(Math.sin(Math.PI * b * 2));
-			return {...base, y: -meia * 14, cabeca: lado * 6, bracoE: 120 + bate * 25, bracoD: 120 + bate * 25, amassa: (1 - meia) * 0.04};
+			return {...base, y: -meia * 14, cabeca: lado * 6, bracoE: 70 + bate * 20, bracoD: 70 + bate * 20, cotE: 70 + bate * 25, cotD: 70 + bate * 25, amassa: (1 - meia) * 0.04};
 		}
 		case 'cima':
 			return {...base, y: -meia * 18, giro: lado * 5, bracoE: 165 + lado * 12, bracoD: 165 - lado * 12, cabeca: lado * 6, olharY: -1};
@@ -83,9 +91,25 @@ const pose = (c: Contexto, gesto: Gesto, energia: number, semente: number, boca:
 		case 'abre':
 			return {...base, y: -meia * 20, bracoE: 125, bracoD: 125, cabeca: 0, amassa: -0.03};
 		case 'ora':
-			return {...base, y: -meia * 3, bracoE: 145, bracoD: 145, cabeca: 8, olhar: 0, olharY: -1, piscar: true};
+			return {...base, y: -meia * 3, bracoE: 35, bracoD: 35, cotE: 115, cotD: 115, cabeca: 8, olhar: 0, olharY: -1, piscar: true};
 		case 'funda':
 			return {...base, y: -meia * 8, bracoE: 30, bracoD: 170, giro: -4, cabeca: -6, olhar: 1, olharY: -0.6};
+		case 'cabeca':
+			return {...base, y: -meia * 10, bracoE: 150, bracoD: 150, cotE: 105, cotD: 105, cabeca: lado * 6, amassa: (1 - meia) * 0.03};
+		case 'joelho': {
+			const desce = 1 - meia;
+			return {...base, y: desce * 30, amassa: desce * 0.16, bracoE: 8, bracoD: 8, cotE: -25, cotD: -25, cabeca: 12 * desce, olharY: 0.8};
+		}
+		case 'pe':
+			return {...base, y: -meia * 30, amassa: (1 - meia) * 0.16, giro: lado * 4, bracoE: 45, bracoD: 45, olharY: 0.5};
+		case 'abraca':
+			return {...base, y: -meia * 8, bracoE: 85, bracoD: 85, cotE: 95, cotD: 95, cabeca: 10 + lado * 6, piscar: meia > 0.6, amassa: -0.02};
+		case 'corre': {
+			const v = Math.sin(Math.PI * b * 2);
+			return {...base, y: -Math.abs(v) * 22, giro: 4, bracoE: 40 + v * 50, bracoD: 40 - v * 50, cabeca: v * 3};
+		}
+		case 'aponta':
+			return {...base, y: -meia * 10, bracoE: 14 + meia * 6, bracoD: 115, cotD: 75, cabeca: -lado * 6, olhar: -0.6};
 		case 'comemora':
 			return {...base, y: -meia * 50, amassa: (1 - meia) * 0.1, bracoE: 160 + lado * 15, bracoD: 160 - lado * 15, cabeca: lado * 8};
 	}
@@ -122,21 +146,29 @@ const Boca: React.FC<{y: number; abertura: number; larg?: number}> = ({y, abertu
 	);
 
 // Braço com pivô no ombro; ângulo 0 = para baixo, positivo = abrindo para fora
-const Braco: React.FC<{x: number; y: number; ang: number; lado: 1 | -1; cor: string; mao: string; comp?: number; children?: React.ReactNode}> = ({x, y, ang, lado, cor, mao, comp = 72, children}) => (
-	<g transform={`translate(${x} ${y}) rotate(${ang * lado})`}>
-		<rect x={-12} y={-6} width={24} height={comp} rx={12} fill={cor} {...TRACO} strokeWidth={5} />
-		<circle cy={comp + 4} r={16} fill={mao} {...TRACO} strokeWidth={5} />
-		{children && <g transform={`translate(0 ${comp + 4})`}>{children}</g>}
-	</g>
-);
+// cot = dobra do cotovelo (positivo = antebraço para dentro, em direção ao corpo/cabeça)
+const Braco: React.FC<{x: number; y: number; ang: number; cot?: number; lado: 1 | -1; cor: string; mao: string; comp?: number; children?: React.ReactNode}> = ({x, y, ang, cot = 0, lado, cor, mao, comp = 72, children}) => {
+	const meio = comp * 0.52;
+	return (
+		<g transform={`translate(${x} ${y}) rotate(${ang * lado})`}>
+			<g transform={`translate(0 ${meio}) rotate(${cot * lado})`}>
+				<rect x={-12} y={-12} width={24} height={comp - meio + 12} rx={12} fill={cor} {...TRACO} strokeWidth={5} />
+				<circle cy={comp - meio + 4} r={16} fill={mao} {...TRACO} strokeWidth={5} />
+				{children && <g transform={`translate(0 ${comp - meio + 4})`}>{children}</g>}
+			</g>
+			<rect x={-12} y={-6} width={24} height={meio + 12} rx={12} fill={cor} {...TRACO} strokeWidth={5} />
+			<rect x={-7} y={meio - 6} width={14} height={14} fill={cor} />
+		</g>
+	);
+};
 
 // ---------- personagens ----------
 
 const Davi: React.FC<{p: Pose; funda?: number; coracao?: number}> = ({p, funda = 0, coracao = 0}) => (
 	<>
 		{[-21, 21].map((x) => <g key={x}><rect x={x - 12} y={-86} width={24} height={82} rx={10} fill={PELE} {...TRACO} strokeWidth={5} /><rect x={x - 16} y={-14} width={32} height={14} rx={7} fill="#8d5a2b" {...TRACO} strokeWidth={4} /></g>)}
-		<Braco x={-52} y={-168} ang={p.bracoE} lado={1} cor={PELE} mao={PELE} />
-		<Braco x={52} y={-168} ang={p.bracoD} lado={-1} cor={PELE} mao={PELE}>
+		<Braco x={-52} y={-168} ang={p.bracoE} cot={p.cotE} lado={1} cor={PELE} mao={PELE} />
+		<Braco x={52} y={-168} ang={p.bracoD} cot={p.cotD} lado={-1} cor={PELE} mao={PELE}>
 			{funda > 0 && <g transform={`rotate(${funda * 1440})`}><path d="M 0 0 L 0 46" stroke="#8d5a2b" strokeWidth={5} /><circle cy={50} r={11} fill="#9aa5b1" {...TRACO} strokeWidth={4} /></g>}
 		</Braco>
 		<path d="M -58 -180 Q -66 -110 -74 -72 L 74 -72 Q 66 -110 58 -180 Q 0 -196 -58 -180 Z" fill="#3d8bfd" {...TRACO} />
@@ -168,8 +200,8 @@ const Lulu: React.FC<{p: Pose}> = ({p}) => (
 		{[-36, -12, 12, 36].map((x) => <rect key={x} x={x - 8} y={-56} width={16} height={56} rx={7} fill="#4a3b5c" {...TRACO} strokeWidth={4} />)}
 		{[[-50, -92], [-20, -112], [18, -112], [50, -92], [-40, -64], [0, -60], [40, -64], [0, -96]].map(([x, y], k) => <circle key={k} cx={x} cy={y} r={34} fill="#fffaf0" {...TRACO} strokeWidth={5} />)}
 		<rect x={-52} y={-100} width={104} height={40} fill="#fffaf0" />
-		<Braco x={-44} y={-104} ang={p.bracoE * 0.8} lado={1} cor="#4a3b5c" mao="#4a3b5c" comp={36} />
-		<Braco x={44} y={-104} ang={p.bracoD * 0.8} lado={-1} cor="#4a3b5c" mao="#4a3b5c" comp={36} />
+		<Braco x={-44} y={-104} ang={p.bracoE * 0.8} cot={p.cotE} lado={1} cor="#4a3b5c" mao="#4a3b5c" comp={36} />
+		<Braco x={44} y={-104} ang={p.bracoD * 0.8} cot={p.cotD} lado={-1} cor="#4a3b5c" mao="#4a3b5c" comp={36} />
 		<g transform={`translate(0 -128) rotate(${p.cabeca})`}>
 			<ellipse cx={-56} cy={-40} rx={26} ry={13} fill="#c9a6b8" {...TRACO} strokeWidth={4} transform="rotate(-25 -56 -40)" />
 			<ellipse cx={56} cy={-40} rx={26} ry={13} fill="#c9a6b8" {...TRACO} strokeWidth={4} transform="rotate(25 56 -40)" />
@@ -188,8 +220,8 @@ const Leleco: React.FC<{p: Pose}> = ({p}) => (
 		<path d={`M 40 -60 Q 110 -60 ${100 + Math.sin(p.giro) * 10} -130`} fill="none" stroke="#e8a317" strokeWidth={12} strokeLinecap="round" />
 		<circle cx={100} cy={-136} r={16} fill="#d9480f" {...TRACO} strokeWidth={4} />
 		{[-26, 26].map((x) => <rect key={x} x={x - 15} y={-70} width={30} height={70} rx={14} fill="#ffc94a" {...TRACO} strokeWidth={5} />)}
-		<Braco x={-46} y={-140} ang={p.bracoE} lado={1} cor="#ffc94a" mao="#ffd98a" comp={62} />
-		<Braco x={46} y={-140} ang={p.bracoD} lado={-1} cor="#ffc94a" mao="#ffd98a" comp={62} />
+		<Braco x={-46} y={-140} ang={p.bracoE} cot={p.cotE} lado={1} cor="#ffc94a" mao="#ffd98a" comp={62} />
+		<Braco x={46} y={-140} ang={p.bracoD} cot={p.cotD} lado={-1} cor="#ffc94a" mao="#ffd98a" comp={62} />
 		<ellipse cy={-100} rx={58} ry={68} fill="#ffc94a" {...TRACO} />
 		<ellipse cy={-86} rx={34} ry={42} fill="#fff1c9" />
 		<g transform={`translate(0 -160) rotate(${p.cabeca})`}>
@@ -213,8 +245,8 @@ const Leleco: React.FC<{p: Pose}> = ({p}) => (
 const Golias: React.FC<{p: Pose; tonto: number; frame: number}> = ({p, tonto, frame}) => (
 	<>
 		{[-40, 40].map((x) => <rect key={x} x={x - 26} y={-150} width={52} height={150} rx={18} fill="#8f8f9e" {...TRACO} />)}
-		<Braco x={-92} y={-330} ang={p.bracoE} lado={1} cor="#b08d57" mao={PELE} comp={130} />
-		<Braco x={92} y={-330} ang={p.bracoD} lado={-1} cor="#b08d57" mao={PELE} comp={130} />
+		<Braco x={-92} y={-330} ang={p.bracoE} cot={p.cotE} lado={1} cor="#b08d57" mao={PELE} comp={130} />
+		<Braco x={92} y={-330} ang={p.bracoD} cot={p.cotD} lado={-1} cor="#b08d57" mao={PELE} comp={130} />
 		<path d="M -100 -350 Q -110 -220 -96 -140 L 96 -140 Q 110 -220 100 -350 Q 0 -380 -100 -350 Z" fill="#c9a227" {...TRACO} />
 		{[-250, -200].map((y) => <path key={y} d={`M -100 ${y} Q 0 ${y + 20} 100 ${y}`} fill="none" stroke="#9c7a1d" strokeWidth={6} />)}
 		<g transform={`translate(0 -350) rotate(${p.cabeca})`}>
@@ -334,6 +366,36 @@ const Notas: React.FC<{x: number; y: number; frame: number; ativo: number}> = ({
 type Plano = {z: number; x: number; y: number};
 const LARGO: Plano = {z: 1, x: 960, y: 540};
 
+// Miniatura: o trio comemorando no palco, título enorme e dois adesivos do tema
+export const MiniaturaDesenho: React.FC<PropsClipe> = ({clipe}) => {
+	if (!clipe) return null;
+	const c: Contexto = {s: 0, frame: 40, fps: 30, batida: 0.6, fase: 0.5, iLinha: 0, clipe};
+	const emojis = [...new Set(clipe.partes.flatMap((p) => p.emojis))].slice(0, 2);
+	const pD = {...pose(c, 'comemora', 1, 0, 0.8), y: -30};
+	const pL = {...pose(c, 'abre', 1, 3, 0.6), y: -10};
+	const pK = {...pose(c, 'cima', 1, 6, 0.7), y: -20};
+	return (
+		<AbsoluteFill style={{background: ROXO}}>
+			<svg width={1920} height={1080} viewBox="0 0 1920 1080">
+				<g transform="translate(960 640) scale(1.25) translate(-960 -540)">
+					<Cenario c={c} palco={1} noite={0} luz={0.4} />
+					<Corpo x={560} y={930} escala={1.35} p={pL} sombra={80}><Lulu p={pL} /></Corpo>
+					<Corpo x={1360} y={925} escala={1.4} p={pK}><Leleco p={pK} /></Corpo>
+					<Corpo x={960} y={940} escala={1.5} p={pD}><Davi p={pD} /></Corpo>
+				</g>
+				{emojis.map((nome, k) => (
+					<image key={k} href={staticFile(`emoji/${nome.toLowerCase().replace(/[^a-z0-9]+/g, '_')}.png`)} x={k ? 1660 : 60} y={360} width={200} height={200}
+						transform={`rotate(${k ? 12 : -12} ${k ? 1760 : 160} 460)`} />
+				))}
+			</svg>
+			<div style={{position: 'absolute', top: 30, width: '100%', textAlign: 'center', fontFamily: TITULO, fontSize: 170, lineHeight: 0.95, color: '#ffd43b',
+				WebkitTextStroke: `22px ${ROXO}`, paintOrder: 'stroke fill', filter: 'drop-shadow(0 14px 14px rgba(0,0,0,.45))', transform: 'rotate(-2deg)', padding: '0 80px', boxSizing: 'border-box'}}>
+				{clipe.titulo}
+			</div>
+		</AbsoluteFill>
+	);
+};
+
 export const ClipeDesenho: React.FC<PropsClipe> = ({clipe}) => {
 	const frame = useCurrentFrame();
 	const {fps, width: W, height: H} = useVideoConfig();
@@ -354,7 +416,7 @@ export const ClipeDesenho: React.FC<PropsClipe> = ({clipe}) => {
 	const desdeLinha = (i: number) => Math.round(((linhasParte[i]?.de ?? parte.de) - 0.3) * fps);
 
 	// Padrões por parte; versos encenam a letra linha a linha
-	const historia = parte.tipo === 'verso' ? (ordem === 1 ? 'pedras' : 'gigante') : parte.tipo;
+	const historia = parte.tipo !== 'verso' ? parte.tipo : clipe.roteiro === 'davi' ? (ordem === 1 ? 'pedras' : 'gigante') : 'objetos';
 	const festa = parte.tipo === 'refrao' || parte.tipo === 'ponte' || parte.tipo === 'final';
 	const energia = festa ? 1 : parte.tipo === 'intro' ? 0.7 : 0.45;
 	const gestoBase: Gesto = festa ? 'danca' : 'leve';
@@ -377,6 +439,8 @@ export const ClipeDesenho: React.FC<PropsClipe> = ({clipe}) => {
 		if (iLinha === 1) gDavi = 'ora';
 		if (iLinha === 2) { gDavi = 'funda'; funda = interpolate(frame, [tiro - fps, tiro], [0, 1], limitar); }
 		if (iLinha === 3) gDavi = 'comemora';
+	} else if (historia === 'objetos') {
+		planos = [{z: 1.5, x: 960, y: 560}, {z: 1.15, x: 860, y: 560}, {z: 1.5, x: 1060, y: 560}, {z: 1, x: 960, y: 540}];
 	} else if (festa) {
 		planos = [LARGO, {z: 1.3, x: 760, y: 600}, {z: 1.3, x: 1180, y: 600}, {z: 1.08, x: 960, y: 560}];
 	}
@@ -389,7 +453,7 @@ export const ClipeDesenho: React.FC<PropsClipe> = ({clipe}) => {
 	let z = interpolate(mov, [0, 1], [antes.z, alvo.z]) * (1 + batida * 0.012) * interpolate(frame - desde, [0, ate - desde], [1, 1.04], limitar);
 	let cx = interpolate(mov, [0, 1], [antes.x, alvo.x]) + Math.sin(frame * 2.1) * 14 * tremor;
 	const cy = interpolate(mov, [0, 1], [antes.y, alvo.y]) + Math.cos(frame * 2.7) * 10 * tremor;
-	if (vertical) { z *= H / 1080; cx = Math.min(1920 - W / 2 / z, Math.max(W / 2 / z, cx)); }
+	if (vertical) { z *= 1.15; cx = Math.min(1920 - W / 2 / z, Math.max(W / 2 / z, cx)); }
 
 	const bocaDavi = parte.tipo === 'verso' && golias?.grito ? 0 : canta;
 	const coro = festa || parte.tipo === 'intro' ? canta : 0;
@@ -430,6 +494,16 @@ export const ClipeDesenho: React.FC<PropsClipe> = ({clipe}) => {
 					{pedras > 0 && Array.from({length: Math.ceil(pedras)}, (_, k) => {
 						const e = Math.min(1, pedras - k) ;
 						return <ellipse key={k} cx={xs[0] + 150 + k * 55} cy={900 - Math.abs(Math.sin(Math.PI * e)) * 60} rx={26 * e} ry={19 * e} fill="#adb5bd" {...TRACO} strokeWidth={4} />;
+					})}
+					{historia === 'objetos' && parte.emojis.slice(0, Math.min(parte.emojis.length, iLinha + 1)).map((nome, k) => {
+						const e = spring({frame: frame - desdeLinha(k), fps, config: {damping: 9}});
+						const px = [700, 1220, 960][k % 3], py = [330, 300, 210][k % 3] + Math.sin((frame + k * 25) / 16) * 14;
+						return (
+							<g key={k} transform={`translate(${px} ${py}) scale(${e * (1 + batida * 0.06)}) rotate(${Math.sin((frame + k * 30) / 20) * 8})`}>
+								<circle r={112} fill="#fff" opacity={0.55} />
+								<image href={staticFile(`emoji/${nome.toLowerCase().replace(/[^a-z0-9]+/g, '_')}.png`)} x={-90} y={-90} width={180} height={180} />
+							</g>
+						);
 					})}
 					<Notas x={xs[0]} y={330} frame={frame} ativo={bocaDavi > 0 ? 1 : 0} />
 				</g>

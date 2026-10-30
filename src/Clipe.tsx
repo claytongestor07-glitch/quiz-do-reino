@@ -14,7 +14,7 @@ export type Palavra = {p: string; de: number; ate: number};
 export type Linha = {parte: number; de: number; ate: number; palavras: Palavra[]};
 export type Tomada = {de: number; cena: string; video: boolean};
 export type Cena = {recorte: [number, number, number]; foco: number};
-export type Clipe = {id: string; titulo: string; totalFrames: number; batida: number[]; bpm?: number; inicioBatida?: number; partes: Parte[]; linhas: Linha[]; tomadas: Tomada[]; cenas: Record<string, Cena>};
+export type Clipe = {id: string; titulo: string; totalFrames: number; batida: number[]; bpm?: number; inicioBatida?: number; roteiro?: string; partes: Parte[]; linhas: Linha[]; tomadas: Tomada[]; cenas: Record<string, Cena>};
 export type PropsClipe = {id: string; clipe?: Clipe};
 
 export const carregarClipe: CalculateMetadataFunction<PropsClipe> = async ({props}) => {

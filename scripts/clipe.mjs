@@ -1,5 +1,5 @@
-// Clipe musical: música cantada (musicas/<id>/musica.wav, gerada por scripts/cantar.py) + cenas animadas cortadas na batida e letra em karaokê (src/Clipe.tsx).
-// Uso: node scripts/clipe.mjs mu001-davi [--vertical | --short] [--dados]   (--dados: só gera public/clipe/<id>/clipe.json)
+// Clipe musical: música cantada (musicas/<id>/musica.wav, gerada por scripts/cantar.py) em desenho animado 2D (src/Desenho.tsx) e letra em karaokê.
+// Uso: node scripts/clipe.mjs mu001-davi [--vertical | --short] [--dados] [--wan]   (--dados: só gera public/clipe/<id>/clipe.json)
 // --short: vertical só com o primeiro refrão (até 55 s), para Shorts; --trecho=20-50: só esse intervalo (prévia)
 // A dança segue a "batida" medida na própria música (energia dos graves por quadro), não um BPM fixo.
 import fs from 'node:fs';
@@ -40,7 +40,8 @@ const dur = duracaoAudio(audio);
 const totalFrames = Math.ceil(dur * FPS);
 const ritmo = batida(audio, totalFrames);
 const r2 = (v) => Math.round(v * 100) / 100;
-const desenho = process.argv.includes('--desenho');
+// Padrão: desenho animado 2D (src/Desenho.tsx). --wan: formato antigo, com as cenas de vídeo de IA (src/Clipe.tsx)
+const desenho = !process.argv.includes('--wan');
 
 // Andamento: o intervalo entre bumbos que mais se repete (80–180 bpm) e a fase que mais acerta os bumbos
 function andamento(r) {
@@ -112,7 +113,7 @@ partes.forEach((p, k) => {
 const faltando = await baixarEmojis(partes.flatMap((p) => p.emojis));
 if (faltando.length) throw new Error(`Emojis inexistentes no Fluent: ${faltando.join(', ')}`);
 const {bpm, inicio: inicioBatida} = andamento(ritmo);
-const clipe = {id, titulo: musica.titulo, totalFrames, batida: ritmo, bpm, inicioBatida: r2(inicioBatida), partes, linhas, tomadas, cenas: CENAS};
+const clipe = {id, titulo: musica.titulo, roteiro: musica.roteiro, totalFrames, batida: ritmo, bpm, inicioBatida: r2(inicioBatida), partes, linhas, tomadas, cenas: CENAS};
 const pub = path.join(RAIZ, 'public', 'clipe', id);
 fs.mkdirSync(pub, {recursive: true});
 fs.writeFileSync(path.join(pub, 'clipe.json'), JSON.stringify(clipe));
@@ -138,12 +139,12 @@ await renderFrames({
 });
 const saida = path.join(RAIZ, 'saida', 'clipes');
 fs.mkdirSync(saida, {recursive: true});
-const video = path.join(saida, `${id}${desenho ? '-desenho' : ''}${short ? '-short' : vertical ? '-vertical' : ''}${trecho ? '-trecho' : ''}.mp4`);
+const video = path.join(saida, `${id}${desenho ? '' : '-wan'}${short ? '-short' : vertical ? '-vertical' : ''}${trecho ? '-trecho' : ''}.mp4`);
 execFileSync('ffmpeg', ['-y', '-v', 'error', '-framerate', String(FPS), '-start_number', String(ini), '-i', `${quadros}/%06d.jpg`, '-ss', String(ini / FPS), '-i', audio,
 	'-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', '-af', `afade=t=in:d=0.3,afade=t=out:st=${Math.max(0, (fim - ini) / FPS - 1.2)}:d=1.2`, '-shortest', '-movflags', '+faststart', video]);
 fs.rmSync(quadros, {recursive: true, force: true});
 if (!vertical) {
-	const mini = await selectComposition({serveUrl, id: 'MiniaturaClipe', inputProps, browserExecutable, port: Number(process.env.REMOTION_PORTA) || null});
+	const mini = await selectComposition({serveUrl, id: desenho ? 'MiniaturaDesenho' : 'MiniaturaClipe', inputProps, browserExecutable, port: Number(process.env.REMOTION_PORTA) || null});
 	await renderStill({serveUrl, composition: mini, inputProps, browserExecutable, port: Number(process.env.REMOTION_PORTA) || null, output: path.join(saida, `${id}.jpg`), imageFormat: 'jpeg', jpegQuality: 88, scale: 2 / 3});
 }
 log('clipe', `pronto: ${video} em ${Math.round((Date.now() - inicio) / 60000)} min`);
