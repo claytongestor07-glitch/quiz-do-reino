@@ -28,5 +28,110 @@
     "elevenlabs",
     "azure-thalita",
     "kokoro-dora"
-  ]
+  ],
+  "seo": {
+    "pt": {
+      "nome": "Quiz do Reino",
+      "idioma": "pt-BR",
+      "pais": "BR",
+      "descricao": "Músicas infantis cristãs e desenho bíblico para crianças! 🐑🦁🎵\n\nNo Quiz do Reino, Davi, a ovelhinha Lulu e o leãozinho Leleco cantam e dançam as grandes histórias da Bíblia: Davi e Golias, a Arca de Noé, Moisés, Jesus e muito mais. Tem música de gesto para bater palma, pular e dançar junto, além de quiz bíblico com emojis para crianças de 3 a 9 anos.\n\n✔ Louvor infantil animado, com letra na tela\n✔ Histórias bíblicas contadas em desenho\n✔ Quiz bíblico infantil: perguntas e respostas da Bíblia\n✔ Conteúdo feito para crianças, seguro para assistir em família\n\nAssista junto com seu filho, cante e conversem sobre cada história! 💛 Novos vídeos toda semana.",
+      "palavrasChave": [
+        "música infantil cristã",
+        "louvor infantil",
+        "desenho bíblico",
+        "histórias bíblicas para crianças",
+        "música gospel infantil",
+        "quiz bíblico infantil",
+        "bíblia para crianças",
+        "desenho cristão infantil",
+        "músicas para crianças",
+        "escola bíblica infantil",
+        "Davi e Golias",
+        "Arca de Noé",
+        "Quiz do Reino"
+      ],
+      "playlists": {
+        "musicas": {
+          "titulo": "Músicas Infantis Cristãs 🎵 Louvor Infantil em Desenho",
+          "descricao": "Músicas infantis cristãs para cantar e dançar: louvor infantil com histórias da Bíblia em desenho animado. Davi, Lulu e Leleco cantam com as crianças!",
+          "regra": "^(?!.*#shorts).*(Música Infantil Cristã|Música Infantil)"
+        },
+        "quiz": {
+          "titulo": "Quiz Bíblico Infantil 🧠 Perguntas e Respostas da Bíblia",
+          "descricao": "Quiz bíblico para crianças de 5 a 9 anos: perguntas e respostas sobre Noé, Moisés, Jesus e outras histórias da Bíblia, com explicação em cada resposta.",
+          "regra": "^(?!.*#shorts)(?!.*Emojis).*Quiz Bíblico"
+        },
+        "emojis": {
+          "titulo": "Adivinhe pelos Emojis 🤔 Personagens e Histórias da Bíblia",
+          "descricao": "Desafios de emojis para crianças: adivinhe o personagem bíblico ou a história da Bíblia só pelos emojis!",
+          "regra": "^(?!.*#shorts).*Emojis"
+        },
+        "shorts": {
+          "titulo": "Shorts Bíblicos para Crianças ⚡",
+          "descricao": "Desafios bíblicos rápidos e refrões das músicas infantis cristãs do Quiz do Reino.",
+          "regra": "#shorts"
+        }
+      }
+    },
+    "en": {
+      "nome": "Quiz do Reino",
+      "idioma": "en",
+      "pais": "US",
+      "descricao": "Christian songs for kids and Bible cartoons! 🐑🦁🎵\n\nDavid, Lulu the little sheep and Leleco the little lion sing and dance the great stories of the Bible: David and Goliath, Noah's Ark, Moses, Jesus and more. Action songs to clap, jump and dance along, for kids ages 3 to 9.\n\n✔ Kids worship songs with on-screen lyrics\n✔ Bible stories for kids as cartoons\n✔ Made for kids and safe for family viewing\n\nSing along with your child and talk about each story! 💛 New videos every week.",
+      "palavrasChave": [
+        "christian kids songs",
+        "bible songs for kids",
+        "kids worship songs",
+        "sunday school songs",
+        "bible stories for kids",
+        "christian cartoons for kids",
+        "action songs for kids",
+        "David and Goliath for kids",
+        "Noah's Ark song",
+        "kids songs"
+      ],
+      "playlists": {
+        "musicas": {
+          "titulo": "Christian Kids Songs 🎵 Bible Songs for Kids",
+          "descricao": "Christian songs for kids to sing and dance along: Bible stories as cartoons with David, Lulu and Leleco.",
+          "regra": "^(?!.*#shorts).*Christian Kids Song"
+        },
+        "shorts": {
+          "titulo": "Bible Shorts for Kids ⚡",
+          "descricao": "Quick sing-along choruses from our Christian kids songs.",
+          "regra": "#shorts"
+        }
+      }
+    },
+    "es": {
+      "nome": "Quiz do Reino",
+      "idioma": "es",
+      "pais": "MX",
+      "descricao": "¡Canciones cristianas para niños y dibujos animados de la Biblia! 🐑🦁🎵\n\nDavid, la ovejita Lulu y el leoncito Leleco cantan y bailan las grandes historias de la Biblia: David y Goliat, el Arca de Noé, Moisés, Jesús y mucho más. Canciones con gestos para aplaudir, saltar y bailar, para niños de 3 a 9 años.\n\n✔ Alabanza infantil con la letra en pantalla\n✔ Historias bíblicas para niños en dibujos animados\n✔ Contenido para niños, seguro para ver en familia\n\n¡Canta con tu hijo y conversen sobre cada historia! 💛 Videos nuevos cada semana.",
+      "palavrasChave": [
+        "canciones cristianas para niños",
+        "alabanza infantil",
+        "canciones bíblicas para niños",
+        "historias bíblicas para niños",
+        "dibujos animados cristianos",
+        "canciones infantiles cristianas",
+        "escuela dominical",
+        "David y Goliat para niños",
+        "Arca de Noé canción",
+        "canciones infantiles"
+      ],
+      "playlists": {
+        "musicas": {
+          "titulo": "Canciones Cristianas para Niños 🎵 Alabanza Infantil",
+          "descricao": "Canciones cristianas para que los niños canten y bailen: historias de la Biblia en dibujos animados con David, Lulu y Leleco.",
+          "regra": "^(?!.*#shorts).*Canción Infantil Cristiana"
+        },
+        "shorts": {
+          "titulo": "Shorts Bíblicos para Niños ⚡",
+          "descricao": "Coros rápidos de nuestras canciones cristianas para niños.",
+          "regra": "#shorts"
+        }
+      }
+    }
+  }
 }

@@ -36,3 +36,19 @@
   - Boa fonte de ideias de rig e poses. A licença AGPL exige cuidado ao copiar código.
 - **Rive (@remotion/rive):** personagens com boca por fonema via máquina de estados. É o próximo nível de acabamento se desenharmos os personagens no editor do Rive.
 - **Motion Canvas / Revideo:** bons para explicativos. Não compensam trocar o Remotion ([comparação](https://www.pkgpulse.com/guides/remotion-vs-motion-canvas-vs-revideo-programmatic-video-2026)).
+
+## SEO e GEO (auditoria de 30/10/2026)
+- **Título:** a palavra-chave vem primeiro e a marca no fim: `Nome da Música! Assunto | Música Infantil Cristã | Quiz do Reino`.
+  - Os primeiros ~60 caracteres aparecem no celular.
+  - Nunca dar o mesmo título a dois shorts.
+- **Playlists por tema** (config/canal.json → seo):
+  - O publicador põe cada vídeo na playlist certa.
+  - `node scripts/publicar.mjs seo [--idioma=en|es]` ajusta a descrição, as palavras-chave e o país do canal, e coloca nas playlists os vídeos antigos.
+- **Feito para crianças:**
+  - Fica sempre marcado. É a regra do YouTube (COPPA) e é o que leva o vídeo para o YouTube Kids.
+  - Sem comentários, sino, cards e telas finais. O que pesa é a miniatura (CTR), a retenção e o encadeamento por playlist.
+- **Versão Celular:** repete o vídeo horizontal e divide as visualizações. Fica fora das playlists.
+- **GEO (buscas por IA):** em site/ ficam:
+  - JSON-LD com Organization, VideoObject e FAQPage;
+  - llms.txt, robots.txt e sitemap.xml.
+  - Só contam com o site publicado (GitHub Pages).

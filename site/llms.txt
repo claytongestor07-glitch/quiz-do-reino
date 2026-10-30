@@ -1,0 +1,13 @@
+# Quiz do Reino
+
+> Canal infantil cristão no YouTube (pt-BR, com versões em inglês e espanhol): músicas infantis cristãs, desenho bíblico e quiz bíblico para crianças de 3 a 9 anos. Conteúdo marcado como feito para crianças.
+
+- Personagens fixos: Davi, a ovelhinha Lulu e o leãozinho Leleco, em desenho 2D.
+- Músicas de gesto (bater palma, pular, abrir os braços) com a letra na tela.
+- Histórias: Davi e Golias, Arca de Noé, Moisés, Jesus, Antigo e Novo Testamento.
+- Quiz bíblico infantil com emojis, cronômetro e explicação de cada resposta.
+
+## Links
+- [Canal no YouTube](https://www.youtube.com/@quizdoreino1): onde os vídeos são publicados
+- [Deus é Grande! Davi e Golias](https://www.youtube.com/watch?v=vZcIF7ZF1-8): música infantil cristã em desenho
+- [Site](https://claytongestor07-glitch.github.io/quiz-do-reino/): sobre o canal e perguntas dos pais

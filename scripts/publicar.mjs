@@ -5,6 +5,8 @@
 //                                                         separado daquele idioma, token em token-<idioma>.json)
 //   node scripts/publicar.mjs enviar ep001-noe [--quando=2026-10-25T12:00:00-03:00]
 //   node scripts/publicar.mjs metricas                    salva visualizações/likes em logs/metricas.csv
+//   node scripts/publicar.mjs seo [--idioma=en|es]        descrição/palavras-chave/país do canal (config/canal.json → seo)
+//                                                         e coloca os vídeos já enviados nas playlists de cada tema
 //
 // Regras de segurança:
 //  - só envia se saida/<id>/relatorio.json tiver "pronto": true (render validado, voz ElevenLabs);
@@ -23,7 +25,8 @@ const CLIENTE = path.join(CONF, 'client_secret.json');
 // Um token por canal: português (token.json) e os canais separados em inglês e espanhol (token-en.json, token-es.json)
 const tokenDe = (idioma) => path.join(CONF, idioma && idioma !== 'pt' ? `token-${idioma}.json` : 'token.json');
 let TOKEN = tokenDe(process.argv.find((a) => a.startsWith('--idioma='))?.split('=')[1]);
-const ESCOPOS = ['https://www.googleapis.com/auth/youtube.upload', 'https://www.googleapis.com/auth/youtube.readonly', 'https://www.googleapis.com/auth/yt-analytics.readonly'];
+// "youtube" libera playlists e a descrição do canal (seo); tokens antigos sem ele continuam enviando vídeos
+const ESCOPOS = ['https://www.googleapis.com/auth/youtube', 'https://www.googleapis.com/auth/youtube.upload', 'https://www.googleapis.com/auth/youtube.readonly', 'https://www.googleapis.com/auth/yt-analytics.readonly'];
 const canal = JSON.parse(fs.readFileSync(path.join(RAIZ, 'config', 'canal.json'), 'utf8'));
 
 function cliente() {
@@ -101,7 +104,8 @@ export function metadadosShort(id, n) {
 	const emoji = quiz.tipo === 'emoji';
 	return {
 		snippet: {
-			title: emoji ? `Adivinhe pelos emojis: ${quiz.pergunta ?? 'quem é?'} 🤔 | Quiz Bíblico #shorts`.slice(0, 100) : `${p.pergunta} 🤔 | Quiz Bíblico #shorts`.slice(0, 100),
+			// Título único por short: o tema entra no título (antes vários saíam iguais, "Que história é essa?")
+			title: emoji ? `${quiz.pergunta ?? 'Quem é?'} ${quiz.tema} pelos Emojis 🤔 Desafio ${n} | Quiz Bíblico Infantil #shorts`.slice(0, 100) : `${p.pergunta} 🤔 | Quiz Bíblico Infantil #shorts`.slice(0, 100),
 			description: [`Você sabe a resposta? Um desafio do quiz "${quiz.tema}" para crianças de 5 a 9 anos.`, '', `${canal.nome}: aprender a Bíblia brincando.`, '', [...canal.hashtags, '#shorts'].join(' ')].join('\n'),
 			tags: [...canal.tags, quiz.tema, 'shorts'].slice(0, 20), categoryId: '27', defaultLanguage: 'pt-BR', defaultAudioLanguage: 'pt-BR',
 		},
@@ -174,6 +178,7 @@ async function enviarClipe(id, quando, variante) {
 	const resposta = await subir(token, video, corpo, id);
 	fs.writeFileSync(registro, JSON.stringify({videoId: resposta.id, enviadoEm: new Date().toISOString(), publicarEm: corpo.status.publishAt ?? null}, null, 1));
 	log('publicar', `${id}${sufixo} enviado: https://youtu.be/${resposta.id}`, {videoId: resposta.id});
+	if (variante !== 'vertical') await naPlaylist(token, m.idioma, variante === 'short' ? 'shorts' : 'musicas', resposta.id);
 	if (variante === 'short') return;
 	const thumb = path.join(RAIZ, 'saida', 'clipes', `${id}.jpg`);
 	const t = await fetch(`https://www.googleapis.com/upload/youtube/v3/thumbnails/set?videoId=${resposta.id}`, {method: 'POST', headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'image/jpeg'}, body: fs.readFileSync(thumb)});
@@ -202,6 +207,7 @@ async function enviar(id, quando, short = 0, vertical = false) {
 	const resposta = await subir(token, path.join(saida, rel.video), corpo, id);
 	fs.writeFileSync(registro, JSON.stringify({videoId: resposta.id, enviadoEm: new Date().toISOString(), publicarEm: corpo.status.publishAt ?? null}, null, 1));
 	log('publicar', `${id}${sufixo} enviado: https://youtu.be/${resposta.id}`, {videoId: resposta.id});
+	if (!vertical) await naPlaylist(token, 'pt', short ? 'shorts' : episodio(id).quiz.tipo === 'emoji' ? 'emojis' : 'quiz', resposta.id);
 	if (short) return; // Shorts usam um quadro do próprio vídeo como capa
 
 	const thumb = path.join(saida, `${id}-thumbnail.jpg`);
@@ -252,6 +258,65 @@ async function miniaturas() {
 	}
 }
 
+async function api(token, metodo, rota, corpo) {
+	const r = await fetch(`https://www.googleapis.com/youtube/v3/${rota}`, {method: metodo, headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'application/json'}, body: corpo && JSON.stringify(corpo)});
+	const d = await r.json().catch(() => ({}));
+	if (!r.ok) throw new Error(`${rota.split('?')[0]}: ${d.error?.message ?? r.status}`);
+	return d;
+}
+
+// Playlists por tema (config/canal.json → seo.<idioma>.playlists): aparecem na busca e encadeiam um vídeo no outro.
+// Achadas pelo título a cada uso (sem guardar ids), criadas se faltarem. Falha aqui nunca derruba o envio.
+async function playlist(token, idioma, chave) {
+	const p = canal.seo?.[idioma ?? 'pt']?.playlists?.[chave];
+	if (!p) return null;
+	const minhas = await api(token, 'GET', 'playlists?part=snippet&mine=true&maxResults=50');
+	const achada = minhas.items?.find((i) => i.snippet.title === p.titulo);
+	if (achada) return achada.id;
+	const nova = await api(token, 'POST', 'playlists?part=snippet,status', {snippet: {title: p.titulo, description: p.descricao, defaultLanguage: canal.seo[idioma ?? 'pt'].idioma}, status: {privacyStatus: 'public'}});
+	log('publicar', `playlist criada: ${p.titulo}`);
+	return nova.id;
+}
+
+async function naPlaylist(token, idioma, chave, videoId) {
+	try {
+		const id = await playlist(token, idioma, chave);
+		if (id) await api(token, 'POST', 'playlistItems?part=snippet', {snippet: {playlistId: id, resourceId: {kind: 'youtube#video', videoId}}});
+	} catch (e) {
+		log('publicar', `playlist ${chave}: ${e.message} (autorização antiga sem o escopo "youtube": rode autorizar de novo)`);
+	}
+}
+
+// Ajusta o canal para busca: descrição, palavras-chave, país e idioma; e põe nas playlists os vídeos que ainda não estão
+async function seo() {
+	const idioma = process.argv.find((a) => a.startsWith('--idioma='))?.split('=')[1] ?? 'pt';
+	const s = canal.seo?.[idioma];
+	if (!s) throw new Error(`config/canal.json não tem seo.${idioma}`);
+	const token = await acesso();
+	const ch = (await api(token, 'GET', 'channels?part=brandingSettings,contentDetails&mine=true')).items[0];
+	const palavras = s.palavrasChave.map((k) => (k.includes(' ') ? `"${k}"` : k)).join(' ').slice(0, 500);
+	await api(token, 'PUT', 'channels?part=brandingSettings', {id: ch.id, brandingSettings: {channel: {...ch.brandingSettings.channel, description: s.descricao, keywords: palavras, defaultLanguage: s.idioma, country: s.pais}}});
+	// Uma só tradução, no idioma do canal: as antigas usavam outros nomes ("Pequenos Sábios", "Little Wise Ones")
+	await api(token, 'PUT', 'channels?part=localizations', {id: ch.id, localizations: {[s.idioma.replace('-', '_')]: {title: s.nome, description: s.descricao}}});
+	log('publicar', `canal ${s.nome}: descrição, palavras-chave e país (${s.pais}) atualizados`);
+
+	const enviados = [];
+	for (let pagina = ''; ;) {
+		const d = await api(token, 'GET', `playlistItems?part=snippet&maxResults=50&playlistId=${ch.contentDetails.relatedPlaylists.uploads}${pagina && `&pageToken=${pagina}`}`);
+		enviados.push(...d.items.map((i) => ({id: i.snippet.resourceId.videoId, titulo: i.snippet.title})));
+		if (!(pagina = d.nextPageToken)) break;
+	}
+	for (const chave of Object.keys(s.playlists)) {
+		const alvo = s.playlists[chave].regra && new RegExp(s.playlists[chave].regra, 'i');
+		const pl = await playlist(token, idioma, chave);
+		const ja = new Set((await api(token, 'GET', `playlistItems?part=contentDetails&maxResults=50&playlistId=${pl}`)).items.map((i) => i.contentDetails.videoId));
+		// Versões celular repetem o vídeo horizontal: ficam fora das playlists
+		const novos = enviados.filter((v) => alvo?.test(v.titulo) && !/Versão Celular|Phone Version|Versión Celular/.test(v.titulo) && !ja.has(v.id));
+		for (const v of novos.reverse()) await api(token, 'POST', 'playlistItems?part=snippet', {snippet: {playlistId: pl, resourceId: {kind: 'youtube#video', videoId: v.id}}});
+		log('publicar', `playlist ${s.playlists[chave].titulo}: +${novos.length} vídeo(s)`);
+	}
+}
+
 async function metricas() {
 	const token = await acesso();
 	const ids = fs.readdirSync(path.join(RAIZ, 'episodios')).flatMap((ep) => fs.readdirSync(path.join(RAIZ, 'episodios', ep)).filter((f) => /^publicado.*\.json$/.test(f)).map((f) => [`${ep}${f.replace(/^publicado|\.json$/g, '')}`, JSON.parse(fs.readFileSync(path.join(RAIZ, 'episodios', ep, f), 'utf8')).videoId]));
@@ -276,8 +341,9 @@ try {
 	else if (acao === 'clipe') await enviarClipe(id, quando, process.argv.includes('--vertical') ? 'vertical' : process.argv.includes('--short') ? 'short' : '');
 	else if (acao === 'metricas') await metricas();
 	else if (acao === 'miniaturas') await miniaturas();
+	else if (acao === 'seo') await seo();
 	else if (acao === 'descricao') console.log(JSON.stringify(metadados(id), null, 1));
-	else console.log('Ações: autorizar | enviar <id> [--quando=ISO] | metricas | descricao <id>');
+	else console.log('Ações: autorizar | enviar <id> [--quando=ISO] | metricas | seo [--idioma=en|es] | descricao <id>');
 } catch (e) {
 	log('publicar', `ERRO: ${e.message}`);
 	process.exit(1);

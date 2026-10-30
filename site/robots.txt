@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://claytongestor07-glitch.github.io/quiz-do-reino/sitemap.xml
