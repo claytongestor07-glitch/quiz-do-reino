@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel ao Vivo · Quiz do Reino</title>
+<style>
+:root {
+	--fundo: #f4f7ff; --cartao: #ffffff; --tinta: #1d1340; --suave: #625b80; --linha: #e3e6f3;
+	--azul: #2f6fe4; --verde: #15a05a; --amarelo: #d99100; --vermelho: #d93a3a; --barra: #e8ecf8;
+}
+@media (prefers-color-scheme: dark) {
+	:root { --fundo: #120f26; --cartao: #1c1838; --tinta: #f1eeff; --suave: #aaa3cc; --linha: #2c2752;
+		--azul: #7fa8ff; --verde: #3fd08a; --amarelo: #ffc24a; --vermelho: #ff6b6b; --barra: #2a2550; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fundo); color: var(--tinta); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+header { position: sticky; top: 0; z-index: 2; background: var(--cartao); border-bottom: 1px solid var(--linha); padding: 12px 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+header h1 { margin: 0; font-size: 1.15rem; flex: 1; min-width: 200px; }
+.vivo { display: inline-flex; align-items: center; gap: 6px; font-size: .85rem; color: var(--suave); }
+.ponto { width: 9px; height: 9px; border-radius: 50%; background: var(--verde); animation: pulsa 1.6s infinite; }
+.ponto.erro { background: var(--vermelho); animation: none; }
+@keyframes pulsa { 50% { opacity: .3; } }
+main { max-width: 960px; margin: 0 auto; padding: 16px; display: grid; gap: 16px; }
+section { background: var(--cartao); border: 1px solid var(--linha); border-radius: 14px; padding: 16px; }
+h2 { margin: 0 0 12px; font-size: 1rem; text-transform: uppercase; letter-spacing: .05em; color: var(--suave); }
+.vazio { color: var(--suave); margin: 0; }
+.run + .run { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--linha); }
+.run-topo { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; align-items: baseline; }
+.run-topo strong { font-size: 1.05rem; }
+.pequeno { font-size: .85rem; color: var(--suave); }
+.etapas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0; }
+.etapa { border: 1px solid var(--linha); border-radius: 10px; padding: 10px; }
+.etapa b { display: block; font-size: .9rem; }
+.etapa.ativa { border-color: var(--azul); box-shadow: 0 0 0 2px color-mix(in srgb, var(--azul) 25%, transparent); }
+.etapa.ok { border-color: var(--verde); }
+.etapa.falha { border-color: var(--vermelho); }
+.trilho { height: 12px; border-radius: 6px; background: var(--barra); overflow: hidden; }
+.trilho > div { height: 100%; background: var(--azul); transition: width .6s; }
+.linha-lista { display: flex; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--linha); }
+.linha-lista:last-child { border-bottom: 0; }
+.linha-lista .txt { flex: 1; min-width: 0; }
+.linha-lista .txt div { overflow: hidden; text-overflow: ellipsis; }
+.chip { font-size: .75rem; padding: 2px 8px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.c-ok { color: var(--verde); } .c-run { color: var(--azul); } .c-fila { color: var(--amarelo); } .c-erro { color: var(--vermelho); } .c-pausa { color: var(--suave); }
+.videos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.videos a { color: inherit; text-decoration: none; font-size: .85rem; }
+.videos img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; background: var(--barra); display: block; }
+a { color: var(--azul); }
+.aviso { background: color-mix(in srgb, var(--amarelo) 15%, var(--cartao)); border-color: var(--amarelo); }
+@media (max-width: 560px) { .etapas { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+	<h1>🐾 Quiz do Reino · Painel ao vivo</h1>
+	<span class="vivo"><span class="ponto" id="ponto"></span><span id="estado">conectando…</span></span>
+</header>
+<main>
+	<section id="aviso" class="aviso" hidden></section>
+	<section><h2>Agora</h2><div id="agora"><p class="vazio">Carregando…</p></div></section>
+	<section><h2>Episódios</h2><div id="fila"><p class="vazio">Carregando…</p></div></section>
+	<section><h2>Publicados no YouTube</h2><div id="publicados" class="videos"></div></section>
+	<section><h2>Últimas produções</h2><div id="historico"></div></section>
+	<section><h2>O que o Jarvis fez</h2><div id="commits"></div></section>
+</main>
+<script>
+// Painel público e só de leitura: usa a API pública do GitHub (sem chave). Respostas iguais voltam como 304
+// pelo ETag e não gastam o limite de 60 consultas por hora.
+const REPO = 'claytongestor07-glitch/quiz-do-reino';
+const API = `https://api.github.com/repos/${REPO}/`;
+const RAW = `https://raw.githubusercontent.com/${REPO}/`;
+const IGNORAR_WF = /pages|site/i;
+const TIPICO = {narracao: 12, render: 40, final: 25}; // minutos, para estimar etapas que ainda não começaram
+const cacheApi = new Map();
+const cacheRaw = new Map();
+let ultimaOk = 0, intervalo = 30e3;
+
+async function api(rota) {
+	const anterior = cacheApi.get(rota);
+	const r = await fetch(API + rota, {headers: anterior ? {'If-None-Match': anterior.etag} : {}});
+	if (r.status === 304) return anterior.dados;
+	if (r.status === 403 || r.status === 429) throw new Error('limite');
+	if (!r.ok) throw new Error(`GitHub ${r.status}`);
+	const dados = await r.json();
+	cacheApi.set(rota, {etag: r.headers.get('ETag'), dados});
+	return dados;
+}
+async function raw(sha, caminho) {
+	const k = `${sha}/${caminho}`;
+	if (!cacheRaw.has(k)) cacheRaw.set(k, fetch(RAW + k).then((r) => (r.ok ? r.json() : null)).catch(() => null));
+	return cacheRaw.get(k);
+}
+
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+const dur = (ms) => (ms < 60e3 ? `${Math.max(0, Math.round(ms / 1e3))} s` : ms < 3600e3 ? `${Math.round(ms / 60e3)} min` : `${Math.floor(ms / 3600e3)} h ${Math.round((ms % 3600e3) / 60e3)} min`);
+const hora = (iso) => new Date(iso).toLocaleString('pt-BR', {day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'});
+const ha = (iso) => `há ${dur(Date.now() - Date.parse(iso))}`;
+const chipRun = (r) => r.status !== 'completed' ? `<span class="chip c-run">${r.status === 'queued' ? 'na fila' : 'rodando'}</span>`
+	: r.conclusion === 'success' ? '<span class="chip c-ok">concluída</span>' : r.conclusion === 'cancelled' ? '<span class="chip c-pausa">cancelada</span>' : '<span class="chip c-erro">falhou</span>';
+
+// Próxima rodada automática da produção: cron '17 */4 * * *' (UTC)
+function proximaRodada() {
+	const d = new Date();
+	d.setUTCSeconds(0, 0);
+	for (let k = 0; k < 400; k++) {
+		d.setUTCMinutes(d.getUTCMinutes() + (k ? 1 : 0));
+		if (d.getUTCMinutes() === 17 && d.getUTCHours() % 4 === 0 && d > new Date()) return d;
+	}
+}
+
+function cartaoRun(run, jobs) {
+	const agora = Date.now();
+	const t = (j) => (j?.started_at ? (j.completed_at ? Date.parse(j.completed_at) : agora) - Date.parse(j.started_at) : 0);
+	const plan = jobs.find((j) => j.name === 'planejar');
+	const renders = jobs.filter((j) => j.name.startsWith('render'));
+	const fin = jobs.find((j) => j.name === 'finalizar');
+	const estado = (j) => (!j || j.status === 'queued' || j.status === 'waiting' ? '' : j.status !== 'completed' ? 'ativa' : j.conclusion === 'success' || j.conclusion === 'skipped' ? 'ok' : 'falha');
+	const PASSOS = [[/ci\.mjs/, 'gerando a narração e os emojis'], [/automacao\.mjs|Juntar/, 'juntando o vídeo, criando Shorts e enviando'], [/preparar|Set up|checkout/i, 'preparando a máquina'],
+		[/download-artifact/, 'baixando as partes prontas'], [/upload-artifact|cache/i, 'guardando o resultado'], [/Credenciais/, 'conectando ao YouTube']];
+	const passo = (j) => {
+		const s = (j?.steps ?? []).find((x) => x.status === 'in_progress')?.name;
+		return s && (PASSOS.find(([re]) => re.test(s))?.[1] ?? s.replace(/^Run /, ''));
+	};
+	const feitos = renders.filter((j) => j.status === 'completed').length;
+	const rodando = renders.filter((j) => j.status === 'in_progress').length;
+	const estRender = renders.length ? (estado(fin) || feitos === renders.length ? 'ok' : feitos || rodando ? 'ativa' : '') : estado(plan) === 'ok' ? 'ativa' : '';
+
+	// Progresso estimado: peso de cada etapa pelo tempo típico
+	const total = TIPICO.narracao + TIPICO.render + TIPICO.final;
+	const fr = (e, j, tip) => (e === 'ok' ? 1 : e === 'ativa' ? Math.min(0.95, t(j) / (tip * 60e3)) : 0);
+	const fRender = renders.length ? (feitos + rodando * 0.5) / renders.length : 0;
+	const prog = (fr(estado(plan), plan, TIPICO.narracao) * TIPICO.narracao + (estRender === 'ok' ? 1 : fRender) * TIPICO.render + fr(estado(fin), fin, TIPICO.final) * TIPICO.final) / total;
+	const fim = run.status === 'completed';
+	const decorrido = (fim ? Date.parse(run.updated_at) : agora) - Date.parse(run.run_started_at ?? run.created_at);
+	const resta = fim ? 0 : Math.max(60e3, decorrido / Math.max(prog, 0.05) - decorrido);
+	const nomeEtapa = {ativa: 'em andamento', ok: 'pronto', falha: 'falhou', '': 'aguardando'};
+	return `<div class="run">
+		<div class="run-topo"><strong>${esc(run.name)}</strong>${chipRun(run)}</div>
+		<div class="pequeno">Começou ${hora(run.run_started_at ?? run.created_at)} · ${dur(decorrido)} ${fim ? 'no total' : `decorridos · faltam ~${dur(resta)}`} · <a href="${run.html_url}" target="_blank" rel="noopener">ver no GitHub</a></div>
+		<div class="etapas">
+			<div class="etapa ${estado(plan)}"><b>1. Narração e roteiro</b><span class="pequeno">${esc(passo(plan) ?? nomeEtapa[estado(plan)])}</span></div>
+			<div class="etapa ${estRender}"><b>2. Render do vídeo</b><span class="pequeno">${renders.length ? `${feitos} de ${renders.length} blocos prontos${rodando ? ` · ${rodando} rodando` : ''}` : nomeEtapa[estRender]}</span></div>
+			<div class="etapa ${estado(fin)}"><b>3. Shorts e envio</b><span class="pequeno">${esc(passo(fin) ?? nomeEtapa[estado(fin)])}</span></div>
+		</div>
+		<div class="trilho" role="progressbar" aria-valuenow="${Math.round(prog * 100)}" aria-valuemin="0" aria-valuemax="100"><div style="width:${fim && run.conclusion === 'success' ? 100 : Math.round(prog * 100)}%"></div></div>
+	</div>`;
+}
+
+async function atualizar() {
+	const {workflow_runs: runs} = await api('actions/runs?per_page=15');
+	const visiveis = runs.filter((r) => !IGNORAR_WF.test(r.name));
+	const ativos = visiveis.filter((r) => r.status !== 'completed');
+
+	// Agora: produções rodando (ou a última, se nada roda)
+	const mostrar = ativos.length ? ativos : visiveis.slice(0, 1);
+	const cartoes = await Promise.all(mostrar.map(async (r) => cartaoRun(r, (await api(`actions/runs/${r.id}/jobs?per_page=100`)).jobs)));
+	const prox = proximaRodada();
+	document.getElementById('agora').innerHTML = (ativos.length ? '' : `<p class="vazio">Nada rodando agora. Próxima rodada automática: <b>${prox.toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'})}</b>. Última produção:</p>`) + cartoes.join('');
+
+	document.getElementById('historico').innerHTML = visiveis.slice(0, 8).map((r) => `<div class="linha-lista"><div class="txt"><div>${esc(r.name)} <span class="pequeno">· ${r.event === 'schedule' ? 'automática' : 'manual'}</span></div><div class="pequeno">${hora(r.created_at)} · ${dur((r.status === 'completed' ? Date.parse(r.updated_at) : Date.now()) - Date.parse(r.run_started_at ?? r.created_at))}</div></div>${chipRun(r)}<a class="pequeno" href="${r.html_url}" target="_blank" rel="noopener">abrir</a></div>`).join('') || '<p class="vazio">Nenhuma produção ainda.</p>';
+
+	// Episódios: estado a partir da árvore do repositório (1 consulta)
+	const commits = await api('commits?per_page=10');
+	const sha = commits[0].sha;
+	const arvore = await api(`git/trees/${sha}?recursive=1`);
+	const eps = {};
+	for (const {path} of arvore.tree) {
+		const m = path.match(/^episodios\/([^/]+)\/([^/]+)$/);
+		if (m) (eps[m[1]] ??= new Set()).add(m[2]);
+	}
+	const ids = Object.keys(eps).filter((id) => eps[id].has('quiz.json')).sort().reverse();
+	const quizzes = await Promise.all(ids.map((id) => raw(sha, `episodios/${id}/quiz.json`)));
+	const emProducao = ativos.map((r) => r.display_title).join(' ');
+	const pendentes = ids.filter((id) => !eps[id].has('IGNORAR') && !eps[id].has('publicado.json')).sort();
+	document.getElementById('fila').innerHTML = ids.map((id, k) => {
+		const f = eps[id];
+		const shorts = [...f].filter((n) => /^publicado-short\d+\.json$/.test(n)).length;
+		const chip = f.has('IGNORAR') ? '<span class="chip c-pausa">pausado</span>'
+			: f.has('publicado.json') ? `<span class="chip c-ok">publicado · ${shorts}/3 shorts</span>`
+			: id === pendentes[0] ? `<span class="chip c-run">${ativos.length ? 'produzindo agora' : 'próximo da fila'}</span>` : '<span class="chip c-fila">na fila</span>';
+		return `<div class="linha-lista"><div class="txt"><div>${esc(quizzes[k]?.titulo ?? id)}</div><div class="pequeno">${esc(id)} · ${quizzes[k]?.perguntas?.length ?? '?'} desafios</div></div>${chip}</div>`;
+	}).join('');
+
+	// Publicados: vídeos e Shorts com o horário marcado no YouTube
+	const regs = [];
+	for (const id of ids) for (const n of eps[id]) if (/^publicado(-short\d+)?\.json$/.test(n)) regs.push({id, n});
+	const pubs = (await Promise.all(regs.map(async ({id, n}) => ({...(await raw(sha, `episodios/${id}/${n}`)), id, short: n !== 'publicado.json'})))).filter((p) => p.videoId);
+	pubs.sort((a, b) => Date.parse(b.publicarEm ?? b.enviadoEm) - Date.parse(a.publicarEm ?? a.enviadoEm));
+	document.getElementById('publicados').innerHTML = pubs.slice(0, 12).map((p) => {
+		const quando = p.publicarEm ?? p.enviadoEm;
+		const futuro = Date.parse(quando) > Date.now();
+		return `<a href="https://youtu.be/${p.videoId}" target="_blank" rel="noopener"><img loading="lazy" alt="" src="https://i.ytimg.com/vi/${p.videoId}/mqdefault.jpg"><div>${p.short ? 'Short' : 'Vídeo'} · ${esc(p.id)}</div><div class="pequeno">${futuro ? `vai ao ar ${hora(quando)}` : `no ar desde ${hora(quando)}`}</div></a>`;
+	}).join('') || '<p class="vazio">Nada publicado ainda.</p>';
+
+	document.getElementById('commits').innerHTML = commits.map((c) => `<div class="linha-lista"><div class="txt"><div>${esc(c.commit.message.split('\n')[0])}</div><div class="pequeno">${ha(c.commit.author.date)}</div></div></div>`).join('');
+}
+
+async function ciclo() {
+	const ponto = document.getElementById('ponto'), aviso = document.getElementById('aviso');
+	try {
+		await atualizar();
+		ultimaOk = Date.now();
+		intervalo = 30e3;
+		ponto.classList.remove('erro');
+		aviso.hidden = true;
+	} catch (e) {
+		ponto.classList.add('erro');
+		intervalo = Math.min(intervalo * 2, 5 * 60e3);
+		aviso.hidden = false;
+		aviso.textContent = e.message === 'limite'
+			? 'O GitHub limitou as consultas desta rede por alguns minutos. O painel volta sozinho.'
+			: `Sem conexão com o GitHub (${e.message}). Tentando de novo…`;
+	}
+	setTimeout(ciclo, intervalo);
+}
+setInterval(() => {
+	document.getElementById('estado').textContent = ultimaOk ? `ao vivo · atualizado ${ha(new Date(ultimaOk).toISOString())}` : 'conectando…';
+}, 1000);
+ciclo();
+</script>
+</body>
+</html>
