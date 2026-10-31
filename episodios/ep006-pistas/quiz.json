@@ -1,0 +1,625 @@
+{
+	"id": "ep006-pistas",
+	"tipo": "emoji",
+	"categoria": "animais",
+	"canal": "Quiz do Reino",
+	"marca": "Reino Animal",
+	"selo": "🐾",
+	"craque": "Craque dos Animais",
+	"titulo": "🐼 Adivinhe o Animal pelas 3 Pistas! 🎋 | 60 Desafios | Quiz de Animais para Crianças",
+	"tema": "Animais",
+	"chamada": "QUAL É O ANIMAL?",
+	"icones": [
+		"Pine decoration",
+		"Black heart",
+		"White circle"
+	],
+	"fonte": "Curiosidades de animais (texto infantil próprio)",
+	"licao": "Cada animal tem um jeitinho especial: observar a natureza é aprender brincando!",
+	"abertura": "Oi, criançada! Bem-vindos ao Quiz do Reino Animal! Hoje são três pistas para cada animal. Olhe bem, pense rapidinho e grite a resposta! São sessenta desafios. Vamos lá!",
+	"encerramento": "Uau, que aventura! Quantos animais você acertou? Mais de quarenta é nível craque dos animais! Chame a família para jogar e até o próximo quiz!",
+	"pergunta": "Que animal é esse?",
+	"faixa": "60 Animais",
+	"perguntas": [
+		{
+			"pistas": [
+				"Carrot",
+				"Ear",
+				"Hole"
+			],
+			"resposta": "Coelho",
+			"explicacao": "Ele adora cenoura e tem orelhas compridas que escutam longe!",
+			"referencia": "Campos e tocas"
+		},
+		{
+			"pistas": [
+				"Banana",
+				"Palm tree",
+				"Face with tears of joy"
+			],
+			"resposta": "Macaco",
+			"explicacao": "O macaco pula de galho em galho e adora brincar!",
+			"referencia": "Florestas"
+		},
+		{
+			"pistas": [
+				"Glass of milk",
+				"Cheese wedge",
+				"Bell"
+			],
+			"resposta": "Vaca",
+			"explicacao": "A vaca dá o leite que vira queijo e iogurte!",
+			"referencia": "Fazendas"
+		},
+		{
+			"pistas": [
+				"Honey pot",
+				"Sunflower",
+				"Sparkles"
+			],
+			"resposta": "Abelha",
+			"explicacao": "A abelha visita as flores e faz o mel mais docinho!",
+			"referencia": "Jardins"
+		},
+		{
+			"pistas": [
+				"Pine decoration",
+				"Black heart",
+				"White circle"
+			],
+			"resposta": "Panda",
+			"explicacao": "O panda come bambu quase o dia inteiro!",
+			"referencia": "Florestas da China"
+		},
+		{
+			"pistas": [
+				"Egg",
+				"Sunrise",
+				"Ear of corn"
+			],
+			"resposta": "Galinha",
+			"explicacao": "A galinha bota ovos e acorda com o sol!",
+			"referencia": "Fazendas"
+		},
+		{
+			"pistas": [
+				"Snowflake",
+				"Ice",
+				"Fish"
+			],
+			"resposta": "Urso-Polar",
+			"explicacao": "O urso-polar tem pelos que deixam ele quentinho no gelo!",
+			"referencia": "Polo Norte"
+		},
+		{
+			"pistas": [
+				"Desert",
+				"Droplet",
+				"Sun"
+			],
+			"resposta": "Camelo",
+			"explicacao": "O camelo aguenta muitos dias sem beber água no deserto!",
+			"referencia": "Desertos"
+		},
+		{
+			"pistas": [
+				"Peanuts",
+				"Ear",
+				"Shower"
+			],
+			"resposta": "Elefante",
+			"explicacao": "O elefante usa a tromba para tomar banho de chuveirinho!",
+			"referencia": "Savanas e matas"
+		},
+		{
+			"pistas": [
+				"Straight ruler",
+				"Deciduous tree",
+				"Leafy green"
+			],
+			"resposta": "Girafa",
+			"explicacao": "A girafa é o animal mais alto do mundo e come folhas lá no alto!",
+			"referencia": "Savanas"
+		},
+		{
+			"pistas": [
+				"Bone",
+				"Tennis",
+				"Paw prints"
+			],
+			"resposta": "Cachorro",
+			"explicacao": "O cachorro é o melhor amigo e adora buscar a bolinha!",
+			"referencia": "Casas"
+		},
+		{
+			"pistas": [
+				"Yarn",
+				"Fish",
+				"Glass of milk"
+			],
+			"resposta": "Gato",
+			"explicacao": "O gato brinca com novelo e ronrona quando está feliz!",
+			"referencia": "Casas"
+		},
+		{
+			"pistas": [
+				"Cheese wedge",
+				"Hole",
+				"Mouse trap"
+			],
+			"resposta": "Rato",
+			"explicacao": "O rato tem dentes que nunca param de crescer!",
+			"referencia": "Cidades e campos"
+		},
+		{
+			"pistas": [
+				"Lotus",
+				"Fly",
+				"Droplet"
+			],
+			"resposta": "Sapo",
+			"explicacao": "O sapo pega moscas com a língua grudenta!",
+			"referencia": "Lagos e brejos"
+		},
+		{
+			"pistas": [
+				"Crescent moon",
+				"Eyes",
+				"Evergreen tree"
+			],
+			"resposta": "Coruja",
+			"explicacao": "A coruja enxerga muito bem no escuro e gira a cabeça!",
+			"referencia": "Matas"
+		},
+		{
+			"pistas": [
+				"Upside-down face",
+				"Crescent moon",
+				"Rock"
+			],
+			"resposta": "Morcego",
+			"explicacao": "O morcego dorme de cabeça para baixo!",
+			"referencia": "Cavernas"
+		},
+		{
+			"pistas": [
+				"Beach with umbrella",
+				"Egg",
+				"Hourglass not done"
+			],
+			"resposta": "Tartaruga",
+			"explicacao": "A tartaruga marinha bota ovos na areia da praia!",
+			"referencia": "Mares e praias"
+		},
+		{
+			"pistas": [
+				"Ice",
+				"Fish",
+				"Necktie"
+			],
+			"resposta": "Pinguim",
+			"explicacao": "O pinguim parece estar de terno e não voa, mas nada muito!",
+			"referencia": "Antártida"
+		},
+		{
+			"pistas": [
+				"Water wave",
+				"Fountain pen",
+				"Open hands"
+			],
+			"resposta": "Polvo",
+			"explicacao": "O polvo tem oito braços e solta tinta para fugir!",
+			"referencia": "Mares"
+		},
+		{
+			"pistas": [
+				"Crown",
+				"Loudspeaker",
+				"Sun"
+			],
+			"resposta": "Leão",
+			"explicacao": "O leão é chamado de rei e seu rugido é ouvido de longe!",
+			"referencia": "Savanas"
+		},
+		{
+			"pistas": [
+				"Barber pole",
+				"Sun",
+				"Leafy green"
+			],
+			"resposta": "Zebra",
+			"explicacao": "Cada zebra tem listras diferentes, como uma impressão digital!",
+			"referencia": "Savanas"
+		},
+		{
+			"pistas": [
+				"Tooth",
+				"Water wave",
+				"Speedboat"
+			],
+			"resposta": "Tubarão",
+			"explicacao": "O tubarão troca de dentes a vida toda!",
+			"referencia": "Mares"
+		},
+		{
+			"pistas": [
+				"Musical notes",
+				"Fountain",
+				"Water wave"
+			],
+			"resposta": "Baleia",
+			"explicacao": "A baleia canta debaixo d'água e solta um jato pelas costas!",
+			"referencia": "Oceanos"
+		},
+		{
+			"pistas": [
+				"Water wave",
+				"Smiling face with smiling eyes",
+				"Musical note"
+			],
+			"resposta": "Golfinho",
+			"explicacao": "O golfinho é muito esperto e conversa com assobios!",
+			"referencia": "Mares"
+		},
+		{
+			"pistas": [
+				"Tongue",
+				"Egg",
+				"Rock"
+			],
+			"resposta": "Cobra",
+			"explicacao": "A cobra sente o cheiro com a língua!",
+			"referencia": "Matas e campos"
+		},
+		{
+			"pistas": [
+				"Tooth",
+				"Water wave",
+				"Eyes"
+			],
+			"resposta": "Jacaré",
+			"explicacao": "O jacaré fica com os olhinhos para fora da água, esperando!",
+			"referencia": "Rios e pântanos"
+		},
+		{
+			"pistas": [
+				"Bug",
+				"Blossom",
+				"Rainbow"
+			],
+			"resposta": "Borboleta",
+			"explicacao": "A borboleta já foi uma lagarta antes de ganhar asas!",
+			"referencia": "Jardins"
+		},
+		{
+			"pistas": [
+				"Basket",
+				"Candy",
+				"Flexed biceps"
+			],
+			"resposta": "Formiga",
+			"explicacao": "A formiga carrega muitas vezes o próprio peso!",
+			"referencia": "Jardins"
+		},
+		{
+			"pistas": [
+				"Spider web",
+				"Fly",
+				"Eyes"
+			],
+			"resposta": "Aranha",
+			"explicacao": "A aranha tece teias de seda para pegar insetos!",
+			"referencia": "Casas e matas"
+		},
+		{
+			"pistas": [
+				"House",
+				"Hourglass not done",
+				"Leafy green"
+			],
+			"resposta": "Caracol",
+			"explicacao": "O caracol carrega a casinha nas costas, bem devagar!",
+			"referencia": "Jardins"
+		},
+		{
+			"pistas": [
+				"Red circle",
+				"Black circle",
+				"Four leaf clover"
+			],
+			"resposta": "Joaninha",
+			"explicacao": "A joaninha tem bolinhas pretas e come pulgões das plantas!",
+			"referencia": "Jardins"
+		},
+		{
+			"pistas": [
+				"Clutch bag",
+				"Boxing glove",
+				"Leg"
+			],
+			"resposta": "Canguru",
+			"explicacao": "O canguru carrega o filhote numa bolsa na barriga!",
+			"referencia": "Austrália"
+		},
+		{
+			"pistas": [
+				"Herb",
+				"Teddy bear",
+				"Zzz"
+			],
+			"resposta": "Coala",
+			"explicacao": "O coala dorme quase vinte horas por dia!",
+			"referencia": "Austrália"
+		},
+		{
+			"pistas": [
+				"Sleeping face",
+				"Hourglass not done",
+				"Deciduous tree"
+			],
+			"resposta": "Preguiça",
+			"explicacao": "A preguiça é tão lenta que dorme pendurada nas árvores!",
+			"referencia": "Amazônia"
+		},
+		{
+			"pistas": [
+				"Full moon",
+				"Evergreen tree",
+				"Speaking head"
+			],
+			"resposta": "Lobo",
+			"explicacao": "O lobo uiva para conversar com a matilha!",
+			"referencia": "Florestas"
+		},
+		{
+			"pistas": [
+				"Grapes",
+				"Orange circle",
+				"Evergreen tree"
+			],
+			"resposta": "Raposa",
+			"explicacao": "A raposa tem um rabo bem peludo que vira cobertor!",
+			"referencia": "Florestas"
+		},
+		{
+			"pistas": [
+				"Chestnut",
+				"Fallen leaf",
+				"Deciduous tree"
+			],
+			"resposta": "Esquilo",
+			"explicacao": "O esquilo guarda castanhas para comer no inverno!",
+			"referencia": "Parques e bosques"
+		},
+		{
+			"pistas": [
+				"Folding hand fan",
+				"Rainbow",
+				"Eye"
+			],
+			"resposta": "Pavão",
+			"explicacao": "O pavão abre a cauda colorida como um leque!",
+			"referencia": "Jardins e matas"
+		},
+		{
+			"pistas": [
+				"Speech balloon",
+				"Rainbow",
+				"Palm tree"
+			],
+			"resposta": "Papagaio",
+			"explicacao": "O papagaio consegue imitar a nossa voz!",
+			"referencia": "Florestas"
+		},
+		{
+			"pistas": [
+				"Pink heart",
+				"Leg",
+				"Water wave"
+			],
+			"resposta": "Flamingo",
+			"explicacao": "O flamingo fica cor-de-rosa por causa do que come!",
+			"referencia": "Lagoas"
+		},
+		{
+			"pistas": [
+				"Egg",
+				"Running shoe",
+				"Desert"
+			],
+			"resposta": "Avestruz",
+			"explicacao": "O avestruz é a maior ave do mundo e corre muito rápido!",
+			"referencia": "Savanas"
+		},
+		{
+			"pistas": [
+				"Face with open mouth",
+				"Water wave",
+				"Sun"
+			],
+			"resposta": "Hipopótamo",
+			"explicacao": "O hipopótamo passa o dia na água para se refrescar!",
+			"referencia": "Rios da África"
+		},
+		{
+			"pistas": [
+				"Unicorn",
+				"Shield",
+				"Sun"
+			],
+			"resposta": "Rinoceronte",
+			"explicacao": "O rinoceronte tem um chifre no nariz e a pele bem grossa!",
+			"referencia": "Savanas"
+		},
+		{
+			"pistas": [
+				"Banana",
+				"Flexed biceps",
+				"Drum"
+			],
+			"resposta": "Gorila",
+			"explicacao": "O gorila bate no peito como um tambor!",
+			"referencia": "Florestas"
+		},
+		{
+			"pistas": [
+				"Coin",
+				"Pink heart",
+				"Tractor"
+			],
+			"resposta": "Porco",
+			"explicacao": "O porco é muito inteligente e adora se refrescar na lama!",
+			"referencia": "Fazendas"
+		},
+		{
+			"pistas": [
+				"Cloud",
+				"Yarn",
+				"Zzz"
+			],
+			"resposta": "Ovelha",
+			"explicacao": "A lã da ovelha vira blusa e cobertor!",
+			"referencia": "Fazendas"
+		},
+		{
+			"pistas": [
+				"Cowboy hat face",
+				"Carrot",
+				"Trophy"
+			],
+			"resposta": "Cavalo",
+			"explicacao": "O cavalo consegue dormir em pé!",
+			"referencia": "Fazendas"
+		},
+		{
+			"pistas": [
+				"Bread",
+				"Water wave",
+				"Yellow heart"
+			],
+			"resposta": "Pato",
+			"explicacao": "O pato tem penas que não deixam a água entrar!",
+			"referencia": "Lagos"
+		},
+		{
+			"pistas": [
+				"Ballet shoes",
+				"White circle",
+				"Water wave"
+			],
+			"resposta": "Cisne",
+			"explicacao": "O cisne desliza na água como uma bailarina!",
+			"referencia": "Lagos"
+		},
+		{
+			"pistas": [
+				"Mountain",
+				"Eye",
+				"Wind face"
+			],
+			"resposta": "Águia",
+			"explicacao": "A águia enxerga um coelho lá do alto do céu!",
+			"referencia": "Montanhas"
+		},
+		{
+			"pistas": [
+				"Orange heart",
+				"Black heart",
+				"Paw prints"
+			],
+			"resposta": "Tigre",
+			"explicacao": "O tigre é o maior gato do mundo e adora nadar!",
+			"referencia": "Florestas da Ásia"
+		},
+		{
+			"pistas": [
+				"Yellow circle",
+				"Black circle",
+				"Paw prints"
+			],
+			"resposta": "Onça-Pintada",
+			"explicacao": "A onça-pintada é o maior felino das Américas!",
+			"referencia": "Pantanal e Amazônia"
+		},
+		{
+			"pistas": [
+				"Ant",
+				"Tongue",
+				"Nose"
+			],
+			"resposta": "Tamanduá",
+			"explicacao": "O tamanduá come milhares de formigas com a língua comprida!",
+			"referencia": "Cerrado"
+		},
+		{
+			"pistas": [
+				"Nose",
+				"Palm tree",
+				"Orange heart"
+			],
+			"resposta": "Tucano",
+			"explicacao": "O tucano tem um bico enorme e bem leve!",
+			"referencia": "Florestas do Brasil"
+		},
+		{
+			"pistas": [
+				"Ice",
+				"Fish",
+				"Clapping hands"
+			],
+			"resposta": "Foca",
+			"explicacao": "A foca bate as nadadeiras como se batesse palmas!",
+			"referencia": "Mares gelados"
+		},
+		{
+			"pistas": [
+				"Wood",
+				"Tooth",
+				"Building construction"
+			],
+			"resposta": "Castor",
+			"explicacao": "O castor constrói represas com galhos e os dentes fortes!",
+			"referencia": "Rios"
+		},
+		{
+			"pistas": [
+				"Light bulb",
+				"Night with stars",
+				"Bug"
+			],
+			"resposta": "Vaga-Lume",
+			"explicacao": "O vaga-lume acende uma luzinha no bumbum à noite!",
+			"referencia": "Matas e campos"
+		},
+		{
+			"pistas": [
+				"Artist palette",
+				"Eyes",
+				"Tongue"
+			],
+			"resposta": "Camaleão",
+			"explicacao": "O camaleão muda de cor e mexe cada olho para um lado!",
+			"referencia": "Florestas"
+		},
+		{
+			"pistas": [
+				"Red apple",
+				"Seedling",
+				"Hole"
+			],
+			"resposta": "Minhoca",
+			"explicacao": "A minhoca cava túneis que deixam a terra fofinha!",
+			"referencia": "Jardins"
+		},
+		{
+			"pistas": [
+				"Drop of blood",
+				"Ear",
+				"Crescent moon"
+			],
+			"resposta": "Mosquito",
+			"explicacao": "O mosquito zumbe no ouvido à noite!",
+			"referencia": "Casas e matas"
+		}
+	]
+}
