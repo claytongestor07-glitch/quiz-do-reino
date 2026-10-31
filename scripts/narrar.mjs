@@ -197,6 +197,6 @@ for (const [i, p] of quiz.perguntas.entries()) {
 const encerramento = await falar(quiz.encerramento);
 adicionar({tipo: 'encerramento', ...encerramento}, encerramento.segundos + 4);
 
-const timeline = {id, fps: FPS, totalFrames: inicio, voz: {mac: 'mac-previa', edge: 'microsoft-thalita', azure: 'azure-thalita', kokoro: 'kokoro-dora', elevenlabs: 'elevenlabs'}[provedor], tempoResposta: TEMPO_RESPOSTA, quiz, cenas, sons, trilha: SPEED ? {arquivo: 'sons/trilha-energia.wav', volume: 0.15, volumeSobVoz: 0.04} : {arquivo: 'sons/trilha.wav', volume: 0.2, volumeSobVoz: 0.07}};
+const timeline = {id, fps: FPS, totalFrames: inicio, voz: {mac: 'mac-previa', edge: 'microsoft-thalita', azure: 'azure-thalita', kokoro: 'kokoro-dora', elevenlabs: 'elevenlabs'}[provedor], tempoResposta: TEMPO_RESPOSTA, quiz, cenas, sons, trilha: SPEED ? {arquivo: 'sons/trilha-quiz.mp3', volume: 0.25, volumeSobVoz: 0.06} : {arquivo: 'sons/trilha.wav', volume: 0.2, volumeSobVoz: 0.07}};
 fs.writeFileSync(path.join(pastaEp, 'timeline.json'), JSON.stringify(timeline, null, 1));
 log('narrar', `${id}: ${cenas.length} cenas, ${(inicio / FPS / 60).toFixed(1)} min (${timeline.voz})`);

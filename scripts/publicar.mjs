@@ -18,7 +18,7 @@ import os from 'node:os';
 import path from 'node:path';
 import http from 'node:http';
 import crypto from 'node:crypto';
-import {RAIZ, FPS, episodio, log} from './lib.mjs';
+import {RAIZ, FPS, episodio, creditoTrilha, log} from './lib.mjs';
 
 const CONF = path.join(os.homedir(), '.config', 'pequenos-sabios');
 const CLIENTE = path.join(CONF, 'client_secret.json');
@@ -87,7 +87,7 @@ export function metadados(id) {
 		const desc = [
 			`Você consegue adivinhar o animal juntando os emojis? São ${quiz.perguntas.length} desafios de animais para crianças: do mar, da floresta, do gelo e do Brasil, com cronômetro e uma curiosidade em cada resposta.`,
 			'', `🐾 ${quiz.licao}`, '', 'Jogue junto com a família e contem os pontos! 💛', '', ...capitulos, '',
-			`${canal.nome}: o quiz do reino animal.`, '', '#QuizDeAnimais #AdivinheOAnimal #QuizParaCrianças',
+			`${canal.nome}: o quiz do reino animal.`, '', '#QuizDeAnimais #AdivinheOAnimal #QuizParaCrianças', '', ...creditoTrilha(tl),
 		].join('\n');
 		return {
 			snippet: {title: quiz.titulo, description: desc.slice(0, 4900), tags: ['quiz de animais', 'adivinhe o animal', 'adivinhe o animal pelos emojis', 'quiz para crianças', 'animais para crianças', 'quiz de emojis', 'desafio de emojis', 'nomes de animais', 'animais do mar', 'quiz infantil', quiz.tema, canal.nome].slice(0, 20), categoryId: '27', defaultLanguage: 'pt-BR', defaultAudioLanguage: 'pt-BR'},
@@ -100,7 +100,7 @@ export function metadados(id) {
 			: `${quiz.tema}: um quiz bíblico para crianças de 5 a 9 anos, com ${quiz.perguntas.length} perguntas, alternativas A, B e C, cronômetro e explicação de cada resposta.`,
 		'', `Lição: ${quiz.licao}`, '', `Base bíblica: ${quiz.fonte}.`, '',
 		'Assista junto com seu filho e conversem sobre cada resposta! 💛', '', ...capitulos, '',
-		`${canal.nome}: aprender a Bíblia brincando.`, '', canal.hashtags.join(' '),
+		`${canal.nome}: aprender a Bíblia brincando.`, '', canal.hashtags.join(' '), '', ...creditoTrilha(tl),
 	].join('\n');
 	return {
 		snippet: {title: quiz.titulo, description: descricao.slice(0, 4900), tags: [...canal.tags, quiz.tema, `quiz ${quiz.tema}`, ...(quiz.tipo === 'emoji' ? ['adivinhe pelos emojis', 'quiz de emojis', 'adivinhe o personagem bíblico'] : [])].slice(0, 20), categoryId: '27', defaultLanguage: 'pt-BR', defaultAudioLanguage: 'pt-BR'},
@@ -113,10 +113,11 @@ export function metadadosShort(id, n) {
 	const {quiz} = episodio(id);
 	const p = quiz.perguntas[n - 1];
 	const emoji = quiz.tipo === 'emoji';
+	const tl = JSON.parse(fs.readFileSync(path.join(RAIZ, 'public', 'ep', id, 'timeline.json'), 'utf8'));
 	if (quiz.categoria === 'animais') return {
 		snippet: {
 			title: `Que animal é esse? Adivinhe pelos Emojis 🤔 Desafio ${n} | Quiz de Animais #shorts`.slice(0, 100),
-			description: ['Junte os emojis e descubra o animal! Um desafio do quiz de animais para crianças.', '', `${canal.nome}: o quiz do reino animal.`, '', '#QuizDeAnimais #AdivinheOAnimal #shorts'].join('\n'),
+			description: ['Junte os emojis e descubra o animal! Um desafio do quiz de animais para crianças.', '', `${canal.nome}: o quiz do reino animal.`, '', '#QuizDeAnimais #AdivinheOAnimal #shorts', '', ...creditoTrilha(tl)].join('\n'),
 			tags: ['quiz de animais', 'adivinhe o animal', 'quiz de emojis', 'animais para crianças', 'shorts'], categoryId: '27', defaultLanguage: 'pt-BR', defaultAudioLanguage: 'pt-BR',
 		},
 		status: {privacyStatus: 'private', selfDeclaredMadeForKids: true, embeddable: true, license: 'youtube'},
@@ -125,7 +126,7 @@ export function metadadosShort(id, n) {
 		snippet: {
 			// Título único por short: o tema entra no título (antes vários saíam iguais, "Que história é essa?")
 			title: emoji ? `${quiz.pergunta ?? 'Quem é?'} ${quiz.tema} pelos Emojis 🤔 Desafio ${n} | Quiz Bíblico Infantil #shorts`.slice(0, 100) : `${p.pergunta} 🤔 | Quiz Bíblico Infantil #shorts`.slice(0, 100),
-			description: [`Você sabe a resposta? Um desafio do quiz "${quiz.tema}" para crianças de 5 a 9 anos.`, '', `${canal.nome}: aprender a Bíblia brincando.`, '', [...canal.hashtags, '#shorts'].join(' ')].join('\n'),
+			description: [`Você sabe a resposta? Um desafio do quiz "${quiz.tema}" para crianças de 5 a 9 anos.`, '', `${canal.nome}: aprender a Bíblia brincando.`, '', [...canal.hashtags, '#shorts'].join(' '), '', ...creditoTrilha(tl)].join('\n'),
 			tags: [...canal.tags, quiz.tema, 'shorts'].slice(0, 20), categoryId: '27', defaultLanguage: 'pt-BR', defaultAudioLanguage: 'pt-BR',
 		},
 		status: {privacyStatus: 'private', selfDeclaredMadeForKids: true, embeddable: true, license: 'youtube'},

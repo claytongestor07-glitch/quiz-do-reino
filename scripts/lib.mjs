@@ -33,3 +33,14 @@ export const LETRAS = ['A', 'B', 'C'];
 
 // Narração da produção automática: ElevenLabs (voz humana do canal) quando a chave existe; senão Kokoro, grátis e local.
 export const NARRACAO = process.env.ELEVENLABS_API_KEY ? [] : ['--kokoro'];
+
+// Trilhas trocadas depois da narração: episódios já narrados com uma trilha antiga saem com a nova, sem renarrar
+// nem invalidar o cache dos quadros (a timeline não muda). Cada trilha tem volumes próprios conforme a altura.
+const QUIZ = {arquivo: 'sons/trilha-quiz.mp3', volume: 0.25, volumeSobVoz: 0.06};
+const TROCA = {'sons/trilha-rapida.wav': QUIZ, 'sons/trilha-energia.wav': QUIZ};
+export const trilhaFinal = (tl) => TROCA[tl.trilha.arquivo] ?? tl.trilha;
+// Licença CC BY 4.0: o crédito é obrigatório na descrição de todo vídeo que usa a trilha
+export const creditoTrilha = (tl) => trilhaFinal(tl).arquivo === QUIZ.arquivo ? [
+	'🎵 Música: "Monkeys Spinning Monkeys" e "Fluffing a Duck", de Kevin MacLeod (incompetech.com)',
+	'Licença Creative Commons: By Attribution 4.0 — http://creativecommons.org/licenses/by/4.0/',
+] : [];

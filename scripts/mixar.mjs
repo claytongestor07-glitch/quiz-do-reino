@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
-import {RAIZ, FPS, log} from './lib.mjs';
+import {RAIZ, FPS, trilhaFinal, log} from './lib.mjs';
 
 const SR = 44100;
 const cache = new Map();
@@ -15,12 +15,8 @@ function decodificar(rel) {
 	return cache.get(rel);
 }
 
-// Trilhas trocadas depois da narração: episódios já narrados com a trilha antiga saem com a nova, sem renarrar
-// nem invalidar o cache dos quadros (a timeline não muda). A nova é ~7 dB mais alta, daí os volumes próprios.
-const TROCA = {'sons/trilha-rapida.wav': {arquivo: 'sons/trilha-energia.wav', volume: 0.15, volumeSobVoz: 0.04}};
-
 export function mixar(tl, destino) {
-	tl = {...tl, trilha: TROCA[tl.trilha.arquivo] ?? tl.trilha};
+	tl = {...tl, trilha: trilhaFinal(tl)};
 	const total = Math.ceil((tl.totalFrames / FPS) * SR);
 	const mix = new Float32Array(total);
 	const somar = (rel, quadro, vol) => {
