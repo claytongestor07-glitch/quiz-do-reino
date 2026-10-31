@@ -1,0 +1,53 @@
+# Envio feito mas registro perdido: procura no canal os vídeos do episódio enviados na janela informada,
+# grava os publicado*.json e, se todos foram reconhecidos, tira a pausa (episodios/<id>/IGNORAR).
+name: Recuperar envios
+
+on:
+  workflow_dispatch:
+    inputs:
+      episodio:
+        description: 'Episódio (ex.: ep006-pistas)'
+        required: true
+      desde:
+        description: 'Início da janela do envio (ISO, UTC)'
+        required: true
+      ate:
+        description: 'Fim da janela do envio (ISO, UTC)'
+        required: true
+
+jobs:
+  recuperar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    concurrency:
+      group: publicacao-youtube
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Credenciais do YouTube
+        env:
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_TOKEN: ${{ secrets.YT_TOKEN }}
+        run: |
+          mkdir -p ~/.config/pequenos-sabios && chmod 700 ~/.config/pequenos-sabios
+          printf '%s' "$YT_CLIENT_SECRET" > ~/.config/pequenos-sabios/client_secret.json
+          printf '%s' "$YT_TOKEN" > ~/.config/pequenos-sabios/token.json
+          chmod 600 ~/.config/pequenos-sabios/*
+      - name: Recuperar registros
+        run: node scripts/publicar.mjs recuperar "${{ inputs.episodio }}" --desde="${{ inputs.desde }}" --ate="${{ inputs.ate }}"
+      - name: Tirar a pausa e guardar
+        run: |
+          git rm -q --ignore-unmatch "episodios/${{ inputs.episodio }}/IGNORAR"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add episodios
+          git diff --cached --quiet && exit 0
+          git commit -m "Registros recuperados de ${{ inputs.episodio }}"
+          for i in 1 2 3 4 5; do git pull --rebase -q && git push -q && exit 0; git rebase --abort 2>/dev/null; sleep $((i * 10)); done; exit 1

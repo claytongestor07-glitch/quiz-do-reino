@@ -89,10 +89,18 @@ jobs:
     if: needs.planejar.outputs.id != '' && !cancelled()
     runs-on: ubuntu-24.04
     timeout-minutes: 180
+    # Uma publicação por vez no canal (episódios e clipes gravam a mesma agenda e o mesmo limite de envios)
+    concurrency:
+      group: publicacao-youtube
+      cancel-in-progress: false
     env:
       RENDER_CONCORRENCIA: 4
     steps:
+      # Parte do main atual, não da versão em que a execução começou: execuções que esperaram na fila
+      # partiam de uma agenda antiga e não conseguiam gravar os envios (ep006, 31/10)
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: ./.github/actions/preparar
       - uses: actions/download-artifact@v4
         with:
@@ -130,7 +138,8 @@ jobs:
           git add episodios logs/agenda.json; git add -f logs/limite-envio.json 2>/dev/null || true
           git diff --cached --quiet && exit 0
           git commit -m "Envios de ${{ needs.planejar.outputs.id }}"
-          git pull --rebase -q && git push -q
+          # A agenda e o limite de envios mudam a cada publicação: tenta de novo se outra execução gravou antes
+          for i in 1 2 3 4 5; do git pull --rebase -q && git push -q && exit 0; git rebase --abort 2>/dev/null; sleep $((i * 10)); done; exit 1
       - if: always()
         uses: actions/upload-artifact@v4
         with:

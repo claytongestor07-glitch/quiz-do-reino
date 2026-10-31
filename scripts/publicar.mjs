@@ -5,6 +5,7 @@
 //                                                         separado daquele idioma, token em token-<idioma>.json)
 //   node scripts/publicar.mjs enviar ep001-noe [--quando=2026-10-25T12:00:00-03:00]
 //   node scripts/publicar.mjs metricas                    salva visualizações/likes em logs/metricas.csv
+//   node scripts/publicar.mjs recuperar ep006-pistas --desde=ISO --ate=ISO   registra envios feitos cujo registro se perdeu
 //   node scripts/publicar.mjs seo [--idioma=en|es]        descrição/palavras-chave/país do canal (config/canal.json → seo)
 //                                                         e coloca os vídeos já enviados nas playlists de cada tema
 //
@@ -364,12 +365,48 @@ async function metricas() {
 	log('metricas', `${d.items?.length ?? 0} vídeos registrados em logs/metricas.csv`);
 }
 
+// Envio feito mas registro perdido (a execução caiu antes de gravar publicado*.json): procura no canal os vídeos
+// enviados entre --desde e --ate que ainda não estão registrados e grava o registro de cada um.
+// Sai com erro se algum vídeo da janela não for reconhecido, para ninguém despausar o episódio sem conferir.
+async function recuperar(id, desde, ate) {
+	if (!desde || !ate) throw new Error('Informe a janela do envio: --desde=ISO --ate=ISO');
+	const {dir, quiz} = episodio(id);
+	const token = await acesso();
+	const registrados = new Set(fs.readdirSync(path.join(RAIZ, 'episodios')).flatMap((ep) => fs.readdirSync(path.join(RAIZ, 'episodios', ep)).filter((f) => /^publicado.*\.json$/.test(f)).map((f) => JSON.parse(fs.readFileSync(path.join(RAIZ, 'episodios', ep, f), 'utf8')).videoId)));
+	const {items: [ch]} = await api(token, 'GET', 'channels?part=contentDetails&mine=true');
+	const janela = [];
+	for (let pagina = ''; ;) {
+		const d = await api(token, 'GET', `playlistItems?part=snippet&maxResults=50&playlistId=${ch.contentDetails.relatedPlaylists.uploads}${pagina && `&pageToken=${pagina}`}`);
+		janela.push(...d.items.filter((i) => i.snippet.publishedAt >= desde && i.snippet.publishedAt <= ate && !registrados.has(i.snippet.resourceId.videoId)));
+		// A lista vem do mais novo para o mais antigo: passou da janela, para
+		if (!(pagina = d.nextPageToken) || d.items.at(-1).snippet.publishedAt < desde) break;
+	}
+	if (!janela.length) return log('publicar', `${id}: nenhum envio sem registro entre ${desde} e ${ate}`);
+	const {items: videos} = await api(token, 'GET', `videos?part=snippet,status&id=${janela.map((i) => i.snippet.resourceId.videoId).join(',')}`);
+	const estranhos = [];
+	for (const v of videos) {
+		const t = v.snippet.title;
+		let sufixo = null;
+		if (/#shorts/.test(t)) {
+			const n = Number(t.match(/Desafio (\d+)/)?.[1]) || quiz.perguntas.findIndex((p) => p.pergunta && t.startsWith(p.pergunta.slice(0, 40))) + 1;
+			if (n > 0) sufixo = `-short${n}`;
+		} else if (t === `${quiz.titulo.replace(/ \| Quiz Bíblico Infantil$/, '')} | Versão Celular`.slice(0, 100)) sufixo = '-vertical'; // mesmo título do enviar()
+		else if (t === quiz.titulo.slice(0, 100)) sufixo = '';
+		if (sufixo === null || fs.existsSync(path.join(dir, `publicado${sufixo}.json`))) { estranhos.push(`${v.id} "${t}"`); continue; }
+		const enviadoEm = janela.find((i) => i.snippet.resourceId.videoId === v.id).snippet.publishedAt;
+		fs.writeFileSync(path.join(dir, `publicado${sufixo}.json`), JSON.stringify({videoId: v.id, enviadoEm, publicarEm: v.status.publishAt ?? null, recuperado: true}, null, 1));
+		log('publicar', `${id}${sufixo} recuperado: https://youtu.be/${v.id}`);
+	}
+	if (estranhos.length) throw new Error(`${id}: vídeos da janela não reconhecidos (confira no YouTube Studio): ${estranhos.join('; ')}`);
+}
+
 const [acao, id] = process.argv.slice(2);
 const quando = process.argv.find((a) => a.startsWith('--quando='))?.split('=')[1];
 try {
 	if (acao === 'autorizar') await autorizar();
 	else if (acao === 'enviar') await enviar(id, quando, Number(process.argv.find((a) => a.startsWith('--short='))?.split('=')[1]) || 0, process.argv.includes('--vertical'));
 	else if (acao === 'clipe') await enviarClipe(id, quando, process.argv.includes('--vertical') ? 'vertical' : process.argv.includes('--short') ? 'short' : '');
+	else if (acao === 'recuperar') await recuperar(id, process.argv.find((a) => a.startsWith('--desde='))?.split('=')[1], process.argv.find((a) => a.startsWith('--ate='))?.split('=')[1]);
 	else if (acao === 'metricas') await metricas();
 	else if (acao === 'miniaturas') await miniaturas();
 	else if (acao === 'seo') await seo();

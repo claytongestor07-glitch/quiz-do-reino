@@ -112,10 +112,15 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     # Agendado: sempre envia. Manual: conforme a opção "enviar" (inputs vazios valem false nas comparações do GitHub)
+    concurrency:
+      group: publicacao-youtube
+      cancel-in-progress: false
     env:
       ENVIAR: ${{ github.event_name != 'workflow_dispatch' || inputs.enviar }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -158,4 +163,5 @@ jobs:
           git add musicas logs/agenda.json; git add -f logs/limite-envio.json 2>/dev/null || true
           git diff --cached --quiet && exit 0
           git commit -m "Envios de ${{ needs.planejar.outputs.id }}"
-          git pull --rebase -q && git push -q
+          # A agenda e o limite de envios mudam a cada publicação: tenta de novo se outra execução gravou antes
+          for i in 1 2 3 4 5; do git pull --rebase -q && git push -q && exit 0; git rebase --abort 2>/dev/null; sleep $((i * 10)); done; exit 1
