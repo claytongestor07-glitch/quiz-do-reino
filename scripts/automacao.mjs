@@ -6,13 +6,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
-import {RAIZ, log} from './lib.mjs';
+import {RAIZ, NARRACAO, log} from './lib.mjs';
 import {proximoHorario, reservar} from './agenda.mjs';
 
 const TRAVA = path.join(RAIZ, 'logs', 'automacao.lock');
 const ALERTA = path.join(RAIZ, 'logs', 'ALERTA.txt');
 const SHORTS_POR_EPISODIO = 3;
-const VOZ = 'kokoro-dora';
 
 // Trava: se outro robô está vivo, sai sem fazer nada
 fs.mkdirSync(path.dirname(TRAVA), {recursive: true});
@@ -52,7 +51,8 @@ async function processar(id) {
 	node('scripts/validar.mjs', id);
 
 	const tl = existe('public', 'ep', id, 'timeline.json') && ler('public', 'ep', id, 'timeline.json');
-	if (!tl || tl.voz !== VOZ || JSON.stringify(tl.quiz) !== JSON.stringify(quiz)) node('scripts/narrar.mjs', id, '--kokoro');
+	// Narração já pronta (ex.: feita pelo planejar no CI) é reaproveitada se a voz for publicável e o roteiro não mudou
+	if (!tl || !ler('config', 'canal.json').vozesPublicaveis.includes(tl.voz) || JSON.stringify(tl.quiz) !== JSON.stringify(quiz)) node('scripts/narrar.mjs', id, ...NARRACAO);
 
 	const rel = existe('saida', id, 'relatorio.json') && ler('saida', id, 'relatorio.json');
 	const tlTempo = fs.statSync(path.join(RAIZ, 'public', 'ep', id, 'timeline.json')).mtimeMs;

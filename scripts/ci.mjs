@@ -7,7 +7,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
-import {RAIZ, log} from './lib.mjs';
+import {RAIZ, NARRACAO, log} from './lib.mjs';
 
 const BLOCO = 1500; // igual a render.mjs
 const POR_JOB = Number(process.env.BLOCOS_POR_JOB) || 1;
@@ -45,7 +45,7 @@ if (!id) {
 const quiz = JSON.parse(fs.readFileSync(path.join(RAIZ, 'episodios', id, 'quiz.json'), 'utf8'));
 if (quiz.tipo === 'emoji' || quiz.tipo === 'abc') node('scripts/emojis.mjs', id);
 node('scripts/validar.mjs', id);
-node('scripts/narrar.mjs', id, '--kokoro');
+node('scripts/narrar.mjs', id, ...NARRACAO);
 
 const {totalFrames} = JSON.parse(fs.readFileSync(path.join(RAIZ, 'public', 'ep', id, 'timeline.json'), 'utf8'));
 const nBlocos = Math.ceil(totalFrames / BLOCO);

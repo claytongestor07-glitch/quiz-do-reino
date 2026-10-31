@@ -30,3 +30,6 @@ export function duracaoAudio(arq) {
 }
 
 export const LETRAS = ['A', 'B', 'C'];
+
+// Narração da produção automática: ElevenLabs (voz humana do canal) quando a chave existe; senão Kokoro, grátis e local.
+export const NARRACAO = process.env.ELEVENLABS_API_KEY ? [] : ['--kokoro'];

@@ -32,7 +32,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/preparar
+      # Falas já geradas voltam do cache: rodar de novo não gasta créditos do ElevenLabs
+      - uses: actions/cache@v4
+        with:
+          path: public/ep/*/voz
+          key: voz-${{ github.run_id }}
+          restore-keys: voz-
       - id: plano
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
         run: node scripts/ci.mjs planejar "${{ inputs.episodio }}"
       - if: steps.plano.outputs.id != ''
         uses: actions/upload-artifact@v4

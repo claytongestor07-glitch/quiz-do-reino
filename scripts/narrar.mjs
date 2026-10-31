@@ -17,7 +17,7 @@ const EMOJI = episodio(process.argv[2]).quiz.tipo === 'emoji';
 const ABC = episodio(process.argv[2]).quiz.tipo === 'abc'; // pergunta com alternativas, no visual colorido
 const SPEED = EMOJI || ABC;
 const TEMPO_RESPOSTA = EMOJI ? 6 : ABC ? 7 : 8;
-const MODELO = 'eleven_multilingual_v2';
+const MODELO = 'eleven_v3'; // o mais expressivo: entende marcas como [excited] e soa natural para crianças
 
 const id = process.argv[2];
 const mac = process.argv.includes('--mac');
@@ -107,7 +107,7 @@ async function falar(texto) {
 				const r = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voz}?output_format=mp3_44100_128`, {
 					method: 'POST',
 					headers: {'xi-api-key': process.env.ELEVENLABS_API_KEY, 'Content-Type': 'application/json'},
-					body: JSON.stringify({text: texto, model_id: MODELO, language_code: 'pt', voice_settings: {stability: 0.55, similarity_boost: 0.8, style: 0.35, speed: 0.92}}),
+					body: JSON.stringify({text: `[excited] ${texto}`, model_id: MODELO, language_code: 'pt', voice_settings: {stability: 0.5, similarity_boost: 0.8}}),
 				});
 				if (r.ok) {
 					fs.writeFileSync(tmp, Buffer.from(await r.arrayBuffer()));
