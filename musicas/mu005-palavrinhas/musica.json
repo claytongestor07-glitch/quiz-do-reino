@@ -1,0 +1,122 @@
+{
+  "id": "mu005-palavrinhas",
+  "titulo": "Palavrinhas Mágicas",
+  "roteiro": "davi",
+  "tituloYoutube": "Quiz do Reino - Palavrinhas Mágicas: Por Favor, Obrigado e Desculpa (Música Infantil Cristã)",
+  "estilo": "cheerful brazilian marchinha children's song, brass band, snare drum, catchy kids song, cheerful female singer, kids choir in chorus, 128 bpm, claps, whistles, fun, festive, brazilian portuguese",
+  "duracao": 135,
+  "partes": [
+    {
+      "tipo": "intro",
+      "emojis": [
+        "Sparkles",
+        "Musical notes",
+        "Smiling face with smiling eyes"
+      ],
+      "letra": [
+        "Ê, criançada! Três palavrinhas mágicas!"
+      ]
+    },
+    {
+      "tipo": "verso",
+      "emojis": [
+        "Folded hands",
+        "Cookie",
+        "Smiling face with smiling eyes"
+      ],
+      "letra": [
+        "Quando eu quero um biscoitinho",
+        "eu não grito, falo bem baixinho",
+        "peço com carinho, que beleza",
+        "digo por favor com gentileza"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "PALAVRINHAS MÁGICAS!",
+      "emojis": [
+        "Red heart",
+        "Sparkles",
+        "Clapping hands"
+      ],
+      "letra": [
+        "Por favor, obrigado, desculpa!",
+        "Palavrinhas mágicas, uh, uh!",
+        "Por favor, obrigado, desculpa!",
+        "Jesus ensinou a amar!"
+      ]
+    },
+    {
+      "tipo": "verso",
+      "emojis": [
+        "Wrapped gift",
+        "Hugging face",
+        "Teddy bear"
+      ],
+      "letra": [
+        "Ganhei presente da vovó",
+        "dei um abraço e disse obrigado",
+        "pisei no pé do meu amigo",
+        "pedi desculpa, tudo perdoado"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "POR FAVOR, OBRIGADO!",
+      "emojis": [
+        "Red heart",
+        "Sparkles",
+        "Clapping hands"
+      ],
+      "letra": [
+        "Por favor, obrigado, desculpa!",
+        "Palavrinhas mágicas, uh, uh!",
+        "Por favor, obrigado, desculpa!",
+        "Jesus ensinou a amar!"
+      ]
+    },
+    {
+      "tipo": "ponte",
+      "emojis": [
+        "Clapping hands",
+        "Raising hands",
+        "Waving hand"
+      ],
+      "letra": [
+        "Bate palma no por favor!",
+        "Mãozinha pra cima no obrigado!",
+        "Dá um abraço na desculpa!",
+        "Gira, gira, todo mundo!"
+      ]
+    },
+    {
+      "tipo": "refrao",
+      "frase": "PALAVRINHAS MÁGICAS!",
+      "emojis": [
+        "Red heart",
+        "Party popper",
+        "Clapping hands"
+      ],
+      "letra": [
+        "Por favor, obrigado, desculpa!",
+        "Palavrinhas mágicas, uh, uh!",
+        "Por favor, obrigado, desculpa!",
+        "Jesus ensinou a amar!"
+      ]
+    },
+    {
+      "tipo": "final",
+      "emojis": [
+        "Crown",
+        "Sparkles",
+        "Party popper"
+      ],
+      "letra": [
+        "Obrigado, Jesus! Uhuu!"
+      ]
+    }
+  ],
+  "descricao": "Por favor, obrigado e desculpa: três palavrinhas mágicas que deixam todo mundo feliz! Uma marchinha para cantar, bater palma e aprender boas maneiras com amor.",
+  "licao": "Falar por favor, obrigado e desculpa é um jeito de mostrar o amor de Jesus.",
+  "fonte": "Efésios 4:32"
+}
