@@ -41,7 +41,12 @@ jobs:
           printf '%s' "$YT_TOKEN" > ~/.config/pequenos-sabios/token.json
           chmod 600 ~/.config/pequenos-sabios/*
       - name: Recuperar registros
-        run: node scripts/publicar.mjs recuperar "${{ inputs.episodio }}" --desde="${{ inputs.desde }}" --ate="${{ inputs.ate }}"
+        run: |
+          # O resultado vira anotação da execução (lida também pela API, sem baixar o log)
+          set -o pipefail
+          node scripts/publicar.mjs recuperar "${{ inputs.episodio }}" --desde="${{ inputs.desde }}" --ate="${{ inputs.ate }}" 2>&1 | tee saida.txt \
+            || { echo "::error::$(tail -c 900 saida.txt | tr '\n' ' ')"; exit 1; }
+          echo "::notice::$(tail -c 900 saida.txt | tr '\n' ' ')"
       - name: Tirar a pausa e guardar
         run: |
           git rm -q --ignore-unmatch "episodios/${{ inputs.episodio }}/IGNORAR"
