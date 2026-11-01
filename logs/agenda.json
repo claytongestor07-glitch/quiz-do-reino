@@ -114,5 +114,17 @@
  {
   "quando": "2026-10-31T15:00:00-03:00",
   "item": "ep005-animais-short6"
+ },
+ {
+  "quando": "2026-11-01T15:00:00-03:00",
+  "item": "ep006-pistas-short36"
+ },
+ {
+  "quando": "2026-11-01T19:00:00-03:00",
+  "item": "ep006-pistas-short56"
+ },
+ {
+  "quando": "2026-11-01T21:00:00-03:00",
+  "item": "ep006-pistas-short16"
  }
 ]
