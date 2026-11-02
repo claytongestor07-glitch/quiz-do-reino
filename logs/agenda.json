@@ -126,5 +126,25 @@
  {
   "quando": "2026-11-01T21:00:00-03:00",
   "item": "ep006-pistas-short16"
+ },
+ {
+  "quando": "2026-11-03T09:00:00-03:00",
+  "item": "ep007-sombra"
+ },
+ {
+  "quando": "2026-11-03T10:00:00-03:00",
+  "item": "ep007-sombra-vertical"
+ },
+ {
+  "quando": "2026-11-02T21:00:00-03:00",
+  "item": "ep007-sombra-short17"
+ },
+ {
+  "quando": "2026-11-03T08:00:00-03:00",
+  "item": "ep007-sombra-short37"
+ },
+ {
+  "quando": "2026-11-03T11:00:00-03:00",
+  "item": "ep007-sombra-short57"
  }
 ]
