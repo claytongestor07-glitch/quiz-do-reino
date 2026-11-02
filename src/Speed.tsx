@@ -137,7 +137,7 @@ const Pistas: React.FC<{nomes: string[]; tamanho?: number; atraso?: number; somb
 				const flutua = Math.sin((frame + k * 20) / 14) * tamanho * 0.025;
 				return (
 					<React.Fragment key={k}>
-						{k > 0 && <div style={{...titulo, fontSize: tamanho * 0.55, ...contorno(tamanho * 0.035), opacity: Math.min(1, s * 2), transform: `scale(${s})`}}>+</div>}
+						{k > 0 && !sombra && <div style={{...titulo, fontSize: tamanho * 0.55, ...contorno(tamanho * 0.035), opacity: Math.min(1, s * 2), transform: `scale(${s})`}}>+</div>}
 						<Img src={staticFile(arquivoEmoji(nome))} style={{width: tamanho, height: tamanho, transform: `translateY(${flutua}px) scale(${s}) rotate(${(1 - s) * -25}deg)`, filter: `${sombra ? 'brightness(0) ' : ''}drop-shadow(0 18px 14px rgba(0,0,0,.28))`}} />
 					</React.Fragment>
 				);
@@ -247,8 +247,8 @@ const CenaRevelacao: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 			<FundoCor cor={corDe(i)} />
 			<Laterais texto={marcaDe(tl)} />
 			<Cabecalho n={i + 1} texto={chamadaDe(tl)} />
-			<div style={{position: 'absolute', top: 175, left: 0, right: 0, display: 'flex', justifyContent: 'center'}}>
-				<Pistas nomes={p.pistas} tamanho={110} atraso={-100} />
+			<div style={{position: 'absolute', top: sombraDe(tl) ? 140 : 175, left: 0, right: 0, display: 'flex', justifyContent: 'center'}}>
+				<Pistas nomes={p.pistas} tamanho={sombraDe(tl) ? 160 : 110} atraso={-100} />
 			</div>
 			<div style={{position: 'absolute', top: 300, left: 360, right: 360, height: 470, transform: `scale(${0.6 + s * 0.4})`, opacity: Math.min(1, s * 2),
 				background: 'radial-gradient(circle at 50% 30%, #ffffff, #eef3ff)', borderRadius: 48, border: '10px solid #fff', boxShadow: '0 16px 0 rgba(0,0,0,.18)',
