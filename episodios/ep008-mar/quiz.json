@@ -1,0 +1,325 @@
+{
+	"id": "ep008-mar",
+	"tipo": "emoji",
+	"categoria": "animais",
+	"canal": "Quiz do Reino",
+	"marca": "Reino Animal",
+	"selo": "🐾",
+	"craque": "Craque dos Animais",
+	"tema": "Animais",
+	"fonte": "Curiosidades de animais (texto infantil próprio)",
+	"pergunta": "Que animal é esse?",
+	"titulo": "🐙 Adivinhe o Animal do Mar pelas Pistas! 🌊 | 30 Desafios | Quiz de Animais",
+	"chamada": "ANIMAIS DO MAR",
+	"icones": [
+		"Kite",
+		"Water wave",
+		"Beach with umbrella"
+	],
+	"licao": "O mar é a casa de animais incríveis: cuidar das praias é cuidar deles!",
+	"abertura": "Oi, criançada! Bem-vindos ao Quiz do Reino Animal! Hoje vamos mergulhar no fundo do mar! Junte as pistas e descubra o animal. São trinta desafios. Vamos lá!",
+	"encerramento": "Que mergulho incrível! Quantos animais do mar você acertou? Mais de vinte é nível craque dos animais! Até o próximo quiz!",
+	"faixa": "30 Animais do Mar",
+	"perguntas": [
+		{
+			"pistas": [
+				"Star",
+				"Beach with umbrella",
+				"Raised hand"
+			],
+			"resposta": "Estrela-do-Mar",
+			"explicacao": "Se perder um braço, a estrela-do-mar faz crescer outro!",
+			"referencia": "Mares"
+		},
+		{
+			"pistas": [
+				"Horse face",
+				"Water wave",
+				"Crown"
+			],
+			"resposta": "Cavalo-Marinho",
+			"explicacao": "No cavalo-marinho, é o papai que fica grávido!",
+			"referencia": "Mares"
+		},
+		{
+			"pistas": [
+				"Clown face",
+				"Fish",
+				"Water wave"
+			],
+			"resposta": "Peixe-Palhaço",
+			"explicacao": "O peixe-palhaço mora dentro da anêmona, sem se queimar!",
+			"referencia": "Recifes de coral"
+		},
+		{
+			"pistas": [
+				"Droplet",
+				"High voltage",
+				"Balloon"
+			],
+			"resposta": "Água-Viva",
+			"explicacao": "A água-viva é feita quase só de água!",
+			"referencia": "Mares"
+		},
+		{
+			"pistas": [
+				"Beach with umbrella",
+				"Egg",
+				"Shield"
+			],
+			"resposta": "Tartaruga-Marinha",
+			"explicacao": "A tartaruga-marinha volta para a praia onde nasceu!",
+			"referencia": "Mares e praias"
+		},
+		{
+			"pistas": [
+				"Musical notes",
+				"Water wave",
+				"Microphone"
+			],
+			"resposta": "Baleia-Jubarte",
+			"explicacao": "A baleia-jubarte canta músicas que duram horas!",
+			"referencia": "Oceanos"
+		},
+		{
+			"pistas": [
+				"Water wave",
+				"Trophy",
+				"Speech balloon"
+			],
+			"resposta": "Golfinho",
+			"explicacao": "O golfinho chama os amigos por nomes de assobio!",
+			"referencia": "Mares"
+		},
+		{
+			"pistas": [
+				"Tooth",
+				"Water wave",
+				"Warning"
+			],
+			"resposta": "Tubarão",
+			"explicacao": "O tubarão sente uma gotinha de sangue de muito longe!",
+			"referencia": "Mares"
+		},
+		{
+			"pistas": [
+				"Rocket",
+				"Water wave",
+				"Eyes"
+			],
+			"resposta": "Lula",
+			"explicacao": "A lula nada para trás como um foguete!",
+			"referencia": "Mares"
+		},
+		{
+			"pistas": [
+				"Spiral shell",
+				"White circle",
+				"Gem stone"
+			],
+			"resposta": "Ostra",
+			"explicacao": "A ostra faz pérolas dentro da concha!",
+			"referencia": "Fundo do mar"
+		},
+		{
+			"pistas": [
+				"Scissors",
+				"Beach with umbrella",
+				"Left arrow"
+			],
+			"resposta": "Caranguejo",
+			"explicacao": "O caranguejo anda de lado na areia!",
+			"referencia": "Praias e mangues"
+		},
+		{
+			"pistas": [
+				"Scissors",
+				"Red circle",
+				"Rock"
+			],
+			"resposta": "Lagosta",
+			"explicacao": "A lagosta pode viver mais de cinquenta anos!",
+			"referencia": "Fundo do mar"
+		},
+		{
+			"pistas": [
+				"Balloon",
+				"Warning",
+				"Water wave"
+			],
+			"resposta": "Baiacu",
+			"explicacao": "O baiacu se enche de água e vira uma bola!",
+			"referencia": "Mares"
+		},
+		{
+			"pistas": [
+				"Kite",
+				"Water wave",
+				"Beach with umbrella"
+			],
+			"resposta": "Arraia",
+			"explicacao": "A arraia parece uma pipa nadando no mar!",
+			"referencia": "Mares"
+		},
+		{
+			"pistas": [
+				"Ice",
+				"Soccer ball",
+				"Clapping hands"
+			],
+			"resposta": "Foca",
+			"explicacao": "A foca equilibra bolas no nariz!",
+			"referencia": "Mares gelados"
+		},
+		{
+			"pistas": [
+				"Snowflake",
+				"Necktie",
+				"Water wave"
+			],
+			"resposta": "Pinguim",
+			"explicacao": "O pinguim nada muito rápido debaixo da água!",
+			"referencia": "Antártida"
+		},
+		{
+			"pistas": [
+				"Crossed swords",
+				"Fish",
+				"Water wave"
+			],
+			"resposta": "Peixe-Espada",
+			"explicacao": "O peixe-espada é um dos peixes mais rápidos do mar!",
+			"referencia": "Oceanos"
+		},
+		{
+			"pistas": [
+				"Carpentry saw",
+				"Fish",
+				"Water wave"
+			],
+			"resposta": "Peixe-Serra",
+			"explicacao": "O peixe-serra tem um nariz que parece uma serra!",
+			"referencia": "Mares quentes"
+		},
+		{
+			"pistas": [
+				"Chestnut",
+				"Water wave",
+				"Rock"
+			],
+			"resposta": "Ouriço-do-Mar",
+			"explicacao": "O ouriço-do-mar anda com centenas de pezinhos!",
+			"referencia": "Fundo do mar"
+		},
+		{
+			"pistas": [
+				"Rainbow",
+				"House",
+				"Water wave"
+			],
+			"resposta": "Coral",
+			"explicacao": "O coral parece pedra, mas é um animal!",
+			"referencia": "Mares quentes"
+		},
+		{
+			"pistas": [
+				"Crown",
+				"Loudspeaker",
+				"Water wave"
+			],
+			"resposta": "Leão-Marinho",
+			"explicacao": "O leão-marinho faz um barulho alto parecido com latido!",
+			"referencia": "Litorais"
+		},
+		{
+			"pistas": [
+				"Tooth",
+				"Ice",
+				"Bubbles"
+			],
+			"resposta": "Morsa",
+			"explicacao": "A morsa usa os dentões para subir no gelo!",
+			"referencia": "Polo Norte"
+		},
+		{
+			"pistas": [
+				"Unicorn",
+				"Water wave",
+				"Ice"
+			],
+			"resposta": "Narval",
+			"explicacao": "O narval é chamado de unicórnio do mar!",
+			"referencia": "Mares gelados"
+		},
+		{
+			"pistas": [
+				"Airplane",
+				"Fish",
+				"Water wave"
+			],
+			"resposta": "Peixe-Voador",
+			"explicacao": "O peixe-voador pula da água e plana no ar!",
+			"referencia": "Oceanos"
+		},
+		{
+			"pistas": [
+				"Snake",
+				"Rock",
+				"Water wave"
+			],
+			"resposta": "Moreia",
+			"explicacao": "A moreia parece uma cobra e mora nas tocas das pedras!",
+			"referencia": "Recifes"
+		},
+		{
+			"pistas": [
+				"Flashlight",
+				"Crescent moon",
+				"Water wave"
+			],
+			"resposta": "Peixe-Lanterna",
+			"explicacao": "O peixe-lanterna tem uma luzinha para enxergar no fundo escuro!",
+			"referencia": "Fundo do mar"
+		},
+		{
+			"pistas": [
+				"Brain",
+				"Black circle",
+				"Open hands"
+			],
+			"resposta": "Polvo",
+			"explicacao": "O polvo é muito esperto e solta tinta para fugir!",
+			"referencia": "Mares"
+		},
+		{
+			"pistas": [
+				"Blue heart",
+				"Straight ruler",
+				"Water wave"
+			],
+			"resposta": "Baleia-Azul",
+			"explicacao": "A baleia-azul é o maior animal que já existiu!",
+			"referencia": "Oceanos"
+		},
+		{
+			"pistas": [
+				"Cow face",
+				"Water wave",
+				"Leafy green"
+			],
+			"resposta": "Peixe-Boi",
+			"explicacao": "O peixe-boi come plantas e é bem calminho!",
+			"referencia": "Rios e mares"
+		},
+		{
+			"pistas": [
+				"Black heart",
+				"White circle",
+				"Water wave"
+			],
+			"resposta": "Orca",
+			"explicacao": "A orca vive em família e caça em grupo!",
+			"referencia": "Oceanos"
+		}
+	]
+}

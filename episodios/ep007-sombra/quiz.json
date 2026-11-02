@@ -1,0 +1,505 @@
+{
+	"id": "ep007-sombra",
+	"tipo": "emoji",
+	"categoria": "animais",
+	"canal": "Quiz do Reino",
+	"marca": "Reino Animal",
+	"selo": "🐾",
+	"craque": "Craque dos Animais",
+	"tema": "Animais",
+	"fonte": "Curiosidades de animais (texto infantil próprio)",
+	"pergunta": "De quem é essa sombra?",
+	"sombra": true,
+	"titulo": "🐘 Adivinhe o Animal pela Sombra! 🔍 | 60 Desafios | Quiz de Animais para Crianças",
+	"chamada": "DE QUEM É A SOMBRA?",
+	"icones": [
+		"Elephant",
+		"Giraffe"
+	],
+	"licao": "Cada animal tem um formato único: olhando com atenção, a gente descobre tudo!",
+	"abertura": "Oi, criançada! Bem-vindos ao Quiz do Reino Animal! Hoje o desafio é pela sombra! Olhe bem o formato e descubra que animal é esse. São sessenta sombras. Vamos lá!",
+	"encerramento": "Uau, que olhos espertos! Quantas sombras você acertou? Mais de quarenta é nível craque dos animais! Desafie a família e até o próximo quiz!",
+	"faixa": "60 Sombras",
+	"perguntas": [
+		{
+			"pistas": [
+				"Elephant"
+			],
+			"resposta": "Elefante",
+			"explicacao": "O elefante é o maior animal da terra e tem uma memória incrível!",
+			"referencia": "Savanas e matas"
+		},
+		{
+			"pistas": [
+				"Eagle"
+			],
+			"resposta": "Águia",
+			"explicacao": "A águia faz o ninho no alto das montanhas!",
+			"referencia": "Montanhas"
+		},
+		{
+			"pistas": [
+				"Kangaroo"
+			],
+			"resposta": "Canguru",
+			"explicacao": "O canguru não consegue andar para trás, só pular para a frente!",
+			"referencia": "Austrália"
+		},
+		{
+			"pistas": [
+				"Lady beetle"
+			],
+			"resposta": "Joaninha",
+			"explicacao": "A joaninha come pulgões e protege as plantas!",
+			"referencia": "Jardins"
+		},
+		{
+			"pistas": [
+				"Flamingo"
+			],
+			"resposta": "Flamingo",
+			"explicacao": "O flamingo dorme em uma perna só!",
+			"referencia": "Lagoas"
+		},
+		{
+			"pistas": [
+				"Horse"
+			],
+			"resposta": "Cavalo",
+			"explicacao": "O cavalo consegue dormir em pé!",
+			"referencia": "Fazendas"
+		},
+		{
+			"pistas": [
+				"Owl"
+			],
+			"resposta": "Coruja",
+			"explicacao": "A coruja voa sem fazer nenhum barulhinho!",
+			"referencia": "Matas"
+		},
+		{
+			"pistas": [
+				"Leopard"
+			],
+			"resposta": "Leopardo",
+			"explicacao": "O leopardo sobe nas árvores carregando a comida!",
+			"referencia": "Savanas"
+		},
+		{
+			"pistas": [
+				"Lobster"
+			],
+			"resposta": "Lagosta",
+			"explicacao": "A lagosta tem os dentes dentro do estômago!",
+			"referencia": "Fundo do mar"
+		},
+		{
+			"pistas": [
+				"Goat"
+			],
+			"resposta": "Cabra",
+			"explicacao": "A cabra escala montanhas bem íngremes!",
+			"referencia": "Montanhas"
+		},
+		{
+			"pistas": [
+				"Dolphin"
+			],
+			"resposta": "Golfinho",
+			"explicacao": "O golfinho dorme com metade do cérebro de cada vez!",
+			"referencia": "Mares"
+		},
+		{
+			"pistas": [
+				"Poodle"
+			],
+			"resposta": "Poodle",
+			"explicacao": "O poodle é um cachorro muito esperto e ótimo nadador!",
+			"referencia": "Casas"
+		},
+		{
+			"pistas": [
+				"Crocodile"
+			],
+			"resposta": "Crocodilo",
+			"explicacao": "O crocodilo engole pedrinhas para mergulhar melhor!",
+			"referencia": "Rios"
+		},
+		{
+			"pistas": [
+				"Octopus"
+			],
+			"resposta": "Polvo",
+			"explicacao": "O polvo tem três corações e sangue azul!",
+			"referencia": "Mares"
+		},
+		{
+			"pistas": [
+				"Orangutan"
+			],
+			"resposta": "Orangotango",
+			"explicacao": "O orangotango faz uma caminha de folhas toda noite!",
+			"referencia": "Florestas da Ásia"
+		},
+		{
+			"pistas": [
+				"T-rex"
+			],
+			"resposta": "Tiranossauro Rex",
+			"explicacao": "O tiranossauro tinha bracinhos curtos, mas uma mordida fortíssima!",
+			"referencia": "Viveu há muito tempo"
+		},
+		{
+			"pistas": [
+				"Zebra"
+			],
+			"resposta": "Zebra",
+			"explicacao": "A pele da zebra é preta por baixo das listras!",
+			"referencia": "Savanas"
+		},
+		{
+			"pistas": [
+				"Spouting whale"
+			],
+			"resposta": "Baleia",
+			"explicacao": "A baleia respira pelo buraquinho no alto da cabeça!",
+			"referencia": "Oceanos"
+		},
+		{
+			"pistas": [
+				"Seal"
+			],
+			"resposta": "Foca",
+			"explicacao": "A foca consegue ficar muito tempo debaixo da água!",
+			"referencia": "Mares gelados"
+		},
+		{
+			"pistas": [
+				"Shark"
+			],
+			"resposta": "Tubarão",
+			"explicacao": "O tubarão já existia antes dos dinossauros!",
+			"referencia": "Mares"
+		},
+		{
+			"pistas": [
+				"Deer"
+			],
+			"resposta": "Veado",
+			"explicacao": "Os chifres do veado caem e crescem de novo todo ano!",
+			"referencia": "Florestas"
+		},
+		{
+			"pistas": [
+				"Spider"
+			],
+			"resposta": "Aranha",
+			"explicacao": "A aranha tem oito pernas e muitos olhinhos!",
+			"referencia": "Casas e matas"
+		},
+		{
+			"pistas": [
+				"Mouse"
+			],
+			"resposta": "Rato",
+			"explicacao": "O rato é bem pequenininho e cabe em buracos minúsculos!",
+			"referencia": "Cidades e campos"
+		},
+		{
+			"pistas": [
+				"Swan"
+			],
+			"resposta": "Cisne",
+			"explicacao": "O filhote do cisne nasce cinzinha e depois fica branco!",
+			"referencia": "Lagos"
+		},
+		{
+			"pistas": [
+				"Sloth"
+			],
+			"resposta": "Preguiça",
+			"explicacao": "A preguiça desce da árvore só uma vez por semana!",
+			"referencia": "Amazônia"
+		},
+		{
+			"pistas": [
+				"Snail"
+			],
+			"resposta": "Caracol",
+			"explicacao": "O caracol tem milhares de dentinhos minúsculos!",
+			"referencia": "Jardins"
+		},
+		{
+			"pistas": [
+				"Otter"
+			],
+			"resposta": "Lontra",
+			"explicacao": "A lontra dorme de mãos dadas para não se perder!",
+			"referencia": "Rios e mares"
+		},
+		{
+			"pistas": [
+				"Crab"
+			],
+			"resposta": "Caranguejo",
+			"explicacao": "O caranguejo anda de lado!",
+			"referencia": "Praias e mangues"
+		},
+		{
+			"pistas": [
+				"Skunk"
+			],
+			"resposta": "Gambá",
+			"explicacao": "O gambá solta um cheiro bem forte quando se assusta!",
+			"referencia": "Matas"
+		},
+		{
+			"pistas": [
+				"Scorpion"
+			],
+			"resposta": "Escorpião",
+			"explicacao": "O escorpião brilha no escuro com luz especial!",
+			"referencia": "Desertos e casas"
+		},
+		{
+			"pistas": [
+				"Pig"
+			],
+			"resposta": "Porco",
+			"explicacao": "O porco é muito inteligente e aprende truques!",
+			"referencia": "Fazendas"
+		},
+		{
+			"pistas": [
+				"Llama"
+			],
+			"resposta": "Lhama",
+			"explicacao": "A lhama cospe quando fica brava!",
+			"referencia": "Montanhas dos Andes"
+		},
+		{
+			"pistas": [
+				"Tiger"
+			],
+			"resposta": "Tigre",
+			"explicacao": "Cada tigre tem listras diferentes!",
+			"referencia": "Florestas da Ásia"
+		},
+		{
+			"pistas": [
+				"Rhinoceros"
+			],
+			"resposta": "Rinoceronte",
+			"explicacao": "O chifre do rinoceronte é feito do mesmo material da nossa unha!",
+			"referencia": "Savanas"
+		},
+		{
+			"pistas": [
+				"Ram"
+			],
+			"resposta": "Carneiro",
+			"explicacao": "Os chifres do carneiro crescem enrolados!",
+			"referencia": "Fazendas"
+		},
+		{
+			"pistas": [
+				"Ant"
+			],
+			"resposta": "Formiga",
+			"explicacao": "A formiga conversa com as amigas pelo cheiro!",
+			"referencia": "Jardins"
+		},
+		{
+			"pistas": [
+				"Rabbit"
+			],
+			"resposta": "Coelho",
+			"explicacao": "O coelho consegue virar as orelhas para escutar de todos os lados!",
+			"referencia": "Campos e tocas"
+		},
+		{
+			"pistas": [
+				"Lizard"
+			],
+			"resposta": "Lagarto",
+			"explicacao": "Alguns lagartos soltam o rabo para fugir e ele cresce de novo!",
+			"referencia": "Muros e matas"
+		},
+		{
+			"pistas": [
+				"Penguin"
+			],
+			"resposta": "Pinguim",
+			"explicacao": "O pinguim desliza de barriga no gelo como num escorregador!",
+			"referencia": "Antártida"
+		},
+		{
+			"pistas": [
+				"Hedgehog"
+			],
+			"resposta": "Ouriço",
+			"explicacao": "O ouriço vira uma bolinha de espinhos para se proteger!",
+			"referencia": "Bosques"
+		},
+		{
+			"pistas": [
+				"Turtle"
+			],
+			"resposta": "Tartaruga",
+			"explicacao": "Algumas tartarugas vivem mais de cem anos!",
+			"referencia": "Rios e mares"
+		},
+		{
+			"pistas": [
+				"Mammoth"
+			],
+			"resposta": "Mamute",
+			"explicacao": "O mamute era um elefante peludo da Era do Gelo!",
+			"referencia": "Viveu há muito tempo"
+		},
+		{
+			"pistas": [
+				"Camel"
+			],
+			"resposta": "Camelo",
+			"explicacao": "A corcova do camelo guarda gordura, e não água!",
+			"referencia": "Desertos"
+		},
+		{
+			"pistas": [
+				"Rooster"
+			],
+			"resposta": "Galo",
+			"explicacao": "O galo canta para avisar que o dia começou!",
+			"referencia": "Fazendas"
+		},
+		{
+			"pistas": [
+				"Hippopotamus"
+			],
+			"resposta": "Hipopótamo",
+			"explicacao": "O suor do hipopótamo é vermelho e protege a pele do sol!",
+			"referencia": "Rios da África"
+		},
+		{
+			"pistas": [
+				"Bison"
+			],
+			"resposta": "Bisão",
+			"explicacao": "O bisão é o maior animal da América do Norte!",
+			"referencia": "Pradarias"
+		},
+		{
+			"pistas": [
+				"Sauropod"
+			],
+			"resposta": "Dinossauro Pescoçudo",
+			"explicacao": "Esse dinossauro tinha o pescoço mais comprido que um ônibus!",
+			"referencia": "Viveu há muito tempo"
+		},
+		{
+			"pistas": [
+				"Cat"
+			],
+			"resposta": "Gato",
+			"explicacao": "O gato passa boa parte do dia dormindo!",
+			"referencia": "Casas"
+		},
+		{
+			"pistas": [
+				"Honeybee"
+			],
+			"resposta": "Abelha",
+			"explicacao": "A abelha dança para mostrar às amigas onde estão as flores!",
+			"referencia": "Jardins"
+		},
+		{
+			"pistas": [
+				"Giraffe"
+			],
+			"resposta": "Girafa",
+			"explicacao": "A língua da girafa é roxa e bem comprida!",
+			"referencia": "Savanas"
+		},
+		{
+			"pistas": [
+				"Frog"
+			],
+			"resposta": "Sapo",
+			"explicacao": "O sapo engole com a ajuda dos olhos!",
+			"referencia": "Lagos e brejos"
+		},
+		{
+			"pistas": [
+				"Butterfly"
+			],
+			"resposta": "Borboleta",
+			"explicacao": "A borboleta sente o gosto das coisas com os pés!",
+			"referencia": "Jardins"
+		},
+		{
+			"pistas": [
+				"Beaver"
+			],
+			"resposta": "Castor",
+			"explicacao": "Os dentes do castor são laranja!",
+			"referencia": "Rios"
+		},
+		{
+			"pistas": [
+				"Peacock"
+			],
+			"resposta": "Pavão",
+			"explicacao": "Só o pavão macho tem a cauda colorida!",
+			"referencia": "Jardins e matas"
+		},
+		{
+			"pistas": [
+				"Chipmunk"
+			],
+			"resposta": "Esquilo",
+			"explicacao": "O esquilo esconde castanhas e às vezes esquece onde guardou!",
+			"referencia": "Bosques"
+		},
+		{
+			"pistas": [
+				"Bat"
+			],
+			"resposta": "Morcego",
+			"explicacao": "O morcego é o único mamífero que voa de verdade!",
+			"referencia": "Cavernas"
+		},
+		{
+			"pistas": [
+				"Duck"
+			],
+			"resposta": "Pato",
+			"explicacao": "O pato tem penas à prova d'água!",
+			"referencia": "Lagos"
+		},
+		{
+			"pistas": [
+				"Parrot"
+			],
+			"resposta": "Papagaio",
+			"explicacao": "O papagaio usa o pé como mão para segurar a comida!",
+			"referencia": "Florestas"
+		},
+		{
+			"pistas": [
+				"Cow"
+			],
+			"resposta": "Vaca",
+			"explicacao": "A vaca tem quatro partes na barriga!",
+			"referencia": "Fazendas"
+		},
+		{
+			"pistas": [
+				"Gorilla"
+			],
+			"resposta": "Gorila",
+			"explicacao": "O gorila é muito forte, mas come quase só plantas!",
+			"referencia": "Florestas da África"
+		}
+	]
+}

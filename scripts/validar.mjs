@@ -24,7 +24,8 @@ export function validar(id) {
 	quiz.perguntas?.forEach((p, i) => {
 		const q = `P${i + 1}`;
 		if (emoji) {
-			if (!Array.isArray(p.pistas) || p.pistas.length < 2 || p.pistas.length > 3) erros.push(`${q}: precisa de 2 ou 3 pistas`);
+			const minimo = quiz.sombra ? 1 : 2; // quiz da sombra: um emoji só, o próprio animal em silhueta
+			if (!Array.isArray(p.pistas) || p.pistas.length < minimo || p.pistas.length > 3) erros.push(`${q}: precisa de ${minimo} a 3 pistas`);
 			p.pistas?.forEach((e) => !fs.existsSync(path.join(RAIZ, 'public', 'emoji', arquivoEmoji(e))) && erros.push(`${q}: emoji "${e}" não baixado (rode scripts/emojis.mjs)`));
 			if (!p.resposta?.trim() || p.resposta.length > 28) erros.push(`${q}: resposta vazia ou longa demais (máx. 28)`);
 			const chave = `${p.pistas?.join('+')}`;
