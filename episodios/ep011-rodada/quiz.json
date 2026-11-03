@@ -1,0 +1,300 @@
+{
+	"titulo": "Qual Animal Faz Teia? 🕷️ Quiz de Animais para Crianças | 20 Perguntas A, B ou C",
+	"tema": "Quiz de Animais",
+	"tipo": "abc",
+	"categoria": "animais",
+	"formato": "rodada",
+	"chamada": "Quiz de Animais",
+	"marca": "Quiz do Reino",
+	"selo": "🐾",
+	"craque": "Craque dos Animais",
+	"icones": [
+		"Tiger",
+		"Koala",
+		"Dolphin"
+	],
+	"descricao": "Qual animal faz teia? Qual uiva para chamar o bando? Qual tem várias fileiras de dentes? São 20 perguntas de animais com alternativas A, B e C e 5 segundos para responder. Um quiz divertido para crianças de 5 a 9 anos!",
+	"encerramento": "Obrigado por jogar com a gente! Até o próximo quiz!",
+	"perguntas": [
+		{
+			"pergunta": "Qual destes animais faz teia?",
+			"alternativas": [
+				"Abelha",
+				"Aranha",
+				"Formiga"
+			],
+			"correta": 1,
+			"imagens": [
+				"Honeybee",
+				"Spider",
+				"Ant"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais é um gato grande com listras laranja e pretas?",
+			"alternativas": [
+				"Tigre",
+				"Zebra",
+				"Leão"
+			],
+			"correta": 0,
+			"imagens": [
+				"Tiger",
+				"Zebra",
+				"Lion"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais come folhas de eucalipto?",
+			"alternativas": [
+				"Leão",
+				"Tubarão",
+				"Coala"
+			],
+			"correta": 2,
+			"imagens": [
+				"Lion",
+				"Shark",
+				"Koala"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais relincha?",
+			"alternativas": [
+				"Cachorro",
+				"Cavalo",
+				"Gato"
+			],
+			"correta": 1,
+			"imagens": [
+				"Dog",
+				"Horse",
+				"Cat"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais é vermelho com bolinhas pretas?",
+			"alternativas": [
+				"Joaninha",
+				"Abelha",
+				"Mosca"
+			],
+			"correta": 0,
+			"imagens": [
+				"Lady beetle",
+				"Honeybee",
+				"Fly"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais não tem patas?",
+			"alternativas": [
+				"Lagartixa",
+				"Sapo",
+				"Cobra"
+			],
+			"correta": 2,
+			"imagens": [
+				"Lizard",
+				"Frog",
+				"Snake"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais vive numa colmeia?",
+			"alternativas": [
+				"Borboleta",
+				"Abelha",
+				"Formiga"
+			],
+			"correta": 1,
+			"imagens": [
+				"Butterfly",
+				"Honeybee",
+				"Ant"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais faz \"glu-glu\"?",
+			"alternativas": [
+				"Galo",
+				"Pato",
+				"Peru"
+			],
+			"correta": 2,
+			"imagens": [
+				"Rooster",
+				"Duck",
+				"Turkey"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais uiva para chamar o bando?",
+			"alternativas": [
+				"Lobo",
+				"Gato",
+				"Porco"
+			],
+			"correta": 0,
+			"imagens": [
+				"Wolf",
+				"Cat",
+				"Pig"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais é uma ave que enxerga muito longe lá do alto?",
+			"alternativas": [
+				"Galinha",
+				"Águia",
+				"Pato"
+			],
+			"correta": 1,
+			"imagens": [
+				"Chicken",
+				"Eagle",
+				"Duck"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais tem várias fileiras de dentes?",
+			"alternativas": [
+				"Cavalo",
+				"Coelho",
+				"Tubarão"
+			],
+			"correta": 2,
+			"imagens": [
+				"Horse",
+				"Rabbit",
+				"Shark"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais faz \"cuí-cuí\"?",
+			"alternativas": [
+				"Rato",
+				"Gato",
+				"Cachorro"
+			],
+			"correta": 0,
+			"imagens": [
+				"Mouse",
+				"Cat",
+				"Dog"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais pode perder o rabo e nascer outro?",
+			"alternativas": [
+				"Gato",
+				"Lagartixa",
+				"Cachorro"
+			],
+			"correta": 1,
+			"imagens": [
+				"Cat",
+				"Lizard",
+				"Dog"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais respira por um buraco no alto da cabeça?",
+			"alternativas": [
+				"Peixe",
+				"Polvo",
+				"Golfinho"
+			],
+			"correta": 2,
+			"imagens": [
+				"Fish",
+				"Octopus",
+				"Dolphin"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais passa o dia dentro do rio para se refrescar?",
+			"alternativas": [
+				"Hipopótamo",
+				"Girafa",
+				"Zebra"
+			],
+			"correta": 0,
+			"imagens": [
+				"Hippopotamus",
+				"Giraffe",
+				"Zebra"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais dorme quase o inverno inteiro?",
+			"alternativas": [
+				"Galinha",
+				"Cavalo",
+				"Urso"
+			],
+			"correta": 2,
+			"imagens": [
+				"Chicken",
+				"Horse",
+				"Bear"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais carrega coisas mais pesadas que o próprio corpo?",
+			"alternativas": [
+				"Minhoca",
+				"Formiga",
+				"Caracol"
+			],
+			"correta": 1,
+			"imagens": [
+				"Worm",
+				"Ant",
+				"Snail"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais faz \"méé\" e tem barbicha?",
+			"alternativas": [
+				"Cabra",
+				"Porco",
+				"Vaca"
+			],
+			"correta": 0,
+			"imagens": [
+				"Goat",
+				"Pig",
+				"Cow"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais é amarelinho e faz \"piu-piu\"?",
+			"alternativas": [
+				"Rato",
+				"Sapo",
+				"Pintinho"
+			],
+			"correta": 2,
+			"imagens": [
+				"Mouse",
+				"Frog",
+				"Baby chick"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais tem um ferrão no rabo?",
+			"alternativas": [
+				"Borboleta",
+				"Escorpião",
+				"Minhoca"
+			],
+			"correta": 1,
+			"imagens": [
+				"Butterfly",
+				"Scorpion",
+				"Worm"
+			]
+		}
+	]
+}

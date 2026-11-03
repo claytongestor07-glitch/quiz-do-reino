@@ -1,0 +1,300 @@
+{
+	"titulo": "Qual Animal Faz Miau? 🐱 Quiz de Animais para Crianças | 20 Perguntas A, B ou C",
+	"tema": "Quiz de Animais",
+	"tipo": "abc",
+	"categoria": "animais",
+	"formato": "rodada",
+	"chamada": "Quiz de Animais",
+	"marca": "Quiz do Reino",
+	"selo": "🐾",
+	"craque": "Craque dos Animais",
+	"icones": [
+		"Cat",
+		"Polar bear",
+		"Peacock"
+	],
+	"descricao": "Qual animal faz miau? Qual anda de lado? Qual constrói represas no rio? São 20 perguntas de animais com alternativas A, B e C e 5 segundos para responder. Um quiz divertido para crianças de 5 a 9 anos!",
+	"encerramento": "Obrigado por jogar com a gente! Até o próximo quiz!",
+	"perguntas": [
+		{
+			"pergunta": "Qual destes animais faz \"miau\"?",
+			"alternativas": [
+				"Gato",
+				"Vaca",
+				"Pato"
+			],
+			"correta": 0,
+			"imagens": [
+				"Cat",
+				"Cow",
+				"Duck"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais tem listras pretas e brancas?",
+			"alternativas": [
+				"Cavalo",
+				"Zebra",
+				"Burro"
+			],
+			"correta": 1,
+			"imagens": [
+				"Horse",
+				"Zebra",
+				"Donkey"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais nasce de um ovo?",
+			"alternativas": [
+				"Vaca",
+				"Porco",
+				"Galinha"
+			],
+			"correta": 2,
+			"imagens": [
+				"Cow",
+				"Pig",
+				"Chicken"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais vive no gelo do Polo Norte?",
+			"alternativas": [
+				"Leão",
+				"Urso-polar",
+				"Macaco"
+			],
+			"correta": 1,
+			"imagens": [
+				"Lion",
+				"Polar bear",
+				"Monkey"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais pula e coaxa?",
+			"alternativas": [
+				"Coelho",
+				"Galo",
+				"Sapo"
+			],
+			"correta": 2,
+			"imagens": [
+				"Rabbit",
+				"Rooster",
+				"Frog"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais solta tinta para fugir?",
+			"alternativas": [
+				"Polvo",
+				"Peixe",
+				"Tartaruga"
+			],
+			"correta": 0,
+			"imagens": [
+				"Octopus",
+				"Fish",
+				"Turtle"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais abre a cauda colorida como um leque?",
+			"alternativas": [
+				"Galinha",
+				"Pavão",
+				"Pato"
+			],
+			"correta": 1,
+			"imagens": [
+				"Chicken",
+				"Peacock",
+				"Duck"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais tem chifre no nariz?",
+			"alternativas": [
+				"Hipopótamo",
+				"Elefante",
+				"Rinoceronte"
+			],
+			"correta": 2,
+			"imagens": [
+				"Hippopotamus",
+				"Elephant",
+				"Rhinoceros"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais faz \"oinc-oinc\"?",
+			"alternativas": [
+				"Porco",
+				"Ovelha",
+				"Cabra"
+			],
+			"correta": 0,
+			"imagens": [
+				"Pig",
+				"Ewe",
+				"Goat"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais faz \"béé\"?",
+			"alternativas": [
+				"Cavalo",
+				"Vaca",
+				"Ovelha"
+			],
+			"correta": 2,
+			"imagens": [
+				"Horse",
+				"Cow",
+				"Ewe"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais anda de lado?",
+			"alternativas": [
+				"Caranguejo",
+				"Golfinho",
+				"Tubarão"
+			],
+			"correta": 0,
+			"imagens": [
+				"Crab",
+				"Dolphin",
+				"Shark"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais consegue imitar a nossa voz?",
+			"alternativas": [
+				"Pato",
+				"Papagaio",
+				"Pombo"
+			],
+			"correta": 1,
+			"imagens": [
+				"Duck",
+				"Parrot",
+				"Dove"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais tem orelhas compridas e vive numa toca?",
+			"alternativas": [
+				"Cavalo",
+				"Urso",
+				"Coelho"
+			],
+			"correta": 2,
+			"imagens": [
+				"Horse",
+				"Bear",
+				"Rabbit"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais faz \"quá-quá\"?",
+			"alternativas": [
+				"Gato",
+				"Pato",
+				"Galo"
+			],
+			"correta": 1,
+			"imagens": [
+				"Cat",
+				"Duck",
+				"Rooster"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais fica pendurado nas árvores e é bem lento?",
+			"alternativas": [
+				"Pinguim",
+				"Raposa",
+				"Bicho-preguiça"
+			],
+			"correta": 2,
+			"imagens": [
+				"Penguin",
+				"Fox",
+				"Sloth"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais constrói represas no rio?",
+			"alternativas": [
+				"Castor",
+				"Gato",
+				"Galinha"
+			],
+			"correta": 0,
+			"imagens": [
+				"Beaver",
+				"Cat",
+				"Chicken"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais sobe em árvores e come banana?",
+			"alternativas": [
+				"Vaca",
+				"Macaco",
+				"Peixe"
+			],
+			"correta": 1,
+			"imagens": [
+				"Cow",
+				"Monkey",
+				"Fish"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais tem nadadeiras e bigodes?",
+			"alternativas": [
+				"Cavalo",
+				"Galinha",
+				"Foca"
+			],
+			"correta": 2,
+			"imagens": [
+				"Horse",
+				"Chicken",
+				"Seal"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais carrega uma conchinha nas costas e deixa um rastro de baba?",
+			"alternativas": [
+				"Formiga",
+				"Caracol",
+				"Joaninha"
+			],
+			"correta": 1,
+			"imagens": [
+				"Ant",
+				"Snail",
+				"Lady beetle"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais voa de flor em flor e tem asas coloridas?",
+			"alternativas": [
+				"Borboleta",
+				"Aranha",
+				"Minhoca"
+			],
+			"correta": 0,
+			"imagens": [
+				"Butterfly",
+				"Spider",
+				"Worm"
+			]
+		}
+	]
+}
