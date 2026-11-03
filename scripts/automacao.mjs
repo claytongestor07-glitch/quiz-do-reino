@@ -119,11 +119,12 @@ for (const [cmd, arg] of [['ffmpeg', '-version'], ['ffprobe', '-version']]) {
 	}
 }
 
-const episodios = fs.readdirSync(path.join(RAIZ, 'episodios')).filter((e) => existe('episodios', e, 'quiz.json') && !existe('episodios', e, 'IGNORAR') && ativo(e)).sort()
+// --episodio=<id>: só esse (no GitHub Actions cada execução cuida de um episódio já renderizado em paralelo).
+// Pedido pelo nome, vale mesmo com IGNORAR (prévia manual de um episódio pausado), como no ci.mjs
+const so = process.argv.find((a) => a.startsWith('--episodio='))?.split('=')[1];
+const episodios = fs.readdirSync(path.join(RAIZ, 'episodios')).filter((e) => existe('episodios', e, 'quiz.json') && (e === so || !existe('episodios', e, 'IGNORAR')) && ativo(e)).sort()
 	// Episódios inéditos primeiro: versões extras de um já publicado (ex.: vertical) não atrasam os novos
 	.sort((a, b) => existe('episodios', a, 'publicado.json') - existe('episodios', b, 'publicado.json'));
-// --episodio=<id>: só esse (no GitHub Actions cada execução cuida de um episódio já renderizado em paralelo)
-const so = process.argv.find((a) => a.startsWith('--episodio='))?.split('=')[1];
 let falhas = 0;
 for (const id of episodios.filter((e) => !so || e === so)) {
 	if (existe('episodios', id, 'publicado.json') && (!VERTICAL || existe('episodios', id, 'publicado-vertical.json')) && fs.readdirSync(path.join(RAIZ, 'episodios', id)).filter((f) => /^publicado-short\d+\.json$/.test(f)).length >= SHORTS_POR_EPISODIO) continue;
