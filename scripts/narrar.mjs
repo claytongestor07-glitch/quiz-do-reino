@@ -19,7 +19,9 @@ const SPEED = EMOJI || ABC;
 // Rodada (quiz de animais, regra do senhor em 11/2026): pergunta, alternativas, 5 s, resposta certa e mais nada
 const RODADA = episodio(process.argv[2]).quiz.formato === 'rodada';
 const TEMPO_RESPOSTA = RODADA ? 5 : EMOJI ? 6 : ABC ? 7 : 8;
-const VINHETA = {video: 'abertura/kiko.mp4', audio: 'abertura/kiko.wav'}; // abertura do Kiko em todo episódio de rodada
+const VINHETA = {video: 'abertura/kiko.mp4', audio: 'abertura/kiko.wav'};
+// O Kiko abre todo episódio de animais, em qualquer formato (senhor, 03/11/2026: nenhum vídeo sai sem a raposa no início)
+const KIKO = RODADA || episodio(process.argv[2]).quiz.categoria === 'animais';
 // Ganchos curtos com o Kiko para prender a criança até o fim (senhor, 03/11/2026). Variam por episódio.
 // A chamada de curtir e seguir fala com o adulto: os vídeos são "conteúdo para crianças" no YouTube.
 const GANCHOS = {
@@ -180,10 +182,13 @@ const adicionar = (cena, segundos) => {
 	inicio += f(segundos);
 };
 
-if (RODADA) {
-	// Vinheta do Kiko e direto para a primeira pergunta; o áudio da vinheta entra na mixagem como uma fala (abaixa a trilha)
+if (KIKO) {
+	// Vinheta do Kiko; o áudio dela entra na mixagem como uma fala (abaixa a trilha)
 	const seg = duracaoAudio(path.join(RAIZ, 'public', VINHETA.audio));
 	adicionar({tipo: 'video', video: VINHETA.video, audio: VINHETA.audio, segundos: seg, atrasoAudio: 0}, seg);
+}
+if (RODADA) {
+	// Na rodada, da vinheta direto para a primeira pergunta
 	const g = await falar(gancho('inicio'));
 	adicionar({tipo: 'gancho', texto: gancho('inicio'), ...g, atrasoAudio: f(0.2)}, 0.2 + g.segundos + 0.4);
 } else {
