@@ -30,7 +30,8 @@ export const COR = {
 export const LETRAS = ['A', 'B', 'C'];
 
 export type Cena = {
-	tipo: 'abertura' | 'video' | 'numero' | 'pergunta' | 'cronometro' | 'revelacao' | 'encerramento';
+	tipo: 'abertura' | 'video' | 'gancho' | 'chamada' | 'numero' | 'pergunta' | 'cronometro' | 'revelacao' | 'encerramento';
+	texto?: string; // gancho/chamada: frase do Kiko na tela
 	video?: string; // cena 'video': arquivo em public/ (vinheta de abertura)
 	inicio: number;
 	duracao: number;

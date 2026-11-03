@@ -3,7 +3,7 @@
 // O mesmo visual serve ao formato "abc" (pergunta com alternativas A, B, C) e aos Shorts verticais.
 // Formato "rodada" (quiz de animais, 11/2026): abertura em vídeo, alternativas com imagem, sem explicação na revelação.
 import React from 'react';
-import {AbsoluteFill, Img, OffthreadVideo, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig, Sequence} from 'remotion';
+import {AbsoluteFill, Img, Loop, OffthreadVideo, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig, Sequence} from 'remotion';
 import {FONTE, aleatorio, carregarFonte, type Cena, type Timeline} from './tema';
 import {Lulu, Leleco, useBoca} from './Personagens';
 
@@ -330,11 +330,44 @@ const CenaEncerramento: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 	);
 };
 
+// Gancho / chamada com o Kiko (raposa da vinheta): trecho do joinha da vinheta em loop + balão com a frase.
+// Na chamada aparecem os botões "Curtir" e "Seguir o canal" pulsando.
+const KIKO = {video: 'abertura/kiko.mp4', de: 135, ate: 237};
+const CenaKiko: React.FC<{tl: Timeline; cena: Cena; vertical?: boolean}> = ({tl, cena, vertical}) => {
+	const frame = useCurrentFrame();
+	const {fps} = useVideoConfig();
+	const chamada = cena.tipo === 'chamada';
+	const s = spring({frame: frame - 4, fps, config: {damping: 10}});
+	const pulso = 1 + Math.sin(frame / 5) * 0.05;
+	const largura = vertical ? 1080 : 1060;
+	return (
+		<AbsoluteFill>
+			<Raios cor1={chamada ? '#e8336d' : '#2f6fe4'} cor2={chamada ? '#ff5c8a' : '#4a86f0'} />
+			<div style={{position: 'absolute', left: vertical ? 0 : 50, top: vertical ? 200 : 210, width: largura, height: (largura * 9) / 16, borderRadius: 40, overflow: 'hidden', border: `10px solid ${TINTA}`, boxShadow: '0 16px 0 rgba(0,0,0,.25)', transform: `scale(${0.7 + s * 0.3}) rotate(${(1 - s) * -6}deg)`}}>
+				<Loop durationInFrames={KIKO.ate - KIKO.de}><OffthreadVideo muted src={staticFile(KIKO.video)} startFrom={KIKO.de} endAt={KIKO.ate} style={{width: '100%', height: '100%', objectFit: 'cover'}} /></Loop>
+			</div>
+			<div style={{position: 'absolute', ...(vertical ? {left: 60, right: 60, top: 920} : {left: 1150, right: 50, top: 230}), background: '#fff', borderRadius: 44, border: `9px solid ${TINTA}`, boxShadow: '0 12px 0 rgba(0,0,0,.2)', padding: '34px 40px',
+				fontFamily: FONTE, fontWeight: 700, fontSize: vertical ? 64 : 58, lineHeight: 1.18, color: TINTA, textAlign: 'center', opacity: Math.min(1, s * 2), transform: `translateY(${(1 - s) * 40}px)`}}>
+				{cena.texto}
+			</div>
+			{chamada && (
+				<div style={{position: 'absolute', ...(vertical ? {top: 1450} : {top: 700}), left: vertical ? 0 : 1150, right: vertical ? 0 : 50, display: 'flex', flexDirection: vertical ? 'row' : 'column', alignItems: 'center', gap: 28}}>
+					{[['👍', 'Curtir', '#2f6fe4'], ['🔔', 'Seguir o canal', '#1fb35a']].map(([icone, rotulo, cor], k) => {
+						const b = spring({frame: frame - 14 - k * 8, fps, config: {damping: 8}});
+						return <div key={k} style={{...titulo, whiteSpace: 'nowrap', fontSize: vertical ? 58 : 50, background: cor, borderRadius: 50, padding: '14px 40px', border: `7px solid ${TINTA}`, transform: `scale(${b * pulso})`, ...contorno(6)}}>{icone} {rotulo}</div>;
+					})}
+				</div>
+			)}
+		</AbsoluteFill>
+	);
+};
+
 export const RenderCenaSpeed: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 	switch (cena.tipo) {
 		case 'abertura': return <CenaAbertura tl={tl} cena={cena} />;
 		// vinheta em vídeo (o áudio dela entra pela mixagem, como uma fala)
 		case 'video': return <AbsoluteFill style={{background: '#000'}}><OffthreadVideo muted src={staticFile(cena.video!)} style={{width: '100%', height: '100%', objectFit: 'cover'}} /></AbsoluteFill>;
+		case 'gancho': case 'chamada': return <CenaKiko tl={tl} cena={cena} />;
 		case 'numero': return <CenaNumero cena={cena} />;
 		case 'pergunta': return <CenaDesafio tl={tl} cena={cena} />;
 		case 'cronometro': return <CenaDesafio tl={tl} cena={cena} cronometro />;
@@ -422,6 +455,7 @@ const EncerramentoVertical: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) 
 
 const CenaVertical: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 	if (cena.tipo === 'numero') return <CenaNumero cena={cena} />;
+	if (cena.tipo === 'gancho' || cena.tipo === 'chamada') return <CenaKiko tl={tl} cena={cena} vertical />;
 	if (cena.tipo === 'video') return <AbsoluteFill style={{background: '#000', justifyContent: 'center'}}><OffthreadVideo muted src={staticFile(cena.video!)} style={{width: '100%'}} /></AbsoluteFill>;
 	if (cena.tipo === 'abertura') return <AberturaVertical tl={tl} cena={cena} />;
 	if (cena.tipo === 'encerramento') return <EncerramentoVertical tl={tl} cena={cena} />;

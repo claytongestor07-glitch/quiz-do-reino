@@ -37,3 +37,5 @@ Tem prioridade sobre tudo acima que conflitar. Episódios em `quiz.json` com `"t
 - A imagem de cada alternativa tem que ser exatamente o animal citado. As imagens das três alternativas não podem entregar qual é a certa.
 - Entrega de cada episódio (no chat): 3 títulos, ideia de capa, tabela das 20 rodadas (Número | Pergunta | A | B | C | Resposta certa | Visual), narração completa, descrição curta e registro das perguntas.
 - "CRIAR PRÓXIMO" = novo episódio completo nestas regras.
+- 03/11/2026 — Ganchos com o Kiko (automáticos no `narrar.mjs`, frases variam por episódio): logo depois da vinheta ("Será que você acerta todas as 20?"), depois da 5ª ("Você está indo muito bem!"), na metade (chamada para curtir e seguir), depois da 15ª ("Reta final! Faltam só cinco!") e no fim (chamada para curtir e seguir, e então o agradecimento). Cada gancho dura de 2 a 5 s, com o Kiko na tela.
+- A chamada para curtir e seguir sempre fala com o adulto ("peça para um adulto curtir o vídeo e seguir o canal"), porque os vídeos são "conteúdo para crianças" no YouTube. Continua proibido pedir comentários ou mandar para fora do YouTube.

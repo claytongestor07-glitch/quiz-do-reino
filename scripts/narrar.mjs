@@ -20,6 +20,17 @@ const SPEED = EMOJI || ABC;
 const RODADA = episodio(process.argv[2]).quiz.formato === 'rodada';
 const TEMPO_RESPOSTA = RODADA ? 5 : EMOJI ? 6 : ABC ? 7 : 8;
 const VINHETA = {video: 'abertura/kiko.mp4', audio: 'abertura/kiko.wav'}; // abertura do Kiko em todo episódio de rodada
+// Ganchos curtos com o Kiko para prender a criança até o fim (senhor, 03/11/2026). Variam por episódio.
+// A chamada de curtir e seguir fala com o adulto: os vídeos são "conteúdo para crianças" no YouTube.
+const GANCHOS = {
+	inicio: ['Será que você acerta todas as 20? Valendo!', 'São 20 perguntas! Quantas você vai acertar? Começou!', 'Prepare-se, que hoje tem desafio! Vamos nessa?', 'Atenção, detetive dos animais! Lá vem a primeira!'],
+	cinco: ['Você está indo muito bem! Continua comigo!', 'Uau, que rapidez! Lá vem mais!', 'Mandou bem! Agora presta bastante atenção!', 'Que craque! Será que acerta a próxima?'],
+	meio: ['Chegamos na metade! Se você está gostando, peça para um adulto curtir o vídeo e seguir o canal!', 'Metade do quiz! Peça para o papai ou a mamãe curtir o vídeo e seguir o canal do Kiko!', 'Já são dez! Gostou? Chame um adulto para curtir e seguir o canal!'],
+	reta: ['Reta final! Faltam só cinco perguntas!', 'Faltam só cinco! Vamos até o fim?', 'Últimas cinco perguntas! Não vale desistir agora!'],
+	fim: ['Gostou de jogar? Peça para um adulto curtir o vídeo e seguir o canal, e jogue de novo com o Kiko!', 'Se você se divertiu, chame um adulto para curtir e seguir o canal! Tem quiz novo sempre!', 'Peça para o papai ou a mamãe curtir e seguir o canal, que o Kiko volta com mais perguntas!'],
+};
+const semente = [...process.argv[2]].reduce((s, c) => s + c.charCodeAt(0), 0);
+const gancho = (tipo) => GANCHOS[tipo][semente % GANCHOS[tipo].length];
 const MODELO = 'eleven_v3'; // o mais expressivo: entende marcas como [excited] e soa natural para crianças
 
 const id = process.argv[2];
@@ -153,6 +164,8 @@ const som = (nome, quadro, volume) => sons.push({arquivo: `sons/${nome}.wav`, qu
 const EFEITOS = {
 	abertura: () => (som('whoosh', 0, 0.6), som('acerto', 30, 0.4)),
 	numero: () => (som('whoosh', 0, 0.6), som('pop', 6, 0.6)),
+	gancho: () => (som('whoosh', 0, 0.55), som('pop', 8, 0.5)),
+	chamada: () => (som('whoosh', 0, 0.55), som('pop', 10, 0.55), som('acerto', 24, 0.35)),
 	pergunta: () => SPEED && (som('pop', 8, 0.6), som('pop', 20, 0.6), som('pop', 32, 0.4)),
 	cronometro: () => {
 		for (let k = 0; k < TEMPO_RESPOSTA; k++) som('tick', k * FPS, 0.5);
@@ -171,6 +184,8 @@ if (RODADA) {
 	// Vinheta do Kiko e direto para a primeira pergunta; o áudio da vinheta entra na mixagem como uma fala (abaixa a trilha)
 	const seg = duracaoAudio(path.join(RAIZ, 'public', VINHETA.audio));
 	adicionar({tipo: 'video', video: VINHETA.video, audio: VINHETA.audio, segundos: seg, atrasoAudio: 0}, seg);
+	const g = await falar(gancho('inicio'));
+	adicionar({tipo: 'gancho', texto: gancho('inicio'), ...g, atrasoAudio: f(0.2)}, 0.2 + g.segundos + 0.4);
 } else {
 	const abertura = await falar(quiz.abertura);
 	adicionar({tipo: 'abertura', ...abertura, atrasoAudio: f(2.5)}, 2.5 + abertura.segundos + 0.8);
@@ -184,6 +199,12 @@ for (const [i, p] of quiz.perguntas.entries()) {
 		adicionar({tipo: 'cronometro', i}, TEMPO_RESPOSTA);
 		const resposta = await falar(`A resposta certa é ${LETRAS[p.correta]}: ${p.alternativas[p.correta].toLowerCase()}!`);
 		adicionar({tipo: 'revelacao', i, ...resposta, atrasoAudio: f(0.3)}, 0.3 + resposta.segundos + 1.2);
+		// ganchos depois das perguntas 5, 10 (chamada para curtir e seguir) e 15
+		const tipo = {4: 'cinco', 9: 'meio', 14: 'reta'}[i];
+		if (tipo && i < quiz.perguntas.length - 1) {
+			const g = await falar(gancho(tipo));
+			adicionar({tipo: tipo === 'meio' ? 'chamada' : 'gancho', texto: gancho(tipo), ...g, atrasoAudio: f(0.2)}, 0.2 + g.segundos + 0.5);
+		}
 		continue;
 	}
 	if (ABC) {
@@ -212,6 +233,10 @@ for (const [i, p] of quiz.perguntas.entries()) {
 	adicionar({tipo: 'revelacao', i, ...resposta, atrasoAudio: f(0.6)}, 0.6 + resposta.segundos + 1.0);
 }
 
+if (RODADA) {
+	const g = await falar(gancho('fim'));
+	adicionar({tipo: 'chamada', texto: gancho('fim'), ...g, atrasoAudio: f(0.2)}, 0.2 + g.segundos + 0.6);
+}
 const encerramento = await falar(quiz.encerramento);
 adicionar({tipo: 'encerramento', ...encerramento}, encerramento.segundos + 4);
 
