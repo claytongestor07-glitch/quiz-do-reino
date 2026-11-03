@@ -1,0 +1,300 @@
+{
+	"titulo": "Qual Animal é Igual ao Kiko? 🦊 Quiz de Animais para Crianças | 20 Perguntas A, B ou C",
+	"tema": "Quiz de Animais",
+	"tipo": "abc",
+	"categoria": "animais",
+	"formato": "rodada",
+	"chamada": "Quiz de Animais",
+	"marca": "Quiz do Reino",
+	"selo": "🐾",
+	"craque": "Craque dos Animais",
+	"icones": [
+		"Fox",
+		"Mammoth",
+		"Blowfish"
+	],
+	"descricao": "Qual animal cospe quando fica bravo? Qual incha como uma bola? Qual viveu na Era do Gelo? São 20 perguntas de animais com alternativas A, B e C e 5 segundos para responder. Um quiz divertido para crianças de 5 a 9 anos!",
+	"encerramento": "Obrigado por jogar com a gente! Até o próximo quiz!",
+	"perguntas": [
+		{
+			"pergunta": "Qual destes animais vive no mar e é transparente como gelatina?",
+			"alternativas": [
+				"Peixe",
+				"Água-viva",
+				"Caranguejo"
+			],
+			"correta": 1,
+			"imagens": [
+				"Fish",
+				"Jellyfish",
+				"Crab"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais canta à noite esfregando as asas?",
+			"alternativas": [
+				"Abelha",
+				"Formiga",
+				"Grilo"
+			],
+			"correta": 2,
+			"imagens": [
+				"Honeybee",
+				"Ant",
+				"Cricket"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais tem chifres galhados?",
+			"alternativas": [
+				"Veado",
+				"Cavalo",
+				"Burro"
+			],
+			"correta": 0,
+			"imagens": [
+				"Deer",
+				"Horse",
+				"Donkey"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais incha como uma bola quando se assusta?",
+			"alternativas": [
+				"Baiacu",
+				"Polvo",
+				"Tubarão"
+			],
+			"correta": 0,
+			"imagens": [
+				"Blowfish",
+				"Octopus",
+				"Shark"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais tem uma \"máscara\" preta no rosto?",
+			"alternativas": [
+				"Gato",
+				"Coelho",
+				"Guaxinim"
+			],
+			"correta": 2,
+			"imagens": [
+				"Cat",
+				"Rabbit",
+				"Raccoon"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais cospe quando fica bravo?",
+			"alternativas": [
+				"Porco",
+				"Lhama",
+				"Cachorro"
+			],
+			"correta": 1,
+			"imagens": [
+				"Pig",
+				"Llama",
+				"Dog"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais boia de costas e quebra conchas na barriga?",
+			"alternativas": [
+				"Foca",
+				"Lontra",
+				"Pato"
+			],
+			"correta": 1,
+			"imagens": [
+				"Seal",
+				"Otter",
+				"Duck"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais pica e zumbe no nosso ouvido à noite?",
+			"alternativas": [
+				"Mosquito",
+				"Borboleta",
+				"Joaninha"
+			],
+			"correta": 0,
+			"imagens": [
+				"Mosquito",
+				"Butterfly",
+				"Lady beetle"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais ajuda a puxar o arado na fazenda?",
+			"alternativas": [
+				"Ovelha",
+				"Galinha",
+				"Boi"
+			],
+			"correta": 2,
+			"imagens": [
+				"Ewe",
+				"Chicken",
+				"Ox"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais corre numa rodinha dentro da gaiola?",
+			"alternativas": [
+				"Vaca",
+				"Hamster",
+				"Cabra"
+			],
+			"correta": 1,
+			"imagens": [
+				"Cow",
+				"Hamster",
+				"Goat"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais guarda nozes e tem o rabo bem peludo?",
+			"alternativas": [
+				"Esquilo",
+				"Coelho",
+				"Rato"
+			],
+			"correta": 0,
+			"imagens": [
+				"Chipmunk",
+				"Rabbit",
+				"Mouse"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais é o símbolo da paz?",
+			"alternativas": [
+				"Águia",
+				"Coruja",
+				"Pomba"
+			],
+			"correta": 2,
+			"imagens": [
+				"Eagle",
+				"Owl",
+				"Dove"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais é uma ave branca de pescoço comprido que nada em lagos?",
+			"alternativas": [
+				"Cisne",
+				"Peru",
+				"Papagaio"
+			],
+			"correta": 0,
+			"imagens": [
+				"Swan",
+				"Turkey",
+				"Parrot"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais tem a pele dura cheia de escamas e vive nos rios?",
+			"alternativas": [
+				"Hipopótamo",
+				"Crocodilo",
+				"Sapo"
+			],
+			"correta": 1,
+			"imagens": [
+				"Hippopotamus",
+				"Crocodile",
+				"Frog"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais era peludo e viveu na Era do Gelo?",
+			"alternativas": [
+				"Elefante",
+				"Rinoceronte",
+				"Mamute"
+			],
+			"correta": 2,
+			"imagens": [
+				"Elephant",
+				"Rhinoceros",
+				"Mammoth"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais tem uma carapaça dura e voa?",
+			"alternativas": [
+				"Minhoca",
+				"Caracol",
+				"Besouro"
+			],
+			"correta": 2,
+			"imagens": [
+				"Worm",
+				"Snail",
+				"Beetle"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais vive numa concha e pode fazer pérolas?",
+			"alternativas": [
+				"Ostra",
+				"Polvo",
+				"Caranguejo"
+			],
+			"correta": 0,
+			"imagens": [
+				"Oyster",
+				"Octopus",
+				"Crab"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais zurra?",
+			"alternativas": [
+				"Cavalo",
+				"Burro",
+				"Vaca"
+			],
+			"correta": 1,
+			"imagens": [
+				"Horse",
+				"Donkey",
+				"Cow"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais é igual ao Kiko?",
+			"alternativas": [
+				"Gato",
+				"Leão",
+				"Raposa"
+			],
+			"correta": 2,
+			"imagens": [
+				"Cat",
+				"Lion",
+				"Fox"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais respira debaixo d'água?",
+			"alternativas": [
+				"Peixe",
+				"Pato",
+				"Foca"
+			],
+			"correta": 0,
+			"imagens": [
+				"Fish",
+				"Duck",
+				"Seal"
+			]
+		}
+	]
+}
