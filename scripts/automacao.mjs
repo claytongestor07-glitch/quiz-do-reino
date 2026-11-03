@@ -6,7 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
-import {RAIZ, NARRACAO, log} from './lib.mjs';
+import {RAIZ, NARRACAO, log, VERTICAL, ativo} from './lib.mjs';
 import {proximoHorario, reservar} from './agenda.mjs';
 
 const TRAVA = path.join(RAIZ, 'logs', 'automacao.lock');
@@ -65,7 +65,7 @@ async function processar(id) {
 
 	// Versão vertical completa do episódio (regra do senhor: todo vídeo com 5+ min)
 	const relV = existe('saida', id, 'relatorio-vertical.json') && ler('saida', id, 'relatorio-vertical.json');
-	if (!relV?.pronto) node('scripts/render.mjs', id, '--vertical');
+	if (VERTICAL && !relV?.pronto) node('scripts/render.mjs', id, '--vertical');
 
 	const shorts = perguntasDosShorts(id, quiz.perguntas.length);
 	for (const n of shorts) {
@@ -87,7 +87,7 @@ async function processar(id) {
 		}
 		return log('automacao', `${id} pronto; aguardando aprovação do senhor`);
 	}
-	for (const [arquivo, tipo, extra] of [['publicado.json', 'episodio', []], ['publicado-vertical.json', 'vertical', ['--vertical']], ...shorts.map((n) => [`publicado-short${n}.json`, 'short', [`--short=${n}`]])]) {
+	for (const [arquivo, tipo, extra] of [['publicado.json', 'episodio', []], ...(VERTICAL ? [['publicado-vertical.json', 'vertical', ['--vertical']]] : []), ...shorts.map((n) => [`publicado-short${n}.json`, 'short', [`--short=${n}`]])]) {
 		if (existe('episodios', id, arquivo)) continue;
 		// A versão vertical tem aprovação própria (APROVADO-vertical) enquanto o modelo dela não for validado pelo senhor
 		if (tipo === 'vertical' && !canal.publicacaoAutomatica && !existe('episodios', id, 'APROVADO-vertical')) continue;
@@ -120,14 +120,14 @@ for (const [cmd, arg] of [['ffmpeg', '-version'], ['ffprobe', '-version']]) {
 	}
 }
 
-const episodios = fs.readdirSync(path.join(RAIZ, 'episodios')).filter((e) => existe('episodios', e, 'quiz.json') && !existe('episodios', e, 'IGNORAR')).sort()
+const episodios = fs.readdirSync(path.join(RAIZ, 'episodios')).filter((e) => existe('episodios', e, 'quiz.json') && !existe('episodios', e, 'IGNORAR') && ativo(e)).sort()
 	// Episódios inéditos primeiro: versões extras de um já publicado (ex.: vertical) não atrasam os novos
 	.sort((a, b) => existe('episodios', a, 'publicado.json') - existe('episodios', b, 'publicado.json'));
 // --episodio=<id>: só esse (no GitHub Actions cada execução cuida de um episódio já renderizado em paralelo)
 const so = process.argv.find((a) => a.startsWith('--episodio='))?.split('=')[1];
 let falhas = 0;
 for (const id of episodios.filter((e) => !so || e === so)) {
-	if (existe('episodios', id, 'publicado.json') && existe('episodios', id, 'publicado-vertical.json') && fs.readdirSync(path.join(RAIZ, 'episodios', id)).filter((f) => /^publicado-short\d+\.json$/.test(f)).length >= SHORTS_POR_EPISODIO) continue;
+	if (existe('episodios', id, 'publicado.json') && (!VERTICAL || existe('episodios', id, 'publicado-vertical.json')) && fs.readdirSync(path.join(RAIZ, 'episodios', id)).filter((f) => /^publicado-short\d+\.json$/.test(f)).length >= SHORTS_POR_EPISODIO) continue;
 	try {
 		log('automacao', `processando ${id}`);
 		await processar(id);

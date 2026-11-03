@@ -44,3 +44,9 @@ export const creditoTrilha = (tl) => trilhaFinal(tl).arquivo === QUIZ.arquivo ? 
 	'🎵 Música: "Monkeys Spinning Monkeys" e "Fluffing a Duck", de Kevin MacLeod (incompetech.com)',
 	'Licença Creative Commons: By Attribution 4.0 — http://creativecommons.org/licenses/by/4.0/',
 ] : [];
+
+// Foco do canal (config/canal.json): só categorias em "categoriasAtivas" entram na fila (sem categoria = bíblico);
+// "versaoVertical": false deixa de produzir/enviar o episódio inteiro na vertical (duplicava o conteúdo sem audiência)
+const CANAL = JSON.parse(fs.readFileSync(path.join(RAIZ, 'config', 'canal.json'), 'utf8'));
+export const VERTICAL = CANAL.versaoVertical !== false;
+export const ativo = (id) => !CANAL.categoriasAtivas || CANAL.categoriasAtivas.includes(episodio(id).quiz.categoria ?? 'biblico');

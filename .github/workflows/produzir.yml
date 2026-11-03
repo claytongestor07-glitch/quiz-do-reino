@@ -1,5 +1,5 @@
 # Produção do Quiz do Reino nas máquinas do GitHub: nada é guardado no Mac.
-# planejar (narração) → render em paralelo (blocos de 50 s, 16:9 e vertical) → finalizar (junta, Shorts, envia ao YouTube)
+# planejar (narração) → render em paralelo (blocos de 50 s, 16:9; vertical só com "versaoVertical" em config/canal.json) → finalizar (junta, Shorts, envia ao YouTube)
 name: Produzir episódio
 
 on:

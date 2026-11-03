@@ -1,6 +1,10 @@
 {
   "nome": "Quiz do Reino",
   "publicacaoAutomatica": true,
+  "categoriasAtivas": [
+    "animais"
+  ],
+  "versaoVertical": false,
   "tags": [
     "quiz bíblico",
     "quiz bíblico infantil",

@@ -7,7 +7,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
-import {RAIZ, NARRACAO, log} from './lib.mjs';
+import {RAIZ, NARRACAO, VERTICAL, ativo, log} from './lib.mjs';
 
 const BLOCO = 1500; // igual a render.mjs
 const POR_JOB = Number(process.env.BLOCOS_POR_JOB) || 1;
@@ -17,7 +17,7 @@ const existe = (...p) => fs.existsSync(path.join(RAIZ, ...p));
 const node = (...a) => execFileSync(process.execPath, a.map(String), {cwd: RAIZ, stdio: 'inherit'});
 const saida = (k, v) => process.env.GITHUB_OUTPUT ? fs.appendFileSync(process.env.GITHUB_OUTPUT, `${k}=${v}\n`) : console.log(`${k}=${v}`);
 
-const completo = (id) => existe('episodios', id, 'publicado.json') && existe('episodios', id, 'publicado-vertical.json')
+const completo = (id) => existe('episodios', id, 'publicado.json') && (!VERTICAL || existe('episodios', id, 'publicado-vertical.json'))
 	&& fs.readdirSync(path.join(RAIZ, 'episodios', id)).filter((f) => /^publicado-short\d+\.json$/.test(f)).length >= SHORTS_POR_EPISODIO;
 
 // Limite diário de envios do YouTube atingido há menos de 24 h: não adianta produzir agora
@@ -31,7 +31,7 @@ if (!process.argv[3] && fs.existsSync(limite) && Date.now() - Date.parse(JSON.pa
 
 const pedido = process.argv[3];
 const id = pedido || fs.readdirSync(path.join(RAIZ, 'episodios'))
-	.filter((e) => existe('episodios', e, 'quiz.json') && !existe('episodios', e, 'IGNORAR') && !completo(e)).sort()
+	.filter((e) => existe('episodios', e, 'quiz.json') && !existe('episodios', e, 'IGNORAR') && ativo(e) && !completo(e)).sort()
 	// Inéditos primeiro (mesma ordem do robô)
 	.sort((a, b) => existe('episodios', a, 'publicado.json') - existe('episodios', b, 'publicado.json'))[0];
 
@@ -50,7 +50,7 @@ node('scripts/narrar.mjs', id, ...NARRACAO);
 const {totalFrames} = JSON.parse(fs.readFileSync(path.join(RAIZ, 'public', 'ep', id, 'timeline.json'), 'utf8'));
 const nBlocos = Math.ceil(totalFrames / BLOCO);
 const include = [];
-for (const [variante, enviado] of [['', 'publicado.json'], ['--vertical', 'publicado-vertical.json']]) {
+for (const [variante, enviado] of [['', 'publicado.json'], ...(VERTICAL ? [['--vertical', 'publicado-vertical.json']] : [])]) {
 	if (existe('episodios', id, enviado)) continue;
 	for (let a = 0; a < nBlocos; a += POR_JOB) include.push({variante, blocos: `${a}-${Math.min(nBlocos, a + POR_JOB) - 1}`});
 }
