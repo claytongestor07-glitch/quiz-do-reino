@@ -6,7 +6,7 @@ import {RAIZ} from './lib.mjs';
 
 const AGENDA = path.join(RAIZ, 'logs', 'agenda.json');
 export const HORARIOS = {
-	episodio: ['09:00', '17:00'], vertical: ['10:00', '18:00'], short: ['08:00', '11:00', '13:00', '15:00', '19:00', '21:00'],
+	episodio: ['09:00', '13:00', '17:00'], vertical: ['10:00', '18:00'], short: ['08:00', '11:00', '13:00', '15:00', '19:00', '21:00'],
 	clipe: ['12:00', '16:00'], clipeVertical: ['14:00', '20:00'],
 };
 

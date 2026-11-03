@@ -49,4 +49,6 @@ export const creditoTrilha = (tl) => trilhaFinal(tl).arquivo === QUIZ.arquivo ? 
 // "versaoVertical": false deixa de produzir/enviar o episódio inteiro na vertical (duplicava o conteúdo sem audiência)
 const CANAL = JSON.parse(fs.readFileSync(path.join(RAIZ, 'config', 'canal.json'), 'utf8'));
 export const VERTICAL = CANAL.versaoVertical !== false;
+// Shorts por episódio (config/canal.json → shortsPorEpisodio). Cada envio gasta 1.600 da cota diária de 10.000 da API do YouTube.
+export const SHORTS_POR_EPISODIO = CANAL.shortsPorEpisodio ?? 3;
 export const ativo = (id) => !CANAL.categoriasAtivas || CANAL.categoriasAtivas.includes(episodio(id).quiz.categoria ?? 'biblico');

@@ -4,7 +4,8 @@ name: Produzir episódio
 
 on:
   schedule:
-    - cron: '17 */4 * * *'
+    # 3 episódios por dia (cada um: vídeo + 1 Short = ~3.300 da cota diária de 10.000 do YouTube, que vira às 05:00 de Brasília)
+    - cron: '17 1,9,17 * * *'
   workflow_dispatch:
     inputs:
       episodio:

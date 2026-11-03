@@ -248,7 +248,8 @@ async function enviar(id, quando, short = 0, vertical = false) {
 	const resposta = await subir(token, path.join(saida, rel.video), corpo, id);
 	fs.writeFileSync(registro, JSON.stringify({videoId: resposta.id, enviadoEm: new Date().toISOString(), publicarEm: corpo.status.publishAt ?? null}, null, 1));
 	log('publicar', `${id}${sufixo} enviado: https://youtu.be/${resposta.id}`, {videoId: resposta.id});
-	if (!vertical) await naPlaylist(token, 'pt', short ? 'shorts' : episodio(id).quiz.categoria === 'animais' ? 'animais' : episodio(id).quiz.tipo === 'emoji' ? 'emojis' : 'quiz', resposta.id);
+	// Shorts não entram em playlist: economiza cota para caber 3 episódios + 3 Shorts por dia
+	if (!vertical && !short) await naPlaylist(token, 'pt', episodio(id).quiz.categoria === 'animais' ? 'animais' : episodio(id).quiz.tipo === 'emoji' ? 'emojis' : 'quiz', resposta.id);
 	if (short) return; // Shorts usam um quadro do próprio vídeo como capa
 
 	const thumb = path.join(saida, `${id}-thumbnail.jpg`);

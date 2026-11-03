@@ -6,12 +6,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
-import {RAIZ, NARRACAO, log, VERTICAL, ativo} from './lib.mjs';
+import {RAIZ, NARRACAO, log, VERTICAL, SHORTS_POR_EPISODIO, ativo} from './lib.mjs';
 import {proximoHorario, reservar} from './agenda.mjs';
 
 const TRAVA = path.join(RAIZ, 'logs', 'automacao.lock');
 const ALERTA = path.join(RAIZ, 'logs', 'ALERTA.txt');
-const SHORTS_POR_EPISODIO = 3;
 
 // Trava: se outro robô está vivo, sai sem fazer nada
 fs.mkdirSync(path.dirname(TRAVA), {recursive: true});

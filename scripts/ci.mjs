@@ -7,11 +7,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
-import {RAIZ, NARRACAO, VERTICAL, ativo, log} from './lib.mjs';
+import {RAIZ, NARRACAO, VERTICAL, SHORTS_POR_EPISODIO, ativo, log} from './lib.mjs';
 
 const BLOCO = 1500; // igual a render.mjs
 const POR_JOB = Number(process.env.BLOCOS_POR_JOB) || 1;
-const SHORTS_POR_EPISODIO = 3;
 
 const existe = (...p) => fs.existsSync(path.join(RAIZ, ...p));
 const node = (...a) => execFileSync(process.execPath, a.map(String), {cwd: RAIZ, stdio: 'inherit'});
