@@ -23,3 +23,17 @@ Cada aprovação ou ajuste pedido entra aqui, para os próximos episódios segui
 - Coletâneas de 15–25 min juntando os clipes; Shorts com o refrão.
 - Enquanto o novo formato não estiver pronto: NÃO escrever novos quizzes. Os quizzes já roteirizados terminam de ser publicados normalmente.
 - 27/10/2026: produção automática de clipes LIGADA (senhor: "músicas evangélicas e educativas"). Personagens e cenário da nova arte (docs/arte/clipe.webp): Davi com violão + Lulu, a menina, Leleco e a Bíblia. Músicas cantadas pelo ACE-Step 1.5 na nuvem; letras originais, sempre ensinando algo (números, cores, criação, corpo, boas maneiras…).
+
+## NOVO FORMATO OBRIGATÓRIO — quiz de animais em rodadas (senhor, 2026-11-03)
+Tem prioridade sobre tudo acima que conflitar. Episódios em `quiz.json` com `"tipo": "abc"`, `"categoria": "animais"`, `"formato": "rodada"` (modelo: `episodios/ep009-rodada`). O `validar.mjs` cobra as regras marcadas com ✔.
+- Canal exclusivamente de perguntas e respostas sobre **animais**: identificação, sons, alimentação, habitat, características, filhotes, movimentos e habilidades.
+- Todo episódio começa com a **vinheta do Kiko** (`public/abertura/kiko.mp4`) e vai direto para a primeira pergunta. Sem abertura falada.
+- ✔ **20 rodadas** por episódio. Cada rodada: pergunta simples → alternativas A, B e C **com nome e imagem** (✔ 3 imagens Fluent Emoji) → contagem de **5 s**, que só começa depois de ler a pergunta e as três alternativas → "A resposta certa é B: elefante!" com a certa destacada → próxima.
+- Narração exatamente como o modelo: "Qual destes animais tem tromba? A: Girafa. B: Elefante. C: Zebra." … "A resposta certa é B: elefante!". ✔ Sem explicação, curiosidade, referência ou história entre as perguntas.
+- Encerramento: uma frase curta de agradecimento ("Obrigado por jogar com a gente! Até o próximo quiz!").
+- Público de 5 a 9 anos: português do Brasil, frases curtas, narração alegre e acolhedora. Nunca constranger quem errou.
+- Sem verdadeiro ou falso, sem perguntas abertas, de opinião ou com mais de uma resposta possível. Sem pegadinhas nem informação duvidosa: conferir cada resposta.
+- ✔ Uma única alternativa certa por pergunta; ✔ respostas distribuídas entre A, B e C (cada letra de 5 a 9 vezes, nunca 3 seguidas iguais); ✔ não repetir perguntas de episódios anteriores (registro em `docs/perguntas-animais.md`).
+- A imagem de cada alternativa tem que ser exatamente o animal citado. As imagens das três alternativas não podem entregar qual é a certa.
+- Entrega de cada episódio (no chat): 3 títulos, ideia de capa, tabela das 20 rodadas (Número | Pergunta | A | B | C | Resposta certa | Visual), narração completa, descrição curta e registro das perguntas.
+- "CRIAR PRÓXIMO" = novo episódio completo nestas regras.

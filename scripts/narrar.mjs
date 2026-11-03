@@ -16,7 +16,10 @@ const EMOJI = episodio(process.argv[2]).quiz.tipo === 'emoji';
 // segundos de cronômetro (briefing: 5–8); o formato de emojis é mais rápido, no estilo SpeedQuiz
 const ABC = episodio(process.argv[2]).quiz.tipo === 'abc'; // pergunta com alternativas, no visual colorido
 const SPEED = EMOJI || ABC;
-const TEMPO_RESPOSTA = EMOJI ? 6 : ABC ? 7 : 8;
+// Rodada (quiz de animais, regra do senhor em 11/2026): pergunta, alternativas, 5 s, resposta certa e mais nada
+const RODADA = episodio(process.argv[2]).quiz.formato === 'rodada';
+const TEMPO_RESPOSTA = RODADA ? 5 : EMOJI ? 6 : ABC ? 7 : 8;
+const VINHETA = {video: 'abertura/kiko.mp4', audio: 'abertura/kiko.wav'}; // abertura do Kiko em todo episódio de rodada
 const MODELO = 'eleven_v3'; // o mais expressivo: entende marcas como [excited] e soa natural para crianças
 
 const id = process.argv[2];
@@ -164,10 +167,25 @@ const adicionar = (cena, segundos) => {
 	inicio += f(segundos);
 };
 
-const abertura = await falar(quiz.abertura);
-adicionar({tipo: 'abertura', ...abertura, atrasoAudio: f(2.5)}, 2.5 + abertura.segundos + 0.8);
+if (RODADA) {
+	// Vinheta do Kiko e direto para a primeira pergunta; o áudio da vinheta entra na mixagem como uma fala (abaixa a trilha)
+	const seg = duracaoAudio(path.join(RAIZ, 'public', VINHETA.audio));
+	adicionar({tipo: 'video', video: VINHETA.video, audio: VINHETA.audio, segundos: seg, atrasoAudio: 0}, seg);
+} else {
+	const abertura = await falar(quiz.abertura);
+	adicionar({tipo: 'abertura', ...abertura, atrasoAudio: f(2.5)}, 2.5 + abertura.segundos + 0.8);
+}
 
 for (const [i, p] of quiz.perguntas.entries()) {
+	if (RODADA) {
+		// Exatamente como o modelo: "Qual destes animais tem tromba? A: Girafa. B: Elefante. C: Zebra." ... "A resposta certa é B: elefante!"
+		const enunciado = await falar(`${p.pergunta} ${p.alternativas.map((a, k) => `${LETRAS[k]}: ${a}.`).join(' ')}`);
+		adicionar({tipo: 'pergunta', i, ...enunciado, atrasoAudio: f(0.3)}, 0.3 + enunciado.segundos + 0.3);
+		adicionar({tipo: 'cronometro', i}, TEMPO_RESPOSTA);
+		const resposta = await falar(`A resposta certa é ${LETRAS[p.correta]}: ${p.alternativas[p.correta].toLowerCase()}!`);
+		adicionar({tipo: 'revelacao', i, ...resposta, atrasoAudio: f(0.3)}, 0.3 + resposta.segundos + 1.2);
+		continue;
+	}
 	if (ABC) {
 		adicionar({tipo: 'numero', i}, 0.9);
 		const enunciado = await falar(`Pergunta número ${i + 1}! ${p.pergunta} ${p.alternativas.map((a, k) => `Letra ${LETRAS[k]}: ${a}.`).join(' ')}`);

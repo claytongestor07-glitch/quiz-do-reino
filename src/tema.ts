@@ -30,7 +30,8 @@ export const COR = {
 export const LETRAS = ['A', 'B', 'C'];
 
 export type Cena = {
-	tipo: 'abertura' | 'numero' | 'pergunta' | 'cronometro' | 'revelacao' | 'encerramento';
+	tipo: 'abertura' | 'video' | 'numero' | 'pergunta' | 'cronometro' | 'revelacao' | 'encerramento';
+	video?: string; // cena 'video': arquivo em public/ (vinheta de abertura)
 	inicio: number;
 	duracao: number;
 	i?: number;

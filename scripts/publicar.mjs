@@ -83,6 +83,7 @@ const mmss = (q) => `${Math.floor(q / FPS / 60)}:${String(Math.floor((q / FPS) %
 export function metadados(id) {
 	const {quiz} = episodio(id);
 	const tl = JSON.parse(fs.readFileSync(path.join(RAIZ, 'public', 'ep', id, 'timeline.json'), 'utf8'));
+	if (quiz.formato === 'rodada') return metadadosRodada(quiz, tl);
 	const capitulos = [`0:00 Abertura`, ...tl.cenas.filter((c) => c.tipo === 'numero').map((c) => `${mmss(c.inicio)} ${quiz.tipo === 'emoji' ? `Desafio ${c.i + 1}` : `Pergunta ${c.i + 1}`}`), `${mmss(tl.cenas.at(-1).inicio)} Lição de hoje`];
 	if (quiz.categoria === 'animais') {
 		const desc = [
@@ -109,12 +110,31 @@ export function metadados(id) {
 	};
 }
 
+// Quiz de animais em rodadas (pergunta, A/B/C, 5 s, resposta): descrição curta do próprio roteiro
+function metadadosRodada(quiz, tl) {
+	const capitulos = [`0:00 Abertura`, ...tl.cenas.filter((c) => c.tipo === 'pergunta').map((c) => `${mmss(c.inicio)} Pergunta ${c.i + 1}`)];
+	const desc = [quiz.descricao, '', 'Jogue junto com a família e contem os pontos! 💛', '', ...capitulos, '',
+		`${canal.nome}: o quiz do reino animal.`, '', '#QuizDeAnimais #QuizParaCrianças #AnimaisParaCrianças', '', ...creditoTrilha(tl)].join('\n');
+	return {
+		snippet: {title: quiz.titulo, description: desc.slice(0, 4900), tags: ['quiz de animais', 'quiz para crianças', 'animais para crianças', 'perguntas e respostas', 'quiz infantil', 'adivinhe o animal', 'quiz a b c', 'sons dos animais', quiz.tema, canal.nome].slice(0, 20), categoryId: '27', defaultLanguage: 'pt-BR', defaultAudioLanguage: 'pt-BR'},
+		status: {privacyStatus: 'private', selfDeclaredMadeForKids: true, embeddable: true, license: 'youtube'},
+	};
+}
+
 // Short: uma pergunta do episódio, vertical, menos de 60 s
 export function metadadosShort(id, n) {
 	const {quiz} = episodio(id);
 	const p = quiz.perguntas[n - 1];
 	const emoji = quiz.tipo === 'emoji';
 	const tl = JSON.parse(fs.readFileSync(path.join(RAIZ, 'public', 'ep', id, 'timeline.json'), 'utf8'));
+	if (quiz.formato === 'rodada') return {
+		snippet: {
+			title: `${p.pergunta} 🤔 Desafio ${n} | Quiz de Animais #shorts`.slice(0, 100),
+			description: ['A, B ou C? Responda antes do tempo acabar! Um desafio do quiz de animais para crianças.', '', `${canal.nome}: o quiz do reino animal.`, '', '#QuizDeAnimais #QuizParaCrianças #shorts', '', ...creditoTrilha(tl)].join('\n'),
+			tags: ['quiz de animais', 'quiz para crianças', 'animais para crianças', 'shorts'], categoryId: '27', defaultLanguage: 'pt-BR', defaultAudioLanguage: 'pt-BR',
+		},
+		status: {privacyStatus: 'private', selfDeclaredMadeForKids: true, embeddable: true, license: 'youtube'},
+	};
 	if (quiz.categoria === 'animais') return {
 		snippet: {
 			title: `Que animal é esse? Adivinhe pelos Emojis 🤔 Desafio ${n} | Quiz de Animais #shorts`.slice(0, 100),

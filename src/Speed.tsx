@@ -1,8 +1,9 @@
 // Formato "Adivinhe pelos Emojis" (estilo game show rápido): fundo de cor viva por desafio, cabeçalho com número,
 // pistas em emojis 3D (Microsoft Fluent Emoji, MIT), barra de tempo e revelação em cartão.
 // O mesmo visual serve ao formato "abc" (pergunta com alternativas A, B, C) e aos Shorts verticais.
+// Formato "rodada" (quiz de animais, 11/2026): abertura em vídeo, alternativas com imagem, sem explicação na revelação.
 import React from 'react';
-import {AbsoluteFill, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig, Sequence} from 'remotion';
+import {AbsoluteFill, Img, OffthreadVideo, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig, Sequence} from 'remotion';
 import {FONTE, aleatorio, carregarFonte, type Cena, type Timeline} from './tema';
 import {Lulu, Leleco, useBoca} from './Personagens';
 
@@ -17,8 +18,10 @@ const contorno = (px: number, cor = TINTA): React.CSSProperties => ({WebkitTextS
 const titulo: React.CSSProperties = {fontFamily: TITULO, color: '#fff', textTransform: 'uppercase', letterSpacing: 1};
 const LETRAS = ['A', 'B', 'C'];
 const COR_ALT = ['#ff5f5f', '#2f6fe4', '#f5b400'];
-type QuizSpeed = {tipo?: string; chamada?: string; tema: string; icones?: string[]; perguntas: {pistas?: string[]; pergunta?: string; alternativas?: string[]; correta?: number; resposta?: string; explicacao: string; referencia: string}[]};
+type QuizSpeed = {tipo?: string; chamada?: string; tema: string; icones?: string[]; formato?: string; perguntas: {pistas?: string[]; pergunta?: string; alternativas?: string[]; imagens?: string[]; correta?: number; resposta?: string; explicacao: string; referencia: string}[]};
 const ehAbc = (tl: Timeline) => (tl.quiz as unknown as QuizSpeed).tipo === 'abc';
+// Rodada: pergunta, 3 alternativas com imagem, 5 s e a resposta certa (sem explicação nem referência)
+const ehRodada = (tl: Timeline) => (tl.quiz as unknown as QuizSpeed).formato === 'rodada';
 const chamadaDe = (tl: Timeline) => (tl.quiz as unknown as QuizSpeed).chamada ?? (ehAbc(tl) ? 'Quiz Bíblico' : 'Adivinhe pelos emojis');
 // Emojis de capa: "icones" do quiz (formato abc) ou as pistas do primeiro desafio (formato emoji)
 const iconesDe = (tl: Timeline) => {
@@ -53,12 +56,15 @@ const QuestaoABC: React.FC<{tl: Timeline; i: number; revelar?: boolean; visivel?
 					const e = entrada(k + 1);
 					const apagar = revelar && !certa ? interpolate(frame, [4, 14], [1, 0.35], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}) : 1;
 					const verde = revelar && certa && destaque > 0.05;
+					const imagem = p.imagens?.[k];
 					return (
-						<div key={k} style={{flex: 1, position: 'relative', display: 'flex', alignItems: 'center', gap: 22, background: '#fff', borderRadius: 36, padding: '20px 26px', minHeight: vertical ? 120 : 150,
+						<div key={k} style={{flex: 1, position: 'relative', display: 'flex', flexDirection: imagem && !vertical ? 'column' : 'row', alignItems: 'center', justifyContent: imagem && !vertical ? 'center' : undefined, gap: imagem && !vertical ? 10 : 22, background: '#fff', borderRadius: 36, padding: '20px 26px', minHeight: vertical ? 120 : 150,
 							border: `9px solid ${verde ? '#1fb35a' : TINTA}`, boxShadow: `0 10px 0 ${verde ? '#13853f' : 'rgba(0,0,0,.2)'}`, opacity: apagar * Math.min(1, e * 2),
 							transform: `translateY(${(1 - e) * 60}px) scale(${1 + (verde ? destaque * 0.08 : 0)})`}}>
-							<div style={{...titulo, flex: 'none', width: 92, height: 92, borderRadius: 46, background: verde ? '#1fb35a' : COR_ALT[k], border: `6px solid ${TINTA}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 58, ...contorno(5)}}>{LETRAS[k]}</div>
-							<span style={{fontFamily: FONTE, fontWeight: 700, fontSize: vertical ? 50 : 46, lineHeight: 1.1, color: TINTA}}>{alt}</span>
+							<div style={{...titulo, flex: 'none', width: 92, height: 92, borderRadius: 46, background: verde ? '#1fb35a' : COR_ALT[k], border: `6px solid ${TINTA}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 58, ...contorno(5),
+								...(imagem && !vertical ? {position: 'absolute', top: -30, left: -26} : {})}}>{LETRAS[k]}</div>
+							{imagem && <Img src={staticFile(arquivoEmoji(imagem))} style={{flex: 'none', width: vertical ? 130 : 270, height: vertical ? 130 : 270, filter: 'drop-shadow(0 10px 8px rgba(0,0,0,.25))'}} />}
+							<span style={{fontFamily: FONTE, fontWeight: 700, fontSize: imagem && !vertical ? 54 : vertical ? 50 : 46, lineHeight: 1.1, color: TINTA}}>{alt}</span>
 							{verde && <div style={{...titulo, position: 'absolute', top: -34, right: -22, width: 80, height: 80, borderRadius: 40, background: '#1fb35a', border: `6px solid ${TINTA}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 52, transform: `scale(${destaque})`}}>✓</div>}
 						</div>
 					);
@@ -231,12 +237,12 @@ const CenaRevelacao: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 				<FundoCor cor={corDe(i)} />
 				<Laterais texto={marcaDe(tl)} />
 				<Cabecalho n={i + 1} texto={chamadaDe(tl)} />
-				<div style={{position: 'absolute', top: 175, left: 0, right: 0}}><QuestaoABC tl={tl} i={i} revelar visivel /></div>
-				<div style={{position: 'absolute', top: 660, left: 330, right: 330, opacity: Math.min(1, cartao * 2), transform: `translateY(${(1 - cartao) * 50}px)`,
+				<div style={{position: 'absolute', top: ehRodada(tl) ? 200 : 175, left: 0, right: 0}}><QuestaoABC tl={tl} i={i} revelar visivel /></div>
+				{!ehRodada(tl) && <div style={{position: 'absolute', top: 660, left: 330, right: 330, opacity: Math.min(1, cartao * 2), transform: `translateY(${(1 - cartao) * 50}px)`,
 					background: '#fff', borderRadius: 40, border: `8px solid ${TINTA}`, padding: '22px 40px', textAlign: 'center', fontFamily: FONTE, fontWeight: 600, fontSize: 42, lineHeight: 1.22, color: TINTA}}>
 					{p.explicacao}
 					<div style={{marginTop: 12}}><span style={{...titulo, fontSize: 36, background: '#e8336d', borderRadius: 30, padding: '6px 28px', border: `5px solid ${TINTA}`, display: 'inline-block', transform: `scale(${selo})`, ...contorno(4)}}>{seloDe(tl)} {p.referencia}</span></div>
-				</div>
+				</div>}
 				<Mascotes boca={boca} humor="feliz" />
 				<Sequence durationInFrames={70}><Confete /></Sequence>
 			</AbsoluteFill>
@@ -327,6 +333,8 @@ const CenaEncerramento: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 export const RenderCenaSpeed: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 	switch (cena.tipo) {
 		case 'abertura': return <CenaAbertura tl={tl} cena={cena} />;
+		// vinheta em vídeo (o áudio dela entra pela mixagem, como uma fala)
+		case 'video': return <AbsoluteFill style={{background: '#000'}}><OffthreadVideo muted src={staticFile(cena.video!)} style={{width: '100%', height: '100%', objectFit: 'cover'}} /></AbsoluteFill>;
 		case 'numero': return <CenaNumero cena={cena} />;
 		case 'pergunta': return <CenaDesafio tl={tl} cena={cena} />;
 		case 'cronometro': return <CenaDesafio tl={tl} cena={cena} cronometro />;
@@ -414,6 +422,7 @@ const EncerramentoVertical: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) 
 
 const CenaVertical: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 	if (cena.tipo === 'numero') return <CenaNumero cena={cena} />;
+	if (cena.tipo === 'video') return <AbsoluteFill style={{background: '#000', justifyContent: 'center'}}><OffthreadVideo muted src={staticFile(cena.video!)} style={{width: '100%'}} /></AbsoluteFill>;
 	if (cena.tipo === 'abertura') return <AberturaVertical tl={tl} cena={cena} />;
 	if (cena.tipo === 'encerramento') return <EncerramentoVertical tl={tl} cena={cena} />;
 	return <DesafioVertical tl={tl} cena={cena} />;
@@ -450,7 +459,7 @@ const DesafioVertical: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 						)}
 					</>
 				)}
-				{revelar && (
+				{revelar && !ehRodada(tl) && (
 					<div style={{opacity: Math.min(1, s * 2), background: '#fff', borderRadius: 36, border: `7px solid ${TINTA}`, padding: '18px 34px', width: 900, textAlign: 'center', fontFamily: FONTE, fontWeight: 600, fontSize: 42, lineHeight: 1.2, color: TINTA}}>
 						{p.explicacao}
 						<div style={{marginTop: 10, fontFamily: TITULO, fontSize: 36, color: '#e8336d'}}>{seloDe(tl)} {p.referencia}</div>

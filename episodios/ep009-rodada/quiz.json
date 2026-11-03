@@ -1,0 +1,300 @@
+{
+	"titulo": "Qual Animal Tem Tromba? 🐘 Quiz de Animais para Crianças | 20 Perguntas A, B ou C",
+	"tema": "Quiz de Animais",
+	"tipo": "abc",
+	"categoria": "animais",
+	"formato": "rodada",
+	"chamada": "Quiz de Animais",
+	"marca": "Quiz do Reino",
+	"selo": "🐾",
+	"craque": "Craque dos Animais",
+	"icones": [
+		"Elephant",
+		"Lion",
+		"Penguin"
+	],
+	"descricao": "Qual animal tem tromba? Qual faz mel? Qual dorme de cabeça para baixo? São 20 perguntas de animais com alternativas A, B e C e 5 segundos para responder. Um quiz divertido para crianças de 5 a 9 anos!",
+	"encerramento": "Obrigado por jogar com a gente! Até o próximo quiz!",
+	"perguntas": [
+		{
+			"pergunta": "Qual destes animais tem tromba?",
+			"alternativas": [
+				"Girafa",
+				"Elefante",
+				"Zebra"
+			],
+			"correta": 1,
+			"imagens": [
+				"Giraffe",
+				"Elephant",
+				"Zebra"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais faz \"muuu\"?",
+			"alternativas": [
+				"Vaca",
+				"Cavalo",
+				"Porco"
+			],
+			"correta": 0,
+			"imagens": [
+				"Cow",
+				"Horse",
+				"Pig"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais tem um casco nas costas?",
+			"alternativas": [
+				"Coelho",
+				"Rato",
+				"Tartaruga"
+			],
+			"correta": 2,
+			"imagens": [
+				"Rabbit",
+				"Mouse",
+				"Turtle"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais vive no mar?",
+			"alternativas": [
+				"Camelo",
+				"Leão",
+				"Polvo"
+			],
+			"correta": 2,
+			"imagens": [
+				"Camel",
+				"Lion",
+				"Octopus"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais carrega o filhote numa bolsa?",
+			"alternativas": [
+				"Macaco",
+				"Canguru",
+				"Urso"
+			],
+			"correta": 1,
+			"imagens": [
+				"Monkey",
+				"Kangaroo",
+				"Bear"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais faz mel?",
+			"alternativas": [
+				"Abelha",
+				"Formiga",
+				"Aranha"
+			],
+			"correta": 0,
+			"imagens": [
+				"Honeybee",
+				"Ant",
+				"Spider"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais tem o pescoço mais comprido?",
+			"alternativas": [
+				"Hipopótamo",
+				"Girafa",
+				"Rinoceronte"
+			],
+			"correta": 1,
+			"imagens": [
+				"Hippopotamus",
+				"Giraffe",
+				"Rhinoceros"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais é uma ave que nada, mas não voa?",
+			"alternativas": [
+				"Pinguim",
+				"Pato",
+				"Águia"
+			],
+			"correta": 0,
+			"imagens": [
+				"Penguin",
+				"Duck",
+				"Eagle"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais late?",
+			"alternativas": [
+				"Ovelha",
+				"Pato",
+				"Cachorro"
+			],
+			"correta": 2,
+			"imagens": [
+				"Ewe",
+				"Duck",
+				"Dog"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais é o maior de todos?",
+			"alternativas": [
+				"Tubarão",
+				"Crocodilo",
+				"Baleia-azul"
+			],
+			"correta": 2,
+			"imagens": [
+				"Shark",
+				"Crocodile",
+				"Spouting whale"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais dorme de cabeça para baixo?",
+			"alternativas": [
+				"Morcego",
+				"Galinha",
+				"Coala"
+			],
+			"correta": 0,
+			"imagens": [
+				"Bat",
+				"Chicken",
+				"Koala"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais tem juba?",
+			"alternativas": [
+				"Tigre",
+				"Leão",
+				"Onça"
+			],
+			"correta": 1,
+			"imagens": [
+				"Tiger",
+				"Lion",
+				"Leopard"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais vira borboleta?",
+			"alternativas": [
+				"Minhoca",
+				"Joaninha",
+				"Lagarta"
+			],
+			"correta": 2,
+			"imagens": [
+				"Worm",
+				"Lady beetle",
+				"Bug"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais faz \"cocoricó\"?",
+			"alternativas": [
+				"Gato",
+				"Sapo",
+				"Galo"
+			],
+			"correta": 2,
+			"imagens": [
+				"Cat",
+				"Frog",
+				"Rooster"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais come bambu?",
+			"alternativas": [
+				"Panda",
+				"Lobo",
+				"Raposa"
+			],
+			"correta": 0,
+			"imagens": [
+				"Panda",
+				"Wolf",
+				"Fox"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais tem o corpo cheio de espinhos?",
+			"alternativas": [
+				"Cavalo",
+				"Ouriço",
+				"Porco"
+			],
+			"correta": 1,
+			"imagens": [
+				"Horse",
+				"Hedgehog",
+				"Pig"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais tem oito patas?",
+			"alternativas": [
+				"Aranha",
+				"Mosca",
+				"Borboleta"
+			],
+			"correta": 0,
+			"imagens": [
+				"Spider",
+				"Fly",
+				"Butterfly"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais vive no deserto e tem corcovas?",
+			"alternativas": [
+				"Foca",
+				"Esquilo",
+				"Camelo"
+			],
+			"correta": 2,
+			"imagens": [
+				"Seal",
+				"Chipmunk",
+				"Two-hump camel"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais faz \"uhu\" à noite?",
+			"alternativas": [
+				"Papagaio",
+				"Coruja",
+				"Pombo"
+			],
+			"correta": 1,
+			"imagens": [
+				"Parrot",
+				"Owl",
+				"Dove"
+			]
+		},
+		{
+			"pergunta": "Qual destes animais é cor-de-rosa e dorme numa perna só?",
+			"alternativas": [
+				"Cisne",
+				"Flamingo",
+				"Pavão"
+			],
+			"correta": 1,
+			"imagens": [
+				"Swan",
+				"Flamingo",
+				"Peacock"
+			]
+		}
+	]
+}

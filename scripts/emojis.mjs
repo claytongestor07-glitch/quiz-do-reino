@@ -36,7 +36,7 @@ export async function baixarEmojis(nomes) {
 
 if (import.meta.url === `file://${process.argv[1]}`) {
 	const {quiz} = episodio(process.argv[2]);
-	const faltando = await baixarEmojis([...(quiz.icones ?? []), ...quiz.perguntas.flatMap((p) => p.pistas ?? [])]);
+	const faltando = await baixarEmojis([...(quiz.icones ?? []), ...quiz.perguntas.flatMap((p) => [...(p.pistas ?? []), ...(p.imagens ?? [])])]);
 	if (faltando.length) {
 		log('emojis', `ERRO: não encontrados no Fluent Emoji: ${faltando.join(', ')}`);
 		process.exit(1);

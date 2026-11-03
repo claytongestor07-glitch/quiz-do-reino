@@ -15,10 +15,12 @@ export function validar(id) {
 	const emoji = quiz.tipo === 'emoji';
 	const abc = quiz.tipo === 'abc'; // alternativas no visual colorido: mais perguntas, textos mais curtos
 	const animais = quiz.categoria === 'animais'; // quiz de animais: sem referência bíblica, maratonas maiores
-	const [min, max] = emoji ? [20, animais ? 120 : 60] : abc ? [20, 30] : [15, 20];
+	const rodada = quiz.formato === 'rodada'; // regras do senhor (11/2026): 20 rodadas, 3 alternativas com imagem, sem explicação
+	const [min, max] = rodada ? [20, 20] : emoji ? [20, animais ? 120 : 60] : abc ? [20, 30] : [15, 20];
 	if (n < min || n > max) erros.push(`precisa de ${min} a ${max} ${emoji ? 'desafios' : 'perguntas'} (tem ${n})`);
 	(quiz.icones ?? []).forEach((e) => !fs.existsSync(path.join(RAIZ, 'public', 'emoji', arquivoEmoji(e))) && erros.push(`ícone "${e}" não baixado (rode scripts/emojis.mjs)`));
-	for (const campo of ['titulo', 'tema', 'abertura', 'encerramento', 'licao']) if (!quiz[campo]?.trim()) erros.push(`campo vazio: ${campo}`);
+	for (const campo of rodada ? ['titulo', 'tema', 'encerramento', 'descricao'] : ['titulo', 'tema', 'abertura', 'encerramento', 'licao']) if (!quiz[campo]?.trim()) erros.push(`campo vazio: ${campo}`);
+	if (rodada && quiz.categoria !== 'animais') erros.push('formato rodada é só para o quiz de animais (categoria "animais")');
 	if (quiz.titulo && quiz.titulo.length > 100) erros.push('título passa de 100 caracteres (limite do YouTube)');
 	const vistas = new Set();
 	quiz.perguntas?.forEach((p, i) => {
@@ -42,8 +44,13 @@ export function validar(id) {
 			const [maxAlt, maxPerg] = abc ? [30, 90] : [42, 70];
 			p.alternativas?.forEach((a, k) => a.length > maxAlt && erros.push(`${q}: alternativa ${k + 1} longa demais para a tela (${a.length} > ${maxAlt})`));
 			if (p.pergunta?.length > maxPerg) erros.push(`${q}: pergunta longa demais para a tela (${p.pergunta.length} > ${maxPerg})`);
-			if (!p.explicacao?.trim()) erros.push(`${q}: falta explicação`);
+			if (rodada) {
+				if (p.imagens?.length !== 3) erros.push(`${q}: precisa de 3 imagens, uma por alternativa`);
+				p.imagens?.forEach((e) => !fs.existsSync(path.join(RAIZ, 'public', 'emoji', arquivoEmoji(e))) && erros.push(`${q}: imagem "${e}" não baixada (rode scripts/emojis.mjs)`));
+				if (p.explicacao || p.referencia) erros.push(`${q}: rodada não tem explicação nem referência`);
+			} else if (!p.explicacao?.trim()) erros.push(`${q}: falta explicação`);
 		}
+		if (rodada) return;
 		if (animais) {
 			if (!p.referencia?.trim() || p.referencia.length > 24) erros.push(`${q}: "referencia" (onde vive) vazia ou longa demais (máx. 24)`);
 		} else for (const ref of (p.referencia ?? '').split(';').map((r) => r.trim())) {
@@ -58,6 +65,16 @@ export function validar(id) {
 		const dist = [0, 0, 0];
 		quiz.perguntas?.forEach((p) => dist[p.correta]++);
 		if (Math.max(...dist) > n * 0.5) erros.push(`respostas certas concentradas numa letra (${dist.join('/')})`);
+		if (rodada) {
+			// Sem padrão previsível: cada letra de 5 a 9 vezes e nunca a mesma letra 3 vezes seguidas
+			if (Math.min(...dist) < 5 || Math.max(...dist) > 9) erros.push(`distribua as respostas entre A, B e C (${dist.join('/')}; cada letra de 5 a 9)`);
+			quiz.perguntas?.forEach((p, i) => i >= 2 && p.correta === quiz.perguntas[i - 1].correta && p.correta === quiz.perguntas[i - 2].correta && erros.push(`P${i - 1}–P${i + 1}: mesma letra 3 vezes seguidas`));
+			// Não repetir perguntas de outros episódios
+			const normal = (t) => t?.toLowerCase().normalize('NFD').replace(/[^a-z0-9 ]/g, '').trim();
+			const outras = new Set(fs.readdirSync(path.join(RAIZ, 'episodios')).filter((e) => e !== id && fs.existsSync(path.join(RAIZ, 'episodios', e, 'quiz.json')))
+				.flatMap((e) => JSON.parse(fs.readFileSync(path.join(RAIZ, 'episodios', e, 'quiz.json'), 'utf8')).perguntas.map((p) => normal(p.pergunta)).filter(Boolean)));
+			quiz.perguntas?.forEach((p, i) => outras.has(normal(p.pergunta)) && erros.push(`P${i + 1}: pergunta já usada em outro episódio`));
+		}
 	}
 	return erros;
 }
