@@ -5,6 +5,7 @@
     "animais"
   ],
   "versaoVertical": false,
+  "shortsPorEpisodio": 1,
   "tags": [
     "quiz bíblico",
     "quiz bíblico infantil",
@@ -141,6 +142,5 @@
         }
       }
     }
-  },
-  "shortsPorEpisodio": 1
+  }
 }
