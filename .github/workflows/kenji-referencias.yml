@@ -1,0 +1,46 @@
+# Kenji Studio (repositório privado kenji-studio): candidatas a imagem de referência dos personagens,
+# geradas na GPU gratuita do Kaggle (SDXL). Fica aqui porque este repositório já tem o segredo do Kaggle.
+# O resultado sai como artefato "kenji-referencias"; nada é gravado neste repositório.
+name: Kenji - referências
+on:
+  workflow_dispatch:
+jobs:
+  kaggle:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    env:
+      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q -U kaggle
+      - name: Enviar para a GPU do Kaggle
+        run: |
+          python scripts/kaggle/chave.py mascarar
+          python scripts/kaggle/chave.py >> "$GITHUB_ENV"
+          set -a; . <(python scripts/kaggle/chave.py); set +a
+          USUARIO=$(python -c "import kaggle; print(kaggle.api.get_config_value('username') or '')")
+          test -n "$USUARIO"
+          echo "KERNEL=$USUARIO/kenji-referencias" >> "$GITHUB_ENV"
+          mkdir k && cp scripts/kaggle/kenji_referencias.py k/
+          cat > k/kernel-metadata.json <<EOF
+          {"id": "$USUARIO/kenji-referencias", "title": "kenji-referencias", "code_file": "kenji_referencias.py",
+           "language": "python", "kernel_type": "script", "is_private": true,
+           "enable_gpu": true, "enable_internet": true, "machine_shape": "NvidiaTeslaT4"}
+          EOF
+          kaggle kernels push -p k
+      - name: Aguardar a GPU
+        run: |
+          sleep 120
+          for i in $(seq 1 220); do
+            S=$(kaggle kernels status "$KERNEL" 2>&1 | tail -1); echo "$(date +%H:%M) $S"
+            case "$S" in *COMPLETE*) break;; *ERROR*|*CANCEL*) break;; esac
+            sleep 60
+          done
+          mkdir -p saida && kaggle kernels output "$KERNEL" -p saida
+          tail -40 saida/*.log || true
+          ls saida/*.png
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kenji-referencias
+          path: saida/*
