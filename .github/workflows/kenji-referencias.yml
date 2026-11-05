@@ -48,3 +48,33 @@ jobs:
         with:
           name: kenji-referencias
           path: saida/*
+  # Poses do piloto (script=kenji_planos): recorta o fundo liso para montar os personagens em camadas
+  recortar:
+    needs: kaggle
+    if: inputs.script == 'kenji_planos'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: kenji-referencias
+          path: brutas
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -q "rembg[cpu]" pillow
+      - name: Recortar poses
+        run: |
+          mkdir -p recortes
+          python - <<'EOF'
+          from pathlib import Path
+          from PIL import Image
+          from rembg import new_session, remove
+          s = new_session('isnet-general-use')
+          for p in sorted(Path('brutas').glob('pose-*.png')):
+              remove(Image.open(p), session=s).save(Path('recortes') / p.name)
+              print(p.name, flush=True)
+          EOF
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kenji-recortes
+          path: recortes/*
