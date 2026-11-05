@@ -8,10 +8,10 @@ subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', '-U', 'diffusers>=
 import torch
 from diffusers import AutoencoderKL, StableDiffusionXLPipeline
 
-ESTILO = ('stylized 3D animated family film character, original design, soft global illumination, warm cinematic light, '
+ESTILO = ('3D CGI animated feature film still, stylized 3D character, subsurface scattering skin, slightly larger head and big eyes, original design, soft global illumination, warm cinematic light, '
 	'natural skin materials, gentle expressive eyes, clean anatomy, five fingers per hand, highly detailed, octane render')
 NEGATIVO = ('extra fingers, deformed hands, distorted face, asymmetrical eyes, horror, dark, scary, text, watermark, logo, '
-	'blurry, low quality, photo, realistic photograph, multiple characters, cropped feet')
+	'blurry, low quality, photo, realistic photograph, real child, anime, 2D, illustration, sketch, flat colors, multiple characters, cropped feet')
 FUNDO = 'plain light grey studio background'
 
 KENJI = ('9-year-old boy with East Asian features, round face, warm dark-brown almond eyes, thick expressive eyebrows, '
@@ -23,7 +23,7 @@ LIA = ('9-year-old Black girl with voluminous curly hair held by a yellow headba
 	'red and white striped t-shirt, red sneakers, bright clever smile, holding a small sketchbook')
 
 # nome: (prompt, largura, altura)
-PEDIDOS = {
+PEDIDOS_1 = {
 	'kenji-corpo': (f'full body front view of {KENJI}, standing, {FUNDO}', 832, 1216),
 	'kenji-rosto': (f'portrait close-up of {KENJI}, {FUNDO}', 1024, 1024),
 	'kenji-ficha': (f'character turnaround sheet of {KENJI}, three views side by side: front, side, back, same character, {FUNDO}', 1344, 768),
@@ -34,7 +34,15 @@ PEDIDOS = {
 		'green lawn, fallen log used as a bench, small wooden carpentry workshop in the background, warm cozy atmosphere, no people, '
 		'stylized 3D animated family film environment, cinematic lighting, depth of field', 832, 1216),
 }
-SEMENTES = [7, 21, 42]
+PEDIDOS = {
+	'kenji-corpo': PEDIDOS_1['kenji-corpo'],
+	'kenji-rosto': PEDIDOS_1['kenji-rosto'],
+	'lia-corpo': PEDIDOS_1['lia-corpo'],
+	'quintal': ('backyard of a grandfather\'s house at golden hour, a small shallow stream of clear water flowing across the green lawn '
+		'in the foreground with smooth stones, fallen log used as a bench beside the stream, small wooden carpentry workshop in the '
+		'background, warm cozy atmosphere, no people, 3D CGI animated feature film environment, cinematic lighting, depth of field', 832, 1216),
+}
+SEMENTES = [3, 11, 77, 123]
 
 MODELO = 'stabilityai/stable-diffusion-xl-base-1.0'
 
