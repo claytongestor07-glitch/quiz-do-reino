@@ -1,9 +1,13 @@
 # Kenji Studio (repositório privado kenji-studio): candidatas a imagem de referência dos personagens,
 # geradas na GPU gratuita do Kaggle (SDXL). Fica aqui porque este repositório já tem o segredo do Kaggle.
-# O resultado sai como artefato "kenji-referencias"; nada é gravado neste repositório.
+# O resultado sai como artefato "kenji-referencias". As referências aprovadas ficam públicas em kenji/*.jpg para o Kaggle baixar.
 name: Kenji - referências
 on:
   workflow_dispatch:
+    inputs:
+      script:
+        description: kenji_referencias (candidatas) ou kenji_fichas (vistas e expressões a partir das referências aprovadas)
+        default: kenji_referencias
 jobs:
   kaggle:
     runs-on: ubuntu-24.04
@@ -20,10 +24,10 @@ jobs:
           set -a; . <(python scripts/kaggle/chave.py); set +a
           USUARIO=$(python -c "import kaggle; print(kaggle.api.get_config_value('username') or '')")
           test -n "$USUARIO"
-          echo "KERNEL=$USUARIO/kenji-referencias" >> "$GITHUB_ENV"
-          mkdir k && cp scripts/kaggle/kenji_referencias.py k/
+          N=$(echo "${{ inputs.script }}" | tr _ -); echo "KERNEL=$USUARIO/$N" >> "$GITHUB_ENV"
+          mkdir k && cp scripts/kaggle/${{ inputs.script }}.py k/
           cat > k/kernel-metadata.json <<EOF
-          {"id": "$USUARIO/kenji-referencias", "title": "kenji-referencias", "code_file": "kenji_referencias.py",
+          {"id": "$USUARIO/$N", "title": "$N", "code_file": "${{ inputs.script }}.py",
            "language": "python", "kernel_type": "script", "is_private": true,
            "enable_gpu": true, "enable_internet": true, "machine_shape": "NvidiaTeslaT4"}
           EOF
