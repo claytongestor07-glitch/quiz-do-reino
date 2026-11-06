@@ -15,7 +15,7 @@ export function validar(id) {
 	const emoji = quiz.tipo === 'emoji';
 	const abc = quiz.tipo === 'abc'; // alternativas no visual colorido: mais perguntas, textos mais curtos
 	const animais = quiz.categoria === 'animais'; // quiz de animais: sem referência bíblica, maratonas maiores
-	const rodada = quiz.formato === 'rodada'; // regras do senhor (11/2026): 20 rodadas, 3 alternativas com imagem, sem explicação
+	const rodada = quiz.formato === 'rodada' || quiz.formato === 'caixa'; // caixa: mesmas regras, com raridades // regras do senhor (11/2026): 20 rodadas, 3 alternativas com imagem, sem explicação
 	const [min, max] = rodada ? [20, 20] : emoji ? [20, animais ? 120 : 60] : abc ? [20, 30] : [15, 20];
 	if (n < min || n > max) erros.push(`precisa de ${min} a ${max} ${emoji ? 'desafios' : 'perguntas'} (tem ${n})`);
 	(quiz.icones ?? []).forEach((e) => !fs.existsSync(path.join(RAIZ, 'public', 'emoji', arquivoEmoji(e))) && erros.push(`ícone "${e}" não baixado (rode scripts/emojis.mjs)`));
@@ -48,6 +48,8 @@ export function validar(id) {
 				if (p.imagens?.length !== 3) erros.push(`${q}: precisa de 3 imagens, uma por alternativa`);
 				p.imagens?.forEach((e) => !fs.existsSync(path.join(RAIZ, 'public', 'emoji', arquivoEmoji(e))) && erros.push(`${q}: imagem "${e}" não baixada (rode scripts/emojis.mjs)`));
 				if (p.explicacao || p.referencia) erros.push(`${q}: rodada não tem explicação nem referência`);
+				// caixa: uma raridade por caixa e exatamente um "Lendário", que é a "correta" (a caixa de sorte)
+				if (quiz.formato === 'caixa' && (p.raridades?.length !== 3 || p.raridades.filter((r) => r === 'Lendário').length !== 1 || p.raridades[p.correta] !== 'Lendário' || p.raridades.some((r) => !['Comum', 'Raro', 'Lendário'].includes(r)))) erros.push(`${q}: raridades devem ser Comum/Raro/Lendário, com um só Lendário na posição "correta"`);
 			} else if (!p.explicacao?.trim()) erros.push(`${q}: falta explicação`);
 		}
 		if (rodada) return;

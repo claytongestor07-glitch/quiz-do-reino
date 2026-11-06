@@ -1,0 +1,400 @@
+{
+ "titulo": "🎁 Escolha Uma Caixa! Qual Bichinho Você Vai Ganhar? 🐼 | 20 Rodadas | Quiz de Animais para Crianças",
+ "tema": "Escolha uma caixa",
+ "tipo": "abc",
+ "categoria": "animais",
+ "formato": "caixa",
+ "chamada": "Escolha uma caixa",
+ "marca": "Quiz do Reino",
+ "selo": "🐾",
+ "craque": "Caçador de Lendários",
+ "icones": [
+  "Wrapped gift",
+  "Panda",
+  "T-rex"
+ ],
+ "descricao": "Escolha a caixa 1, 2 ou 3 e descubra qual bichinho você ganha! Em cada rodada tem um animal comum, um raro e um lendário. Conte quantos lendários você pegou nas 20 rodadas e desafie a família! Um jogo de sorte divertido para crianças de 5 a 9 anos.",
+ "encerramento": "Quantos lendários você pegou? Obrigado por jogar com a gente! Até o próximo quiz!",
+ "perguntas": [
+  {
+   "pergunta": "Qual bichinho da fazenda você vai ganhar?",
+   "alternativas": [
+    "Galinha",
+    "Cavalo",
+    "Pavão"
+   ],
+   "imagens": [
+    "Chicken",
+    "Horse",
+    "Peacock"
+   ],
+   "raridades": [
+    "Comum",
+    "Raro",
+    "Lendário"
+   ],
+   "correta": 2
+  },
+  {
+   "pergunta": "Qual bichinho da floresta você vai ganhar?",
+   "alternativas": [
+    "Coruja",
+    "Raposa",
+    "Esquilo"
+   ],
+   "imagens": [
+    "Owl",
+    "Fox",
+    "Chipmunk"
+   ],
+   "raridades": [
+    "Lendário",
+    "Raro",
+    "Comum"
+   ],
+   "correta": 0
+  },
+  {
+   "pergunta": "Qual bichinho do mar você vai ganhar?",
+   "alternativas": [
+    "Caranguejo",
+    "Baleia",
+    "Golfinho"
+   ],
+   "imagens": [
+    "Crab",
+    "Spouting whale",
+    "Dolphin"
+   ],
+   "raridades": [
+    "Comum",
+    "Lendário",
+    "Raro"
+   ],
+   "correta": 1
+  },
+  {
+   "pergunta": "Qual bichinho da selva você vai ganhar?",
+   "alternativas": [
+    "Papagaio",
+    "Tigre",
+    "Macaco"
+   ],
+   "imagens": [
+    "Parrot",
+    "Tiger",
+    "Monkey"
+   ],
+   "raridades": [
+    "Raro",
+    "Lendário",
+    "Comum"
+   ],
+   "correta": 1
+  },
+  {
+   "pergunta": "Qual bichinho do gelo você vai ganhar?",
+   "alternativas": [
+    "Foca",
+    "Pinguim",
+    "Urso-polar"
+   ],
+   "imagens": [
+    "Seal",
+    "Penguin",
+    "Polar bear"
+   ],
+   "raridades": [
+    "Comum",
+    "Raro",
+    "Lendário"
+   ],
+   "correta": 2
+  },
+  {
+   "pergunta": "Qual bichinho do jardim você vai ganhar?",
+   "alternativas": [
+    "Borboleta",
+    "Joaninha",
+    "Caracol"
+   ],
+   "imagens": [
+    "Butterfly",
+    "Lady beetle",
+    "Snail"
+   ],
+   "raridades": [
+    "Lendário",
+    "Raro",
+    "Comum"
+   ],
+   "correta": 0
+  },
+  {
+   "pergunta": "Qual bichinho da savana você vai ganhar?",
+   "alternativas": [
+    "Zebra",
+    "Girafa",
+    "Leão"
+   ],
+   "imagens": [
+    "Zebra",
+    "Giraffe",
+    "Lion"
+   ],
+   "raridades": [
+    "Comum",
+    "Raro",
+    "Lendário"
+   ],
+   "correta": 2
+  },
+  {
+   "pergunta": "Qual bichinho de estimação você vai ganhar?",
+   "alternativas": [
+    "Gato",
+    "Cachorro",
+    "Peixinho"
+   ],
+   "imagens": [
+    "Cat",
+    "Dog",
+    "Tropical fish"
+   ],
+   "raridades": [
+    "Raro",
+    "Lendário",
+    "Comum"
+   ],
+   "correta": 1
+  },
+  {
+   "pergunta": "Qual bichinho do rio você vai ganhar?",
+   "alternativas": [
+    "Jacaré",
+    "Sapo",
+    "Lontra"
+   ],
+   "imagens": [
+    "Crocodile",
+    "Frog",
+    "Otter"
+   ],
+   "raridades": [
+    "Lendário",
+    "Comum",
+    "Raro"
+   ],
+   "correta": 0
+  },
+  {
+   "pergunta": "Qual bichinho da Austrália você vai ganhar?",
+   "alternativas": [
+    "Canguru",
+    "Coala",
+    "Lagarto"
+   ],
+   "imagens": [
+    "Kangaroo",
+    "Koala",
+    "Lizard"
+   ],
+   "raridades": [
+    "Lendário",
+    "Raro",
+    "Comum"
+   ],
+   "correta": 0
+  },
+  {
+   "pergunta": "Qual bichinho do deserto você vai ganhar?",
+   "alternativas": [
+    "Escorpião",
+    "Lagartixa",
+    "Camelo"
+   ],
+   "imagens": [
+    "Scorpion",
+    "Lizard",
+    "Camel"
+   ],
+   "raridades": [
+    "Comum",
+    "Raro",
+    "Lendário"
+   ],
+   "correta": 2
+  },
+  {
+   "pergunta": "Qual bichinho da noite você vai ganhar?",
+   "alternativas": [
+    "Ouriço",
+    "Guaxinim",
+    "Morcego"
+   ],
+   "imagens": [
+    "Hedgehog",
+    "Raccoon",
+    "Bat"
+   ],
+   "raridades": [
+    "Raro",
+    "Lendário",
+    "Comum"
+   ],
+   "correta": 1
+  },
+  {
+   "pergunta": "Qual bichinho do céu você vai ganhar?",
+   "alternativas": [
+    "Águia",
+    "Pombinha",
+    "Cisne"
+   ],
+   "imagens": [
+    "Eagle",
+    "Dove",
+    "Swan"
+   ],
+   "raridades": [
+    "Lendário",
+    "Comum",
+    "Raro"
+   ],
+   "correta": 0
+  },
+  {
+   "pergunta": "Qual bichinho gigante você vai ganhar?",
+   "alternativas": [
+    "Rinoceronte",
+    "Hipopótamo",
+    "Elefante"
+   ],
+   "imagens": [
+    "Rhinoceros",
+    "Hippopotamus",
+    "Elephant"
+   ],
+   "raridades": [
+    "Raro",
+    "Comum",
+    "Lendário"
+   ],
+   "correta": 2
+  },
+  {
+   "pergunta": "Qual bichinho da pré-história você vai ganhar?",
+   "alternativas": [
+    "Dodô",
+    "Tiranossauro",
+    "Mamute"
+   ],
+   "imagens": [
+    "Dodo",
+    "T-rex",
+    "Mammoth"
+   ],
+   "raridades": [
+    "Comum",
+    "Lendário",
+    "Raro"
+   ],
+   "correta": 1
+  },
+  {
+   "pergunta": "Qual bichinho do fundo do mar você vai ganhar?",
+   "alternativas": [
+    "Polvo",
+    "Água-viva",
+    "Tubarão"
+   ],
+   "imagens": [
+    "Octopus",
+    "Jellyfish",
+    "Shark"
+   ],
+   "raridades": [
+    "Raro",
+    "Comum",
+    "Lendário"
+   ],
+   "correta": 2
+  },
+  {
+   "pergunta": "Qual bichinho da montanha você vai ganhar?",
+   "alternativas": [
+    "Bisão",
+    "Cabra",
+    "Lhama"
+   ],
+   "imagens": [
+    "Bison",
+    "Goat",
+    "Llama"
+   ],
+   "raridades": [
+    "Lendário",
+    "Comum",
+    "Raro"
+   ],
+   "correta": 0
+  },
+  {
+   "pergunta": "Qual bichinho da China você vai ganhar?",
+   "alternativas": [
+    "Macaco",
+    "Panda",
+    "Pato"
+   ],
+   "imagens": [
+    "Monkey",
+    "Panda",
+    "Duck"
+   ],
+   "raridades": [
+    "Raro",
+    "Lendário",
+    "Comum"
+   ],
+   "correta": 1
+  },
+  {
+   "pergunta": "Qual bichinho da floresta tropical você vai ganhar?",
+   "alternativas": [
+    "Gorila",
+    "Formiga",
+    "Preguiça"
+   ],
+   "imagens": [
+    "Gorilla",
+    "Ant",
+    "Sloth"
+   ],
+   "raridades": [
+    "Lendário",
+    "Comum",
+    "Raro"
+   ],
+   "correta": 0
+  },
+  {
+   "pergunta": "Qual bichinho do lago você vai ganhar?",
+   "alternativas": [
+    "Tartaruga",
+    "Pato",
+    "Flamingo"
+   ],
+   "imagens": [
+    "Turtle",
+    "Duck",
+    "Flamingo"
+   ],
+   "raridades": [
+    "Raro",
+    "Comum",
+    "Lendário"
+   ],
+   "correta": 2
+  }
+ ]
+}

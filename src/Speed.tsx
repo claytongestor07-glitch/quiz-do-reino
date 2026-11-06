@@ -2,6 +2,7 @@
 // pistas em emojis 3D (Microsoft Fluent Emoji, MIT), barra de tempo e revelação em cartão.
 // O mesmo visual serve ao formato "abc" (pergunta com alternativas A, B, C) e aos Shorts verticais.
 // Formato "rodada" (quiz de animais, 11/2026): abertura em vídeo, alternativas com imagem, sem explicação na revelação.
+// Formato "caixa" (11/2026): escolha uma de 3 caixas; cada uma abre na tela no momento em que a narração a anuncia.
 import React from 'react';
 import {AbsoluteFill, Img, Loop, OffthreadVideo, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig, Sequence} from 'remotion';
 import {FONTE, aleatorio, carregarFonte, type Cena, type Timeline} from './tema';
@@ -18,10 +19,12 @@ const contorno = (px: number, cor = TINTA): React.CSSProperties => ({WebkitTextS
 const titulo: React.CSSProperties = {fontFamily: TITULO, color: '#fff', textTransform: 'uppercase', letterSpacing: 1};
 const LETRAS = ['A', 'B', 'C'];
 const COR_ALT = ['#ff5f5f', '#2f6fe4', '#f5b400'];
-type QuizSpeed = {tipo?: string; chamada?: string; tema: string; icones?: string[]; formato?: string; perguntas: {pistas?: string[]; pergunta?: string; alternativas?: string[]; imagens?: string[]; correta?: number; resposta?: string; explicacao: string; referencia: string}[]};
+type QuizSpeed = {tipo?: string; chamada?: string; tema: string; icones?: string[]; formato?: string; perguntas: {pistas?: string[]; pergunta?: string; alternativas?: string[]; imagens?: string[]; raridades?: string[]; correta?: number; resposta?: string; explicacao: string; referencia: string}[]};
 const ehAbc = (tl: Timeline) => (tl.quiz as unknown as QuizSpeed).tipo === 'abc';
 // Rodada: pergunta, 3 alternativas com imagem, 5 s e a resposta certa (sem explicação nem referência)
-const ehRodada = (tl: Timeline) => (tl.quiz as unknown as QuizSpeed).formato === 'rodada';
+const ehRodada = (tl: Timeline) => ['rodada', 'caixa'].includes((tl.quiz as unknown as QuizSpeed).formato ?? '');
+// Caixa: 3 presentes fechados; na revelação cada um abre junto com a fala ("Caixa um: coelho!")
+const ehCaixa = (tl: Timeline) => (tl.quiz as unknown as QuizSpeed).formato === 'caixa';
 const chamadaDe = (tl: Timeline) => (tl.quiz as unknown as QuizSpeed).chamada ?? (ehAbc(tl) ? 'Quiz Bíblico' : 'Adivinhe pelos emojis');
 // Emojis de capa: "icones" do quiz (formato abc) ou as pistas do primeiro desafio (formato emoji)
 const iconesDe = (tl: Timeline) => {
@@ -71,6 +74,62 @@ const QuestaoABC: React.FC<{tl: Timeline; i: number; revelar?: boolean; visivel?
 				})}
 			</div>
 		</div>
+	);
+};
+
+const COR_RARIDADE: Record<string, string> = {Comum: '#1fb35a', Raro: '#2f6fe4', Lendário: '#f5b400'};
+// Cada caixa tem uma cor (o presente da Fluent Emoji recolorido); revelar = 0..3 caixas já abertas, abrindo = a que abre agora
+const Caixas: React.FC<{tl: Timeline; i: number; abertas?: number; abrindo?: number; visivel?: boolean}> = ({tl, i, abertas = 0, abrindo, visivel}) => {
+	const frame = useCurrentFrame();
+	const {fps} = useVideoConfig();
+	const p = (tl.quiz as unknown as QuizSpeed).perguntas[i];
+	const entrada = (k: number) => (visivel || abrindo !== undefined ? 1 : spring({frame: frame - 6 - k * 6, fps, config: {damping: 11}}));
+	return (
+		<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 36, width: '100%'}}>
+			<div style={{background: '#fff', borderRadius: 44, border: `9px solid ${TINTA}`, boxShadow: '0 12px 0 rgba(0,0,0,.2)', padding: '24px 56px', maxWidth: 1400, textAlign: 'center', fontFamily: FONTE, fontWeight: 700, fontSize: 60, lineHeight: 1.15, color: TINTA,
+				transform: `scale(${0.85 + entrada(0) * 0.15})`, opacity: Math.min(1, entrada(0) * 2)}}>{p.pergunta}</div>
+			<div style={{display: 'flex', gap: 60, justifyContent: 'center'}}>
+				{[0, 1, 2].map((k) => {
+					const aberta = k < abertas || (k === abrindo);
+					// a caixa sobe, gira e some; o animal salta no lugar (no ritmo da fala da cena)
+					const a = k === abrindo ? spring({frame: frame - 2, fps, config: {damping: 10, mass: 0.6}}) : aberta ? 1 : 0;
+					const bicho = k === abrindo ? spring({frame: frame - 8, fps, config: {damping: 8, mass: 0.7}}) : aberta ? 1 : 0;
+					const raridade = p.raridades?.[k] ?? 'Comum';
+					const lendario = raridade === 'Lendário' && bicho > 0.05;
+					const e = entrada(k + 1);
+					const balanca = !aberta && abrindo === undefined ? Math.sin((frame + k * 9) / 6) * 4 : 0;
+					return (
+						<div key={k} style={{position: 'relative', width: 400, height: 470, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `translateY(${(1 - e) * 80}px)`, opacity: Math.min(1, e * 2)}}>
+							{lendario && <div style={{position: 'absolute', inset: -40, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,226,92,.95), rgba(255,226,92,0) 65%)', transform: `scale(${0.8 + Math.sin(frame / 5) * 0.08})`}} />}
+							<div style={{position: 'absolute', inset: 0, background: '#fff', borderRadius: 44, border: `9px solid ${bicho > 0.05 ? COR_RARIDADE[raridade] : TINTA}`, boxShadow: `0 12px 0 ${bicho > 0.05 ? 'rgba(0,0,0,.25)' : 'rgba(0,0,0,.2)'}`}} />
+							{a < 0.99 && <Img src={staticFile(arquivoEmoji('Wrapped gift'))} style={{position: 'absolute', width: 300, height: 300, filter: `hue-rotate(${[0, 130, 250][k]}deg) drop-shadow(0 14px 10px rgba(0,0,0,.3))`,
+								transform: `translateY(${-a * 260}px) rotate(${balanca + a * 40}deg) scale(${1 - a * 0.4})`, opacity: 1 - a}} />}
+							{bicho > 0 && p.imagens?.[k] && <Img src={staticFile(arquivoEmoji(p.imagens[k]))} style={{position: 'absolute', top: 40, width: 290, height: 290, transform: `scale(${bicho})`, filter: 'drop-shadow(0 12px 10px rgba(0,0,0,.25))'}} />}
+							{bicho > 0 && <div style={{position: 'absolute', bottom: 64, fontFamily: FONTE, fontWeight: 700, fontSize: 46, color: TINTA, opacity: Math.min(1, bicho * 2)}}>{p.alternativas?.[k]}</div>}
+							{bicho > 0 && <div style={{...titulo, position: 'absolute', bottom: -30, fontSize: 40, padding: '6px 30px', borderRadius: 30, background: COR_RARIDADE[raridade], border: `6px solid ${TINTA}`, ...contorno(4), transform: `scale(${bicho})`}}>{raridade === 'Lendário' ? '★ Lendário' : raridade}</div>}
+							<div style={{...titulo, position: 'absolute', top: -34, left: -24, width: 92, height: 92, borderRadius: 46, background: COR_ALT[k], border: `6px solid ${TINTA}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 58, ...contorno(5)}}>{k + 1}</div>
+						</div>
+					);
+				})}
+			</div>
+		</div>
+	);
+};
+
+const CenaAbre: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
+	const i = cena.i ?? 0;
+	const k = cena.k ?? 0;
+	const boca = useBoca(cena.boca, cena.atrasoAudio);
+	const lendario = (tl.quiz as unknown as QuizSpeed).perguntas[i].raridades?.[k] === 'Lendário';
+	return (
+		<AbsoluteFill>
+			<FundoCor cor={corDe(i)} />
+			<Laterais texto={marcaDe(tl)} />
+			<Cabecalho n={i + 1} texto={chamadaDe(tl)} />
+			<AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', paddingBottom: 60}}><Caixas tl={tl} i={i} abertas={k} abrindo={k} /></AbsoluteFill>
+			<Mascotes boca={boca} humor="feliz" />
+			{lendario && <Sequence durationInFrames={70}><Confete /></Sequence>}
+		</AbsoluteFill>
 	);
 };
 
@@ -214,7 +273,7 @@ const CenaDesafio: React.FC<{tl: Timeline; cena: Cena; cronometro?: boolean}> = 
 			<Laterais texto={marcaDe(tl)} />
 			<Cabecalho n={i + 1} texto={chamadaDe(tl)} />
 			<AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', paddingBottom: ehAbc(tl) ? 90 : 40}}>
-				{ehAbc(tl) ? <QuestaoABC tl={tl} i={i} visivel={cronometro} /> : <Pistas nomes={p.pistas} tamanho={380} atraso={cronometro ? -100 : 8} sombra={sombraDe(tl)} />}
+				{ehCaixa(tl) ? <Caixas tl={tl} i={i} visivel={cronometro} /> : ehAbc(tl) ? <QuestaoABC tl={tl} i={i} visivel={cronometro} /> : <Pistas nomes={p.pistas} tamanho={380} atraso={cronometro ? -100 : 8} sombra={sombraDe(tl)} />}
 			</AbsoluteFill>
 			<Mascotes boca={boca} humor={cronometro ? 'pensando' : 'normal'} />
 			<BarraTempo restante={restante} segundos={cronometro ? Math.max(1, Math.ceil(tl.tempoResposta - frame / fps)) : undefined} />
@@ -372,6 +431,7 @@ export const RenderCenaSpeed: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}
 		case 'pergunta': return <CenaDesafio tl={tl} cena={cena} />;
 		case 'cronometro': return <CenaDesafio tl={tl} cena={cena} cronometro />;
 		case 'revelacao': return <CenaRevelacao tl={tl} cena={cena} />;
+		case 'abre': return <CenaAbre tl={tl} cena={cena} />;
 		case 'encerramento': return <CenaEncerramento tl={tl} cena={cena} />;
 	}
 };

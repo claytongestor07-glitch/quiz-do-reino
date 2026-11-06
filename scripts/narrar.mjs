@@ -17,7 +17,9 @@ const EMOJI = episodio(process.argv[2]).quiz.tipo === 'emoji';
 const ABC = episodio(process.argv[2]).quiz.tipo === 'abc'; // pergunta com alternativas, no visual colorido
 const SPEED = EMOJI || ABC;
 // Rodada (quiz de animais, regra do senhor em 11/2026): pergunta, alternativas, 5 s, resposta certa e mais nada
-const RODADA = episodio(process.argv[2]).quiz.formato === 'rodada';
+// Caixa (11/2026, inspirado nos jogos de escolha): 3 caixas fechadas, 5 s para escolher e cada caixa abre junto com a fala
+const CAIXA = episodio(process.argv[2]).quiz.formato === 'caixa';
+const RODADA = CAIXA || episodio(process.argv[2]).quiz.formato === 'rodada';
 const TEMPO_RESPOSTA = RODADA ? 5 : EMOJI ? 6 : ABC ? 7 : 8;
 const VINHETA = {video: 'abertura/kiko.mp4', audio: 'abertura/kiko.wav'};
 // O Kiko abre todo episódio de animais, em qualquer formato (senhor, 03/11/2026: nenhum vídeo sai sem a raposa no início)
@@ -25,7 +27,7 @@ const KIKO = RODADA || episodio(process.argv[2]).quiz.categoria === 'animais';
 // Ganchos curtos com o Kiko para prender a criança até o fim (senhor, 03/11/2026). Variam por episódio.
 // A chamada de curtir e seguir fala com o adulto: os vídeos são "conteúdo para crianças" no YouTube.
 const GANCHOS = {
-	inicio: ['Será que você acerta todas as 20? Valendo!', 'São 20 perguntas! Quantas você vai acertar? Começou!', 'Prepare-se, que hoje tem desafio! Vamos nessa?', 'Atenção, detetive dos animais! Lá vem a primeira!'],
+	inicio: CAIXA ? ['Escolha uma caixa e descubra qual bichinho você ganha! Valendo!', 'Três caixas, um bichinho em cada! Qual você escolhe? Começou!', 'Será que você vai tirar um animal lendário? Vamos nessa!'] : ['Será que você acerta todas as 20? Valendo!', 'São 20 perguntas! Quantas você vai acertar? Começou!', 'Prepare-se, que hoje tem desafio! Vamos nessa?', 'Atenção, detetive dos animais! Lá vem a primeira!'],
 	cinco: ['Você está indo muito bem! Continua comigo!', 'Uau, que rapidez! Lá vem mais!', 'Mandou bem! Agora presta bastante atenção!', 'Que craque! Será que acerta a próxima?'],
 	meio: ['Chegamos na metade! Se você está gostando, peça para um adulto curtir o vídeo e seguir o canal!', 'Metade do quiz! Peça para o papai ou a mamãe curtir o vídeo e seguir o canal do Kiko!', 'Já são dez! Gostou? Chame um adulto para curtir e seguir o canal!'],
 	reta: ['Reta final! Faltam só cinco perguntas!', 'Faltam só cinco! Vamos até o fim?', 'Últimas cinco perguntas! Não vale desistir agora!'],
@@ -174,6 +176,7 @@ const EFEITOS = {
 		som('tempo-esgotado', TEMPO_RESPOSTA * FPS - 2, 0.6);
 	},
 	revelacao: () => som('acerto', 2, 0.55),
+	abre: () => (som('whoosh', 0, 0.5), som('pop', 6, 0.7)),
 	encerramento: () => som('acerto', 10, 0.4),
 };
 const adicionar = (cena, segundos) => {
@@ -197,6 +200,23 @@ if (RODADA) {
 }
 
 for (const [i, p] of quiz.perguntas.entries()) {
+	if (CAIXA) {
+		// "Rodada 3! Qual bichinho da floresta você vai ganhar? Caixa um, dois ou três?" ... "Caixa um: coelho!" (abre junto com a fala)
+		const enunciado = await falar(`Rodada ${i + 1}! ${p.pergunta} Caixa um, dois ou três?`);
+		adicionar({tipo: 'pergunta', i, ...enunciado, atrasoAudio: f(0.3)}, 0.3 + enunciado.segundos + 0.3);
+		adicionar({tipo: 'cronometro', i}, TEMPO_RESPOSTA);
+		for (const k of [0, 1, 2]) {
+			const selo = p.raridades[k] === 'Lendário' ? ' Lendário!' : p.raridades[k] === 'Raro' ? ' Raro!' : '';
+			const fala = await falar(`Caixa ${['um', 'dois', 'três'][k]}: ${p.alternativas[k].toLowerCase()}!${selo}`);
+			adicionar({tipo: 'abre', i, k, ...fala, atrasoAudio: f(0.15)}, 0.15 + fala.segundos + (k === 2 ? 1.3 : 0.45));
+		}
+		const tipo = {4: 'cinco', 9: 'meio', 14: 'reta'}[i];
+		if (tipo && i < quiz.perguntas.length - 1) {
+			const g = await falar(gancho(tipo));
+			adicionar({tipo: tipo === 'meio' ? 'chamada' : 'gancho', texto: gancho(tipo), ...g, atrasoAudio: f(0.2)}, 0.2 + g.segundos + 0.5);
+		}
+		continue;
+	}
 	if (RODADA) {
 		// Exatamente como o modelo: "Qual destes animais tem tromba? A: Girafa. B: Elefante. C: Zebra." ... "A resposta certa é B: elefante!"
 		const enunciado = await falar(`${p.pergunta} ${p.alternativas.map((a, k) => `${LETRAS[k]}: ${a}.`).join(' ')}`);
