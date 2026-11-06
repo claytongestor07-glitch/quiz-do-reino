@@ -42,7 +42,7 @@ jobs:
           done
           mkdir -p saida && kaggle kernels output "$KERNEL" -p saida
           tail -40 saida/*.log || true
-          ls saida/*.png
+          ls saida
       - uses: actions/upload-artifact@v4
         if: always()
         with:
