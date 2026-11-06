@@ -36,6 +36,8 @@ const marcaDe = (tl: Timeline) => (tl.quiz as unknown as {marca?: string}).marca
 const seloDe = (tl: Timeline) => (tl.quiz as unknown as {selo?: string}).selo ?? '📖';
 // Quiz da sombra: o animal aparece só em silhueta preta até a revelação
 const sombraDe = (tl: Timeline) => Boolean((tl.quiz as unknown as {sombra?: boolean}).sombra);
+// "Qual animal é esse?": um animal só por desafio (imagem maior, capa sem "+")
+const unicoDe = (tl: Timeline) => Boolean((tl.quiz as unknown as {unico?: boolean}).unico);
 const rotuloDe = (tl: Timeline) => ((tl.quiz as unknown as {categoria?: string}).categoria === 'animais' ? 'Quiz de Animais' : 'Quiz Bíblico');
 const craqueDe = (tl: Timeline) => (tl.quiz as unknown as {craque?: string}).craque ?? 'Craque do Reino';
 const unidade = (tl: Timeline) => (ehAbc(tl) ? 'perguntas' : 'desafios');
@@ -192,7 +194,7 @@ const Cabecalho: React.FC<{n: number; texto: string}> = ({n, texto}) => (
 	</div>
 );
 
-const Pistas: React.FC<{nomes: string[]; tamanho?: number; atraso?: number; sombra?: boolean}> = ({nomes, tamanho = 340, atraso = 8, sombra}) => {
+const Pistas: React.FC<{nomes: string[]; tamanho?: number; atraso?: number; sombra?: boolean; semMais?: boolean}> = ({nomes, tamanho = 340, atraso = 8, sombra, semMais}) => {
 	const frame = useCurrentFrame();
 	const {fps} = useVideoConfig();
 	return (
@@ -202,7 +204,7 @@ const Pistas: React.FC<{nomes: string[]; tamanho?: number; atraso?: number; somb
 				const flutua = Math.sin((frame + k * 20) / 14) * tamanho * 0.025;
 				return (
 					<React.Fragment key={k}>
-						{k > 0 && !sombra && <div style={{...titulo, fontSize: tamanho * 0.55, ...contorno(tamanho * 0.035), opacity: Math.min(1, s * 2), transform: `scale(${s})`}}>+</div>}
+						{k > 0 && !sombra && !semMais && <div style={{...titulo, fontSize: tamanho * 0.55, ...contorno(tamanho * 0.035), opacity: Math.min(1, s * 2), transform: `scale(${s})`}}>+</div>}
 						<Img src={staticFile(arquivoEmoji(nome))} style={{width: tamanho, height: tamanho, transform: `translateY(${flutua}px) scale(${s}) rotate(${(1 - s) * -25}deg)`, filter: `${sombra ? 'brightness(0) ' : ''}drop-shadow(0 18px 14px rgba(0,0,0,.28))`}} />
 					</React.Fragment>
 				);
@@ -273,7 +275,7 @@ const CenaDesafio: React.FC<{tl: Timeline; cena: Cena; cronometro?: boolean}> = 
 			<Laterais texto={marcaDe(tl)} />
 			<Cabecalho n={i + 1} texto={chamadaDe(tl)} />
 			<AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', paddingBottom: ehAbc(tl) ? 90 : 40}}>
-				{ehCaixa(tl) ? <Caixas tl={tl} i={i} visivel={cronometro} /> : ehAbc(tl) ? <QuestaoABC tl={tl} i={i} visivel={cronometro} /> : <Pistas nomes={p.pistas} tamanho={380} atraso={cronometro ? -100 : 8} sombra={sombraDe(tl)} />}
+				{ehCaixa(tl) ? <Caixas tl={tl} i={i} visivel={cronometro} /> : ehAbc(tl) ? <QuestaoABC tl={tl} i={i} visivel={cronometro} /> : <Pistas nomes={p.pistas} tamanho={unicoDe(tl) ? 560 : 380} atraso={cronometro ? -100 : 8} sombra={sombraDe(tl)} />}
 			</AbsoluteFill>
 			<Mascotes boca={boca} humor={cronometro ? 'pensando' : 'normal'} />
 			<BarraTempo restante={restante} segundos={cronometro ? Math.max(1, Math.ceil(tl.tempoResposta - frame / fps)) : undefined} />
@@ -313,7 +315,7 @@ const CenaRevelacao: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 			<Laterais texto={marcaDe(tl)} />
 			<Cabecalho n={i + 1} texto={chamadaDe(tl)} />
 			<div style={{position: 'absolute', top: sombraDe(tl) ? 140 : 175, left: 0, right: 0, display: 'flex', justifyContent: 'center'}}>
-				<Pistas nomes={p.pistas} tamanho={sombraDe(tl) ? 160 : 110} atraso={-100} />
+				<Pistas nomes={p.pistas} tamanho={sombraDe(tl) || unicoDe(tl) ? 160 : 110} atraso={-100} />
 			</div>
 			<div style={{position: 'absolute', top: 300, left: 360, right: 360, height: 470, transform: `scale(${0.6 + s * 0.4})`, opacity: Math.min(1, s * 2),
 				background: 'radial-gradient(circle at 50% 30%, #ffffff, #eef3ff)', borderRadius: 48, border: '10px solid #fff', boxShadow: '0 16px 0 rgba(0,0,0,.18)',
@@ -349,7 +351,7 @@ const CenaAbertura: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 				</div>
 			</div>
 			<div style={{position: 'absolute', top: 470, left: 0, right: 0}}>
-				<Pistas nomes={iconesDe(tl)} tamanho={300} atraso={30} sombra={sombraDe(tl)} />
+				<Pistas nomes={iconesDe(tl)} tamanho={300} atraso={30} sombra={sombraDe(tl)} semMais={unicoDe(tl)} />
 			</div>
 			<div style={{position: 'absolute', left: 60, bottom: 20}}><Lulu boca={boca} humor="feliz" escala={0.85} /></div>
 			<div style={{position: 'absolute', right: 60, bottom: 20}}><Leleco humor="feliz" escala={1.05} /></div>
@@ -445,7 +447,7 @@ export const ThumbnailSpeed: React.FC<{tl: Timeline}> = ({tl}) => {
 			<div style={{position: 'absolute', top: 40, width: '100%', textAlign: 'center'}}>
 				{palavras.map((w, k) => <span key={k} style={{...titulo, margin: '0 16px', fontSize: 150, color: k === palavras.length - 1 ? '#ffd43b' : '#fff', ...contorno(16)}}>{w}</span>)}
 			</div>
-			<div style={{position: 'absolute', top: 330, left: 0, right: 0}}><Pistas nomes={iconesDe(tl)} tamanho={480} atraso={-100} sombra={sombraDe(tl)} /></div>
+			<div style={{position: 'absolute', top: 330, left: 0, right: 0}}><Pistas nomes={iconesDe(tl)} tamanho={480} atraso={-100} sombra={sombraDe(tl)} semMais={unicoDe(tl)} /></div>
 			<div style={{position: 'absolute', bottom: 40, width: '100%', textAlign: 'center'}}>
 				<span style={{...titulo, fontSize: 84, background: '#e8336d', borderRadius: 60, padding: '10px 56px', border: `9px solid ${TINTA}`, ...contorno(8)}}>{(q as unknown as {faixa?: string}).faixa ?? q.tema}</span>
 			</div>
@@ -474,7 +476,7 @@ const AberturaVertical: React.FC<{tl: Timeline; cena: Cena}> = ({tl, cena}) => {
 					<span style={{...titulo, display: 'inline-block', fontSize: 56, lineHeight: 1.15, background: '#e8336d', borderRadius: 44, padding: '10px 40px', border: `7px solid ${TINTA}`, ...contorno(5)}}>{tl.quiz.tema}<br />{tl.quiz.perguntas.length} {unidade(tl)}</span>
 				</div>
 			</div>
-			<div style={{position: 'absolute', top: 1000, left: 0, right: 0}}><Pistas nomes={iconesDe(tl)} tamanho={260} atraso={30} sombra={sombraDe(tl)} /></div>
+			<div style={{position: 'absolute', top: 1000, left: 0, right: 0}}><Pistas nomes={iconesDe(tl)} tamanho={260} atraso={30} sombra={sombraDe(tl)} semMais={unicoDe(tl)} /></div>
 			<div style={{position: 'absolute', left: 40, bottom: 90}}><Lulu boca={boca} humor="feliz" escala={0.85} /></div>
 			<div style={{position: 'absolute', right: 40, bottom: 90}}><Leleco humor="feliz" escala={1.05} /></div>
 		</AbsoluteFill>
