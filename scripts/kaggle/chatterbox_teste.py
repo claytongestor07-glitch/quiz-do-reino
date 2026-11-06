@@ -3,6 +3,8 @@
 # com frases do quiz e dois níveis de emoção. Saída: /kaggle/working/voz-<n>-<emocao>.wav
 import subprocess, sys
 subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', 'chatterbox-tts'], check=True)
+# o chatterbox fixa a versão do torch; o torchvision do Kaggle fica incompatível ("torchvision::nms does not exist") e não é usado
+subprocess.run([sys.executable, '-m', 'pip', 'uninstall', '-y', '-q', 'torchvision'], check=True)
 import torchaudio as ta
 from chatterbox.mtl_tts import ChatterboxMultilingualTTS
 
