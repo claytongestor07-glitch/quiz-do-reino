@@ -48,10 +48,10 @@ jobs:
         with:
           name: kenji-referencias
           path: saida/*
-  # Poses do piloto (script=kenji_planos): recorta o fundo liso para montar os personagens em camadas
+  # Poses do piloto (script=kenji_planos) e animais 3D do quiz (script=animais_3d): recorta o fundo liso
   recortar:
     needs: kaggle
-    if: inputs.script == 'kenji_planos'
+    if: inputs.script == 'kenji_planos' || inputs.script == 'animais_3d'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/download-artifact@v4
@@ -70,7 +70,7 @@ jobs:
           from PIL import Image
           from rembg import new_session, remove
           s = new_session('isnet-general-use')
-          for p in sorted(Path('brutas').glob('pose-*.png')):
+          for p in sorted([*Path('brutas').glob('pose-*.png'), *Path('brutas').glob('animal-*.png')]):
               remove(Image.open(p), session=s).save(Path('recortes') / p.name)
               print(p.name, flush=True)
           EOF
