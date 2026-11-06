@@ -10,19 +10,19 @@ from diffusers import AutoencoderKL, StableDiffusionXLPipeline
 
 ESTILO = ('cute 3D emoji icon style, glossy clay render, soft studio lighting, vibrant colors, full body, centered, '
 	'single animal, plain pure white background, high quality')
-NEGATIVO = 'text, watermark, logo, multiple animals, scenery, ground, shadow on wall, frame, border, human, scary, realistic photo, blurry'
+NEGATIVO = 'pattern, wallpaper, collage, repeated, many copies, text, watermark, logo, multiple animals, scenery, ground, shadow on wall, frame, border, human, scary, realistic photo, blurry'
 ANIMAIS = {
-	'capybara': 'a capybara', 'giant_anteater': 'a giant anteater with long snout and bushy tail', 'toucan': 'a toucan with a big colorful beak',
-	'hyacinth_macaw': 'a blue hyacinth macaw parrot', 'jaguar': 'a spotted jaguar big cat', 'golden_lion_tamarin': 'a golden lion tamarin monkey with orange mane',
+	'capybara': 'a capybara', 'giant_anteater': 'a giant anteater with long snout and bushy tail', 'toucan': 'one toucan bird with black body, white chest and a big orange beak, perched',
+	'hyacinth_macaw': 'a blue hyacinth macaw parrot', 'jaguar': 'a jaguar big cat with golden yellow fur and black rosette spots', 'golden_lion_tamarin': 'a small golden lion tamarin monkey, bright orange fur, tiny dark face, long tail, young and cute',
 	'amazon_river_dolphin': 'a pink amazon river dolphin', 'maned_wolf': 'a maned wolf with long legs and red fur', 'armadillo': 'an armadillo',
-	'coati': 'a coati with long snout and striped tail', 'platypus': 'a platypus', 'meerkat': 'a meerkat standing upright',
-	'axolotl': 'a pink axolotl', 'pangolin': 'a pangolin covered in scales', 'ring_tailed_lemur': 'a ring-tailed lemur',
-	'moose': 'a moose with big antlers', 'wild_boar': 'a wild boar', 'badger': 'a badger', 'goose': 'a white goose',
-	'squid': 'a squid', 'shrimp': 'a pink shrimp', 'water_buffalo': 'a water buffalo', 'seahorse': 'a seahorse',
-	'starfish': 'an orange starfish', 'rhea': 'a rhea bird', 'porcupine': 'a porcupine with quills', 'walrus': 'a walrus with tusks',
-	'hyena': 'a spotted hyena', 'red_panda': 'a red panda', 'clownfish': 'an orange and white clownfish',
+	'coati': 'a coati with long snout and striped tail', 'platypus': 'a brown furry platypus with a flat duck bill and beaver tail', 'meerkat': 'a meerkat standing upright',
+	'axolotl': 'a pink axolotl', 'pangolin': 'one brown pangolin standing on four legs, body covered in overlapping scales, long tail', 'ring_tailed_lemur': 'a ring-tailed lemur',
+	'moose': 'a moose with big antlers', 'wild_boar': 'a wild boar', 'badger': 'a european badger with grey body and black and white striped face', 'goose': 'a white goose',
+	'squid': 'one pink squid with long tentacles and big eyes', 'shrimp': 'a pink shrimp', 'water_buffalo': 'a water buffalo', 'seahorse': 'a seahorse',
+	'starfish': 'one single big orange starfish with five arms and a cute face', 'rhea': 'a rhea bird', 'porcupine': 'a porcupine with quills', 'walrus': 'a walrus with tusks',
+	'hyena': 'a spotted hyena', 'red_panda': 'one red panda with reddish fur, white face markings and a bushy striped tail', 'clownfish': 'an orange and white clownfish',
 }
-SEMENTES = [4, 44]
+SEMENTES = [int(x) for x in os.environ.get('SEMENTES', '4,44').split(',')]
 NOMES = [n for n in os.environ.get('ANIMAIS', ','.join(ANIMAIS)).split(',') if n in ANIMAIS]
 
 def carregar(gpu):

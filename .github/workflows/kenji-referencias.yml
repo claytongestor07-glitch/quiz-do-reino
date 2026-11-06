@@ -8,6 +8,9 @@ on:
       script:
         description: kenji_referencias (candidatas) ou kenji_fichas (vistas e expressões a partir das referências aprovadas)
         default: kenji_referencias
+      env:
+        description: variáveis extras para o script no Kaggle (ex. ANIMAIS=jaguar,toucan;SEMENTES=5,55,555)
+        default: ''
 jobs:
   kaggle:
     runs-on: ubuntu-24.04
@@ -25,7 +28,8 @@ jobs:
           USUARIO=$(python -c "import kaggle; print(kaggle.api.get_config_value('username') or '')")
           test -n "$USUARIO"
           N=$(echo "${{ inputs.script }}" | tr _ -); echo "KERNEL=$USUARIO/$N" >> "$GITHUB_ENV"
-          mkdir k && cp scripts/kaggle/${{ inputs.script }}.py k/
+          mkdir k
+          { echo "import os"; echo "${{ inputs.env }}" | tr ';' '\n' | grep = | sed "s/^\([A-Z_]*\)=\(.*\)$/os.environ['\1'] = '\2'/"; cat scripts/kaggle/${{ inputs.script }}.py; } > k/${{ inputs.script }}.py
           cat > k/kernel-metadata.json <<EOF
           {"id": "$USUARIO/$N", "title": "$N", "code_file": "${{ inputs.script }}.py",
            "language": "python", "kernel_type": "script", "is_private": true,
