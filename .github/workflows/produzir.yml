@@ -47,7 +47,7 @@ jobs:
           KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
         # voz Chatterbox: as falas são geradas na GPU gratuita do Kaggle (scripts/ci.mjs)
         run: |
-          pip install -q -U kaggle
+          pip install -q -U kaggle six
           python scripts/kaggle/chave.py mascarar
           set -a; . <(python scripts/kaggle/chave.py); set +a
           node scripts/ci.mjs planejar "${{ inputs.episodio }}"
