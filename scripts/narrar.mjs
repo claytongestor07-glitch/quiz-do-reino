@@ -42,6 +42,10 @@ const mac = process.argv.includes('--mac');
 const edge = process.argv.includes('--edge');
 const azure = process.argv.includes('--azure');
 const kokoro = process.argv.includes('--kokoro');
+// Chatterbox Multilingual V3 (MIT): roda na GPU do Kaggle. Falas que faltam no cache vão para pendentes-chatterbox.json
+// e o narrar sai com código 3; scripts/ci.mjs gera essas falas no Kaggle e roda o narrar de novo.
+const chatterbox = process.argv.includes('--chatterbox');
+const PENDENTES = [];
 const VOZ_EDGE = 'pt-BR-ThalitaMultilingualNeural';
 const erros = validar(id);
 if (erros.length) {
@@ -50,8 +54,8 @@ if (erros.length) {
 }
 const {quiz} = episodio(id);
 const canal = JSON.parse(fs.readFileSync(path.join(RAIZ, 'config', 'canal.json'), 'utf8'));
-const provedor = mac ? 'mac' : edge ? 'edge' : azure ? 'azure' : kokoro ? 'kokoro' : 'elevenlabs';
-const voz = mac ? 'Luciana' : kokoro ? 'pf_dora' : edge || azure ? VOZ_EDGE : process.env.PS_VOICE_ID || canal.voz?.id;
+const provedor = mac ? 'mac' : edge ? 'edge' : azure ? 'azure' : kokoro ? 'kokoro' : chatterbox ? 'chatterbox' : 'elevenlabs';
+const voz = mac ? 'Luciana' : kokoro ? 'pf_dora' : chatterbox ? 'cb-v3-animada' : edge || azure ? VOZ_EDGE : process.env.PS_VOICE_ID || canal.voz?.id;
 if (azure && (!process.env.AZURE_SPEECH_KEY || !process.env.AZURE_SPEECH_REGION)) {
 	log('narrar', 'ERRO: defina AZURE_SPEECH_KEY e AZURE_SPEECH_REGION no ~/.zshrc');
 	process.exit(1);
@@ -78,6 +82,10 @@ function referenciaFalada(ref) {
 async function falar(texto) {
 	const hash = crypto.createHash('sha1').update(`${provedor === 'elevenlabs' ? MODELO : provedor}|${voz}|${texto}`).digest('hex').slice(0, 12);
 	const arq = path.join(pastaVoz, `${hash}.mp3`);
+	if (!fs.existsSync(arq) && chatterbox) {
+		PENDENTES.push({arquivo: path.basename(arq), texto});
+		return {audio: '', segundos: 1, boca: []};
+	}
 	if (!fs.existsSync(arq)) {
 		const tmp = `${arq}.tmp`;
 		if (kokoro) {
@@ -265,6 +273,11 @@ if (RODADA) {
 const encerramento = await falar(quiz.encerramento);
 adicionar({tipo: 'encerramento', ...encerramento}, encerramento.segundos + 4);
 
-const timeline = {id, fps: FPS, totalFrames: inicio, voz: {mac: 'mac-previa', edge: 'microsoft-thalita', azure: 'azure-thalita', kokoro: 'kokoro-dora', elevenlabs: 'elevenlabs'}[provedor], tempoResposta: TEMPO_RESPOSTA, quiz, cenas, sons, trilha: SPEED ? {arquivo: 'sons/trilha-quiz.mp3', volume: 0.25, volumeSobVoz: 0.06} : {arquivo: 'sons/trilha.wav', volume: 0.2, volumeSobVoz: 0.07}};
+if (PENDENTES.length) {
+	fs.writeFileSync(path.join(pastaVoz, 'pendentes-chatterbox.json'), JSON.stringify(PENDENTES));
+	log('narrar', `${id}: ${PENDENTES.length} fala(s) para gerar no Kaggle (Chatterbox)`);
+	process.exit(3);
+}
+const timeline = {id, fps: FPS, totalFrames: inicio, voz: {mac: 'mac-previa', edge: 'microsoft-thalita', azure: 'azure-thalita', kokoro: 'kokoro-dora', chatterbox: 'chatterbox', elevenlabs: 'elevenlabs'}[provedor], tempoResposta: TEMPO_RESPOSTA, quiz, cenas, sons, trilha: SPEED ? {arquivo: 'sons/trilha-quiz.mp3', volume: 0.25, volumeSobVoz: 0.06} : {arquivo: 'sons/trilha.wav', volume: 0.2, volumeSobVoz: 0.07}};
 fs.writeFileSync(path.join(pastaEp, 'timeline.json'), JSON.stringify(timeline, null, 1));
 log('narrar', `${id}: ${cenas.length} cenas, ${(inicio / FPS / 60).toFixed(1)} min (${timeline.voz})`);

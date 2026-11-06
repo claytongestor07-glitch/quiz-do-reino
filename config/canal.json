@@ -32,7 +32,8 @@
   "vozesPublicaveis": [
     "elevenlabs",
     "azure-thalita",
-    "kokoro-dora"
+    "kokoro-dora",
+    "chatterbox"
   ],
   "seo": {
     "pt": {

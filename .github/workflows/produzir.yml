@@ -26,7 +26,7 @@ permissions:
 jobs:
   planejar:
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 120
     outputs:
       id: ${{ steps.plano.outputs.id }}
       matriz: ${{ steps.plano.outputs.matriz }}
@@ -44,7 +44,13 @@ jobs:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
-        run: node scripts/ci.mjs planejar "${{ inputs.episodio }}"
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        # voz Chatterbox: as falas são geradas na GPU gratuita do Kaggle (scripts/ci.mjs)
+        run: |
+          pip install -q -U kaggle
+          python scripts/kaggle/chave.py mascarar
+          set -a; . <(python scripts/kaggle/chave.py); set +a
+          node scripts/ci.mjs planejar "${{ inputs.episodio }}"
       - if: steps.plano.outputs.id != ''
         uses: actions/upload-artifact@v4
         with:

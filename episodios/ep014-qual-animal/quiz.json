@@ -10,15 +10,15 @@
  "fonte": "Curiosidades de animais (texto infantil próprio)",
  "pergunta": "Qual animal é esse?",
  "unico": true,
- "titulo": "🦫 Qual Animal é Esse? 30 Animais Diferentes e Curiosos! | Quiz de Animais para Crianças",
+ "titulo": "🦫 Qual Animal é Esse? 29 Animais Diferentes e Curiosos! | Quiz de Animais para Crianças",
  "chamada": "QUAL ANIMAL É ESSE?",
- "faixa": "30 Animais",
+ "faixa": "29 Animais",
  "icones": [
   "IA capybara",
   "IA toucan"
  ],
  "licao": "Cada animal tem um jeito especial de viver: quanto mais a gente conhece, mais a gente cuida!",
- "abertura": "Oi, criançada! Hoje tem trinta animais diferentes e curiosos! Olhe bem e descubra: qual animal é esse? Vamos lá!",
+ "abertura": "Oi, criançada! Hoje tem vinte e nove animais diferentes e curiosos! Olhe bem e descubra: qual animal é esse? Vamos lá!",
  "encerramento": "Uau, quantos animais novos! Quantos você acertou? Conte para a família e até o próximo quiz!",
  "perguntas": [
   {
@@ -204,14 +204,6 @@
    "resposta": "Ema",
    "explicacao": "A ema é a maior ave do Brasil e não voa, mas corre muito rápido!",
    "referencia": "Campos do Brasil"
-  },
-  {
-   "pistas": [
-    "IA squid"
-   ],
-   "resposta": "Lula",
-   "explicacao": "A lula solta uma nuvem de tinta para fugir dos predadores!",
-   "referencia": "Oceanos"
   },
   {
    "pistas": [
