@@ -1,0 +1,241 @@
+{
+ "id": "ep015-qual-animal",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "Qual animal é esse?",
+ "unico": true,
+ "titulo": "🐋 Qual Animal é Esse? 27 Animais Incríveis! | Quiz de Animais para Crianças",
+ "chamada": "QUAL ANIMAL É ESSE?",
+ "faixa": "27 Animais",
+ "icones": [
+  "IA narwhal",
+  "IA chameleon"
+ ],
+ "licao": "O mundo está cheio de animais incríveis: cada um tem um superpoder diferente!",
+ "abertura": "Oi, criançada! Hoje tem vinte e sete animais incríveis! Olhe bem e descubra: qual animal é esse? Vamos lá!",
+ "encerramento": "Que demais! Quantos animais você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA hummingbird"
+   ],
+   "resposta": "Beija-flor",
+   "explicacao": "O beija-flor bate as asas tão rápido que consegue voar parado no ar!",
+   "referencia": "Jardins e florestas"
+  },
+  {
+   "pistas": [
+    "IA orca"
+   ],
+   "resposta": "Orca",
+   "explicacao": "A orca é da família dos golfinhos e caça em grupo, como uma equipe!",
+   "referencia": "Oceanos"
+  },
+  {
+   "pistas": [
+    "IA chameleon"
+   ],
+   "resposta": "Camaleão",
+   "explicacao": "O camaleão muda de cor e mexe cada olho para um lado!",
+   "referencia": "Florestas quentes"
+  },
+  {
+   "pistas": [
+    "IA tapir"
+   ],
+   "resposta": "Anta",
+   "explicacao": "A anta é o maior mamífero terrestre do Brasil e tem uma tromba curtinha!",
+   "referencia": "Matas do Brasil"
+  },
+  {
+   "pistas": [
+    "IA narwhal"
+   ],
+   "resposta": "Narval",
+   "explicacao": "O narval tem um dente comprido em espiral que parece um chifre!",
+   "referencia": "Mares gelados"
+  },
+  {
+   "pistas": [
+    "IA cheetah"
+   ],
+   "resposta": "Guepardo",
+   "explicacao": "O guepardo é o animal mais rápido da terra!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA kiwi_bird"
+   ],
+   "resposta": "Kiwi",
+   "explicacao": "O kiwi é uma ave que não voa e tem as narinas na ponta do bico!",
+   "referencia": "Nova Zelândia"
+  },
+  {
+   "pistas": [
+    "IA manatee"
+   ],
+   "resposta": "Peixe-boi",
+   "explicacao": "O peixe-boi é um mamífero calmo que come plantas debaixo d'água!",
+   "referencia": "Rios e mares quentes"
+  },
+  {
+   "pistas": [
+    "IA praying_mantis"
+   ],
+   "resposta": "Louva-a-deus",
+   "explicacao": "O louva-a-deus consegue virar a cabeça para olhar para trás!",
+   "referencia": "Jardins"
+  },
+  {
+   "pistas": [
+    "IA ostrich"
+   ],
+   "resposta": "Avestruz",
+   "explicacao": "O avestruz é a maior ave do mundo e bota o maior ovo!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA komodo_dragon"
+   ],
+   "resposta": "Dragão-de-komodo",
+   "explicacao": "O dragão-de-komodo é o maior lagarto do mundo!",
+   "referencia": "Indonésia"
+  },
+  {
+   "pistas": [
+    "IA puffin"
+   ],
+   "resposta": "Papagaio-do-mar",
+   "explicacao": "O papagaio-do-mar consegue carregar vários peixinhos no bico de uma vez!",
+   "referencia": "Mares do norte"
+  },
+  {
+   "pistas": [
+    "IA chinchilla"
+   ],
+   "resposta": "Chinchila",
+   "explicacao": "A chinchila tem o pelo mais macio do mundo e toma banho de areia!",
+   "referencia": "Montanhas dos Andes"
+  },
+  {
+   "pistas": [
+    "IA okapi"
+   ],
+   "resposta": "Ocapi",
+   "explicacao": "O ocapi tem listras de zebra, mas é parente da girafa!",
+   "referencia": "Florestas da África"
+  },
+  {
+   "pistas": [
+    "IA beluga"
+   ],
+   "resposta": "Beluga",
+   "explicacao": "A beluga é uma baleia branca que faz sons parecidos com assobios!",
+   "referencia": "Mares gelados"
+  },
+  {
+   "pistas": [
+    "IA tarsier"
+   ],
+   "resposta": "Társio",
+   "explicacao": "O társio tem olhos enormes, cada um do tamanho do seu cérebro!",
+   "referencia": "Ilhas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA pelican"
+   ],
+   "resposta": "Pelicano",
+   "explicacao": "O pelicano usa a bolsa do bico como uma rede para pegar peixes!",
+   "referencia": "Lagos e mares"
+  },
+  {
+   "pistas": [
+    "IA snow_leopard"
+   ],
+   "resposta": "Leopardo-das-neves",
+   "explicacao": "O leopardo-das-neves enrola a cauda grossa no corpo para se esquentar!",
+   "referencia": "Montanhas geladas"
+  },
+  {
+   "pistas": [
+    "IA guinea_pig"
+   ],
+   "resposta": "Porquinho-da-índia",
+   "explicacao": "O porquinho-da-índia dá pulinhos de alegria quando está feliz!",
+   "referencia": "América do Sul"
+  },
+  {
+   "pistas": [
+    "IA manta_ray"
+   ],
+   "resposta": "Arraia-manta",
+   "explicacao": "A arraia-manta nada batendo as nadadeiras como se fossem asas!",
+   "referencia": "Oceanos quentes"
+  },
+  {
+   "pistas": [
+    "IA woodpecker"
+   ],
+   "resposta": "Pica-pau",
+   "explicacao": "O pica-pau bate o bico na árvore bem rápido para achar insetos!",
+   "referencia": "Florestas"
+  },
+  {
+   "pistas": [
+    "IA tasmanian_devil"
+   ],
+   "resposta": "Diabo-da-tasmânia",
+   "explicacao": "Apesar do nome, é um animalzinho que solta gritos bem altos!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA iguana"
+   ],
+   "resposta": "Iguana",
+   "explicacao": "A iguana adora tomar sol para esquentar o corpo!",
+   "referencia": "Florestas tropicais"
+  },
+  {
+   "pistas": [
+    "IA swordfish"
+   ],
+   "resposta": "Peixe-espada",
+   "explicacao": "O peixe-espada tem um bico comprido e é um dos peixes mais rápidos!",
+   "referencia": "Oceanos"
+  },
+  {
+   "pistas": [
+    "IA marmoset"
+   ],
+   "resposta": "Sagui",
+   "explicacao": "O sagui é um macaquinho pequeno que cabe na palma da mão!",
+   "referencia": "Matas do Brasil"
+  },
+  {
+   "pistas": [
+    "IA vulture"
+   ],
+   "resposta": "Urubu",
+   "explicacao": "O urubu limpa a natureza comendo restos de animais!",
+   "referencia": "Céu do Brasil"
+  },
+  {
+   "pistas": [
+    "IA wombat"
+   ],
+   "resposta": "Vombate",
+   "explicacao": "O vombate faz cocô em formato de cubinho!",
+   "referencia": "Austrália"
+  }
+ ]
+}
