@@ -2,7 +2,8 @@
 # Teste da voz Chatterbox Multilingual V3 (Resemble AI, licença MIT, uso comercial permitido) em português,
 # com frases do quiz e dois níveis de emoção. Saída: /kaggle/working/voz-<n>-<emocao>.wav
 import subprocess, sys
-subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', 'chatterbox-tts'], check=True)
+# a versão do PyPI ainda não tem o modelo V3; instala direto do repositório oficial (MIT)
+subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', 'git+https://github.com/resemble-ai/chatterbox.git'], check=True)
 # o chatterbox fixa a versão do torch; o torchvision do Kaggle fica incompatível ("torchvision::nms does not exist") e não é usado
 subprocess.run([sys.executable, '-m', 'pip', 'uninstall', '-y', '-q', 'torchvision'], check=True)
 import torchaudio as ta
@@ -14,7 +15,11 @@ FRASES = [
 	'Muito bem! Você está indo muito bem, continua comigo!',
 	'Chegamos na metade! Se você está gostando, peça para um adulto curtir o vídeo e seguir o canal!',
 ]
-modelo = ChatterboxMultilingualTTS.from_pretrained(device='cuda', t3_model='v3')
+try:
+	modelo = ChatterboxMultilingualTTS.from_pretrained(device='cuda', t3_model='v3')
+except TypeError:
+	print('V3 indisponível; usando o multilíngue V2', flush=True)
+	modelo = ChatterboxMultilingualTTS.from_pretrained(device='cuda')
 for n, frase in enumerate(FRASES, 1):
 	for nome, emocao in [('calma', 0.5), ('animada', 0.8)]:
 		wav = modelo.generate(frase, language_id='pt', exaggeration=emocao, cfg_weight=0.4)
