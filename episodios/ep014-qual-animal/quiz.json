@@ -1,0 +1,265 @@
+{
+ "id": "ep014-qual-animal",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "Qual animal é esse?",
+ "unico": true,
+ "titulo": "🦫 Qual Animal é Esse? 30 Animais Diferentes e Curiosos! | Quiz de Animais para Crianças",
+ "chamada": "QUAL ANIMAL É ESSE?",
+ "faixa": "30 Animais",
+ "icones": [
+  "IA capybara",
+  "IA toucan"
+ ],
+ "licao": "Cada animal tem um jeito especial de viver: quanto mais a gente conhece, mais a gente cuida!",
+ "abertura": "Oi, criançada! Hoje tem trinta animais diferentes e curiosos! Olhe bem e descubra: qual animal é esse? Vamos lá!",
+ "encerramento": "Uau, quantos animais novos! Quantos você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA capybara"
+   ],
+   "resposta": "Capivara",
+   "explicacao": "A capivara é o maior roedor do mundo e é uma ótima nadadora!",
+   "referencia": "Brasil"
+  },
+  {
+   "pistas": [
+    "IA toucan"
+   ],
+   "resposta": "Tucano",
+   "explicacao": "O bico do tucano é enorme, mas é leve, porque é oco por dentro!",
+   "referencia": "Florestas do Brasil"
+  },
+  {
+   "pistas": [
+    "IA axolotl"
+   ],
+   "resposta": "Axolote",
+   "explicacao": "O axolote consegue fazer crescer de novo uma patinha perdida!",
+   "referencia": "Lagos do México"
+  },
+  {
+   "pistas": [
+    "IA jaguar"
+   ],
+   "resposta": "Onça-pintada",
+   "explicacao": "É o maior felino das Américas e, diferente da maioria dos gatos, adora nadar!",
+   "referencia": "Pantanal e Amazônia"
+  },
+  {
+   "pistas": [
+    "IA platypus"
+   ],
+   "resposta": "Ornitorrinco",
+   "explicacao": "É um mamífero que bota ovos e tem bico de pato!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA giant_anteater"
+   ],
+   "resposta": "Tamanduá-bandeira",
+   "explicacao": "Ele tem uma língua bem comprida para comer formigas e cupins!",
+   "referencia": "Cerrado"
+  },
+  {
+   "pistas": [
+    "IA seahorse"
+   ],
+   "resposta": "Cavalo-marinho",
+   "explicacao": "No cavalo-marinho, é o papai que carrega os filhotes na barriga!",
+   "referencia": "Mares quentes"
+  },
+  {
+   "pistas": [
+    "IA meerkat"
+   ],
+   "resposta": "Suricato",
+   "explicacao": "Enquanto o grupo come, um suricato fica de pé vigiando!",
+   "referencia": "Desertos da África"
+  },
+  {
+   "pistas": [
+    "IA golden_lion_tamarin"
+   ],
+   "resposta": "Mico-leão-dourado",
+   "explicacao": "Ele só existe na Mata Atlântica, aqui no Brasil!",
+   "referencia": "Mata Atlântica"
+  },
+  {
+   "pistas": [
+    "IA walrus"
+   ],
+   "resposta": "Morsa",
+   "explicacao": "A morsa usa as presas compridas para sair da água e subir no gelo!",
+   "referencia": "Polo Norte"
+  },
+  {
+   "pistas": [
+    "IA hyacinth_macaw"
+   ],
+   "resposta": "Arara-azul",
+   "explicacao": "A arara-azul é a maior arara do mundo!",
+   "referencia": "Pantanal"
+  },
+  {
+   "pistas": [
+    "IA pangolin"
+   ],
+   "resposta": "Pangolim",
+   "explicacao": "É o único mamífero coberto de escamas e vira uma bola quando tem medo!",
+   "referencia": "África e Ásia"
+  },
+  {
+   "pistas": [
+    "IA amazon_river_dolphin"
+   ],
+   "resposta": "Boto-cor-de-rosa",
+   "explicacao": "É um golfinho de rio que vive na Amazônia!",
+   "referencia": "Rios da Amazônia"
+  },
+  {
+   "pistas": [
+    "IA red_panda"
+   ],
+   "resposta": "Panda-vermelho",
+   "explicacao": "O panda-vermelho usa a cauda fofinha como cobertor quando está frio!",
+   "referencia": "Montanhas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA maned_wolf"
+   ],
+   "resposta": "Lobo-guará",
+   "explicacao": "Apesar do nome, ele adora comer frutas, como a lobeira!",
+   "referencia": "Cerrado"
+  },
+  {
+   "pistas": [
+    "IA clownfish"
+   ],
+   "resposta": "Peixe-palhaço",
+   "explicacao": "O peixe-palhaço mora dentro da anêmona, que o protege!",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "IA armadillo"
+   ],
+   "resposta": "Tatu",
+   "explicacao": "O tatu-bola se enrola e vira uma bolinha para se proteger!",
+   "referencia": "Brasil"
+  },
+  {
+   "pistas": [
+    "IA moose"
+   ],
+   "resposta": "Alce",
+   "explicacao": "O alce é o maior cervo do mundo, e o macho troca de chifres todo ano!",
+   "referencia": "Florestas geladas"
+  },
+  {
+   "pistas": [
+    "IA ring_tailed_lemur"
+   ],
+   "resposta": "Lêmure",
+   "explicacao": "Os lêmures vivem só na ilha de Madagascar!",
+   "referencia": "Madagascar"
+  },
+  {
+   "pistas": [
+    "IA starfish"
+   ],
+   "resposta": "Estrela-do-mar",
+   "explicacao": "A estrela-do-mar consegue fazer crescer um braço de novo!",
+   "referencia": "Fundo do mar"
+  },
+  {
+   "pistas": [
+    "IA coati"
+   ],
+   "resposta": "Quati",
+   "explicacao": "O quati usa o focinho comprido para farejar comida no chão!",
+   "referencia": "Matas do Brasil"
+  },
+  {
+   "pistas": [
+    "IA porcupine"
+   ],
+   "resposta": "Porco-espinho",
+   "explicacao": "O porco-espinho tem milhares de espinhos para se defender!",
+   "referencia": "Florestas"
+  },
+  {
+   "pistas": [
+    "IA rhea"
+   ],
+   "resposta": "Ema",
+   "explicacao": "A ema é a maior ave do Brasil e não voa, mas corre muito rápido!",
+   "referencia": "Campos do Brasil"
+  },
+  {
+   "pistas": [
+    "IA squid"
+   ],
+   "resposta": "Lula",
+   "explicacao": "A lula solta uma nuvem de tinta para fugir dos predadores!",
+   "referencia": "Oceanos"
+  },
+  {
+   "pistas": [
+    "IA hyena"
+   ],
+   "resposta": "Hiena",
+   "explicacao": "A hiena faz um som que parece uma risada!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA badger"
+   ],
+   "resposta": "Texugo",
+   "explicacao": "O texugo cava tocas enormes, com vários cômodos debaixo da terra!",
+   "referencia": "Florestas"
+  },
+  {
+   "pistas": [
+    "IA goose"
+   ],
+   "resposta": "Ganso",
+   "explicacao": "Os gansos voam em formato de V para cansar menos na viagem!",
+   "referencia": "Lagos e campos"
+  },
+  {
+   "pistas": [
+    "IA water_buffalo"
+   ],
+   "resposta": "Búfalo",
+   "explicacao": "O búfalo adora ficar na lama para se refrescar!",
+   "referencia": "Ilha de Marajó"
+  },
+  {
+   "pistas": [
+    "IA shrimp"
+   ],
+   "resposta": "Camarão",
+   "explicacao": "Alguns camarões fazem barulho estalando as garras!",
+   "referencia": "Mares e rios"
+  },
+  {
+   "pistas": [
+    "IA wild_boar"
+   ],
+   "resposta": "Javali",
+   "explicacao": "O javali fuça a terra com o focinho atrás de raízes!",
+   "referencia": "Florestas"
+  }
+ ]
+}
