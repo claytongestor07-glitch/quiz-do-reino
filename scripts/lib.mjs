@@ -32,7 +32,8 @@ export function duracaoAudio(arq) {
 export const LETRAS = ['A', 'B', 'C'];
 
 // Narração da produção automática: ElevenLabs (voz humana do canal) quando a chave existe; senão Kokoro, grátis e local.
-export const NARRACAO = process.env.ELEVENLABS_API_KEY ? [] : ['--kokoro'];
+// Voz da narração: ElevenLabs (chave) > Azure Thalita (voz neural humanizada, licença comercial, 500 mil caracteres/mês grátis) > Kokoro
+export const NARRACAO = process.env.ELEVENLABS_API_KEY ? [] : process.env.AZURE_SPEECH_KEY ? ['--azure'] : ['--kokoro'];
 
 // Trilhas trocadas depois da narração: episódios já narrados com uma trilha antiga saem com a nova, sem renarrar
 // nem invalidar o cache dos quadros (a timeline não muda). Cada trilha tem volumes próprios conforme a altura.
