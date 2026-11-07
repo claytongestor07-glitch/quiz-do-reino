@@ -1,0 +1,24 @@
+{
+  "_nota": "Falas do ep001 para o Chatterbox (scripts/kaggle/kenji_voz.py). voz = arquivo em kenji/vozes/<voz>.wav usado como referência de timbre; vazio = voz padrão do Chatterbox.",
+  "falas": [
+    {"id": "01-kenji", "voz": "kenji", "emo": 0.9, "texto": "Nããão!"},
+    {"id": "02-narr", "voz": "", "emo": 0.6, "texto": "A ponte do Kenji caiu... e o carrinho foi parar na água."},
+    {"id": "03-narr", "voz": "", "emo": 0.6, "texto": "Ele tinha prometido à Lia que o carrinho chegaria do outro lado na corrida de sábado."},
+    {"id": "04-narr", "voz": "", "emo": 0.6, "texto": "Envergonhado, Kenji decidiu que nunca mais ia tentar."},
+    {"id": "05-narr", "voz": "", "emo": 0.6, "texto": "Foi então que o Vovô Hiro chegou, com seu chá de fim de tarde."},
+    {"id": "06-vovo", "voz": "vovo", "emo": 0.6, "texto": "Sabe quantas cadeiras eu quebrei antes de fazer a primeira que ficou de pé? Onze!"},
+    {"id": "07-narr", "voz": "", "emo": 0.7, "texto": "Kenji não acreditou: o melhor marceneiro que ele conhecia também já tinha errado."},
+    {"id": "08-vovo", "voz": "vovo", "emo": 0.5, "texto": "No Japão, meu pai me ensinou: Nana korobi, ya oki. Cair sete vezes... levantar oito."},
+    {"id": "09-narr", "voz": "", "emo": 0.6, "texto": "Quer dizer: não importa quantas vezes a gente cai. O que importa é levantar de novo."},
+    {"id": "10-narr", "voz": "", "emo": 0.5, "texto": "E a Bíblia conta que Deus disse a Josué: seja forte e corajoso, não tenha medo, porque eu estou com você."},
+    {"id": "11-kenji", "voz": "kenji", "emo": 0.9, "texto": "Então eu levanto a oitava vez!"},
+    {"id": "12-narr", "voz": "", "emo": 0.7, "texto": "E dessa vez, ele não ia fazer sozinho: chamou a Lia!"},
+    {"id": "13-narr", "voz": "", "emo": 0.6, "texto": "As pontes do Japão são curvas, como um arco. O arco espalha o peso."},
+    {"id": "14-narr", "voz": "", "emo": 0.7, "texto": "E a Lia lembrou: triângulo não entorta!"},
+    {"id": "16-narr", "voz": "", "emo": 0.8, "texto": "E a ponte... aguentou!"},
+    {"id": "16-kenji", "voz": "kenji", "emo": 1.0, "texto": "Conseguimos!"},
+    {"id": "16-lia", "voz": "lia", "emo": 1.0, "texto": "Conseguimos!"},
+    {"id": "17-kenji", "voz": "kenji", "emo": 0.6, "texto": "Coragem não é não ter medo. É levantar mais uma vez... e não fazer sozinho."},
+    {"id": "18-vovo", "voz": "vovo", "emo": 0.8, "texto": "Ganbatte, Kenji!"}
+  ]
+}
