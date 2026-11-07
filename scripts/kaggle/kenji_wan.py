@@ -32,7 +32,8 @@ NEG_IMG = ('extra fingers, deformed hands, distorted face, different outfit, pho
 MOV = (' Keep the exact character design, outfit and 3D animated film style of the image. Smooth natural motion, expressive face, '
 	'hair and grass moving in a light breeze, warm cinematic light, high quality.')
 NEG_MOV = ('worst quality, low quality, blurry, distorted, deformed face, extra fingers, extra limbs, morphing, flicker, '
-	'text, watermark, subtitles, static image, still picture, outfit change')
+	'text, watermark, subtitles, static image, still picture, outfit change, extra characters, new people, animals, birds, '
+	'creatures appearing, new objects appearing')
 
 # plano: (referência, escala do IP-Adapter, quadro-chave, movimento)
 PLANOS = {
