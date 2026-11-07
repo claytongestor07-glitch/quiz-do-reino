@@ -49,31 +49,44 @@ PLANOS = {
 		'wide establishing shot of the backyard at sunset, small stream reflecting the golden sky, wooden cabin with warm lit windows, pine trees, no people',
 		'Gentle crane shot rising slowly over the backyard at sunset, water sparkling, leaves moving softly in the wind.'),
 }
+# CHAVES=ep001: os quadros-chave já vêm prontos (feitos no Codex) de kenji/<CHAVES>/<plano>.jpg, com o movimento em
+# kenji/<CHAVES>/planos.json; o SDXL não roda. Sem CHAVES, gera os quadros-chave de teste abaixo com SDXL.
+PASTA = os.environ.get('CHAVES', '')
+if PASTA:
+	import json
+	MOVS = json.load(urlopen(f'{RAW}{PASTA}/planos.json'))['planos']
+	PLANOS = {p: (None, 0, None, m) for p, m in MOVS.items()}
 escolhidos = [p for p in os.environ.get('PLANOS', ','.join(PLANOS)).split(',') if p in PLANOS]
-REFS = {r: Image.open(BytesIO(urlopen(RAW + r + '.jpg').read())).convert('RGB') for r in {PLANOS[p][0] for p in escolhidos}}
-
-# 1. Quadros-chave (SDXL + IP-Adapter) — 1344x768 e recorte para 832x480
-from diffusers import AutoencoderKL, StableDiffusionXLPipeline
-from transformers import CLIPVisionModelWithProjection
-enc = CLIPVisionModelWithProjection.from_pretrained('h94/IP-Adapter', subfolder='models/image_encoder', torch_dtype=torch.float16)
-vae_xl = AutoencoderKL.from_pretrained('madebyollin/sdxl-vae-fp16-fix', torch_dtype=torch.float16)
-xl = StableDiffusionXLPipeline.from_pretrained('stabilityai/stable-diffusion-xl-base-1.0', vae=vae_xl, image_encoder=enc,
-	torch_dtype=torch.float16, variant='fp16', use_safetensors=True)
-xl.load_ip_adapter('h94/IP-Adapter', subfolder='sdxl_models', weight_name='ip-adapter-plus_sdxl_vit-h.safetensors')
-xl.to('cuda:0')
 chaves = {}
-for p in escolhidos:
-	t = time.time()
-	ref, escala, quadro, _ = PLANOS[p]
-	xl.set_ip_adapter_scale(escala)
-	img = xl(prompt=f'{quadro}, {ESTILO}', negative_prompt=NEG_IMG, ip_adapter_image=REFS[ref], width=1344, height=768,
-		num_inference_steps=40, guidance_scale=6.0, generator=torch.Generator('cuda:0').manual_seed(9)).images[0]
-	img = img.resize((840, 480), Image.LANCZOS).crop((4, 0, 4 + L, A))
-	img.save(f'{SAIDA}/{p}-chave.png')
-	chaves[p] = img
-	print(f'chave {p}: {time.time() - t:.0f}s', flush=True)
-del xl, enc, vae_xl
-gc.collect(); torch.cuda.empty_cache()
+if PASTA:
+	for p in escolhidos:
+		chaves[p] = Image.open(BytesIO(urlopen(f'{RAW}{PASTA}/{p}.jpg').read())).convert('RGB').resize((L, A), Image.LANCZOS)
+	print(f'{len(chaves)} quadros-chave prontos de {PASTA}', flush=True)
+else:
+	REFS = {r: Image.open(BytesIO(urlopen(RAW + r + '.jpg').read())).convert('RGB') for r in {PLANOS[p][0] for p in escolhidos}}
+
+# 1. Quadros-chave de teste (SDXL + IP-Adapter) — 1344x768 e recorte para 832x480
+if not PASTA:
+	from diffusers import AutoencoderKL, StableDiffusionXLPipeline
+	from transformers import CLIPVisionModelWithProjection
+	enc = CLIPVisionModelWithProjection.from_pretrained('h94/IP-Adapter', subfolder='models/image_encoder', torch_dtype=torch.float16)
+	vae_xl = AutoencoderKL.from_pretrained('madebyollin/sdxl-vae-fp16-fix', torch_dtype=torch.float16)
+	xl = StableDiffusionXLPipeline.from_pretrained('stabilityai/stable-diffusion-xl-base-1.0', vae=vae_xl, image_encoder=enc,
+		torch_dtype=torch.float16, variant='fp16', use_safetensors=True)
+	xl.load_ip_adapter('h94/IP-Adapter', subfolder='sdxl_models', weight_name='ip-adapter-plus_sdxl_vit-h.safetensors')
+	xl.to('cuda:0')
+	for p in escolhidos:
+		t = time.time()
+		ref, escala, quadro, _ = PLANOS[p]
+		xl.set_ip_adapter_scale(escala)
+		img = xl(prompt=f'{quadro}, {ESTILO}', negative_prompt=NEG_IMG, ip_adapter_image=REFS[ref], width=1344, height=768,
+			num_inference_steps=40, guidance_scale=6.0, generator=torch.Generator('cuda:0').manual_seed(9)).images[0]
+		img = img.resize((840, 480), Image.LANCZOS).crop((4, 0, 4 + L, A))
+		img.save(f'{SAIDA}/{p}-chave.png')
+		chaves[p] = img
+		print(f'chave {p}: {time.time() - t:.0f}s', flush=True)
+	del xl, enc, vae_xl
+	gc.collect(); torch.cuda.empty_cache()
 
 # 2. Animação com Wan 2.2 I2V A14B (mesma montagem do cenas14b.py do Quiz do Reino)
 from diffusers import AutoencoderKLWan, GGUFQuantizationConfig, WanImageToVideoPipeline, WanTransformer3DModel
