@@ -13,9 +13,12 @@ def sh(c, **k): print('$', c, flush=True); return subprocess.run(c, shell=True, 
 
 sh('git clone -q https://github.com/bytedance/LatentSync.git /kaggle/ls', check=True)
 os.chdir('/kaggle/ls')
-sh(f'{sys.executable} -m pip install -q -r requirements.txt', check=True)
+# O Kaggle usa Python 3.13; o LatentSync fixa versões de 3.10 (torch 2.5.1, decord). Ambiente próprio com uv.
+sh(f'{sys.executable} -m pip install -q uv', check=True)
+sh('uv venv -q -p 3.10 /kaggle/venv && VIRTUAL_ENV=/kaggle/venv uv pip install -q -r requirements.txt --index-strategy unsafe-best-match', check=True)
+PY = '/kaggle/venv/bin/python'
 sh('apt-get -qq install -y libgl1 > /dev/null 2>&1 || true')
-sh(f'{sys.executable} -c "from huggingface_hub import hf_hub_download as d; '
+sh(f'{PY} -c "from huggingface_hub import hf_hub_download as d; '
 	"d('ByteDance/LatentSync-1.5','latentsync_unet.pt',local_dir='checkpoints'); "
 	"d('ByteDance/LatentSync-1.5','whisper/tiny.pt',local_dir='checkpoints')\"", check=True)
 cfg = 'configs/unet/stage2.yaml' if os.path.exists('configs/unet/stage2.yaml') else sorted(
@@ -27,7 +30,7 @@ for clipe, fala in PARES:
 	urlretrieve(f'{RAW}{EP}/clipes/{clipe}.mp4', v); urlretrieve(f'{RAW}{EP}/vozes/{fala}.wav', a)
 	# 25 fps, como o LatentSync espera
 	sh(f'ffmpeg -v error -y -i {v} -r 25 -c:v libx264 -crf 14 /kaggle/in/{clipe}-25.mp4', check=True)
-	r = sh(f'{sys.executable} -m scripts.inference --unet_config_path {cfg} --inference_ckpt_path checkpoints/latentsync_unet.pt '
+	r = sh(f'{PY} -m scripts.inference --unet_config_path {cfg} --inference_ckpt_path checkpoints/latentsync_unet.pt '
 		f'--inference_steps 25 --guidance_scale 1.5 --video_path /kaggle/in/{clipe}-25.mp4 --audio_path {a} '
 		f'--video_out_path {W}/{clipe}-ls.mp4')
 	print(f'{clipe}: {"ok" if r.returncode == 0 and os.path.exists(f"{W}/{clipe}-ls.mp4") else "FALHOU"}', flush=True)
