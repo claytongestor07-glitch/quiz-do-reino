@@ -38,7 +38,7 @@ jobs:
            "language": "python", "kernel_type": "script", "is_private": true,
            "enable_gpu": true, "enable_internet": true, "machine_shape": "NvidiaTeslaT4"}
           EOF
-          kaggle kernels push -p k
+          kaggle kernels push -p k | tee push.log; ! grep -qi "error" push.log
       - name: Aguardar a GPU
         run: |
           sleep 120
