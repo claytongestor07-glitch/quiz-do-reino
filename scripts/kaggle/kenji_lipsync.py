@@ -15,7 +15,8 @@ sh('git clone -q https://github.com/bytedance/LatentSync.git /kaggle/ls', check=
 os.chdir('/kaggle/ls')
 # O Kaggle usa Python 3.13; o LatentSync fixa versões de 3.10 (torch 2.5.1, decord). Ambiente próprio com uv.
 sh(f'{sys.executable} -m pip install -q uv', check=True)
-sh('uv venv -q -p 3.10 /kaggle/venv && VIRTUAL_ENV=/kaggle/venv uv pip install -q -r requirements.txt --index-strategy unsafe-best-match', check=True)
+sh('UV_PYTHON_DOWNLOADS=automatic uv python install 3.10 && UV_PYTHON_DOWNLOADS=automatic uv venv -p 3.10 --managed-python /kaggle/venv && /kaggle/venv/bin/python -V', check=True)
+sh('uv pip install -q --python /kaggle/venv/bin/python -r requirements.txt --index-strategy unsafe-best-match', check=True)
 PY = '/kaggle/venv/bin/python'
 sh('apt-get -qq install -y libgl1 > /dev/null 2>&1 || true')
 sh(f'{PY} -c "from huggingface_hub import hf_hub_download as d; '
