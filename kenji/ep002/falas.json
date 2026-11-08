@@ -1,0 +1,118 @@
+{
+  "falas": [
+    {
+      "id": "01-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "O pai do Kenji pediu pãezinhos da casa de chá da Dona Mei."
+    },
+    {
+      "id": "02-mei",
+      "voz": "mei",
+      "emo": 0.7,
+      "texto": "Volte sempre, Kenji! Mande um abraço para o seu pai!"
+    },
+    {
+      "id": "03-narr",
+      "voz": "",
+      "emo": 0.7,
+      "texto": "Mas, na calçada, ele percebeu: tinha recebido dez reais, em vez de um!"
+    },
+    {
+      "id": "04-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "Com esse dinheiro, dava para comprar o álbum de figurinhas que ele queria tanto..."
+    },
+    {
+      "id": "05-kenji",
+      "voz": "kenji",
+      "emo": 0.5,
+      "texto": "Ninguém ia saber..."
+    },
+    {
+      "id": "06-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "Em casa, o Kenji ficou quieto. Quieto demais."
+    },
+    {
+      "id": "07-pai",
+      "voz": "pai",
+      "emo": 0.6,
+      "texto": "Tudo bem, filho? Você está tão calado..."
+    },
+    {
+      "id": "08-kenji",
+      "voz": "kenji",
+      "emo": 0.6,
+      "texto": "Pai... a Dona Mei me deu troco a mais."
+    },
+    {
+      "id": "09-pai",
+      "voz": "pai",
+      "emo": 0.6,
+      "texto": "A Bíblia diz: quem é fiel no pouco, também é fiel no muito."
+    },
+    {
+      "id": "10-narr",
+      "voz": "",
+      "emo": 0.8,
+      "texto": "E o Kenji voltou correndo para a casa de chá!"
+    },
+    {
+      "id": "11-kenji",
+      "voz": "kenji",
+      "emo": 0.8,
+      "texto": "Dona Mei, a senhora errou o troco!"
+    },
+    {
+      "id": "12-mei",
+      "voz": "mei",
+      "emo": 0.6,
+      "texto": "Na China, a gente chama isso de tchêng-xin: ter palavra, ser de confiança."
+    },
+    {
+      "id": "13-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "O sábio chinês Confúcio dizia: uma pessoa sem palavra é como uma carroça sem a peça que a prende ao boi. Não sai do lugar!"
+    },
+    {
+      "id": "14-narr",
+      "voz": "",
+      "emo": 0.7,
+      "texto": "Dona Mei ficou tão feliz, que serviu um chá de jasmim só para ele."
+    },
+    {
+      "id": "15-mei",
+      "voz": "mei",
+      "emo": 0.8,
+      "texto": "Quem tem palavra merece aprender um segredo: como fazer pipa chinesa!"
+    },
+    {
+      "id": "16-narr",
+      "voz": "",
+      "emo": 0.8,
+      "texto": "Sabia que a pipa foi inventada na China, há mais de dois mil anos?"
+    },
+    {
+      "id": "17-narr",
+      "voz": "",
+      "emo": 0.8,
+      "texto": "A honestidade não deixou o Kenji mais pobre. Deixou ele mais rico de confiança!"
+    },
+    {
+      "id": "18-narr",
+      "voz": "",
+      "emo": 0.8,
+      "texto": "Palavra do dia: tchêng-xin!"
+    },
+    {
+      "id": "19-narr",
+      "voz": "",
+      "emo": 0.7,
+      "texto": "Hoje o Kenji aprendeu: ser honesto é fazer o certo, mesmo quando ninguém está vendo. E quem é fiel no pouco, é fiel no muito!"
+    }
+  ]
+}
