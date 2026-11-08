@@ -133,7 +133,7 @@ for p in escolhidos:
 	e, n = embeds[p]
 	frames = pipe(image=chaves[p], prompt_embeds=e.to('cuda:0'), negative_prompt_embeds=n.to('cuda:0'), height=A, width=L,
 		num_frames=QUADROS, num_inference_steps=4, guidance_scale=float(os.environ.get('CFG', '1.0')), guidance_scale_2=1.0,
-		generator=torch.Generator('cuda:0').manual_seed(11)).frames[0]
+		generator=torch.Generator('cuda:0').manual_seed(int(os.environ.get('SEED', '11')))).frames[0]
 	bruto = f'{SAIDA}/{p}-16.mp4'
 	export_to_video(frames, bruto, fps=16)
 	subprocess.run([ff, '-v', 'error', '-y', '-i', bruto, '-vf', 'minterpolate=fps=24:mi_mode=mci:mc_mode=aobmc:vsbmc=1',
