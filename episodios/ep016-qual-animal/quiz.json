@@ -1,0 +1,233 @@
+{
+ "id": "ep016-qual-animal",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "Qual animal é esse?",
+ "unico": true,
+ "titulo": "🦘 Qual Animal é Esse? 26 Animais Curiosos do Mundo! | Quiz de Animais para Crianças",
+ "chamada": "QUAL ANIMAL É ESSE?",
+ "faixa": "26 Animais",
+ "icones": [
+  "IA quokka",
+  "IA cockatoo"
+ ],
+ "licao": "Cada animal tem um jeitinho único de viver, e todos são importantes para a natureza!",
+ "abertura": "Oi, criançada! Hoje tem vinte e seis animais curiosos do mundo inteiro! Olhe bem e descubra: qual animal é esse? Vamos lá!",
+ "encerramento": "Que craque! Quantos animais você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA quokka"
+   ],
+   "resposta": "Quokka",
+   "explicacao": "O quokka parece estar sempre sorrindo e é chamado de animal mais feliz do mundo!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA dragonfly"
+   ],
+   "resposta": "Libélula",
+   "explicacao": "A libélula consegue voar para frente, para trás e até ficar parada no ar!",
+   "referencia": "Lagos e rios"
+  },
+  {
+   "pistas": [
+    "IA caracal"
+   ],
+   "resposta": "Caracal",
+   "explicacao": "O caracal tem tufos pretos nas orelhas e salta alto para pegar passarinhos!",
+   "referencia": "África e Ásia"
+  },
+  {
+   "pistas": [
+    "IA lionfish"
+   ],
+   "resposta": "Peixe-leão",
+   "explicacao": "O peixe-leão tem nadadeiras compridas que parecem uma juba!",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "IA reindeer"
+   ],
+   "resposta": "Rena",
+   "explicacao": "Na rena, o macho e a fêmea têm chifres!",
+   "referencia": "Lugares gelados"
+  },
+  {
+   "pistas": [
+    "IA cockatoo"
+   ],
+   "resposta": "Cacatua",
+   "explicacao": "A cacatua levanta a crista amarela quando fica animada!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA echidna"
+   ],
+   "resposta": "Equidna",
+   "explicacao": "A equidna é um mamífero com espinhos que bota ovos!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA stick_insect"
+   ],
+   "resposta": "Bicho-pau",
+   "explicacao": "O bicho-pau parece um galhinho para se esconder dos predadores!",
+   "referencia": "Florestas"
+  },
+  {
+   "pistas": [
+    "IA anglerfish"
+   ],
+   "resposta": "Peixe-diabo",
+   "explicacao": "O peixe-diabo tem uma luzinha na cabeça para atrair a comida no fundo do mar escuro!",
+   "referencia": "Fundo do mar"
+  },
+  {
+   "pistas": [
+    "IA gazelle"
+   ],
+   "resposta": "Gazela",
+   "explicacao": "A gazela dá saltos altíssimos enquanto corre!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA kingfisher"
+   ],
+   "resposta": "Martim-pescador",
+   "explicacao": "O martim-pescador mergulha de bico na água para pegar peixinhos!",
+   "referencia": "Rios e lagos"
+  },
+  {
+   "pistas": [
+    "IA yak"
+   ],
+   "resposta": "Iaque",
+   "explicacao": "O iaque tem um pelo bem comprido para aguentar o frio das montanhas!",
+   "referencia": "Montanhas do Tibete"
+  },
+  {
+   "pistas": [
+    "IA sea_urchin"
+   ],
+   "resposta": "Ouriço-do-mar",
+   "explicacao": "O ouriço-do-mar anda pelo fundo do mar com pezinhos minúsculos!",
+   "referencia": "Fundo do mar"
+  },
+  {
+   "pistas": [
+    "IA ocelot"
+   ],
+   "resposta": "Jaguatirica",
+   "explicacao": "A jaguatirica é um gato selvagem do Brasil que enxerga muito bem no escuro!",
+   "referencia": "Matas do Brasil"
+  },
+  {
+   "pistas": [
+    "IA albatross"
+   ],
+   "resposta": "Albatroz",
+   "explicacao": "O albatroz tem as asas mais compridas de todas as aves e voa por dias sem pousar!",
+   "referencia": "Oceanos"
+  },
+  {
+   "pistas": [
+    "IA grasshopper"
+   ],
+   "resposta": "Gafanhoto",
+   "explicacao": "O gafanhoto pula vinte vezes o tamanho do próprio corpo!",
+   "referencia": "Campos"
+  },
+  {
+   "pistas": [
+    "IA cassowary"
+   ],
+   "resposta": "Casuar",
+   "explicacao": "O casuar tem um capacete na cabeça e é uma das maiores aves do mundo!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA flying_squirrel"
+   ],
+   "resposta": "Esquilo-voador",
+   "explicacao": "O esquilo-voador abre a pele entre as patas e plana de árvore em árvore!",
+   "referencia": "Florestas"
+  },
+  {
+   "pistas": [
+    "IA ibex"
+   ],
+   "resposta": "Íbex",
+   "explicacao": "O íbex sobe montanhas bem íngremes sem escorregar!",
+   "referencia": "Montanhas da Europa"
+  },
+  {
+   "pistas": [
+    "IA nautilus"
+   ],
+   "resposta": "Náutilo",
+   "explicacao": "O náutilo vive dentro de uma concha em espiral e existe há milhões de anos!",
+   "referencia": "Oceano Pacífico"
+  },
+  {
+   "pistas": [
+    "IA serval"
+   ],
+   "resposta": "Serval",
+   "explicacao": "O serval tem as orelhas enormes para ouvir ratinhos debaixo do capim!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA heron"
+   ],
+   "resposta": "Garça",
+   "explicacao": "A garça fica paradinha na água esperando o peixe passar!",
+   "referencia": "Lagos e rios"
+  },
+  {
+   "pistas": [
+    "IA salamander"
+   ],
+   "resposta": "Salamandra",
+   "explicacao": "A salamandra tem a pele molhadinha e manchas amarelas para avisar: não me coma!",
+   "referencia": "Florestas úmidas"
+  },
+  {
+   "pistas": [
+    "IA kookaburra"
+   ],
+   "resposta": "Cucaburra",
+   "explicacao": "A cucaburra é uma ave que canta parecendo uma gargalhada!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA aardvark"
+   ],
+   "resposta": "Porco-da-terra",
+   "explicacao": "O porco-da-terra cava a terra com as unhas fortes para comer cupins!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA stork"
+   ],
+   "resposta": "Cegonha",
+   "explicacao": "A cegonha faz ninhos enormes no alto de torres e árvores!",
+   "referencia": "Europa e África"
+  }
+ ]
+}
