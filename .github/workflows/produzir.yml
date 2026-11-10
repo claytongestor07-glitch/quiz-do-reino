@@ -26,7 +26,7 @@ permissions:
 jobs:
   planejar:
     runs-on: ubuntu-24.04
-    timeout-minutes: 120
+    timeout-minutes: 240
     outputs:
       id: ${{ steps.plano.outputs.id }}
       matriz: ${{ steps.plano.outputs.matriz }}

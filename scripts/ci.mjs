@@ -6,7 +6,7 @@
 // O último job (finalizar) junta os blocos, gera os Shorts e envia, rodando scripts/automacao.mjs --episodio=<id>.
 import fs from 'node:fs';
 import path from 'node:path';
-import {execFileSync} from 'node:child_process';
+import {execFileSync, spawnSync} from 'node:child_process';
 import {RAIZ, NARRACAO, VERTICAL, SHORTS_POR_EPISODIO, ativo, log} from './lib.mjs';
 
 const BLOCO = 1500; // igual a render.mjs
@@ -24,11 +24,21 @@ function vozesNoKaggle(id) {
 	fs.writeFileSync(path.join(k, 'voz.py'), `PENDENTES = ${fs.readFileSync(lista, 'utf8')}\n${fs.readFileSync(path.join(RAIZ, 'scripts', 'kaggle', 'chatterbox_narrar.py'), 'utf8')}`);
 	fs.writeFileSync(path.join(k, 'kernel-metadata.json'), JSON.stringify({id: kernel, title: 'quiz-do-reino-voz', code_file: 'voz.py', language: 'python', kernel_type: 'script', is_private: true, enable_gpu: true, enable_internet: true, machine_shape: 'NvidiaTeslaT4'}));
 	log('ci', `${id}: gerando ${JSON.parse(fs.readFileSync(lista, 'utf8')).length} fala(s) com o Chatterbox no Kaggle`);
-	execFileSync('kaggle', ['kernels', 'push', '-p', k], {stdio: 'inherit'});
-	// Logo após o envio, o status e a saída ainda podem ser da versão anterior do kernel (outro episódio):
-	// só segue quando a saída tem todas as falas pedidas agora
 	const esperadas = JSON.parse(fs.readFileSync(lista, 'utf8')).map((p) => p.arquivo.replace(/\.mp3$/, '.wav'));
 	const saidaK = path.join(k, 'saida');
+	const envio = spawnSync('kaggle', ['kernels', 'push', '-p', k], {encoding: 'utf8'});
+	process.stdout.write(envio.stdout + envio.stderr);
+	if (/quota/i.test(envio.stdout + envio.stderr)) {
+		// cota semanal de GPU esgotada: mesma voz no processador do runner (mais lento)
+		log('ci', `${id}: sem cota de GPU no Kaggle; gerando a voz no processador`);
+		fs.mkdirSync(saidaK, {recursive: true});
+		execFileSync('pip', ['install', '-q', 'git+https://github.com/resemble-ai/chatterbox.git'], {stdio: 'inherit'});
+		execFileSync('python', [path.join(RAIZ, 'scripts', 'chatterbox_cpu.py'), lista, saidaK], {stdio: 'inherit'});
+		return converter(esperadas, saidaK, pasta, lista, k);
+	}
+	if (envio.status !== 0) throw new Error('kaggle kernels push falhou');
+	// Logo após o envio, o status e a saída ainda podem ser da versão anterior do kernel (outro episódio):
+	// só segue quando a saída tem todas as falas pedidas agora
 	esperar(120);
 	for (let i = 0; ; i++) {
 		if (i >= 120) throw new Error('Kaggle não devolveu as falas em 60 minutos');
@@ -41,6 +51,10 @@ function vozesNoKaggle(id) {
 		}
 		esperar(30);
 	}
+	converter(esperadas, saidaK, pasta, lista, k);
+}
+
+function converter(esperadas, saidaK, pasta, lista, k) {
 	for (const wav of esperadas) {
 		execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', path.join(saidaK, wav), '-af', 'loudnorm=I=-16:TP=-1.5', '-ar', '44100', '-b:a', '160k', path.join(pasta, wav.replace(/\.wav$/, '.mp3'))]);
 	}
