@@ -25,16 +25,23 @@ function vozesNoKaggle(id) {
 	fs.writeFileSync(path.join(k, 'kernel-metadata.json'), JSON.stringify({id: kernel, title: 'quiz-do-reino-voz', code_file: 'voz.py', language: 'python', kernel_type: 'script', is_private: true, enable_gpu: true, enable_internet: true, machine_shape: 'NvidiaTeslaT4'}));
 	log('ci', `${id}: gerando ${JSON.parse(fs.readFileSync(lista, 'utf8')).length} fala(s) com o Chatterbox no Kaggle`);
 	execFileSync('kaggle', ['kernels', 'push', '-p', k], {stdio: 'inherit'});
-	esperar(90);
-	for (let i = 0; i < 100; i++) {
+	// Logo após o envio, o status e a saída ainda podem ser da versão anterior do kernel (outro episódio):
+	// só segue quando a saída tem todas as falas pedidas agora
+	const esperadas = JSON.parse(fs.readFileSync(lista, 'utf8')).map((p) => p.arquivo.replace(/\.mp3$/, '.wav'));
+	const saidaK = path.join(k, 'saida');
+	esperar(120);
+	for (let i = 0; ; i++) {
+		if (i >= 120) throw new Error('Kaggle não devolveu as falas em 60 minutos');
 		const s = execFileSync('kaggle', ['kernels', 'status', kernel], {encoding: 'utf8'});
-		if (/COMPLETE/i.test(s)) break;
 		if (/ERROR|CANCEL/i.test(s)) throw new Error(`Kaggle: ${s.trim()}`);
+		if (/COMPLETE/i.test(s)) {
+			fs.rmSync(saidaK, {recursive: true, force: true});
+			execFileSync('kaggle', ['kernels', 'output', kernel, '-p', saidaK], {stdio: 'ignore'});
+			if (esperadas.every((w) => fs.existsSync(path.join(saidaK, w)))) break;
+		}
 		esperar(30);
 	}
-	const saidaK = path.join(k, 'saida');
-	execFileSync('kaggle', ['kernels', 'output', kernel, '-p', saidaK], {stdio: 'inherit'});
-	for (const wav of fs.readdirSync(saidaK).filter((f) => f.endsWith('.wav'))) {
+	for (const wav of esperadas) {
 		execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', path.join(saidaK, wav), '-af', 'loudnorm=I=-16:TP=-1.5', '-ar', '44100', '-b:a', '160k', path.join(pasta, wav.replace(/\.wav$/, '.mp3'))]);
 	}
 	fs.rmSync(lista);
