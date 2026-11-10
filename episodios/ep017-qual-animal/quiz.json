@@ -1,0 +1,225 @@
+{
+ "id": "ep017-qual-animal",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "Qual animal é esse?",
+ "unico": true,
+ "titulo": "🐒 Qual Animal é Esse? 25 Animais Diferentões! | Quiz de Animais para Crianças",
+ "chamada": "QUAL ANIMAL É ESSE?",
+ "faixa": "25 Animais",
+ "icones": [
+  "IA mandrill",
+  "IA shoebill"
+ ],
+ "licao": "Até os animais mais diferentes têm um jeito especial de viver!",
+ "abertura": "Oi, criançada! Hoje tem vinte e cinco animais bem diferentões! Olhe bem e descubra: qual animal é esse? Vamos lá!",
+ "encerramento": "Muito bem! Quantos animais você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA mandrill"
+   ],
+   "resposta": "Mandril",
+   "explicacao": "O mandril é o maior macaco do mundo e tem o rosto azul e vermelho!",
+   "referencia": "Florestas da África"
+  },
+  {
+   "pistas": [
+    "IA shoebill"
+   ],
+   "resposta": "Bico-de-sapato",
+   "explicacao": "O bico-de-sapato tem um bico enorme que parece um sapato!",
+   "referencia": "Pântanos da África"
+  },
+  {
+   "pistas": [
+    "IA betta_fish"
+   ],
+   "resposta": "Peixe-beta",
+   "explicacao": "O peixe-beta tem nadadeiras compridas que parecem um vestido!",
+   "referencia": "Rios da Ásia"
+  },
+  {
+   "pistas": [
+    "IA slow_loris"
+   ],
+   "resposta": "Lóris",
+   "explicacao": "O lóris anda bem devagarinho pelos galhos e tem olhos enormes!",
+   "referencia": "Florestas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA hermit_crab"
+   ],
+   "resposta": "Ermitão",
+   "explicacao": "O caranguejo-ermitão mora dentro de uma concha e troca de casa quando cresce!",
+   "referencia": "Praias"
+  },
+  {
+   "pistas": [
+    "IA dingo"
+   ],
+   "resposta": "Dingo",
+   "explicacao": "O dingo é um cachorro selvagem que vive solto na Austrália!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA piranha"
+   ],
+   "resposta": "Piranha",
+   "explicacao": "A piranha tem dentes afiados e vive em grupos nos rios!",
+   "referencia": "Rios da Amazônia"
+  },
+  {
+   "pistas": [
+    "IA aye_aye"
+   ],
+   "resposta": "Aiai",
+   "explicacao": "O aiai usa um dedo bem comprido para achar comida dentro das árvores!",
+   "referencia": "Madagascar"
+  },
+  {
+   "pistas": [
+    "IA hornbill"
+   ],
+   "resposta": "Calau",
+   "explicacao": "O calau tem um capacete em cima do bico!",
+   "referencia": "Ásia e África"
+  },
+  {
+   "pistas": [
+    "IA warthog"
+   ],
+   "resposta": "Javali-africano",
+   "explicacao": "O javali-africano se ajoelha para comer a grama!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA goldfish"
+   ],
+   "resposta": "Peixinho-dourado",
+   "explicacao": "O peixinho-dourado pode viver muitos e muitos anos!",
+   "referencia": "Lagos e aquários"
+  },
+  {
+   "pistas": [
+    "IA spider_monkey"
+   ],
+   "resposta": "Macaco-aranha",
+   "explicacao": "O macaco-aranha usa o rabo como uma quinta mão para se pendurar!",
+   "referencia": "Florestas da América"
+  },
+  {
+   "pistas": [
+    "IA mantis_shrimp"
+   ],
+   "resposta": "Tamarutaca",
+   "explicacao": "A tamarutaca dá socos tão rápidos que conseguem quebrar conchas!",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "IA secretary_bird"
+   ],
+   "resposta": "Serpentário",
+   "explicacao": "O serpentário tem pernas compridas e penas na cabeça que parecem canetas!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA binturong"
+   ],
+   "resposta": "Binturongue",
+   "explicacao": "O binturongue tem cheiro de pipoca!",
+   "referencia": "Florestas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA moray_eel"
+   ],
+   "resposta": "Moreia",
+   "explicacao": "A moreia mora em buracos nas pedras do fundo do mar!",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "IA gibbon"
+   ],
+   "resposta": "Gibão",
+   "explicacao": "O gibão se balança de galho em galho com os braços compridos!",
+   "referencia": "Florestas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA catfish"
+   ],
+   "resposta": "Bagre",
+   "explicacao": "O bagre tem bigodes que ajudam a sentir o gosto da comida!",
+   "referencia": "Rios"
+  },
+  {
+   "pistas": [
+    "IA roadrunner"
+   ],
+   "resposta": "Papa-léguas",
+   "explicacao": "O papa-léguas prefere correr do que voar!",
+   "referencia": "Desertos da América"
+  },
+  {
+   "pistas": [
+    "IA sun_bear"
+   ],
+   "resposta": "Urso-malaio",
+   "explicacao": "O urso-malaio é o menor urso do mundo e adora mel!",
+   "referencia": "Florestas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA moth"
+   ],
+   "resposta": "Mariposa",
+   "explicacao": "A mariposa voa à noite e é atraída pela luz!",
+   "referencia": "No mundo todo"
+  },
+  {
+   "pistas": [
+    "IA baboon"
+   ],
+   "resposta": "Babuíno",
+   "explicacao": "O babuíno vive em grandes grupos e cuida muito bem dos filhotes!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA fossa"
+   ],
+   "resposta": "Fossa",
+   "explicacao": "A fossa é o maior caçador da ilha de Madagascar e sobe em árvores muito bem!",
+   "referencia": "Madagascar"
+  },
+  {
+   "pistas": [
+    "IA slug"
+   ],
+   "resposta": "Lesma",
+   "explicacao": "A lesma deixa um rastro brilhante por onde passa!",
+   "referencia": "Jardins úmidos"
+  },
+  {
+   "pistas": [
+    "IA wildebeest"
+   ],
+   "resposta": "Gnu",
+   "explicacao": "Os gnus viajam em manadas gigantes atrás de grama fresquinha!",
+   "referencia": "Savana africana"
+  }
+ ]
+}
