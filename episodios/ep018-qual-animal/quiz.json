@@ -1,0 +1,223 @@
+{
+ "id": "ep018-qual-animal",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "Qual animal é esse?",
+ "unico": true,
+ "titulo": "🦈 Qual Animal é Esse? 24 Animais Surpreendentes! | Quiz de Animais para Crianças",
+ "chamada": "QUAL ANIMAL É ESSE?",
+ "faixa": "24 Animais",
+ "icones": [
+  "IA whale_shark",
+  "IA fennec_fox"
+ ],
+ "capa": {
+  "texto": "QUAL ANIMAL É ESSE?",
+  "misterio": "IA fennec_fox",
+  "revelado": "IA tree_frog",
+  "faixa": "24 animais"
+ },
+ "licao": "Cada animal tem um truque especial para viver: a natureza é cheia de surpresas!",
+ "abertura": "Oi, criançada! Hoje tem vinte e quatro animais surpreendentes! Olhe bem e descubra: qual animal é esse? Vamos lá!",
+ "encerramento": "Que demais! Quantos animais você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA whale_shark"
+   ],
+   "resposta": "Tubarão-baleia",
+   "explicacao": "O tubarão-baleia é o maior peixe do mundo, mas só come bichinhos minúsculos!",
+   "referencia": "Oceanos quentes"
+  },
+  {
+   "pistas": [
+    "IA fennec_fox"
+   ],
+   "resposta": "Feneco",
+   "explicacao": "O feneco é a menor raposa do mundo e tem orelhas gigantes para se refrescar!",
+   "referencia": "Deserto do Saara"
+  },
+  {
+   "pistas": [
+    "IA tree_frog"
+   ],
+   "resposta": "Perereca",
+   "explicacao": "A perereca de olhos vermelhos dorme grudadinha embaixo das folhas!",
+   "referencia": "Florestas tropicais"
+  },
+  {
+   "pistas": [
+    "IA alpaca"
+   ],
+   "resposta": "Alpaca",
+   "explicacao": "A alpaca tem um pelo bem macio que vira lã para fazer roupas!",
+   "referencia": "Montanhas dos Andes"
+  },
+  {
+   "pistas": [
+    "IA leafy_sea_dragon"
+   ],
+   "resposta": "Dragão-marinho",
+   "explicacao": "O dragão-marinho-folhado parece uma alga para se esconder no mar!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA chimpanzee"
+   ],
+   "resposta": "Chimpanzé",
+   "explicacao": "O chimpanzé usa gravetos como ferramenta para pegar cupins!",
+   "referencia": "Florestas da África"
+  },
+  {
+   "pistas": [
+    "IA gecko"
+   ],
+   "resposta": "Lagartixa",
+   "explicacao": "A lagartixa consegue andar até de cabeça para baixo no teto!",
+   "referencia": "Casas e florestas"
+  },
+  {
+   "pistas": [
+    "IA musk_ox"
+   ],
+   "resposta": "Boi-almiscarado",
+   "explicacao": "O boi-almiscarado tem um casaco de pelo tão comprido que quase arrasta no chão!",
+   "referencia": "Lugares gelados"
+  },
+  {
+   "pistas": [
+    "IA koi"
+   ],
+   "resposta": "Carpa",
+   "explicacao": "As carpas coloridas podem viver muitos e muitos anos nos lagos!",
+   "referencia": "Japão"
+  },
+  {
+   "pistas": [
+    "IA harpy_eagle"
+   ],
+   "resposta": "Gavião-real",
+   "explicacao": "O gavião-real é uma das águias mais fortes do mundo e vive na Amazônia!",
+   "referencia": "Amazônia"
+  },
+  {
+   "pistas": [
+    "IA jerboa"
+   ],
+   "resposta": "Jerboa",
+   "explicacao": "O jerboa pula como um cangurinho com suas pernas compridas!",
+   "referencia": "Desertos"
+  },
+  {
+   "pistas": [
+    "IA thorny_devil"
+   ],
+   "resposta": "Diabo-espinhoso",
+   "explicacao": "Esse lagarto bebe água pela pele cheia de espinhos!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA sea_lion"
+   ],
+   "resposta": "Leão-marinho",
+   "explicacao": "O leão-marinho usa as nadadeiras da frente para andar na areia!",
+   "referencia": "Praias e mares"
+  },
+  {
+   "pistas": [
+    "IA pheasant"
+   ],
+   "resposta": "Faisão",
+   "explicacao": "O faisão macho tem penas coloridas e uma cauda bem comprida!",
+   "referencia": "Campos e florestas"
+  },
+  {
+   "pistas": [
+    "IA gharial"
+   ],
+   "resposta": "Gavial",
+   "explicacao": "O gavial tem um focinho fininho e comprido, perfeito para pegar peixes!",
+   "referencia": "Rios da Índia"
+  },
+  {
+   "pistas": [
+    "IA marmot"
+   ],
+   "resposta": "Marmota",
+   "explicacao": "A marmota dorme o inverno inteirinho dentro da toca!",
+   "referencia": "Montanhas"
+  },
+  {
+   "pistas": [
+    "IA flying_fish"
+   ],
+   "resposta": "Peixe-voador",
+   "explicacao": "O peixe-voador pula para fora da água e plana com as nadadeiras!",
+   "referencia": "Oceanos"
+  },
+  {
+   "pistas": [
+    "IA honey_badger"
+   ],
+   "resposta": "Ratel",
+   "explicacao": "O ratel é pequeno, mas muito corajoso, e adora mel!",
+   "referencia": "África e Ásia"
+  },
+  {
+   "pistas": [
+    "IA tortoise"
+   ],
+   "resposta": "Jabuti-gigante",
+   "explicacao": "O jabuti-gigante pode viver mais de cem anos!",
+   "referencia": "Ilhas Galápagos"
+  },
+  {
+   "pistas": [
+    "IA crow"
+   ],
+   "resposta": "Corvo",
+   "explicacao": "O corvo é uma das aves mais inteligentes e resolve até quebra-cabeças!",
+   "referencia": "No mundo todo"
+  },
+  {
+   "pistas": [
+    "IA frilled_lizard"
+   ],
+   "resposta": "Lagarto-de-gola",
+   "explicacao": "Esse lagarto abre uma gola enorme no pescoço para assustar os predadores!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA jackal"
+   ],
+   "resposta": "Chacal",
+   "explicacao": "O chacal vive em casal e os dois cuidam juntos dos filhotes!",
+   "referencia": "África e Ásia"
+  },
+  {
+   "pistas": [
+    "IA mole"
+   ],
+   "resposta": "Toupeira",
+   "explicacao": "A toupeira cava túneis debaixo da terra com as mãos fortes!",
+   "referencia": "Campos e jardins"
+  },
+  {
+   "pistas": [
+    "IA wasp"
+   ],
+   "resposta": "Vespa",
+   "explicacao": "A vespa faz ninhos com papel que ela mesma fabrica mastigando madeira!",
+   "referencia": "Jardins"
+  }
+ ]
+}
