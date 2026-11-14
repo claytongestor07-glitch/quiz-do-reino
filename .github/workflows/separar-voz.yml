@@ -1,0 +1,27 @@
+# Separa a voz da música de um áudio do repositório (Demucs, MIT) e devolve a voz limpa como artefato "voz".
+# Usado para tirar a voz do Kiko da vinheta (public/abertura/kiko.wav) e clonar no Chatterbox.
+name: Separar voz
+on:
+  workflow_dispatch:
+    inputs:
+      arquivo:
+        description: áudio no repositório
+        default: public/abertura/kiko.wav
+jobs:
+  separar:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: sudo apt-get update -qq && sudo apt-get install -qq -y ffmpeg
+      - run: pip install -q demucs soundfile "torchaudio<2.9" "torch<2.9"
+      - run: |
+          python -m demucs --two-stems=vocals -n htdemucs -o sep "${{ inputs.arquivo }}"
+          mkdir -p voz && cp sep/htdemucs/*/vocals.wav voz/voz.wav
+          ffmpeg -v error -y -i voz/voz.wav -ac 1 -ar 24000 -af "loudnorm=I=-18:TP=-2" voz/voz-mono.wav
+      - uses: actions/upload-artifact@v4
+        with:
+          name: voz
+          path: voz/*
