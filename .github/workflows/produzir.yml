@@ -129,6 +129,8 @@ jobs:
           printf '%s' "$YT_CLIENT_SECRET" > ~/.config/pequenos-sabios/client_secret.json
           printf '%s' "$YT_TOKEN" > ~/.config/pequenos-sabios/token.json
           chmod 600 ~/.config/pequenos-sabios/*
+      # capa com o Kiko (scripts/capa_kiko.py) precisa do Pillow
+      - run: pip install -q pillow
       - name: Juntar, gerar Shorts e enviar
         run: node scripts/automacao.mjs --episodio=${{ needs.planejar.outputs.id }} ${{ github.event_name == 'workflow_dispatch' && inputs.enviar == false && '--sem-envio' || '' }}
       - if: github.event_name == 'workflow_dispatch' && inputs.enviar == false

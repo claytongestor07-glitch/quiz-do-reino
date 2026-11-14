@@ -221,5 +221,11 @@
    "explicacao": "Os gnus viajam em manadas gigantes atrás de grama fresquinha!",
    "referencia": "Savana africana"
   }
- ]
+ ],
+ "capa": {
+  "texto": "QUAL ANIMAL É ESSE?",
+  "misterio": "IA wildebeest",
+  "revelado": "IA mandrill",
+  "faixa": "25 animais"
+ }
 }

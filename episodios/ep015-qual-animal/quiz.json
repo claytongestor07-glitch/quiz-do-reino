@@ -237,5 +237,11 @@
    "explicacao": "O vombate faz cocô em formato de cubinho!",
    "referencia": "Austrália"
   }
- ]
+ ],
+ "capa": {
+  "texto": "QUAL ANIMAL É ESSE?",
+  "misterio": "IA orca",
+  "revelado": "IA chameleon",
+  "faixa": "27 animais"
+ }
 }

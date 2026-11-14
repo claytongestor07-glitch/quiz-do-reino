@@ -229,5 +229,11 @@
    "explicacao": "A cegonha faz ninhos enormes no alto de torres e árvores!",
    "referencia": "Europa e África"
   }
- ]
+ ],
+ "capa": {
+  "texto": "QUAL ANIMAL É ESSE?",
+  "misterio": "IA caracal",
+  "revelado": "IA quokka",
+  "faixa": "26 animais"
+ }
 }

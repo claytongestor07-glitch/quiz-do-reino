@@ -253,5 +253,11 @@
    "explicacao": "O javali fuça a terra com o focinho atrás de raízes!",
    "referencia": "Florestas"
   }
- ]
+ ],
+ "capa": {
+  "texto": "QUAL ANIMAL É ESSE?",
+  "misterio": "IA giant_anteater",
+  "revelado": "IA capybara",
+  "faixa": "29 animais"
+ }
 }

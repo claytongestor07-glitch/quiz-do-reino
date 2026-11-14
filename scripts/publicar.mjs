@@ -15,6 +15,7 @@
 //    (criado pelo senhor após assistir);
 //  - Made for Kids sempre declarado; categoria Educação; nunca envia o mesmo episódio duas vezes.
 import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
 import http from 'node:http';
@@ -253,6 +254,14 @@ async function enviar(id, quando, short = 0, vertical = false) {
 	if (short) return; // Shorts usam um quadro do próprio vídeo como capa
 
 	const thumb = path.join(saida, `${id}-thumbnail.jpg`);
+	// Animais: capa com o Kiko e o animal misterioso em silhueta (scripts/capa_kiko.py); se falhar, fica a do Remotion
+	if (episodio(id).quiz.categoria === 'animais') {
+		try {
+			execFileSync('python3', [path.join(RAIZ, 'scripts', 'capa_kiko.py'), id, thumb], {stdio: 'ignore'});
+		} catch {
+			log('publicar', `${id}: capa do Kiko falhou; usando a capa padrão`);
+		}
+	}
 	const t = await fetch(`https://www.googleapis.com/upload/youtube/v3/thumbnails/set?videoId=${resposta.id}`, {method: 'POST', headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'image/jpeg'}, body: fs.readFileSync(thumb)});
 	const pendente = path.join(dir, 'MINIATURA-PENDENTE');
 	// Guarda a miniatura junto do roteiro (vai para o repositório): na nuvem a pasta saida/ some ao fim da execução
