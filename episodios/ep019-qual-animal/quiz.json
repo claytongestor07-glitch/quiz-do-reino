@@ -1,0 +1,207 @@
+{
+ "id": "ep019-qual-animal",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "Qual animal é esse?",
+ "unico": true,
+ "titulo": "🦜 Qual Animal é Esse? 22 Animais do Brasil e do Mundo! | Quiz de Animais para Crianças",
+ "chamada": "QUAL ANIMAL É ESSE?",
+ "faixa": "22 Animais",
+ "icones": [
+  "IA scarlet_ibis",
+  "IA lynx"
+ ],
+ "capa": {
+  "texto": "QUAL ANIMAL É ESSE?",
+  "misterio": "IA kudu",
+  "revelado": "IA scarlet_ibis",
+  "faixa": "22 animais"
+ },
+ "licao": "O Brasil e o mundo estão cheios de animais incríveis: vamos conhecer e cuidar de todos!",
+ "abertura": "Oi, criançada! Hoje tem vinte e dois animais do Brasil e do mundo! Olhe bem e descubra: qual animal é esse? Vamos lá!",
+ "encerramento": "Que craque! Quantos animais você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA scarlet_ibis"
+   ],
+   "resposta": "Guará",
+   "explicacao": "O guará é vermelhinho porque come caranguejos e camarões!",
+   "referencia": "Mangues do Brasil"
+  },
+  {
+   "pistas": [
+    "IA lynx"
+   ],
+   "resposta": "Lince",
+   "explicacao": "O lince tem tufos pretos nas orelhas que ajudam a ouvir melhor!",
+   "referencia": "Florestas geladas"
+  },
+  {
+   "pistas": [
+    "IA great_kiskadee"
+   ],
+   "resposta": "Bem-te-vi",
+   "explicacao": "O bem-te-vi tem esse nome porque o canto dele parece dizer bem-te-vi!",
+   "referencia": "Brasil todo"
+  },
+  {
+   "pistas": [
+    "IA sea_anemone"
+   ],
+   "resposta": "Anêmona",
+   "explicacao": "A anêmona parece uma flor, mas é um animal que vive no fundo do mar!",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "IA puma"
+   ],
+   "resposta": "Onça-parda",
+   "explicacao": "A onça-parda é um felino que dá saltos enormes e vive nas Américas!",
+   "referencia": "Américas"
+  },
+  {
+   "pistas": [
+    "IA rufous_hornero"
+   ],
+   "resposta": "João-de-barro",
+   "explicacao": "O joão-de-barro constrói a própria casinha com barro, em formato de forno!",
+   "referencia": "Brasil"
+  },
+  {
+   "pistas": [
+    "IA caterpillar"
+   ],
+   "resposta": "Lagarta",
+   "explicacao": "A lagarta come muitas folhas e um dia vira borboleta!",
+   "referencia": "Jardins"
+  },
+  {
+   "pistas": [
+    "IA kudu"
+   ],
+   "resposta": "Cudo",
+   "explicacao": "O cudo tem chifres compridos em espiral, como um saca-rolhas!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA seriema"
+   ],
+   "resposta": "Seriema",
+   "explicacao": "A seriema tem um canto tão alto que dá para ouvir de longe!",
+   "referencia": "Cerrado"
+  },
+  {
+   "pistas": [
+    "IA pirarucu"
+   ],
+   "resposta": "Pirarucu",
+   "explicacao": "O pirarucu é um dos maiores peixes de rio do mundo e sobe para respirar!",
+   "referencia": "Rios da Amazônia"
+  },
+  {
+   "pistas": [
+    "IA ferret"
+   ],
+   "resposta": "Furão",
+   "explicacao": "O furão é brincalhão e adora se esconder em túneis!",
+   "referencia": "Casas e campos"
+  },
+  {
+   "pistas": [
+    "IA caracara"
+   ],
+   "resposta": "Carcará",
+   "explicacao": "O carcará é uma ave esperta que anda pelo chão procurando comida!",
+   "referencia": "Brasil"
+  },
+  {
+   "pistas": [
+    "IA cicada"
+   ],
+   "resposta": "Cigarra",
+   "explicacao": "A cigarra canta bem alto nos dias quentes de verão!",
+   "referencia": "Árvores"
+  },
+  {
+   "pistas": [
+    "IA african_wild_dog"
+   ],
+   "resposta": "Mabeco",
+   "explicacao": "O mabeco vive em matilha e cada um tem manchas diferentes!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA southern_lapwing"
+   ],
+   "resposta": "Quero-quero",
+   "explicacao": "O quero-quero grita alto para proteger o ninho no chão!",
+   "referencia": "Campos do Brasil"
+  },
+  {
+   "pistas": [
+    "IA sea_cucumber"
+   ],
+   "resposta": "Pepino-do-mar",
+   "explicacao": "O pepino-do-mar é um animal que limpa a areia do fundo do mar!",
+   "referencia": "Fundo do mar"
+  },
+  {
+   "pistas": [
+    "IA agouti"
+   ],
+   "resposta": "Cutia",
+   "explicacao": "A cutia enterra sementes e ajuda a plantar novas árvores na floresta!",
+   "referencia": "Matas do Brasil"
+  },
+  {
+   "pistas": [
+    "IA oryx"
+   ],
+   "resposta": "Órix",
+   "explicacao": "O órix tem chifres compridos e retinhos e aguenta muitos dias sem beber água!",
+   "referencia": "Desertos da África"
+  },
+  {
+   "pistas": [
+    "IA azure_jay"
+   ],
+   "resposta": "Gralha-azul",
+   "explicacao": "A gralha-azul enterra pinhões e ajuda a plantar araucárias!",
+   "referencia": "Sul do Brasil"
+  },
+  {
+   "pistas": [
+    "IA termite"
+   ],
+   "resposta": "Cupim",
+   "explicacao": "Os cupins constroem montes de terra que podem ser mais altos que uma pessoa!",
+   "referencia": "Cerrado"
+  },
+  {
+   "pistas": [
+    "IA muriqui"
+   ],
+   "resposta": "Muriqui",
+   "explicacao": "O muriqui é o maior macaco das Américas e vive na Mata Atlântica!",
+   "referencia": "Mata Atlântica"
+  },
+  {
+   "pistas": [
+    "IA dik_dik"
+   ],
+   "resposta": "Dik-dik",
+   "explicacao": "O dik-dik é um antílope tão pequeno que parece um filhote!",
+   "referencia": "Savana africana"
+  }
+ ]
+}
