@@ -7,6 +7,7 @@ subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', 'git+https://githu
 # o chatterbox fixa a versão do torch; o torchvision do Kaggle fica incompatível ("torchvision::nms does not exist") e não é usado
 subprocess.run([sys.executable, '-m', 'pip', 'uninstall', '-y', '-q', 'torchvision'], check=True)
 import torchaudio as ta
+from urllib.request import urlretrieve
 from chatterbox.mtl_tts import ChatterboxMultilingualTTS
 
 FRASES = [
@@ -20,9 +21,11 @@ try:
 except TypeError:
 	print('V3 indisponível; usando o multilíngue V2', flush=True)
 	modelo = ChatterboxMultilingualTTS.from_pretrained(device='cuda')
+KIKO = '/tmp/kiko-voz.wav'
+urlretrieve('https://raw.githubusercontent.com/claytongestor07-glitch/quiz-do-reino/main/public/abertura/kiko-voz.wav', KIKO)
 for n, frase in enumerate(FRASES, 1):
 	for nome, emocao in [('calma', 0.5), ('animada', 0.8)]:
-		wav = modelo.generate(frase, language_id='pt', exaggeration=emocao, cfg_weight=0.4)
+		wav = modelo.generate(frase, language_id='pt', audio_prompt_path=KIKO, exaggeration=emocao, cfg_weight=0.4)
 		ta.save(f'/kaggle/working/voz-{n}-{nome}.wav', wav, modelo.sr)
 		print(n, nome, flush=True)
 print('fim', flush=True)

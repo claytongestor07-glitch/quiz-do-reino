@@ -9,7 +9,8 @@ try:
 	modelo = ChatterboxMultilingualTTS.from_pretrained(device='cpu', t3_model='v3')
 except TypeError:
 	modelo = ChatterboxMultilingualTTS.from_pretrained(device='cpu')
+KIKO = str(__import__('pathlib').Path(__file__).resolve().parent.parent / 'public' / 'abertura' / 'kiko-voz.wav')
 for n, p in enumerate(pendentes, 1):
-	wav = modelo.generate(p['texto'], language_id='pt', exaggeration=0.8, cfg_weight=0.4)
+	wav = modelo.generate(p['texto'], language_id='pt', audio_prompt_path=KIKO, exaggeration=0.7, cfg_weight=0.4)
 	ta.save(f"{sys.argv[2]}/{p['arquivo'].rsplit('.', 1)[0]}.wav", wav, modelo.sr)
 	print(f'[voz-cpu] {n}/{len(pendentes)}', flush=True)

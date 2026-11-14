@@ -57,7 +57,7 @@ if (erros.length) {
 const {quiz} = episodio(id);
 const canal = JSON.parse(fs.readFileSync(path.join(RAIZ, 'config', 'canal.json'), 'utf8'));
 const provedor = mac ? 'mac' : edge ? 'edge' : azure ? 'azure' : kokoro ? 'kokoro' : chatterbox ? 'chatterbox' : 'elevenlabs';
-const voz = mac ? 'Luciana' : kokoro ? 'pf_dora' : chatterbox ? 'cb-v3-animada' : edge || azure ? VOZ_EDGE : process.env.PS_VOICE_ID || canal.voz?.id;
+const voz = mac ? 'Luciana' : kokoro ? 'pf_dora' : chatterbox ? 'cb-v3-kiko' : edge || azure ? VOZ_EDGE : process.env.PS_VOICE_ID || canal.voz?.id;
 if (azure && (!process.env.AZURE_SPEECH_KEY || !process.env.AZURE_SPEECH_REGION)) {
 	log('narrar', 'ERRO: defina AZURE_SPEECH_KEY e AZURE_SPEECH_REGION no ~/.zshrc');
 	process.exit(1);
