@@ -19,6 +19,8 @@ const SPEED = EMOJI || ABC;
 // Rodada (quiz de animais, regra do senhor em 11/2026): pergunta, alternativas, 5 s, resposta certa e mais nada
 // Caixa (11/2026, inspirado nos jogos de escolha): 3 caixas fechadas, 5 s para escolher e cada caixa abre junto com a fala
 const CAIXA = episodio(process.argv[2]).quiz.formato === 'caixa';
+// "Qual animal é esse?" (um animal por desafio): também ganha os ganchos do Kiko, para prender até o fim
+const UNICO = Boolean(episodio(process.argv[2]).quiz.unico);
 const RODADA = CAIXA || episodio(process.argv[2]).quiz.formato === 'rodada';
 const TEMPO_RESPOSTA = RODADA ? 5 : EMOJI ? 6 : ABC ? 7 : 8;
 const VINHETA = {video: 'abertura/kiko.mp4', audio: 'abertura/kiko.wav'};
@@ -27,7 +29,7 @@ const KIKO = RODADA || episodio(process.argv[2]).quiz.categoria === 'animais';
 // Ganchos curtos com o Kiko para prender a criança até o fim (senhor, 03/11/2026). Variam por episódio.
 // A chamada de curtir e seguir fala com o adulto: os vídeos são "conteúdo para crianças" no YouTube.
 const GANCHOS = {
-	inicio: CAIXA ? ['Escolha uma caixa e descubra qual bichinho você ganha! Valendo!', 'Três caixas, um bichinho em cada! Qual você escolhe? Começou!', 'Será que você vai tirar um animal lendário? Vamos nessa!'] : ['Será que você acerta todas as 20? Valendo!', 'São 20 perguntas! Quantas você vai acertar? Começou!', 'Prepare-se, que hoje tem desafio! Vamos nessa?', 'Atenção, detetive dos animais! Lá vem a primeira!'],
+	inicio: UNICO ? ['Fica comigo até o final, que o último animal é o mais difícil de todos! Valendo!', 'Conte quantos animais você acerta e desafie a família! Começou!', 'Atenção, detetive dos animais! Olhe bem, que lá vem o primeiro!'] : CAIXA ? ['Escolha uma caixa e descubra qual bichinho você ganha! Valendo!', 'Três caixas, um bichinho em cada! Qual você escolhe? Começou!', 'Será que você vai tirar um animal lendário? Vamos nessa!'] : ['Será que você acerta todas as 20? Valendo!', 'São 20 perguntas! Quantas você vai acertar? Começou!', 'Prepare-se, que hoje tem desafio! Vamos nessa?', 'Atenção, detetive dos animais! Lá vem a primeira!'],
 	cinco: ['Você está indo muito bem! Continua comigo!', 'Uau, que rapidez! Lá vem mais!', 'Mandou bem! Agora presta bastante atenção!', 'Que craque! Será que acerta a próxima?'],
 	meio: ['Chegamos na metade! Se você está gostando, peça para um adulto curtir o vídeo e seguir o canal!', 'Metade do quiz! Peça para o papai ou a mamãe curtir o vídeo e seguir o canal do Kiko!', 'Já são dez! Gostou? Chame um adulto para curtir e seguir o canal!'],
 	reta: ['Reta final! Faltam só cinco perguntas!', 'Faltam só cinco! Vamos até o fim?', 'Últimas cinco perguntas! Não vale desistir agora!'],
@@ -205,6 +207,10 @@ if (RODADA) {
 } else {
 	const abertura = await falar(quiz.abertura);
 	adicionar({tipo: 'abertura', ...abertura, atrasoAudio: f(2.5)}, 2.5 + abertura.segundos + 0.8);
+	if (UNICO) {
+		const g = await falar(gancho('inicio'));
+		adicionar({tipo: 'gancho', texto: gancho('inicio'), ...g, atrasoAudio: f(0.2)}, 0.2 + g.segundos + 0.4);
+	}
 }
 
 for (const [i, p] of quiz.perguntas.entries()) {
@@ -256,6 +262,13 @@ for (const [i, p] of quiz.perguntas.entries()) {
 		adicionar({tipo: 'cronometro', i}, TEMPO_RESPOSTA);
 		const resposta = await falar(`É... ${p.resposta}! ${p.explicacao}`);
 		adicionar({tipo: 'revelacao', i, ...resposta, atrasoAudio: f(0.4)}, 0.4 + resposta.segundos + 0.9);
+		// ganchos do Kiko: depois do 5º, na metade (chamada para curtir e seguir) e quando faltam 5
+		const n = quiz.perguntas.length;
+		const marco = UNICO && (i === 4 ? 'cinco' : i === Math.floor(n / 2) - 1 ? 'meio' : i === n - 6 ? 'reta' : null);
+		if (marco) {
+			const g = await falar(gancho(marco));
+			adicionar({tipo: marco === 'meio' ? 'chamada' : 'gancho', texto: gancho(marco), ...g, atrasoAudio: f(0.2)}, 0.2 + g.segundos + 0.5);
+		}
 		continue;
 	}
 	adicionar({tipo: 'numero', i}, 1.6);
@@ -266,7 +279,7 @@ for (const [i, p] of quiz.perguntas.entries()) {
 	adicionar({tipo: 'revelacao', i, ...resposta, atrasoAudio: f(0.6)}, 0.6 + resposta.segundos + 1.0);
 }
 
-if (RODADA) {
+if (RODADA || UNICO) {
 	const g = await falar(gancho('fim'));
 	adicionar({tipo: 'chamada', texto: gancho('fim'), ...g, atrasoAudio: f(0.2)}, 0.2 + g.segundos + 0.6);
 }
