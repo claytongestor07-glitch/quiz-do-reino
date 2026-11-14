@@ -1,0 +1,112 @@
+{
+  "falas": [
+    {
+      "id": "01-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "Cenoura de novo?!"
+    },
+    {
+      "id": "02-kenji",
+      "voz": "kenji",
+      "emo": 0.6,
+      "texto": "Eu queria batata frita…"
+    },
+    {
+      "id": "03-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "A mãe tinha passado a tarde inteira cozinhando."
+    },
+    {
+      "id": "04-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "Então o Vovô Hiro fez algo diferente."
+    },
+    {
+      "id": "05-vovo",
+      "voz": "vovo",
+      "emo": 0.5,
+      "texto": "Itadaki-másu."
+    },
+    {
+      "id": "06-kenji",
+      "voz": "kenji",
+      "emo": 0.6,
+      "texto": "O que é isso, vovô?"
+    },
+    {
+      "id": "07-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "No Japão, antes de comer, as pessoas dizem itadaki-másu: recebo com gratidão."
+    },
+    {
+      "id": "08-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "É um obrigado a quem plantou…"
+    },
+    {
+      "id": "09-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "…a quem colheu…"
+    },
+    {
+      "id": "10-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "…e a quem preparou com carinho."
+    },
+    {
+      "id": "11-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "Kenji nunca tinha pensado em quantas mãos cabem num prato de comida."
+    },
+    {
+      "id": "12-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "Eles oraram juntos, agradecendo a Deus. A Bíblia diz: deem graças em todas as circunstâncias."
+    },
+    {
+      "id": "13-kenji",
+      "voz": "kenji",
+      "emo": 0.8,
+      "texto": "Hum… tá bom, mãe!"
+    },
+    {
+      "id": "14-narr",
+      "voz": "",
+      "emo": 0.8,
+      "texto": "E a mãe, que estava cansada, sorriu de novo."
+    },
+    {
+      "id": "15-vovo",
+      "voz": "vovo",
+      "emo": 0.7,
+      "texto": "Gochisoo-sama déchita!"
+    },
+    {
+      "id": "16-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "No dia seguinte, foi o Kenji quem pôs a mesa."
+    },
+    {
+      "id": "17-kenji",
+      "voz": "kenji",
+      "emo": 0.8,
+      "texto": "Itadaki-másu! Obrigado, Deus, e obrigado, mãe!"
+    },
+    {
+      "id": "18-narr",
+      "voz": "",
+      "emo": 0.8,
+      "texto": "Itadaki-másu!"
+    }
+  ]
+}
