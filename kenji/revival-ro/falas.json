@@ -1,0 +1,10 @@
+{
+  "falas": [
+    {"id": "01", "voz": "pai", "emo": 0.5, "texto": "Seu carro clássico merece um volante à altura da história dele."},
+    {"id": "02", "voz": "pai", "emo": 0.5, "texto": "Aqui na Revival, cada volante de madeira é preparado à mão. A peça é protegida, e só o aro recebe o tratamento."},
+    {"id": "03", "voz": "pai", "emo": 0.5, "texto": "Depois vêm as camadas de verniz, aplicadas com pistola, uma a uma, sem pressa."},
+    {"id": "04", "voz": "pai", "emo": 0.55, "texto": "O tom ganha profundidade, do âmbar ao mogno, e o brilho começa a aparecer."},
+    {"id": "05", "voz": "pai", "emo": 0.55, "texto": "No final, a fita sai e o resultado fala por si: brilho espelhado e o veio da madeira vivo de novo."},
+    {"id": "06", "voz": "pai", "emo": 0.6, "texto": "Tem um carro antigo? Chama a Revival e devolva a alma ao seu clássico."}
+  ]
+}
