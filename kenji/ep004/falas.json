@@ -1,0 +1,118 @@
+{
+  "falas": [
+    {
+      "id": "01-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "A Dona Mei deu ao Kenji e à Lia uma pipa para montar."
+    },
+    {
+      "id": "02-lia",
+      "voz": "lia",
+      "emo": 0.8,
+      "texto": "Hoje o vento está perfeito! Vamos soltar já!"
+    },
+    {
+      "id": "03-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "No alto do morro, o Kenji correu e correu... mas a pipa não subiu."
+    },
+    {
+      "id": "04-kenji",
+      "voz": "kenji",
+      "emo": 0.8,
+      "texto": "Essa pipa não quer voar!"
+    },
+    {
+      "id": "05-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "A Lia tentou. Caiu de novo. E de novo."
+    },
+    {
+      "id": "06-kenji",
+      "voz": "kenji",
+      "emo": 0.7,
+      "texto": "Eu desisto. Pipa chata!"
+    },
+    {
+      "id": "07-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "Foi quando a Dona Mei chegou, com um sorriso."
+    },
+    {
+      "id": "08-mei",
+      "voz": "mei",
+      "emo": 0.6,
+      "texto": "Na China, a gente chama isso de nái-chín: paciência."
+    },
+    {
+      "id": "09-mei",
+      "voz": "mei",
+      "emo": 0.6,
+      "texto": "Pipa não se empurra, Kenji. Ela espera o vento certo."
+    },
+    {
+      "id": "10-narr",
+      "voz": "",
+      "emo": 0.7,
+      "texto": "Em chinês, pipa se diz fêng-djêng: cítara do vento! Antigamente, amarravam um apito de bambu, e a pipa tocava música no céu."
+    },
+    {
+      "id": "11-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "Os três ajustaram o rabo da pipa, devagar, com cuidado."
+    },
+    {
+      "id": "12-kenji",
+      "voz": "kenji",
+      "emo": 0.6,
+      "texto": "Tá bom... mais uma vez."
+    },
+    {
+      "id": "13-narr",
+      "voz": "",
+      "emo": 0.7,
+      "texto": "Eles esperaram. Esperaram mais um pouco. E o vento chegou!"
+    },
+    {
+      "id": "14-lia",
+      "voz": "lia",
+      "emo": 0.9,
+      "texto": "Solta, Kenji! Solta!"
+    },
+    {
+      "id": "15-narr",
+      "voz": "",
+      "emo": 0.9,
+      "texto": "E a pipa subiu, subiu, até quase tocar as nuvens!"
+    },
+    {
+      "id": "16-kenji",
+      "voz": "kenji",
+      "emo": 0.9,
+      "texto": "Valeu a pena esperar!"
+    },
+    {
+      "id": "17-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "A Bíblia diz: não nos cansemos de fazer o bem, pois a seu tempo colheremos, se não desanimarmos. Gálatas seis, nove."
+    },
+    {
+      "id": "18-narr",
+      "voz": "",
+      "emo": 0.8,
+      "texto": "Palavra do dia: nái-chín!"
+    },
+    {
+      "id": "19-narr",
+      "voz": "",
+      "emo": 0.7,
+      "texto": "Hoje o Kenji aprendeu: ter paciência é esperar o vento certo, sem desistir. Quem não desanima, vê a pipa subir!"
+    }
+  ]
+}
