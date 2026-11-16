@@ -1,0 +1,223 @@
+{
+ "id": "ep020-qual-animal",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "Qual animal é esse?",
+ "unico": true,
+ "titulo": "🐠 Qual Animal é Esse? 24 Animais Raros e Engraçados! | Quiz de Animais para Crianças",
+ "chamada": "QUAL ANIMAL É ESSE?",
+ "faixa": "24 Animais",
+ "icones": [
+  "IA blobfish",
+  "IA hoopoe"
+ ],
+ "capa": {
+  "texto": "QUAL ANIMAL É ESSE?",
+  "misterio": "IA bongo",
+  "revelado": "IA blobfish",
+  "faixa": "24 animais"
+ },
+ "licao": "Até os animais mais estranhos têm um jeito incrível de viver!",
+ "abertura": "Oi, criançada! Hoje tem vinte e quatro animais raros e engraçados! Olhe bem e descubra: qual animal é esse? Vamos lá!",
+ "encerramento": "Que craque! Quantos animais você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA blobfish"
+   ],
+   "resposta": "Peixe-bolha",
+   "explicacao": "No fundo do mar o peixe-bolha tem forma normal; ele só fica molenga fora da água!",
+   "referencia": "Fundo do mar"
+  },
+  {
+   "pistas": [
+    "IA hoopoe"
+   ],
+   "resposta": "Poupa",
+   "explicacao": "A poupa abre a crista de penas como um leque quando fica animada!",
+   "referencia": "Europa e África"
+  },
+  {
+   "pistas": [
+    "IA peacock_bass"
+   ],
+   "resposta": "Tucunaré",
+   "explicacao": "O tucunaré tem uma mancha na cauda que parece um olho para confundir os inimigos!",
+   "referencia": "Rios da Amazônia"
+  },
+  {
+   "pistas": [
+    "IA bushbaby"
+   ],
+   "resposta": "Gálago",
+   "explicacao": "O gálago tem olhos enormes para enxergar no escuro e pula muito alto!",
+   "referencia": "Florestas da África"
+  },
+  {
+   "pistas": [
+    "IA quetzal"
+   ],
+   "resposta": "Quetzal",
+   "explicacao": "O quetzal tem penas da cauda tão compridas que parecem fitas verdes!",
+   "referencia": "Florestas da América"
+  },
+  {
+   "pistas": [
+    "IA uakari"
+   ],
+   "resposta": "Uacari",
+   "explicacao": "O uacari tem o rosto vermelhinho e vive na floresta alagada da Amazônia!",
+   "referencia": "Amazônia"
+  },
+  {
+   "pistas": [
+    "IA nudibranch"
+   ],
+   "resposta": "Lesma-do-mar",
+   "explicacao": "A lesma-do-mar é colorida para avisar que não é gostosa de comer!",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "IA bongo"
+   ],
+   "resposta": "Bongo",
+   "explicacao": "O bongo tem listras brancas que ajudam a se esconder na floresta!",
+   "referencia": "Florestas da África"
+  },
+  {
+   "pistas": [
+    "IA kinkajou"
+   ],
+   "resposta": "Jupará",
+   "explicacao": "O jupará usa a língua comprida para lamber o néctar das flores!",
+   "referencia": "Florestas tropicais"
+  },
+  {
+   "pistas": [
+    "IA mudskipper"
+   ],
+   "resposta": "Saltador-do-lodo",
+   "explicacao": "Esse peixe sai da água e pula na lama usando as nadadeiras!",
+   "referencia": "Mangues"
+  },
+  {
+   "pistas": [
+    "IA roseate_spoonbill"
+   ],
+   "resposta": "Colhereiro",
+   "explicacao": "O colhereiro tem o bico em forma de colher para pescar na água rasa!",
+   "referencia": "Pantanal"
+  },
+  {
+   "pistas": [
+    "IA takin"
+   ],
+   "resposta": "Takin",
+   "explicacao": "O takin tem um pelo dourado e grosso para aguentar o frio das montanhas!",
+   "referencia": "Montanhas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA arowana"
+   ],
+   "resposta": "Aruanã",
+   "explicacao": "O aruanã pula para fora da água para pegar insetos nos galhos!",
+   "referencia": "Rios da Amazônia"
+  },
+  {
+   "pistas": [
+    "IA colobus_monkey"
+   ],
+   "resposta": "Colobo",
+   "explicacao": "O colobo tem uma cauda branca e comprida e quase não desce das árvores!",
+   "referencia": "Florestas da África"
+  },
+  {
+   "pistas": [
+    "IA jaguarundi"
+   ],
+   "resposta": "Gato-mourisco",
+   "explicacao": "O gato-mourisco tem corpo comprido e caça de dia, diferente de outros gatos!",
+   "referencia": "Brasil"
+  },
+  {
+   "pistas": [
+    "IA gerenuk"
+   ],
+   "resposta": "Gerenuk",
+   "explicacao": "O gerenuk fica em pé nas patas de trás para comer folhas altas!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA tayra"
+   ],
+   "resposta": "Irara",
+   "explicacao": "A irara sobe em árvores e adora frutas e mel!",
+   "referencia": "Matas do Brasil"
+  },
+  {
+   "pistas": [
+    "IA barracuda"
+   ],
+   "resposta": "Barracuda",
+   "explicacao": "A barracuda nada muito rápido e tem dentes bem afiados!",
+   "referencia": "Mares quentes"
+  },
+  {
+   "pistas": [
+    "IA golden_snub_nosed_monkey"
+   ],
+   "resposta": "Macaco-dourado",
+   "explicacao": "Esse macaco tem o rosto azul e um pelo dourado bem quentinho!",
+   "referencia": "Montanhas da China"
+  },
+  {
+   "pistas": [
+    "IA aardwolf"
+   ],
+   "resposta": "Protelo",
+   "explicacao": "O protelo é parente da hiena, mas só come cupins!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA kakapo"
+   ],
+   "resposta": "Kakapo",
+   "explicacao": "O kakapo é um papagaio que não voa e anda pelo chão da floresta à noite!",
+   "referencia": "Nova Zelândia"
+  },
+  {
+   "pistas": [
+    "IA capuchin_monkey"
+   ],
+   "resposta": "Macaco-prego",
+   "explicacao": "O macaco-prego é tão esperto que usa pedras para quebrar cocos!",
+   "referencia": "Matas do Brasil"
+  },
+  {
+   "pistas": [
+    "IA mongoose"
+   ],
+   "resposta": "Mangusto",
+   "explicacao": "O mangusto é rápido e corajoso e vive em grupos!",
+   "referencia": "África e Ásia"
+  },
+  {
+   "pistas": [
+    "IA opossum"
+   ],
+   "resposta": "Gambá",
+   "explicacao": "O gambá carrega os filhotes nas costas e também numa bolsinha!",
+   "referencia": "Brasil"
+  }
+ ]
+}
