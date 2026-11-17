@@ -1,0 +1,239 @@
+{
+ "id": "ep021-qual-animal",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "Qual animal é esse?",
+ "unico": true,
+ "titulo": "🐾 Qual Animal é Esse? 26 Animais Incríveis! | Quiz de Animais para Crianças",
+ "chamada": "QUAL ANIMAL É ESSE?",
+ "faixa": "26 Animais",
+ "icones": [
+  "IA impala",
+  "IA elephant_seal"
+ ],
+ "capa": {
+  "texto": "QUAL ANIMAL É ESSE?",
+  "misterio": "IA impala",
+  "revelado": "IA elephant_seal",
+  "faixa": "26 animais"
+ },
+ "licao": "Cada animal tem um jeito especial de viver, e todos são importantes para a natureza!",
+ "abertura": "Oi, criançada! Hoje tem 26 animais novinhos! Olhe bem e descubra: qual animal é esse? Vamos lá!",
+ "encerramento": "Que craque! Quantos animais você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA impala"
+   ],
+   "resposta": "Impala",
+   "explicacao": "O impala consegue pular mais de três metros de altura!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA elephant_seal"
+   ],
+   "resposta": "Elefante-marinho",
+   "explicacao": "O macho do elefante-marinho tem um nariz grande que parece uma tromba!",
+   "referencia": "Mares gelados"
+  },
+  {
+   "pistas": [
+    "IA sloth_bear"
+   ],
+   "resposta": "Urso-preguiça",
+   "explicacao": "O urso-preguiça usa os lábios para sugar cupins!",
+   "referencia": "Índia"
+  },
+  {
+   "pistas": [
+    "IA mara"
+   ],
+   "resposta": "Mara",
+   "explicacao": "A mara parece um coelho de pernas compridas, mas é parente da capivara!",
+   "referencia": "Argentina"
+  },
+  {
+   "pistas": [
+    "IA bilby"
+   ],
+   "resposta": "Bilby",
+   "explicacao": "O bilby tem orelhas compridas como as de um coelho!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA lyrebird"
+   ],
+   "resposta": "Pássaro-lira",
+   "explicacao": "O pássaro-lira imita quase qualquer som que ouve!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA coypu"
+   ],
+   "resposta": "Ratão-do-banhado",
+   "explicacao": "O ratão-do-banhado tem dentes laranja e vive perto da água!",
+   "referencia": "Sul do Brasil"
+  },
+  {
+   "pistas": [
+    "IA wallaby"
+   ],
+   "resposta": "Wallaby",
+   "explicacao": "O wallaby parece um canguru pequenininho!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA sugar_glider"
+   ],
+   "resposta": "Petauro-do-açúcar",
+   "explicacao": "O petauro-do-açúcar plana entre as árvores e adora coisas doces!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA tree_kangaroo"
+   ],
+   "resposta": "Canguru-arborícola",
+   "explicacao": "Esse canguru diferente vive em cima das árvores!",
+   "referencia": "Nova Guiné"
+  },
+  {
+   "pistas": [
+    "IA pygmy_hippo"
+   ],
+   "resposta": "Hipopótamo-pigmeu",
+   "explicacao": "O hipopótamo-pigmeu é bem menor que o hipopótamo comum e vive na floresta!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA giant_otter"
+   ],
+   "resposta": "Ariranha",
+   "explicacao": "A ariranha é a maior lontra do mundo e vive em grupos barulhentos!",
+   "referencia": "Pantanal"
+  },
+  {
+   "pistas": [
+    "IA snow_monkey"
+   ],
+   "resposta": "Macaco-japonês",
+   "explicacao": "O macaco-japonês adora tomar banho em fontes de água quente!",
+   "referencia": "Japão"
+  },
+  {
+   "pistas": [
+    "IA sand_cat"
+   ],
+   "resposta": "Gato-do-deserto",
+   "explicacao": "O gato-do-deserto tem pelos nas patas para não queimar na areia quente!",
+   "referencia": "Desertos"
+  },
+  {
+   "pistas": [
+    "IA marsh_deer"
+   ],
+   "resposta": "Cervo-do-pantanal",
+   "explicacao": "O cervo-do-pantanal é o maior veado da América do Sul!",
+   "referencia": "Pantanal"
+  },
+  {
+   "pistas": [
+    "IA lovebird"
+   ],
+   "resposta": "Agapórnis",
+   "explicacao": "Os agapórnis vivem em casalzinhos bem grudados!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA clouded_leopard"
+   ],
+   "resposta": "Pantera-nebulosa",
+   "explicacao": "A pantera-nebulosa tem manchas que parecem nuvens!",
+   "referencia": "Florestas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA numbat"
+   ],
+   "resposta": "Numbat",
+   "explicacao": "O numbat come milhares de cupins por dia!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA tamandua"
+   ],
+   "resposta": "Tamanduá-mirim",
+   "explicacao": "O tamanduá-mirim usa o rabo para se segurar nos galhos!",
+   "referencia": "Brasil"
+  },
+  {
+   "pistas": [
+    "IA pallas_cat"
+   ],
+   "resposta": "Gato-de-pallas",
+   "explicacao": "O gato-de-pallas tem um pelo bem fofo para o frio das montanhas!",
+   "referencia": "Ásia"
+  },
+  {
+   "pistas": [
+    "IA vicuna"
+   ],
+   "resposta": "Vicunha",
+   "explicacao": "A vicunha tem uma das lãs mais finas do mundo!",
+   "referencia": "Montanhas dos Andes"
+  },
+  {
+   "pistas": [
+    "IA quoll"
+   ],
+   "resposta": "Quoll",
+   "explicacao": "O quoll é um bichinho com bolinhas brancas espalhadas pelo corpo!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA bird_of_paradise"
+   ],
+   "resposta": "Ave-do-paraíso",
+   "explicacao": "O macho da ave-do-paraíso dança para mostrar as penas coloridas!",
+   "referencia": "Nova Guiné"
+  },
+  {
+   "pistas": [
+    "IA dugong"
+   ],
+   "resposta": "Dugongo",
+   "explicacao": "O dugongo come o capim que cresce no fundo do mar!",
+   "referencia": "Mares quentes"
+  },
+  {
+   "pistas": [
+    "IA naked_mole_rat"
+   ],
+   "resposta": "Rato-toupeira-pelado",
+   "explicacao": "Ele quase não tem pelos e vive em túneis debaixo da terra!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA bush_dog"
+   ],
+   "resposta": "Cachorro-vinagre",
+   "explicacao": "O cachorro-vinagre é um cachorro selvagem do Brasil que nada muito bem!",
+   "referencia": "Brasil"
+  }
+ ]
+}
