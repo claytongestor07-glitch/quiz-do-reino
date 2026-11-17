@@ -1,0 +1,138 @@
+# Produção diária automática do Quiz do Reino (autorizada pelo senhor em 2026-11-17: gerar e postar todo dia sem aprovação).
+# planejar: próximos animais do catálogo (ou quiz de sombras quando o catálogo acaba) → kaggle: imagens 3D + notas do CLIP
+# → montar: recorte, escolha automática e episódio pronto → dispara a produção (narração com a voz do Kiko, render e envio).
+name: Produção diária
+on:
+  schedule:
+    - cron: '30 5 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: diario
+  cancel-in-progress: false
+jobs:
+  planejar:
+    runs-on: ubuntu-24.04
+    outputs:
+      modo: ${{ steps.plano.outputs.modo }}
+      ep: ${{ steps.plano.outputs.ep }}
+      animais: ${{ steps.plano.outputs.animais }}
+      pedidos: ${{ steps.plano.outputs.pedidos }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - id: plano
+        run: node scripts/diario.mjs planejar
+      # catálogo esgotado: o quiz de sombras já está pronto, só falta gravar e produzir
+      - if: steps.plano.outputs.modo == 'sombra'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node scripts/validar.mjs ${{ steps.plano.outputs.ep }}
+          git config user.name "Clayton Santos"
+          git config user.email "231254187+claytongestor07-glitch@users.noreply.github.com"
+          git add episodios/${{ steps.plano.outputs.ep }}
+          git commit -m "Produção diária: ${{ steps.plano.outputs.ep }} (quiz de sombras)"
+          git pull -q --rebase && git push
+          gh workflow run produzir.yml -f episodio=${{ steps.plano.outputs.ep }}
+
+  kaggle:
+    needs: planejar
+    if: needs.planejar.outputs.modo == 'novos'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    env:
+      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q -U kaggle six
+      - name: Enviar para a GPU do Kaggle (espera vaga se as 2 GPUs estiverem ocupadas)
+        shell: bash
+        env:
+          PEDIDOS: ${{ needs.planejar.outputs.pedidos }}
+          ANIMAIS: ${{ needs.planejar.outputs.animais }}
+        run: |
+          python scripts/kaggle/chave.py mascarar
+          set -a; . <(python scripts/kaggle/chave.py); set +a
+          USUARIO=$(python -c "import kaggle; print(kaggle.api.get_config_value('username') or '')")
+          test -n "$USUARIO"
+          echo "KERNEL=$USUARIO/quiz-do-reino-diario" >> "$GITHUB_ENV"
+          mkdir k
+          python - <<'EOF'
+          import json, os
+          cab = ['import os', f"os.environ['ANIMAIS'] = {os.environ['ANIMAIS']!r}", "os.environ['SEMENTES'] = '4,44,444'",
+                 "os.environ['CLIP'] = '1'", f"os.environ['ANIMAIS_JSON'] = {os.environ['PEDIDOS']!r}"]
+          open('k/diario.py', 'w').write('\n'.join(cab) + '\n' + open('scripts/kaggle/animais_3d.py').read())
+          EOF
+          cat > k/kernel-metadata.json <<EOF
+          {"id": "$USUARIO/quiz-do-reino-diario", "title": "quiz-do-reino-diario", "code_file": "diario.py",
+           "language": "python", "kernel_type": "script", "is_private": true,
+           "enable_gpu": true, "enable_internet": true, "machine_shape": "NvidiaTeslaT4"}
+          EOF
+          for i in $(seq 1 24); do
+            kaggle kernels push -p k 2>&1 | tee push.log
+            grep -qi "error" push.log || break
+            grep -qi "session count" push.log || exit 1
+            echo "GPUs ocupadas; nova tentativa em 5 min ($i/24)"; sleep 300
+          done
+          ! grep -qi "error" push.log
+      - name: Aguardar a GPU
+        run: |
+          sleep 120
+          for i in $(seq 1 240); do
+            S=$(kaggle kernels status "$KERNEL" 2>&1 | tail -1); echo "$(date +%H:%M) $S"
+            case "$S" in *COMPLETE*) break;; *ERROR*|*CANCEL*) exit 1;; esac
+            sleep 60
+          done
+          mkdir -p saida && kaggle kernels output "$KERNEL" -p saida
+          ls saida
+      - uses: actions/upload-artifact@v4
+        with:
+          name: diario-brutas
+          path: saida/*
+
+  montar:
+    needs: [planejar, kaggle]
+    runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ github.token }}
+      EP: ${{ needs.planejar.outputs.ep }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: diario-brutas
+          path: brutas
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: pip install -q "rembg[cpu]" pillow
+      - name: Recortar o fundo
+        run: |
+          mkdir -p recortes
+          python - <<'EOF'
+          from pathlib import Path
+          from PIL import Image
+          from rembg import new_session, remove
+          s = new_session('isnet-general-use')
+          for p in sorted(Path('brutas').glob('animal-*.png')):
+              remove(Image.open(p), session=s).save(Path('recortes') / p.name)
+          EOF
+      - name: Escolher as imagens e montar o episódio
+        run: python scripts/diario_montar.py recortes brutas/notas.json "$EP"
+      - name: Validar, gravar e produzir
+        run: |
+          node scripts/validar.mjs "$EP"
+          git config user.name "Clayton Santos"
+          git config user.email "231254187+claytongestor07-glitch@users.noreply.github.com"
+          git add public/emoji episodios/"$EP"
+          git commit -m "Produção diária: $EP (animais novos do catálogo)"
+          git pull -q --rebase && git push
+          gh workflow run produzir.yml -f episodio="$EP"

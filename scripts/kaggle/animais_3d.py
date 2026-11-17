@@ -193,6 +193,9 @@ ANIMAIS = {
 	'praying_mantis': 'a green praying mantis',
 	'hyena': 'a spotted hyena', 'red_panda': 'one red panda with reddish fur, white face markings and a bushy striped tail', 'clownfish': 'an orange and white clownfish',
 }
+# pedidos extras vindos do catálogo (produção diária): {"id": "pedido em inglês"}
+import json
+ANIMAIS.update(json.loads(os.environ.get('ANIMAIS_JSON', '{}')))
 SEMENTES = [int(x) for x in os.environ.get('SEMENTES', '4,44').split(',')]
 NOMES = [n for n in os.environ.get('ANIMAIS', ','.join(ANIMAIS)).split(',') if n in ANIMAIS]
 
@@ -216,4 +219,23 @@ pipes = [carregar(g) for g in range(gpus)]
 fios = [threading.Thread(target=trabalhador, args=(g, pipes[g], tarefas[g::gpus])) for g in range(gpus)]
 for f in fios: f.start()
 for f in fios: f.join()
+
+# CLIP=1: nota de cada imagem (quanto parece o animal pedido, e não um "padrão" de vários bichos) para a escolha automática
+if os.environ.get('CLIP') == '1':
+	from PIL import Image
+	from transformers import CLIPModel, CLIPProcessor
+	del pipes
+	torch.cuda.empty_cache()
+	clip = CLIPModel.from_pretrained('openai/clip-vit-large-patch14').to('cuda:0').half()
+	proc = CLIPProcessor.from_pretrained('openai/clip-vit-large-patch14')
+	notas = {}
+	for nome, s in tarefas:
+		img = Image.open(f'/kaggle/working/animal-{nome}-{s}.png').convert('RGB')
+		textos = [f'a 3D cartoon of {ANIMAIS[nome]}', 'a repeating pattern of many small animals', 'a person or a human character', 'text or a logo']
+		ent = proc(text=textos, images=img, return_tensors='pt', padding=True).to('cuda:0')
+		with torch.no_grad():
+			sai = clip(input_ids=ent['input_ids'], attention_mask=ent['attention_mask'], pixel_values=ent['pixel_values'].half())
+		prob = sai.logits_per_image.softmax(dim=-1)[0].float().tolist()
+		notas[f'{nome}-{s}'] = {'alvo': round(prob[0], 4), 'padrao': round(prob[1], 4), 'pessoa': round(prob[2], 4), 'texto': round(prob[3], 4), 'similaridade': round(float(sai.logits_per_image[0][0]), 2)}
+	json.dump(notas, open('/kaggle/working/notas.json', 'w'), indent=1)
 print('fim', flush=True)

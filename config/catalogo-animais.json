@@ -1,0 +1,464 @@
+[
+ {
+  "id": "giant_otter",
+  "prompt": "a giant otter with brown fur and a pale throat patch",
+  "nome": "Ariranha",
+  "curiosidade": "A ariranha é a maior lontra do mundo e vive em grupos barulhentos!",
+  "onde": "Pantanal"
+ },
+ {
+  "id": "arctic_fox",
+  "prompt": "an arctic fox with fluffy white fur",
+  "nome": "Raposa-do-ártico",
+  "curiosidade": "A raposa-do-ártico fica branquinha no inverno e marrom no verão!",
+  "onde": "Ártico"
+ },
+ {
+  "id": "wallaby",
+  "prompt": "a wallaby",
+  "nome": "Wallaby",
+  "curiosidade": "O wallaby parece um canguru pequenininho!",
+  "onde": "Austrália"
+ },
+ {
+  "id": "elephant_seal",
+  "prompt": "a male elephant seal with a big droopy nose",
+  "nome": "Elefante-marinho",
+  "curiosidade": "O macho do elefante-marinho tem um nariz grande que parece uma tromba!",
+  "onde": "Mares gelados"
+ },
+ {
+  "id": "snow_monkey",
+  "prompt": "a japanese macaque snow monkey with red face and fluffy grey fur, sitting",
+  "nome": "Macaco-japonês",
+  "curiosidade": "O macaco-japonês adora tomar banho em fontes de água quente!",
+  "onde": "Japão"
+ },
+ {
+  "id": "sloth_bear",
+  "prompt": "a shaggy black sloth bear with long snout",
+  "nome": "Urso-preguiça",
+  "curiosidade": "O urso-preguiça usa os lábios para sugar cupins!",
+  "onde": "Índia"
+ },
+ {
+  "id": "spectacled_bear",
+  "prompt": "a spectacled bear with cream rings around its eyes",
+  "nome": "Urso-de-óculos",
+  "curiosidade": "O urso-de-óculos tem manchas no rosto que parecem óculos!",
+  "onde": "Montanhas dos Andes"
+ },
+ {
+  "id": "bush_dog",
+  "prompt": "a bush dog, small brown wild dog with short legs",
+  "nome": "Cachorro-vinagre",
+  "curiosidade": "O cachorro-vinagre é um cachorro selvagem do Brasil que nada muito bem!",
+  "onde": "Brasil"
+ },
+ {
+  "id": "tamandua",
+  "prompt": "a tamandua lesser anteater with a black vest pattern",
+  "nome": "Tamanduá-mirim",
+  "curiosidade": "O tamanduá-mirim usa o rabo para se segurar nos galhos!",
+  "onde": "Brasil"
+ },
+ {
+  "id": "coypu",
+  "prompt": "a coypu rodent with big orange teeth",
+  "nome": "Ratão-do-banhado",
+  "curiosidade": "O ratão-do-banhado tem dentes laranja e vive perto da água!",
+  "onde": "Sul do Brasil"
+ },
+ {
+  "id": "marsh_deer",
+  "prompt": "a marsh deer with reddish fur and black legs",
+  "nome": "Cervo-do-pantanal",
+  "curiosidade": "O cervo-do-pantanal é o maior veado da América do Sul!",
+  "onde": "Pantanal"
+ },
+ {
+  "id": "vicuna",
+  "prompt": "a vicuna, slender tan camelid",
+  "nome": "Vicunha",
+  "curiosidade": "A vicunha tem uma das lãs mais finas do mundo!",
+  "onde": "Montanhas dos Andes"
+ },
+ {
+  "id": "mara",
+  "prompt": "a patagonian mara with long legs",
+  "nome": "Mara",
+  "curiosidade": "A mara parece um coelho de pernas compridas, mas é parente da capivara!",
+  "onde": "Argentina"
+ },
+ {
+  "id": "pygmy_hippo",
+  "prompt": "a pygmy hippopotamus",
+  "nome": "Hipopótamo-pigmeu",
+  "curiosidade": "O hipopótamo-pigmeu é bem menor que o hipopótamo comum e vive na floresta!",
+  "onde": "África"
+ },
+ {
+  "id": "impala",
+  "prompt": "an impala antelope leaping",
+  "nome": "Impala",
+  "curiosidade": "O impala consegue pular mais de três metros de altura!",
+  "onde": "Savana africana"
+ },
+ {
+  "id": "naked_mole_rat",
+  "prompt": "a pink naked mole rat with big front teeth",
+  "nome": "Rato-toupeira-pelado",
+  "curiosidade": "Ele quase não tem pelos e vive em túneis debaixo da terra!",
+  "onde": "África"
+ },
+ {
+  "id": "sand_cat",
+  "prompt": "a sand cat with big ears and sandy fur",
+  "nome": "Gato-do-deserto",
+  "curiosidade": "O gato-do-deserto tem pelos nas patas para não queimar na areia quente!",
+  "onde": "Desertos"
+ },
+ {
+  "id": "pallas_cat",
+  "prompt": "a fluffy pallas cat with grumpy face",
+  "nome": "Gato-de-pallas",
+  "curiosidade": "O gato-de-pallas tem um pelo bem fofo para o frio das montanhas!",
+  "onde": "Ásia"
+ },
+ {
+  "id": "clouded_leopard",
+  "prompt": "a clouded leopard with cloud shaped spots",
+  "nome": "Pantera-nebulosa",
+  "curiosidade": "A pantera-nebulosa tem manchas que parecem nuvens!",
+  "onde": "Florestas da Ásia"
+ },
+ {
+  "id": "tree_kangaroo",
+  "prompt": "a tree kangaroo sitting on a branch",
+  "nome": "Canguru-arborícola",
+  "curiosidade": "Esse canguru diferente vive em cima das árvores!",
+  "onde": "Nova Guiné"
+ },
+ {
+  "id": "sugar_glider",
+  "prompt": "a sugar glider gliding with arms open",
+  "nome": "Petauro-do-açúcar",
+  "curiosidade": "O petauro-do-açúcar plana entre as árvores e adora coisas doces!",
+  "onde": "Austrália"
+ },
+ {
+  "id": "numbat",
+  "prompt": "a numbat with white stripes on its back",
+  "nome": "Numbat",
+  "curiosidade": "O numbat come milhares de cupins por dia!",
+  "onde": "Austrália"
+ },
+ {
+  "id": "quoll",
+  "prompt": "a spotted quoll, brown with white spots",
+  "nome": "Quoll",
+  "curiosidade": "O quoll é um bichinho com bolinhas brancas espalhadas pelo corpo!",
+  "onde": "Austrália"
+ },
+ {
+  "id": "bilby",
+  "prompt": "a bilby with long rabbit-like ears and long snout",
+  "nome": "Bilby",
+  "curiosidade": "O bilby tem orelhas compridas como as de um coelho!",
+  "onde": "Austrália"
+ },
+ {
+  "id": "dugong",
+  "prompt": "a dugong sea cow",
+  "nome": "Dugongo",
+  "curiosidade": "O dugongo come o capim que cresce no fundo do mar!",
+  "onde": "Mares quentes"
+ },
+ {
+  "id": "snowy_owl",
+  "prompt": "a white snowy owl with yellow eyes",
+  "nome": "Coruja-das-neves",
+  "curiosidade": "A coruja-das-neves é branquinha para se esconder na neve!",
+  "onde": "Lugares gelados"
+ },
+ {
+  "id": "lyrebird",
+  "prompt": "a lyrebird with a long lyre shaped tail",
+  "nome": "Pássaro-lira",
+  "curiosidade": "O pássaro-lira imita quase qualquer som que ouve!",
+  "onde": "Austrália"
+ },
+ {
+  "id": "bird_of_paradise",
+  "prompt": "a colorful bird of paradise with long plumes",
+  "nome": "Ave-do-paraíso",
+  "curiosidade": "O macho da ave-do-paraíso dança para mostrar as penas coloridas!",
+  "onde": "Nova Guiné"
+ },
+ {
+  "id": "lovebird",
+  "prompt": "one single lovebird parrot, green body with orange face",
+  "nome": "Agapórnis",
+  "curiosidade": "Os agapórnis vivem em casalzinhos bem grudados!",
+  "onde": "África"
+ },
+ {
+  "id": "canary",
+  "prompt": "a yellow canary bird singing",
+  "nome": "Canário",
+  "curiosidade": "O canário é amarelinho e canta muito bonito!",
+  "onde": "Ilhas Canárias"
+ },
+ {
+  "id": "cardinal",
+  "prompt": "a red northern cardinal bird with crest",
+  "nome": "Cardeal",
+  "curiosidade": "O cardeal tem um topete vermelho na cabeça!",
+  "onde": "América"
+ },
+ {
+  "id": "crowned_crane",
+  "prompt": "a grey crowned crane with a golden crown of feathers",
+  "nome": "Grou-coroado",
+  "curiosidade": "O grou-coroado tem uma coroa de penas douradas na cabeça!",
+  "onde": "África"
+ },
+ {
+  "id": "frigatebird",
+  "prompt": "a frigatebird with an inflated red throat pouch",
+  "nome": "Fragata",
+  "curiosidade": "O macho da fragata enche um balão vermelho no pescoço!",
+  "onde": "Mares tropicais"
+ },
+ {
+  "id": "blue_footed_booby",
+  "prompt": "a blue-footed booby bird with bright blue feet",
+  "nome": "Atobá-de-pés-azuis",
+  "curiosidade": "O atobá-de-pés-azuis dança mostrando os pés azuis!",
+  "onde": "Galápagos"
+ },
+ {
+  "id": "mandarin_duck",
+  "prompt": "a colorful mandarin duck",
+  "nome": "Pato-mandarim",
+  "curiosidade": "O pato-mandarim é um dos patos mais coloridos do mundo!",
+  "onde": "Ásia"
+ },
+ {
+  "id": "guinea_fowl",
+  "prompt": "a helmeted guinea fowl, dark grey with white dots",
+  "nome": "Galinha-d'angola",
+  "curiosidade": "A galinha-d'angola tem penas escuras cheias de bolinhas brancas!",
+  "onde": "África e Brasil"
+ },
+ {
+  "id": "hoatzin",
+  "prompt": "a hoatzin bird with spiky crest and blue face",
+  "nome": "Cigana",
+  "curiosidade": "Os filhotes da cigana têm garrinhas nas asas para subir nos galhos!",
+  "onde": "Amazônia"
+ },
+ {
+  "id": "cock_of_the_rock",
+  "prompt": "a bright orange cock-of-the-rock bird with fan crest",
+  "nome": "Galo-da-serra",
+  "curiosidade": "O galo-da-serra é laranja forte e tem uma crista em forma de leque!",
+  "onde": "Amazônia"
+ },
+ {
+  "id": "tanager",
+  "prompt": "a green-headed tanager, small bird with many bright colors",
+  "nome": "Saíra-sete-cores",
+  "curiosidade": "A saíra-sete-cores tem penas de várias cores!",
+  "onde": "Mata Atlântica"
+ },
+ {
+  "id": "kea",
+  "prompt": "a kea parrot, olive green with orange under wings",
+  "nome": "Kea",
+  "curiosidade": "O kea é um papagaio muito curioso que brinca na neve!",
+  "onde": "Nova Zelândia"
+ },
+ {
+  "id": "tuatara",
+  "prompt": "a tuatara reptile with spiky crest",
+  "nome": "Tuatara",
+  "curiosidade": "O tuatara parece um lagarto, mas é de uma família de répteis muito antiga!",
+  "onde": "Nova Zelândia"
+ },
+ {
+  "id": "poison_dart_frog",
+  "prompt": "a bright blue poison dart frog",
+  "nome": "Sapinho-dardo",
+  "curiosidade": "As cores fortes desse sapinho avisam: não encoste!",
+  "onde": "Florestas tropicais"
+ },
+ {
+  "id": "basilisk",
+  "prompt": "a green basilisk lizard running on water",
+  "nome": "Basilisco",
+  "curiosidade": "O basilisco consegue correr em cima da água!",
+  "onde": "América Central"
+ },
+ {
+  "id": "anaconda",
+  "prompt": "a green anaconda snake, friendly cartoon",
+  "nome": "Sucuri",
+  "curiosidade": "A sucuri é uma das maiores cobras do mundo e adora nadar!",
+  "onde": "Amazônia"
+ },
+ {
+  "id": "hammerhead_shark",
+  "prompt": "a hammerhead shark",
+  "nome": "Tubarão-martelo",
+  "curiosidade": "O tubarão-martelo tem a cabeça em forma de martelo e enxerga quase tudo em volta!",
+  "onde": "Oceanos quentes"
+ },
+ {
+  "id": "stingray",
+  "prompt": "a stingray lying on sand",
+  "nome": "Arraia",
+  "curiosidade": "A arraia vive escondida na areia do fundo do mar!",
+  "onde": "Mares e rios"
+ },
+ {
+  "id": "moorish_idol",
+  "prompt": "a moorish idol fish with black yellow white stripes and long fin",
+  "nome": "Ídolo-mouro",
+  "curiosidade": "Esse peixe tem uma nadadeira comprida como uma bandeirinha!",
+  "onde": "Recifes de coral"
+ },
+ {
+  "id": "parrotfish",
+  "prompt": "a colorful parrotfish with beak-like mouth",
+  "nome": "Peixe-papagaio",
+  "curiosidade": "O peixe-papagaio come coral e ajuda a fazer areia branquinha!",
+  "onde": "Recifes de coral"
+ },
+ {
+  "id": "tuna",
+  "prompt": "a bluefin tuna fish",
+  "nome": "Atum",
+  "curiosidade": "O atum nada sem parar a vida inteira!",
+  "onde": "Oceanos"
+ },
+ {
+  "id": "salmon",
+  "prompt": "a salmon fish jumping",
+  "nome": "Salmão",
+  "curiosidade": "O salmão nada contra a correnteza para voltar ao rio onde nasceu!",
+  "onde": "Rios e mares"
+ },
+ {
+  "id": "electric_eel",
+  "prompt": "an electric eel, long dark fish with small sparks around it",
+  "nome": "Poraquê",
+  "curiosidade": "O poraquê dá choques elétricos para se defender!",
+  "onde": "Amazônia"
+ },
+ {
+  "id": "rhinoceros_beetle",
+  "prompt": "a rhinoceros beetle with a big horn",
+  "nome": "Besouro-rinoceronte",
+  "curiosidade": "O besouro-rinoceronte levanta muitas vezes o próprio peso!",
+  "onde": "Florestas"
+ },
+ {
+  "id": "bumblebee",
+  "prompt": "a fuzzy bumblebee",
+  "nome": "Mamangava",
+  "curiosidade": "A mamangava é uma abelha grandona e peludinha!",
+  "onde": "Jardins"
+ },
+ {
+  "id": "leaf_insect",
+  "prompt": "a leaf insect that looks like a green leaf",
+  "nome": "Inseto-folha",
+  "curiosidade": "Ele parece uma folha verde para se esconder!",
+  "onde": "Florestas tropicais"
+ },
+ {
+  "id": "harp_seal",
+  "prompt": "a fluffy white harp seal pup",
+  "nome": "Foca-da-groenlândia",
+  "curiosidade": "O filhote dessa foca nasce branquinho e fofinho!",
+  "onde": "Ártico"
+ },
+ {
+  "id": "coyote",
+  "prompt": "a coyote howling",
+  "nome": "Coiote",
+  "curiosidade": "O coiote uiva para conversar com o grupo!",
+  "onde": "América do Norte"
+ },
+ {
+  "id": "hyrax",
+  "prompt": "a rock hyrax",
+  "nome": "Hírax",
+  "curiosidade": "O hírax parece um roedor, mas é parente distante do elefante!",
+  "onde": "África"
+ },
+ {
+  "id": "humpback_whale",
+  "prompt": "a humpback whale with long white flippers",
+  "nome": "Baleia-jubarte",
+  "curiosidade": "A baleia-jubarte canta músicas que podem durar horas!",
+  "onde": "Oceanos"
+ },
+ {
+  "id": "blue_whale",
+  "prompt": "a huge blue whale",
+  "nome": "Baleia-azul",
+  "curiosidade": "A baleia-azul é o maior animal que já existiu no planeta!",
+  "onde": "Oceanos"
+ },
+ {
+  "id": "sea_otter",
+  "prompt": "a sea otter floating on its back",
+  "nome": "Lontra-marinha",
+  "curiosidade": "A lontra-marinha dorme boiando e às vezes de mãos dadas!",
+  "onde": "Oceano Pacífico"
+ },
+ {
+  "id": "emperor_tamarin",
+  "prompt": "an emperor tamarin monkey with a long white mustache, grey fur",
+  "nome": "Sagui-imperador",
+  "curiosidade": "O sagui-imperador tem um bigode branco comprido!",
+  "onde": "Amazônia"
+ },
+ {
+  "id": "howler_monkey",
+  "prompt": "a black howler monkey howling with open mouth, full body on a branch",
+  "nome": "Bugio",
+  "curiosidade": "O bugio tem um dos gritos mais altos entre os animais da terra!",
+  "onde": "Matas do Brasil"
+ },
+ {
+  "id": "potoo",
+  "prompt": "a common potoo bird perched upright on a broken tree stump, camouflaged like bark",
+  "nome": "Urutau",
+  "curiosidade": "O urutau fica parado igual a um galho seco para se esconder!",
+  "onde": "Brasil"
+ },
+ {
+  "id": "paca",
+  "prompt": "a paca rodent, brown with rows of white spots on its side",
+  "nome": "Paca",
+  "curiosidade": "A paca tem pintas brancas e sai para comer à noite!",
+  "onde": "Matas do Brasil"
+ },
+ {
+  "id": "saiga",
+  "prompt": "a saiga antelope with a big droopy trunk-like nose",
+  "nome": "Antílope-saiga",
+  "curiosidade": "O saiga tem um narigão que filtra a poeira e esquenta o ar frio!",
+  "onde": "Ásia"
+ },
+ {
+  "id": "squid",
+  "prompt": "a squid with pointed head, side fins at the top and long tentacles, not an octopus",
+  "nome": "Lula",
+  "curiosidade": "A lula solta uma nuvem de tinta para fugir dos predadores!",
+  "onde": "Oceanos"
+ }
+]
