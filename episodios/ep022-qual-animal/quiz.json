@@ -1,0 +1,239 @@
+{
+ "id": "ep022-qual-animal",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "Qual animal é esse?",
+ "unico": true,
+ "titulo": "🐾 Qual Animal é Esse? 26 Animais Curiosos! | Quiz de Animais para Crianças",
+ "chamada": "QUAL ANIMAL É ESSE?",
+ "faixa": "26 Animais",
+ "icones": [
+  "IA poison_dart_frog",
+  "IA cardinal"
+ ],
+ "capa": {
+  "texto": "QUAL ANIMAL É ESSE?",
+  "misterio": "IA poison_dart_frog",
+  "revelado": "IA cardinal",
+  "faixa": "26 animais"
+ },
+ "licao": "Cada animal tem um jeito especial de viver, e todos são importantes para a natureza!",
+ "abertura": "Oi, criançada! Hoje tem 26 animais novinhos! Olhe bem e descubra: qual animal é esse? Vamos lá!",
+ "encerramento": "Que craque! Quantos animais você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA cardinal"
+   ],
+   "resposta": "Cardeal",
+   "explicacao": "O cardeal tem um topete vermelho na cabeça!",
+   "referencia": "América"
+  },
+  {
+   "pistas": [
+    "IA poison_dart_frog"
+   ],
+   "resposta": "Sapinho-dardo",
+   "explicacao": "As cores fortes desse sapinho avisam: não encoste!",
+   "referencia": "Florestas tropicais"
+  },
+  {
+   "pistas": [
+    "IA tuna"
+   ],
+   "resposta": "Atum",
+   "explicacao": "O atum nada sem parar a vida inteira!",
+   "referencia": "Oceanos"
+  },
+  {
+   "pistas": [
+    "IA coyote"
+   ],
+   "resposta": "Coiote",
+   "explicacao": "O coiote uiva para conversar com o grupo!",
+   "referencia": "América do Norte"
+  },
+  {
+   "pistas": [
+    "IA basilisk"
+   ],
+   "resposta": "Basilisco",
+   "explicacao": "O basilisco consegue correr em cima da água!",
+   "referencia": "América Central"
+  },
+  {
+   "pistas": [
+    "IA rhinoceros_beetle"
+   ],
+   "resposta": "Besouro-rinoceronte",
+   "explicacao": "O besouro-rinoceronte levanta muitas vezes o próprio peso!",
+   "referencia": "Florestas"
+  },
+  {
+   "pistas": [
+    "IA emperor_tamarin"
+   ],
+   "resposta": "Sagui-imperador",
+   "explicacao": "O sagui-imperador tem um bigode branco comprido!",
+   "referencia": "Amazônia"
+  },
+  {
+   "pistas": [
+    "IA kea"
+   ],
+   "resposta": "Kea",
+   "explicacao": "O kea é um papagaio muito curioso que brinca na neve!",
+   "referencia": "Nova Zelândia"
+  },
+  {
+   "pistas": [
+    "IA harp_seal"
+   ],
+   "resposta": "Foca-da-groenlândia",
+   "explicacao": "O filhote dessa foca nasce branquinho e fofinho!",
+   "referencia": "Ártico"
+  },
+  {
+   "pistas": [
+    "IA guinea_fowl"
+   ],
+   "resposta": "Galinha-d'angola",
+   "explicacao": "A galinha-d'angola tem penas escuras cheias de bolinhas brancas!",
+   "referencia": "África e Brasil"
+  },
+  {
+   "pistas": [
+    "IA moorish_idol"
+   ],
+   "resposta": "Ídolo-mouro",
+   "explicacao": "Esse peixe tem uma nadadeira comprida como uma bandeirinha!",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "IA electric_eel"
+   ],
+   "resposta": "Poraquê",
+   "explicacao": "O poraquê dá choques elétricos para se defender!",
+   "referencia": "Amazônia"
+  },
+  {
+   "pistas": [
+    "IA tanager"
+   ],
+   "resposta": "Saíra-sete-cores",
+   "explicacao": "A saíra-sete-cores tem penas de várias cores!",
+   "referencia": "Mata Atlântica"
+  },
+  {
+   "pistas": [
+    "IA leaf_insect"
+   ],
+   "resposta": "Inseto-folha",
+   "explicacao": "Ele parece uma folha verde para se esconder!",
+   "referencia": "Florestas tropicais"
+  },
+  {
+   "pistas": [
+    "IA hyrax"
+   ],
+   "resposta": "Hírax",
+   "explicacao": "O hírax parece um roedor, mas é parente distante do elefante!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA cock_of_the_rock"
+   ],
+   "resposta": "Galo-da-serra",
+   "explicacao": "O galo-da-serra é laranja forte e tem uma crista em forma de leque!",
+   "referencia": "Amazônia"
+  },
+  {
+   "pistas": [
+    "IA sea_otter"
+   ],
+   "resposta": "Lontra-marinha",
+   "explicacao": "A lontra-marinha dorme boiando e às vezes de mãos dadas!",
+   "referencia": "Oceano Pacífico"
+  },
+  {
+   "pistas": [
+    "IA crowned_crane"
+   ],
+   "resposta": "Grou-coroado",
+   "explicacao": "O grou-coroado tem uma coroa de penas douradas na cabeça!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA tuatara"
+   ],
+   "resposta": "Tuatara",
+   "explicacao": "O tuatara parece um lagarto, mas é de uma família de répteis muito antiga!",
+   "referencia": "Nova Zelândia"
+  },
+  {
+   "pistas": [
+    "IA frigatebird"
+   ],
+   "resposta": "Fragata",
+   "explicacao": "O macho da fragata enche um balão vermelho no pescoço!",
+   "referencia": "Mares tropicais"
+  },
+  {
+   "pistas": [
+    "IA mandarin_duck"
+   ],
+   "resposta": "Pato-mandarim",
+   "explicacao": "O pato-mandarim é um dos patos mais coloridos do mundo!",
+   "referencia": "Ásia"
+  },
+  {
+   "pistas": [
+    "IA anaconda"
+   ],
+   "resposta": "Sucuri",
+   "explicacao": "A sucuri é uma das maiores cobras do mundo e adora nadar!",
+   "referencia": "Amazônia"
+  },
+  {
+   "pistas": [
+    "IA bumblebee"
+   ],
+   "resposta": "Mamangava",
+   "explicacao": "A mamangava é uma abelha grandona e peludinha!",
+   "referencia": "Jardins"
+  },
+  {
+   "pistas": [
+    "IA canary"
+   ],
+   "resposta": "Canário",
+   "explicacao": "O canário é amarelinho e canta muito bonito!",
+   "referencia": "Ilhas Canárias"
+  },
+  {
+   "pistas": [
+    "IA hoatzin"
+   ],
+   "resposta": "Cigana",
+   "explicacao": "Os filhotes da cigana têm garrinhas nas asas para subir nos galhos!",
+   "referencia": "Amazônia"
+  },
+  {
+   "pistas": [
+    "IA blue_footed_booby"
+   ],
+   "resposta": "Atobá-de-pés-azuis",
+   "explicacao": "O atobá-de-pés-azuis dança mostrando os pés azuis!",
+   "referencia": "Galápagos"
+  }
+ ]
+}
