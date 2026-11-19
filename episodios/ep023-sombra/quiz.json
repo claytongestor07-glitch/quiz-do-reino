@@ -1,0 +1,208 @@
+{
+ "id": "ep023-sombra",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "De quem é essa sombra?",
+ "sombra": true,
+ "unico": true,
+ "titulo": "🔍 De Quem é Essa Sombra? 22 Animais Misteriosos! | Quiz de Animais para Crianças",
+ "chamada": "DE QUEM É A SOMBRA?",
+ "faixa": "22 Sombras",
+ "icones": [
+  "IA peacock_bass",
+  "IA rhinoceros_beetle"
+ ],
+ "capa": {
+  "texto": "DE QUEM É A SOMBRA?",
+  "misterio": "IA peacock_bass",
+  "revelado": "IA rhinoceros_beetle",
+  "faixa": "22 sombras"
+ },
+ "licao": "Cada animal tem um formato único: olhando com atenção, a gente descobre tudo!",
+ "abertura": "Oi, criançada! Hoje o desafio é pela sombra! São 22 animais misteriosos. Olhe bem o formato e descubra: de quem é essa sombra? Vamos lá!",
+ "encerramento": "Uau, que olhos espertos! Quantas sombras você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA peacock_bass"
+   ],
+   "resposta": "Tucunaré",
+   "explicacao": "O tucunaré tem uma mancha na cauda que parece um olho para confundir os inimigos!",
+   "referencia": "Rios da Amazônia"
+  },
+  {
+   "pistas": [
+    "IA rhinoceros_beetle"
+   ],
+   "resposta": "Besouro-rinoceronte",
+   "explicacao": "O besouro-rinoceronte levanta muitas vezes o próprio peso!",
+   "referencia": "Florestas"
+  },
+  {
+   "pistas": [
+    "IA sea_anemone"
+   ],
+   "resposta": "Anêmona",
+   "explicacao": "A anêmona parece uma flor, mas é um animal que vive no fundo do mar!",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "IA aye_aye"
+   ],
+   "resposta": "Aiai",
+   "explicacao": "O aiai usa um dedo bem comprido para achar comida dentro das árvores!",
+   "referencia": "Madagascar"
+  },
+  {
+   "pistas": [
+    "IA anglerfish"
+   ],
+   "resposta": "Peixe-diabo",
+   "explicacao": "O peixe-diabo tem uma luzinha na cabeça para atrair a comida no fundo do mar escuro!",
+   "referencia": "Fundo do mar"
+  },
+  {
+   "pistas": [
+    "IA ostrich"
+   ],
+   "resposta": "Avestruz",
+   "explicacao": "O avestruz é a maior ave do mundo e bota o maior ovo!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA mara"
+   ],
+   "resposta": "Mara",
+   "explicacao": "A mara parece um coelho de pernas compridas, mas é parente da capivara!",
+   "referencia": "Argentina"
+  },
+  {
+   "pistas": [
+    "IA snow_monkey"
+   ],
+   "resposta": "Macaco-japonês",
+   "explicacao": "O macaco-japonês adora tomar banho em fontes de água quente!",
+   "referencia": "Japão"
+  },
+  {
+   "pistas": [
+    "IA manatee"
+   ],
+   "resposta": "Peixe-boi",
+   "explicacao": "O peixe-boi é um mamífero calmo que come plantas debaixo d'água!",
+   "referencia": "Rios e mares quentes"
+  },
+  {
+   "pistas": [
+    "IA tarsier"
+   ],
+   "resposta": "Társio",
+   "explicacao": "O társio tem olhos enormes, cada um do tamanho do seu cérebro!",
+   "referencia": "Ilhas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA uakari"
+   ],
+   "resposta": "Uacari",
+   "explicacao": "O uacari tem o rosto vermelhinho e vive na floresta alagada da Amazônia!",
+   "referencia": "Amazônia"
+  },
+  {
+   "pistas": [
+    "IA slow_loris"
+   ],
+   "resposta": "Lóris",
+   "explicacao": "O lóris anda bem devagarinho pelos galhos e tem olhos enormes!",
+   "referencia": "Florestas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA frigatebird"
+   ],
+   "resposta": "Fragata",
+   "explicacao": "O macho da fragata enche um balão vermelho no pescoço!",
+   "referencia": "Mares tropicais"
+  },
+  {
+   "pistas": [
+    "IA bumblebee"
+   ],
+   "resposta": "Mamangava",
+   "explicacao": "A mamangava é uma abelha grandona e peludinha!",
+   "referencia": "Jardins"
+  },
+  {
+   "pistas": [
+    "IA african_wild_dog"
+   ],
+   "resposta": "Mabeco",
+   "explicacao": "O mabeco vive em matilha e cada um tem manchas diferentes!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA gibbon"
+   ],
+   "resposta": "Gibão",
+   "explicacao": "O gibão se balança de galho em galho com os braços compridos!",
+   "referencia": "Florestas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA kookaburra"
+   ],
+   "resposta": "Cucaburra",
+   "explicacao": "A cucaburra é uma ave que canta parecendo uma gargalhada!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA echidna"
+   ],
+   "resposta": "Equidna",
+   "explicacao": "A equidna é um mamífero com espinhos que bota ovos!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA red_panda"
+   ],
+   "resposta": "Panda-vermelho",
+   "explicacao": "O panda-vermelho usa a cauda fofinha como cobertor quando está frio!",
+   "referencia": "Montanhas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA seriema"
+   ],
+   "resposta": "Seriema",
+   "explicacao": "A seriema tem um canto tão alto que dá para ouvir de longe!",
+   "referencia": "Cerrado"
+  },
+  {
+   "pistas": [
+    "IA oryx"
+   ],
+   "resposta": "Órix",
+   "explicacao": "O órix tem chifres compridos e retinhos e aguenta muitos dias sem beber água!",
+   "referencia": "Desertos da África"
+  },
+  {
+   "pistas": [
+    "IA gazelle"
+   ],
+   "resposta": "Gazela",
+   "explicacao": "A gazela dá saltos altíssimos enquanto corre!",
+   "referencia": "Savana africana"
+  }
+ ]
+}
