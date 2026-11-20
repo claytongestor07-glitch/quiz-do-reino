@@ -1,0 +1,118 @@
+{
+  "falas": [
+    {
+      "id": "01-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "O Kenji ganhou do Vovô uma tigela azul. Era a sua tigela favorita."
+    },
+    {
+      "id": "02-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "A Lia chegou correndo, com a bola debaixo do braço."
+    },
+    {
+      "id": "03-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "Pof! A bola esbarrou na mesa, e a tigela caiu e se partiu."
+    },
+    {
+      "id": "04-lia",
+      "voz": "lia",
+      "emo": 0.8,
+      "texto": "Desculpa, Kenji! Foi sem querer!"
+    },
+    {
+      "id": "05-kenji",
+      "voz": "kenji",
+      "emo": 0.9,
+      "texto": "Você estragou a minha tigela! Vai embora!"
+    },
+    {
+      "id": "06-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "A Lia saiu de cabeça baixa. E o Kenji ficou sozinho com os cacos."
+    },
+    {
+      "id": "07-kenji",
+      "voz": "kenji",
+      "emo": 0.7,
+      "texto": "Nunca mais vai ficar igual..."
+    },
+    {
+      "id": "08-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "O Vovô Hiro sentou ao lado dele, sem pressa."
+    },
+    {
+      "id": "09-vovo",
+      "voz": "vovo",
+      "emo": 0.6,
+      "texto": "No Japão, a gente conserta com ouro. Chama-se kin-tsú-gui."
+    },
+    {
+      "id": "10-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "Kintsugi quer dizer emenda de ouro. Há mais de quinhentos anos, os japoneses colam os cacos com laca e pó de ouro."
+    },
+    {
+      "id": "11-vovo",
+      "voz": "vovo",
+      "emo": 0.6,
+      "texto": "Perdoar é assim, Kenji. O perdão cola o que quebrou."
+    },
+    {
+      "id": "12-kenji",
+      "voz": "kenji",
+      "emo": 0.7,
+      "texto": "A Lia não fez de propósito... Vou chamar ela."
+    },
+    {
+      "id": "13-kenji",
+      "voz": "kenji",
+      "emo": 0.8,
+      "texto": "Lia, eu perdoo você. Vamos consertar juntos?"
+    },
+    {
+      "id": "14-lia",
+      "voz": "lia",
+      "emo": 0.9,
+      "texto": "Obrigada, Kenji! Eu ajudo!"
+    },
+    {
+      "id": "15-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "Os três colaram os cacos, devagar, com cuidado, e pintaram as emendas de ouro."
+    },
+    {
+      "id": "16-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "E a tigela ficou ainda mais bonita, com linhas douradas brilhando ao sol."
+    },
+    {
+      "id": "17-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "A Bíblia diz: sejam bondosos e compassivos uns com os outros, perdoando-se mutuamente, assim como Deus os perdoou em Cristo. Efésios quatro, trinta e dois."
+    },
+    {
+      "id": "18-narr",
+      "voz": "",
+      "emo": 0.8,
+      "texto": "Palavra do dia: kin-tsú-gui!"
+    },
+    {
+      "id": "19-narr",
+      "voz": "",
+      "emo": 0.7,
+      "texto": "Hoje o Kenji aprendeu: perdoar é colar o que quebrou com ouro. Quem perdoa, vê a amizade ficar ainda mais forte!"
+    }
+  ]
+}
