@@ -1,0 +1,208 @@
+{
+ "id": "ep024-sombra",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "De quem é essa sombra?",
+ "sombra": true,
+ "unico": true,
+ "titulo": "🔍 De Quem é Essa Sombra? 22 Animais Misteriosos! | Quiz de Animais para Crianças",
+ "chamada": "DE QUEM É A SOMBRA?",
+ "faixa": "22 Sombras",
+ "icones": [
+  "IA toucan",
+  "IA bushbaby"
+ ],
+ "capa": {
+  "texto": "DE QUEM É A SOMBRA?",
+  "misterio": "IA toucan",
+  "revelado": "IA bushbaby",
+  "faixa": "22 sombras"
+ },
+ "licao": "Cada animal tem um formato único: olhando com atenção, a gente descobre tudo!",
+ "abertura": "Oi, criançada! Hoje o desafio é pela sombra! São 22 animais misteriosos. Olhe bem o formato e descubra: de quem é essa sombra? Vamos lá!",
+ "encerramento": "Uau, que olhos espertos! Quantas sombras você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA toucan"
+   ],
+   "resposta": "Tucano",
+   "explicacao": "O bico do tucano é enorme, mas é leve, porque é oco por dentro!",
+   "referencia": "Florestas do Brasil"
+  },
+  {
+   "pistas": [
+    "IA bushbaby"
+   ],
+   "resposta": "Gálago",
+   "explicacao": "O gálago tem olhos enormes para enxergar no escuro e pula muito alto!",
+   "referencia": "Florestas da África"
+  },
+  {
+   "pistas": [
+    "IA impala"
+   ],
+   "resposta": "Impala",
+   "explicacao": "O impala consegue pular mais de três metros de altura!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA dragonfly"
+   ],
+   "resposta": "Libélula",
+   "explicacao": "A libélula consegue voar para frente, para trás e até ficar parada no ar!",
+   "referencia": "Lagos e rios"
+  },
+  {
+   "pistas": [
+    "IA goose"
+   ],
+   "resposta": "Ganso",
+   "explicacao": "Os gansos voam em formato de V para cansar menos na viagem!",
+   "referencia": "Lagos e campos"
+  },
+  {
+   "pistas": [
+    "IA blue_footed_booby"
+   ],
+   "resposta": "Atobá-de-pés-azuis",
+   "explicacao": "O atobá-de-pés-azuis dança mostrando os pés azuis!",
+   "referencia": "Galápagos"
+  },
+  {
+   "pistas": [
+    "IA quetzal"
+   ],
+   "resposta": "Quetzal",
+   "explicacao": "O quetzal tem penas da cauda tão compridas que parecem fitas verdes!",
+   "referencia": "Florestas da América"
+  },
+  {
+   "pistas": [
+    "IA orca"
+   ],
+   "resposta": "Orca",
+   "explicacao": "A orca é da família dos golfinhos e caça em grupo, como uma equipe!",
+   "referencia": "Oceanos"
+  },
+  {
+   "pistas": [
+    "IA marmoset"
+   ],
+   "resposta": "Sagui",
+   "explicacao": "O sagui é um macaquinho pequeno que cabe na palma da mão!",
+   "referencia": "Matas do Brasil"
+  },
+  {
+   "pistas": [
+    "IA caterpillar"
+   ],
+   "resposta": "Lagarta",
+   "explicacao": "A lagarta come muitas folhas e um dia vira borboleta!",
+   "referencia": "Jardins"
+  },
+  {
+   "pistas": [
+    "IA warthog"
+   ],
+   "resposta": "Javali-africano",
+   "explicacao": "O javali-africano se ajoelha para comer a grama!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA wild_boar"
+   ],
+   "resposta": "Javali",
+   "explicacao": "O javali fuça a terra com o focinho atrás de raízes!",
+   "referencia": "Florestas"
+  },
+  {
+   "pistas": [
+    "IA emperor_tamarin"
+   ],
+   "resposta": "Sagui-imperador",
+   "explicacao": "O sagui-imperador tem um bigode branco comprido!",
+   "referencia": "Amazônia"
+  },
+  {
+   "pistas": [
+    "IA elephant_seal"
+   ],
+   "resposta": "Elefante-marinho",
+   "explicacao": "O macho do elefante-marinho tem um nariz grande que parece uma tromba!",
+   "referencia": "Mares gelados"
+  },
+  {
+   "pistas": [
+    "IA fossa"
+   ],
+   "resposta": "Fossa",
+   "explicacao": "A fossa é o maior caçador da ilha de Madagascar e sobe em árvores muito bem!",
+   "referencia": "Madagascar"
+  },
+  {
+   "pistas": [
+    "IA barracuda"
+   ],
+   "resposta": "Barracuda",
+   "explicacao": "A barracuda nada muito rápido e tem dentes bem afiados!",
+   "referencia": "Mares quentes"
+  },
+  {
+   "pistas": [
+    "IA sun_bear"
+   ],
+   "resposta": "Urso-malaio",
+   "explicacao": "O urso-malaio é o menor urso do mundo e adora mel!",
+   "referencia": "Florestas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA quokka"
+   ],
+   "resposta": "Quokka",
+   "explicacao": "O quokka parece estar sempre sorrindo e é chamado de animal mais feliz do mundo!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA crowned_crane"
+   ],
+   "resposta": "Grou-coroado",
+   "explicacao": "O grou-coroado tem uma coroa de penas douradas na cabeça!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA aardwolf"
+   ],
+   "resposta": "Protelo",
+   "explicacao": "O protelo é parente da hiena, mas só come cupins!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA mandrill"
+   ],
+   "resposta": "Mandril",
+   "explicacao": "O mandril é o maior macaco do mundo e tem o rosto azul e vermelho!",
+   "referencia": "Florestas da África"
+  },
+  {
+   "pistas": [
+    "IA cardinal"
+   ],
+   "resposta": "Cardeal",
+   "explicacao": "O cardeal tem um topete vermelho na cabeça!",
+   "referencia": "América"
+  }
+ ]
+}
