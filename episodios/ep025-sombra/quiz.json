@@ -1,0 +1,208 @@
+{
+ "id": "ep025-sombra",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "De quem é essa sombra?",
+ "sombra": true,
+ "unico": true,
+ "titulo": "🔍 De Quem é Essa Sombra? 22 Animais Misteriosos! | Quiz de Animais para Crianças",
+ "chamada": "DE QUEM É A SOMBRA?",
+ "faixa": "22 Sombras",
+ "icones": [
+  "IA honey_badger",
+  "IA starfish"
+ ],
+ "capa": {
+  "texto": "DE QUEM É A SOMBRA?",
+  "misterio": "IA honey_badger",
+  "revelado": "IA starfish",
+  "faixa": "22 sombras"
+ },
+ "licao": "Cada animal tem um formato único: olhando com atenção, a gente descobre tudo!",
+ "abertura": "Oi, criançada! Hoje o desafio é pela sombra! São 22 animais misteriosos. Olhe bem o formato e descubra: de quem é essa sombra? Vamos lá!",
+ "encerramento": "Uau, que olhos espertos! Quantas sombras você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA honey_badger"
+   ],
+   "resposta": "Ratel",
+   "explicacao": "O ratel é pequeno, mas muito corajoso, e adora mel!",
+   "referencia": "África e Ásia"
+  },
+  {
+   "pistas": [
+    "IA starfish"
+   ],
+   "resposta": "Estrela-do-mar",
+   "explicacao": "A estrela-do-mar consegue fazer crescer um braço de novo!",
+   "referencia": "Fundo do mar"
+  },
+  {
+   "pistas": [
+    "IA shrimp"
+   ],
+   "resposta": "Camarão",
+   "explicacao": "Alguns camarões fazem barulho estalando as garras!",
+   "referencia": "Mares e rios"
+  },
+  {
+   "pistas": [
+    "IA mudskipper"
+   ],
+   "resposta": "Saltador-do-lodo",
+   "explicacao": "Esse peixe sai da água e pula na lama usando as nadadeiras!",
+   "referencia": "Mangues"
+  },
+  {
+   "pistas": [
+    "IA hyrax"
+   ],
+   "resposta": "Hírax",
+   "explicacao": "O hírax parece um roedor, mas é parente distante do elefante!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA tuna"
+   ],
+   "resposta": "Atum",
+   "explicacao": "O atum nada sem parar a vida inteira!",
+   "referencia": "Oceanos"
+  },
+  {
+   "pistas": [
+    "IA coyote"
+   ],
+   "resposta": "Coiote",
+   "explicacao": "O coiote uiva para conversar com o grupo!",
+   "referencia": "América do Norte"
+  },
+  {
+   "pistas": [
+    "IA pirarucu"
+   ],
+   "resposta": "Pirarucu",
+   "explicacao": "O pirarucu é um dos maiores peixes de rio do mundo e sobe para respirar!",
+   "referencia": "Rios da Amazônia"
+  },
+  {
+   "pistas": [
+    "IA baboon"
+   ],
+   "resposta": "Babuíno",
+   "explicacao": "O babuíno vive em grandes grupos e cuida muito bem dos filhotes!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA gerenuk"
+   ],
+   "resposta": "Gerenuk",
+   "explicacao": "O gerenuk fica em pé nas patas de trás para comer folhas altas!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA musk_ox"
+   ],
+   "resposta": "Boi-almiscarado",
+   "explicacao": "O boi-almiscarado tem um casaco de pelo tão comprido que quase arrasta no chão!",
+   "referencia": "Lugares gelados"
+  },
+  {
+   "pistas": [
+    "IA leaf_insect"
+   ],
+   "resposta": "Inseto-folha",
+   "explicacao": "Ele parece uma folha verde para se esconder!",
+   "referencia": "Florestas tropicais"
+  },
+  {
+   "pistas": [
+    "IA tasmanian_devil"
+   ],
+   "resposta": "Diabo-da-tasmânia",
+   "explicacao": "Apesar do nome, é um animalzinho que solta gritos bem altos!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA sand_cat"
+   ],
+   "resposta": "Gato-do-deserto",
+   "explicacao": "O gato-do-deserto tem pelos nas patas para não queimar na areia quente!",
+   "referencia": "Desertos"
+  },
+  {
+   "pistas": [
+    "IA stork"
+   ],
+   "resposta": "Cegonha",
+   "explicacao": "A cegonha faz ninhos enormes no alto de torres e árvores!",
+   "referencia": "Europa e África"
+  },
+  {
+   "pistas": [
+    "IA kingfisher"
+   ],
+   "resposta": "Martim-pescador",
+   "explicacao": "O martim-pescador mergulha de bico na água para pegar peixinhos!",
+   "referencia": "Rios e lagos"
+  },
+  {
+   "pistas": [
+    "IA lyrebird"
+   ],
+   "resposta": "Pássaro-lira",
+   "explicacao": "O pássaro-lira imita quase qualquer som que ouve!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA aardvark"
+   ],
+   "resposta": "Porco-da-terra",
+   "explicacao": "O porco-da-terra cava a terra com as unhas fortes para comer cupins!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA badger"
+   ],
+   "resposta": "Texugo",
+   "explicacao": "O texugo cava tocas enormes, com vários cômodos debaixo da terra!",
+   "referencia": "Florestas"
+  },
+  {
+   "pistas": [
+    "IA giant_otter"
+   ],
+   "resposta": "Ariranha",
+   "explicacao": "A ariranha é a maior lontra do mundo e vive em grupos barulhentos!",
+   "referencia": "Pantanal"
+  },
+  {
+   "pistas": [
+    "IA pelican"
+   ],
+   "resposta": "Pelicano",
+   "explicacao": "O pelicano usa a bolsa do bico como uma rede para pegar peixes!",
+   "referencia": "Lagos e mares"
+  },
+  {
+   "pistas": [
+    "IA nudibranch"
+   ],
+   "resposta": "Lesma-do-mar",
+   "explicacao": "A lesma-do-mar é colorida para avisar que não é gostosa de comer!",
+   "referencia": "Recifes de coral"
+  }
+ ]
+}
