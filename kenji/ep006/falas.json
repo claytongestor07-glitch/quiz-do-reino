@@ -1,0 +1,118 @@
+{
+  "falas": [
+    {
+      "id": "01-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "Era sábado. O Vovô Hiro carregava um cesto pesado de verduras da horta."
+    },
+    {
+      "id": "02-vovo",
+      "voz": "vovo",
+      "emo": 0.6,
+      "texto": "Kenji, me ajuda com o cesto?"
+    },
+    {
+      "id": "03-kenji",
+      "voz": "kenji",
+      "emo": 0.8,
+      "texto": "Agora não, Vovô! Eu tô brincando!"
+    },
+    {
+      "id": "04-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "O Vovô carregou o cesto sozinho, devagar, devagarinho."
+    },
+    {
+      "id": "05-pai",
+      "voz": "pai",
+      "emo": 0.6,
+      "texto": "Kenji, vem cá. Quero te contar uma coisa."
+    },
+    {
+      "id": "06-pai",
+      "voz": "pai",
+      "emo": 0.6,
+      "texto": "No Japão, tem um feriado só para os avós: o Kêirô nô Rí."
+    },
+    {
+      "id": "07-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "No Kêirô nô Rí, em setembro, as famílias visitam os avós, levam presentes e dizem: obrigado por tudo!"
+    },
+    {
+      "id": "08-pai",
+      "voz": "pai",
+      "emo": 0.6,
+      "texto": "Kêirô quer dizer respeito aos mais velhos."
+    },
+    {
+      "id": "09-kenji",
+      "voz": "kenji",
+      "emo": 0.7,
+      "texto": "Eu não respeitei o Vovô... Ele só pediu ajuda."
+    },
+    {
+      "id": "10-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "O Pai sorriu: ainda dava tempo de mudar."
+    },
+    {
+      "id": "11-kenji",
+      "voz": "kenji",
+      "emo": 0.9,
+      "texto": "Já sei! Vou fazer um Dia dos Avós aqui em casa!"
+    },
+    {
+      "id": "12-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "O Kenji desenhou um cartão, a Mamãe fez o chá, e o Papai colheu flores da horta."
+    },
+    {
+      "id": "13-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "E o Kenji foi ajudar o Vovô a trazer o resto das verduras."
+    },
+    {
+      "id": "14-kenji",
+      "voz": "kenji",
+      "emo": 0.8,
+      "texto": "Desculpa, Vovô. Você é muito importante pra mim!"
+    },
+    {
+      "id": "15-vovo",
+      "voz": "vovo",
+      "emo": 0.7,
+      "texto": "Obrigado, Kenji. Esse é o melhor presente do mundo."
+    },
+    {
+      "id": "16-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "E a família toda tomou chá junto, ouvindo as histórias do Vovô."
+    },
+    {
+      "id": "17-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "A Bíblia diz: honre seu pai e sua mãe, a fim de que você tenha vida longa na terra que o Senhor, o seu Deus, lhe dá. Êxodo vinte, doze."
+    },
+    {
+      "id": "18-narr",
+      "voz": "",
+      "emo": 0.8,
+      "texto": "Palavra do dia: kêi-rô!"
+    },
+    {
+      "id": "19-narr",
+      "voz": "",
+      "emo": 0.7,
+      "texto": "Hoje o Kenji aprendeu: respeitar os mais velhos é ouvir, ajudar e agradecer. Quem honra os avós, agrada a Deus!"
+    }
+  ]
+}
