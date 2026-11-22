@@ -1,0 +1,208 @@
+{
+ "id": "ep026-sombra",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "De quem é essa sombra?",
+ "sombra": true,
+ "unico": true,
+ "titulo": "🔍 De Quem é Essa Sombra? 22 Animais Misteriosos! | Quiz de Animais para Crianças",
+ "chamada": "DE QUEM É A SOMBRA?",
+ "faixa": "22 Sombras",
+ "icones": [
+  "IA sea_urchin",
+  "IA flying_squirrel"
+ ],
+ "capa": {
+  "texto": "DE QUEM É A SOMBRA?",
+  "misterio": "IA sea_urchin",
+  "revelado": "IA flying_squirrel",
+  "faixa": "22 sombras"
+ },
+ "licao": "Cada animal tem um formato único: olhando com atenção, a gente descobre tudo!",
+ "abertura": "Oi, criançada! Hoje o desafio é pela sombra! São 22 animais misteriosos. Olhe bem o formato e descubra: de quem é essa sombra? Vamos lá!",
+ "encerramento": "Uau, que olhos espertos! Quantas sombras você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA sea_urchin"
+   ],
+   "resposta": "Ouriço-do-mar",
+   "explicacao": "O ouriço-do-mar anda pelo fundo do mar com pezinhos minúsculos!",
+   "referencia": "Fundo do mar"
+  },
+  {
+   "pistas": [
+    "IA flying_squirrel"
+   ],
+   "resposta": "Esquilo-voador",
+   "explicacao": "O esquilo-voador abre a pele entre as patas e plana de árvore em árvore!",
+   "referencia": "Florestas"
+  },
+  {
+   "pistas": [
+    "IA ferret"
+   ],
+   "resposta": "Furão",
+   "explicacao": "O furão é brincalhão e adora se esconder em túneis!",
+   "referencia": "Casas e campos"
+  },
+  {
+   "pistas": [
+    "IA leafy_sea_dragon"
+   ],
+   "resposta": "Dragão-marinho",
+   "explicacao": "O dragão-marinho-folhado parece uma alga para se esconder no mar!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA hornbill"
+   ],
+   "resposta": "Calau",
+   "explicacao": "O calau tem um capacete em cima do bico!",
+   "referencia": "Ásia e África"
+  },
+  {
+   "pistas": [
+    "IA chimpanzee"
+   ],
+   "resposta": "Chimpanzé",
+   "explicacao": "O chimpanzé usa gravetos como ferramenta para pegar cupins!",
+   "referencia": "Florestas da África"
+  },
+  {
+   "pistas": [
+    "IA snow_leopard"
+   ],
+   "resposta": "Leopardo-das-neves",
+   "explicacao": "O leopardo-das-neves enrola a cauda grossa no corpo para se esquentar!",
+   "referencia": "Montanhas geladas"
+  },
+  {
+   "pistas": [
+    "IA goldfish"
+   ],
+   "resposta": "Peixinho-dourado",
+   "explicacao": "O peixinho-dourado pode viver muitos e muitos anos!",
+   "referencia": "Lagos e aquários"
+  },
+  {
+   "pistas": [
+    "IA hyacinth_macaw"
+   ],
+   "resposta": "Arara-azul",
+   "explicacao": "A arara-azul é a maior arara do mundo!",
+   "referencia": "Pantanal"
+  },
+  {
+   "pistas": [
+    "IA nautilus"
+   ],
+   "resposta": "Náutilo",
+   "explicacao": "O náutilo vive dentro de uma concha em espiral e existe há milhões de anos!",
+   "referencia": "Oceano Pacífico"
+  },
+  {
+   "pistas": [
+    "IA caracal"
+   ],
+   "resposta": "Caracal",
+   "explicacao": "O caracal tem tufos pretos nas orelhas e salta alto para pegar passarinhos!",
+   "referencia": "África e Ásia"
+  },
+  {
+   "pistas": [
+    "IA iguana"
+   ],
+   "resposta": "Iguana",
+   "explicacao": "A iguana adora tomar sol para esquentar o corpo!",
+   "referencia": "Florestas tropicais"
+  },
+  {
+   "pistas": [
+    "IA pheasant"
+   ],
+   "resposta": "Faisão",
+   "explicacao": "O faisão macho tem penas coloridas e uma cauda bem comprida!",
+   "referencia": "Campos e florestas"
+  },
+  {
+   "pistas": [
+    "IA numbat"
+   ],
+   "resposta": "Numbat",
+   "explicacao": "O numbat come milhares de cupins por dia!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA slug"
+   ],
+   "resposta": "Lesma",
+   "explicacao": "A lesma deixa um rastro brilhante por onde passa!",
+   "referencia": "Jardins úmidos"
+  },
+  {
+   "pistas": [
+    "IA gecko"
+   ],
+   "resposta": "Lagartixa",
+   "explicacao": "A lagartixa consegue andar até de cabeça para baixo no teto!",
+   "referencia": "Casas e florestas"
+  },
+  {
+   "pistas": [
+    "IA kiwi_bird"
+   ],
+   "resposta": "Kiwi",
+   "explicacao": "O kiwi é uma ave que não voa e tem as narinas na ponta do bico!",
+   "referencia": "Nova Zelândia"
+  },
+  {
+   "pistas": [
+    "IA armadillo"
+   ],
+   "resposta": "Tatu",
+   "explicacao": "O tatu-bola se enrola e vira uma bolinha para se proteger!",
+   "referencia": "Brasil"
+  },
+  {
+   "pistas": [
+    "IA jerboa"
+   ],
+   "resposta": "Jerboa",
+   "explicacao": "O jerboa pula como um cangurinho com suas pernas compridas!",
+   "referencia": "Desertos"
+  },
+  {
+   "pistas": [
+    "IA beluga"
+   ],
+   "resposta": "Beluga",
+   "explicacao": "A beluga é uma baleia branca que faz sons parecidos com assobios!",
+   "referencia": "Mares gelados"
+  },
+  {
+   "pistas": [
+    "IA great_kiskadee"
+   ],
+   "resposta": "Bem-te-vi",
+   "explicacao": "O bem-te-vi tem esse nome porque o canto dele parece dizer bem-te-vi!",
+   "referencia": "Brasil todo"
+  },
+  {
+   "pistas": [
+    "IA maned_wolf"
+   ],
+   "resposta": "Lobo-guará",
+   "explicacao": "Apesar do nome, ele adora comer frutas, como a lobeira!",
+   "referencia": "Cerrado"
+  }
+ ]
+}
