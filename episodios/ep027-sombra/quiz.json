@@ -1,0 +1,208 @@
+{
+ "id": "ep027-sombra",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "De quem é essa sombra?",
+ "sombra": true,
+ "unico": true,
+ "titulo": "🔍 De Quem é Essa Sombra? 22 Animais Misteriosos! | Quiz de Animais para Crianças",
+ "chamada": "DE QUEM É A SOMBRA?",
+ "faixa": "22 Sombras",
+ "icones": [
+  "IA kinkajou",
+  "IA dik_dik"
+ ],
+ "capa": {
+  "texto": "DE QUEM É A SOMBRA?",
+  "misterio": "IA kinkajou",
+  "revelado": "IA dik_dik",
+  "faixa": "22 sombras"
+ },
+ "licao": "Cada animal tem um formato único: olhando com atenção, a gente descobre tudo!",
+ "abertura": "Oi, criançada! Hoje o desafio é pela sombra! São 22 animais misteriosos. Olhe bem o formato e descubra: de quem é essa sombra? Vamos lá!",
+ "encerramento": "Uau, que olhos espertos! Quantas sombras você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA kinkajou"
+   ],
+   "resposta": "Jupará",
+   "explicacao": "O jupará usa a língua comprida para lamber o néctar das flores!",
+   "referencia": "Florestas tropicais"
+  },
+  {
+   "pistas": [
+    "IA dik_dik"
+   ],
+   "resposta": "Dik-dik",
+   "explicacao": "O dik-dik é um antílope tão pequeno que parece um filhote!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA moray_eel"
+   ],
+   "resposta": "Moreia",
+   "explicacao": "A moreia mora em buracos nas pedras do fundo do mar!",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "IA sloth_bear"
+   ],
+   "resposta": "Urso-preguiça",
+   "explicacao": "O urso-preguiça usa os lábios para sugar cupins!",
+   "referencia": "Índia"
+  },
+  {
+   "pistas": [
+    "IA vulture"
+   ],
+   "resposta": "Urubu",
+   "explicacao": "O urubu limpa a natureza comendo restos de animais!",
+   "referencia": "Céu do Brasil"
+  },
+  {
+   "pistas": [
+    "IA moth"
+   ],
+   "resposta": "Mariposa",
+   "explicacao": "A mariposa voa à noite e é atraída pela luz!",
+   "referencia": "No mundo todo"
+  },
+  {
+   "pistas": [
+    "IA wombat"
+   ],
+   "resposta": "Vombate",
+   "explicacao": "O vombate faz cocô em formato de cubinho!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA capybara"
+   ],
+   "resposta": "Capivara",
+   "explicacao": "A capivara é o maior roedor do mundo e é uma ótima nadadora!",
+   "referencia": "Brasil"
+  },
+  {
+   "pistas": [
+    "IA hummingbird"
+   ],
+   "resposta": "Beija-flor",
+   "explicacao": "O beija-flor bate as asas tão rápido que consegue voar parado no ar!",
+   "referencia": "Jardins e florestas"
+  },
+  {
+   "pistas": [
+    "IA electric_eel"
+   ],
+   "resposta": "Poraquê",
+   "explicacao": "O poraquê dá choques elétricos para se defender!",
+   "referencia": "Amazônia"
+  },
+  {
+   "pistas": [
+    "IA naked_mole_rat"
+   ],
+   "resposta": "Rato-toupeira-pelado",
+   "explicacao": "Ele quase não tem pelos e vive em túneis debaixo da terra!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA marsh_deer"
+   ],
+   "resposta": "Cervo-do-pantanal",
+   "explicacao": "O cervo-do-pantanal é o maior veado da América do Sul!",
+   "referencia": "Pantanal"
+  },
+  {
+   "pistas": [
+    "IA canary"
+   ],
+   "resposta": "Canário",
+   "explicacao": "O canário é amarelinho e canta muito bonito!",
+   "referencia": "Ilhas Canárias"
+  },
+  {
+   "pistas": [
+    "IA tapir"
+   ],
+   "resposta": "Anta",
+   "explicacao": "A anta é o maior mamífero terrestre do Brasil e tem uma tromba curtinha!",
+   "referencia": "Matas do Brasil"
+  },
+  {
+   "pistas": [
+    "IA pygmy_hippo"
+   ],
+   "resposta": "Hipopótamo-pigmeu",
+   "explicacao": "O hipopótamo-pigmeu é bem menor que o hipopótamo comum e vive na floresta!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA wildebeest"
+   ],
+   "resposta": "Gnu",
+   "explicacao": "Os gnus viajam em manadas gigantes atrás de grama fresquinha!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA moorish_idol"
+   ],
+   "resposta": "Ídolo-mouro",
+   "explicacao": "Esse peixe tem uma nadadeira comprida como uma bandeirinha!",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "IA dugong"
+   ],
+   "resposta": "Dugongo",
+   "explicacao": "O dugongo come o capim que cresce no fundo do mar!",
+   "referencia": "Mares quentes"
+  },
+  {
+   "pistas": [
+    "IA takin"
+   ],
+   "resposta": "Takin",
+   "explicacao": "O takin tem um pelo dourado e grosso para aguentar o frio das montanhas!",
+   "referencia": "Montanhas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA cassowary"
+   ],
+   "resposta": "Casuar",
+   "explicacao": "O casuar tem um capacete na cabeça e é uma das maiores aves do mundo!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA dingo"
+   ],
+   "resposta": "Dingo",
+   "explicacao": "O dingo é um cachorro selvagem que vive solto na Austrália!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA stick_insect"
+   ],
+   "resposta": "Bicho-pau",
+   "explicacao": "O bicho-pau parece um galhinho para se esconder dos predadores!",
+   "referencia": "Florestas"
+  }
+ ]
+}
