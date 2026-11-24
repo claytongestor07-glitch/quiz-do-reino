@@ -1,0 +1,118 @@
+{
+  "falas": [
+    {
+      "id": "01-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "O Kenji ajudou o Papai na padaria a semana inteira. E ganhou umas moedinhas!"
+    },
+    {
+      "id": "02-kenji",
+      "voz": "kenji",
+      "emo": 0.9,
+      "texto": "Olha, Papai! Vou gastar tudo em doce hoje!"
+    },
+    {
+      "id": "03-pai",
+      "voz": "pai",
+      "emo": 0.6,
+      "texto": "Calma, Kenji. Você não queria uma bola nova?"
+    },
+    {
+      "id": "04-kenji",
+      "voz": "kenji",
+      "emo": 0.8,
+      "texto": "Mas eu quero doce agora! A bola custa muito!"
+    },
+    {
+      "id": "05-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "Nessa hora, a Dona Mei chegou para comprar pão. E trouxe uma coisa diferente."
+    },
+    {
+      "id": "06-mei",
+      "voz": "mei",
+      "emo": 0.7,
+      "texto": "Kenji, quer aprender a contar como na China? Com o suân-pân!"
+    },
+    {
+      "id": "07-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "O suân-pân é o ábaco chinês. Há centenas de anos, ele ajuda a fazer contas, conta por conta!"
+    },
+    {
+      "id": "08-mei",
+      "voz": "mei",
+      "emo": 0.7,
+      "texto": "Se você gastar tudo hoje, quanto sobra para a bola? Zero!"
+    },
+    {
+      "id": "09-kenji",
+      "voz": "kenji",
+      "emo": 0.7,
+      "texto": "Zero? Então eu nunca vou ter a bola..."
+    },
+    {
+      "id": "10-pai",
+      "voz": "pai",
+      "emo": 0.7,
+      "texto": "Vai ter, sim! É só fazer um plano."
+    },
+    {
+      "id": "11-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "Três potes: um para gastar, um para guardar e um para repartir com quem precisa."
+    },
+    {
+      "id": "12-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "Toda semana, o Kenji guardava um pouquinho. E contava tudo no suân-pân com a Dona Mei."
+    },
+    {
+      "id": "13-kenji",
+      "voz": "kenji",
+      "emo": 0.8,
+      "texto": "Dona Mei, e agora? Já dá para a bola?"
+    },
+    {
+      "id": "14-mei",
+      "voz": "mei",
+      "emo": 0.8,
+      "texto": "Já dá, sim! Você planejou e teve paciência!"
+    },
+    {
+      "id": "15-narr",
+      "voz": "",
+      "emo": 0.7,
+      "texto": "E o Kenji comprou a bola nova, com o dinheiro que ele mesmo guardou!"
+    },
+    {
+      "id": "16-kenji",
+      "voz": "kenji",
+      "emo": 0.9,
+      "texto": "Planejar é muito melhor do que gastar tudo de uma vez!"
+    },
+    {
+      "id": "17-narr",
+      "voz": "",
+      "emo": 0.6,
+      "texto": "A Bíblia diz: os planos bem elaborados levam à fartura, mas o apressado sempre acaba na miséria. Provérbios vinte e um, cinco."
+    },
+    {
+      "id": "18-narr",
+      "voz": "",
+      "emo": 0.8,
+      "texto": "Palavra do dia: suân-pân!"
+    },
+    {
+      "id": "19-narr",
+      "voz": "",
+      "emo": 0.7,
+      "texto": "Hoje o Kenji aprendeu: gastar, guardar e repartir, sempre com um plano. Quem planeja com sabedoria agrada a Deus!"
+    }
+  ]
+}
