@@ -1,0 +1,208 @@
+{
+ "id": "ep028-sombra",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "De quem é essa sombra?",
+ "sombra": true,
+ "unico": true,
+ "titulo": "🔍 De Quem é Essa Sombra? 22 Animais Misteriosos! | Quiz de Animais para Crianças",
+ "chamada": "DE QUEM É A SOMBRA?",
+ "faixa": "22 Sombras",
+ "icones": [
+  "IA fennec_fox",
+  "IA flying_fish"
+ ],
+ "capa": {
+  "texto": "DE QUEM É A SOMBRA?",
+  "misterio": "IA fennec_fox",
+  "revelado": "IA flying_fish",
+  "faixa": "22 sombras"
+ },
+ "licao": "Cada animal tem um formato único: olhando com atenção, a gente descobre tudo!",
+ "abertura": "Oi, criançada! Hoje o desafio é pela sombra! São 22 animais misteriosos. Olhe bem o formato e descubra: de quem é essa sombra? Vamos lá!",
+ "encerramento": "Uau, que olhos espertos! Quantas sombras você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA fennec_fox"
+   ],
+   "resposta": "Feneco",
+   "explicacao": "O feneco é a menor raposa do mundo e tem orelhas gigantes para se refrescar!",
+   "referencia": "Deserto do Saara"
+  },
+  {
+   "pistas": [
+    "IA flying_fish"
+   ],
+   "resposta": "Peixe-voador",
+   "explicacao": "O peixe-voador pula para fora da água e plana com as nadadeiras!",
+   "referencia": "Oceanos"
+  },
+  {
+   "pistas": [
+    "IA amazon_river_dolphin"
+   ],
+   "resposta": "Boto-cor-de-rosa",
+   "explicacao": "É um golfinho de rio que vive na Amazônia!",
+   "referencia": "Rios da Amazônia"
+  },
+  {
+   "pistas": [
+    "IA vicuna"
+   ],
+   "resposta": "Vicunha",
+   "explicacao": "A vicunha tem uma das lãs mais finas do mundo!",
+   "referencia": "Montanhas dos Andes"
+  },
+  {
+   "pistas": [
+    "IA hyena"
+   ],
+   "resposta": "Hiena",
+   "explicacao": "A hiena faz um som que parece uma risada!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA hoopoe"
+   ],
+   "resposta": "Poupa",
+   "explicacao": "A poupa abre a crista de penas como um leque quando fica animada!",
+   "referencia": "Europa e África"
+  },
+  {
+   "pistas": [
+    "IA tree_frog"
+   ],
+   "resposta": "Perereca",
+   "explicacao": "A perereca de olhos vermelhos dorme grudadinha embaixo das folhas!",
+   "referencia": "Florestas tropicais"
+  },
+  {
+   "pistas": [
+    "IA whale_shark"
+   ],
+   "resposta": "Tubarão-baleia",
+   "explicacao": "O tubarão-baleia é o maior peixe do mundo, mas só come bichinhos minúsculos!",
+   "referencia": "Oceanos quentes"
+  },
+  {
+   "pistas": [
+    "IA gharial"
+   ],
+   "resposta": "Gavial",
+   "explicacao": "O gavial tem um focinho fininho e comprido, perfeito para pegar peixes!",
+   "referencia": "Rios da Índia"
+  },
+  {
+   "pistas": [
+    "IA secretary_bird"
+   ],
+   "resposta": "Serpentário",
+   "explicacao": "O serpentário tem pernas compridas e penas na cabeça que parecem canetas!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA mongoose"
+   ],
+   "resposta": "Mangusto",
+   "explicacao": "O mangusto é rápido e corajoso e vive em grupos!",
+   "referencia": "África e Ásia"
+  },
+  {
+   "pistas": [
+    "IA tree_kangaroo"
+   ],
+   "resposta": "Canguru-arborícola",
+   "explicacao": "Esse canguru diferente vive em cima das árvores!",
+   "referencia": "Nova Guiné"
+  },
+  {
+   "pistas": [
+    "IA cockatoo"
+   ],
+   "resposta": "Cacatua",
+   "explicacao": "A cacatua levanta a crista amarela quando fica animada!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA kakapo"
+   ],
+   "resposta": "Kakapo",
+   "explicacao": "O kakapo é um papagaio que não voa e anda pelo chão da floresta à noite!",
+   "referencia": "Nova Zelândia"
+  },
+  {
+   "pistas": [
+    "IA puma"
+   ],
+   "resposta": "Onça-parda",
+   "explicacao": "A onça-parda é um felino que dá saltos enormes e vive nas Américas!",
+   "referencia": "Américas"
+  },
+  {
+   "pistas": [
+    "IA catfish"
+   ],
+   "resposta": "Bagre",
+   "explicacao": "O bagre tem bigodes que ajudam a sentir o gosto da comida!",
+   "referencia": "Rios"
+  },
+  {
+   "pistas": [
+    "IA spider_monkey"
+   ],
+   "resposta": "Macaco-aranha",
+   "explicacao": "O macaco-aranha usa o rabo como uma quinta mão para se pendurar!",
+   "referencia": "Florestas da América"
+  },
+  {
+   "pistas": [
+    "IA arowana"
+   ],
+   "resposta": "Aruanã",
+   "explicacao": "O aruanã pula para fora da água para pegar insetos nos galhos!",
+   "referencia": "Rios da Amazônia"
+  },
+  {
+   "pistas": [
+    "IA lovebird"
+   ],
+   "resposta": "Agapórnis",
+   "explicacao": "Os agapórnis vivem em casalzinhos bem grudados!",
+   "referencia": "África"
+  },
+  {
+   "pistas": [
+    "IA reindeer"
+   ],
+   "resposta": "Rena",
+   "explicacao": "Na rena, o macho e a fêmea têm chifres!",
+   "referencia": "Lugares gelados"
+  },
+  {
+   "pistas": [
+    "IA frilled_lizard"
+   ],
+   "resposta": "Lagarto-de-gola",
+   "explicacao": "Esse lagarto abre uma gola enorme no pescoço para assustar os predadores!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA puffin"
+   ],
+   "resposta": "Papagaio-do-mar",
+   "explicacao": "O papagaio-do-mar consegue carregar vários peixinhos no bico de uma vez!",
+   "referencia": "Mares do norte"
+  }
+ ]
+}
