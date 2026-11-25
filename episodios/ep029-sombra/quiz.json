@@ -1,0 +1,208 @@
+{
+ "id": "ep029-sombra",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "De quem é essa sombra?",
+ "sombra": true,
+ "unico": true,
+ "titulo": "🔍 De Quem é Essa Sombra? 22 Animais Misteriosos! | Quiz de Animais para Crianças",
+ "chamada": "DE QUEM É A SOMBRA?",
+ "faixa": "22 Sombras",
+ "icones": [
+  "IA marmot",
+  "IA mantis_shrimp"
+ ],
+ "capa": {
+  "texto": "DE QUEM É A SOMBRA?",
+  "misterio": "IA marmot",
+  "revelado": "IA mantis_shrimp",
+  "faixa": "22 sombras"
+ },
+ "licao": "Cada animal tem um formato único: olhando com atenção, a gente descobre tudo!",
+ "abertura": "Oi, criançada! Hoje o desafio é pela sombra! São 22 animais misteriosos. Olhe bem o formato e descubra: de quem é essa sombra? Vamos lá!",
+ "encerramento": "Uau, que olhos espertos! Quantas sombras você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA marmot"
+   ],
+   "resposta": "Marmota",
+   "explicacao": "A marmota dorme o inverno inteirinho dentro da toca!",
+   "referencia": "Montanhas"
+  },
+  {
+   "pistas": [
+    "IA mantis_shrimp"
+   ],
+   "resposta": "Tamarutaca",
+   "explicacao": "A tamarutaca dá socos tão rápidos que conseguem quebrar conchas!",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "IA bush_dog"
+   ],
+   "resposta": "Cachorro-vinagre",
+   "explicacao": "O cachorro-vinagre é um cachorro selvagem do Brasil que nada muito bem!",
+   "referencia": "Brasil"
+  },
+  {
+   "pistas": [
+    "IA lynx"
+   ],
+   "resposta": "Lince",
+   "explicacao": "O lince tem tufos pretos nas orelhas que ajudam a ouvir melhor!",
+   "referencia": "Florestas geladas"
+  },
+  {
+   "pistas": [
+    "IA woodpecker"
+   ],
+   "resposta": "Pica-pau",
+   "explicacao": "O pica-pau bate o bico na árvore bem rápido para achar insetos!",
+   "referencia": "Florestas"
+  },
+  {
+   "pistas": [
+    "IA golden_lion_tamarin"
+   ],
+   "resposta": "Mico-leão-dourado",
+   "explicacao": "Ele só existe na Mata Atlântica, aqui no Brasil!",
+   "referencia": "Mata Atlântica"
+  },
+  {
+   "pistas": [
+    "IA kudu"
+   ],
+   "resposta": "Cudo",
+   "explicacao": "O cudo tem chifres compridos em espiral, como um saca-rolhas!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA betta_fish"
+   ],
+   "resposta": "Peixe-beta",
+   "explicacao": "O peixe-beta tem nadadeiras compridas que parecem um vestido!",
+   "referencia": "Rios da Ásia"
+  },
+  {
+   "pistas": [
+    "IA sugar_glider"
+   ],
+   "resposta": "Petauro-do-açúcar",
+   "explicacao": "O petauro-do-açúcar plana entre as árvores e adora coisas doces!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA jackal"
+   ],
+   "resposta": "Chacal",
+   "explicacao": "O chacal vive em casal e os dois cuidam juntos dos filhotes!",
+   "referencia": "África e Ásia"
+  },
+  {
+   "pistas": [
+    "IA hermit_crab"
+   ],
+   "resposta": "Ermitão",
+   "explicacao": "O caranguejo-ermitão mora dentro de uma concha e troca de casa quando cresce!",
+   "referencia": "Praias"
+  },
+  {
+   "pistas": [
+    "IA clownfish"
+   ],
+   "resposta": "Peixe-palhaço",
+   "explicacao": "O peixe-palhaço mora dentro da anêmona, que o protege!",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "IA coati"
+   ],
+   "resposta": "Quati",
+   "explicacao": "O quati usa o focinho comprido para farejar comida no chão!",
+   "referencia": "Matas do Brasil"
+  },
+  {
+   "pistas": [
+    "IA azure_jay"
+   ],
+   "resposta": "Gralha-azul",
+   "explicacao": "A gralha-azul enterra pinhões e ajuda a plantar araucárias!",
+   "referencia": "Sul do Brasil"
+  },
+  {
+   "pistas": [
+    "IA ring_tailed_lemur"
+   ],
+   "resposta": "Lêmure",
+   "explicacao": "Os lêmures vivem só na ilha de Madagascar!",
+   "referencia": "Madagascar"
+  },
+  {
+   "pistas": [
+    "IA walrus"
+   ],
+   "resposta": "Morsa",
+   "explicacao": "A morsa usa as presas compridas para sair da água e subir no gelo!",
+   "referencia": "Polo Norte"
+  },
+  {
+   "pistas": [
+    "IA poison_dart_frog"
+   ],
+   "resposta": "Sapinho-dardo",
+   "explicacao": "As cores fortes desse sapinho avisam: não encoste!",
+   "referencia": "Florestas tropicais"
+  },
+  {
+   "pistas": [
+    "IA alpaca"
+   ],
+   "resposta": "Alpaca",
+   "explicacao": "A alpaca tem um pelo bem macio que vira lã para fazer roupas!",
+   "referencia": "Montanhas dos Andes"
+  },
+  {
+   "pistas": [
+    "IA sea_cucumber"
+   ],
+   "resposta": "Pepino-do-mar",
+   "explicacao": "O pepino-do-mar é um animal que limpa a areia do fundo do mar!",
+   "referencia": "Fundo do mar"
+  },
+  {
+   "pistas": [
+    "IA binturong"
+   ],
+   "resposta": "Binturongue",
+   "explicacao": "O binturongue tem cheiro de pipoca!",
+   "referencia": "Florestas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA sea_lion"
+   ],
+   "resposta": "Leão-marinho",
+   "explicacao": "O leão-marinho usa as nadadeiras da frente para andar na areia!",
+   "referencia": "Praias e mares"
+  },
+  {
+   "pistas": [
+    "IA swordfish"
+   ],
+   "resposta": "Peixe-espada",
+   "explicacao": "O peixe-espada tem um bico comprido e é um dos peixes mais rápidos!",
+   "referencia": "Oceanos"
+  }
+ ]
+}
