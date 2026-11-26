@@ -1,0 +1,208 @@
+{
+ "id": "ep030-sombra",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "De quem é essa sombra?",
+ "sombra": true,
+ "unico": true,
+ "titulo": "🔍 De Quem é Essa Sombra? 22 Animais Misteriosos! | Quiz de Animais para Crianças",
+ "chamada": "DE QUEM É A SOMBRA?",
+ "faixa": "22 Sombras",
+ "icones": [
+  "IA harpy_eagle",
+  "IA southern_lapwing"
+ ],
+ "capa": {
+  "texto": "DE QUEM É A SOMBRA?",
+  "misterio": "IA harpy_eagle",
+  "revelado": "IA southern_lapwing",
+  "faixa": "22 sombras"
+ },
+ "licao": "Cada animal tem um formato único: olhando com atenção, a gente descobre tudo!",
+ "abertura": "Oi, criançada! Hoje o desafio é pela sombra! São 22 animais misteriosos. Olhe bem o formato e descubra: de quem é essa sombra? Vamos lá!",
+ "encerramento": "Uau, que olhos espertos! Quantas sombras você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA harpy_eagle"
+   ],
+   "resposta": "Gavião-real",
+   "explicacao": "O gavião-real é uma das águias mais fortes do mundo e vive na Amazônia!",
+   "referencia": "Amazônia"
+  },
+  {
+   "pistas": [
+    "IA southern_lapwing"
+   ],
+   "resposta": "Quero-quero",
+   "explicacao": "O quero-quero grita alto para proteger o ninho no chão!",
+   "referencia": "Campos do Brasil"
+  },
+  {
+   "pistas": [
+    "IA jaguar"
+   ],
+   "resposta": "Onça-pintada",
+   "explicacao": "É o maior felino das Américas e, diferente da maioria dos gatos, adora nadar!",
+   "referencia": "Pantanal e Amazônia"
+  },
+  {
+   "pistas": [
+    "IA yak"
+   ],
+   "resposta": "Iaque",
+   "explicacao": "O iaque tem um pelo bem comprido para aguentar o frio das montanhas!",
+   "referencia": "Montanhas do Tibete"
+  },
+  {
+   "pistas": [
+    "IA harp_seal"
+   ],
+   "resposta": "Foca-da-groenlândia",
+   "explicacao": "O filhote dessa foca nasce branquinho e fofinho!",
+   "referencia": "Ártico"
+  },
+  {
+   "pistas": [
+    "IA tayra"
+   ],
+   "resposta": "Irara",
+   "explicacao": "A irara sobe em árvores e adora frutas e mel!",
+   "referencia": "Matas do Brasil"
+  },
+  {
+   "pistas": [
+    "IA basilisk"
+   ],
+   "resposta": "Basilisco",
+   "explicacao": "O basilisco consegue correr em cima da água!",
+   "referencia": "América Central"
+  },
+  {
+   "pistas": [
+    "IA komodo_dragon"
+   ],
+   "resposta": "Dragão-de-komodo",
+   "explicacao": "O dragão-de-komodo é o maior lagarto do mundo!",
+   "referencia": "Indonésia"
+  },
+  {
+   "pistas": [
+    "IA caracara"
+   ],
+   "resposta": "Carcará",
+   "explicacao": "O carcará é uma ave esperta que anda pelo chão procurando comida!",
+   "referencia": "Brasil"
+  },
+  {
+   "pistas": [
+    "IA capuchin_monkey"
+   ],
+   "resposta": "Macaco-prego",
+   "explicacao": "O macaco-prego é tão esperto que usa pedras para quebrar cocos!",
+   "referencia": "Matas do Brasil"
+  },
+  {
+   "pistas": [
+    "IA lionfish"
+   ],
+   "resposta": "Peixe-leão",
+   "explicacao": "O peixe-leão tem nadadeiras compridas que parecem uma juba!",
+   "referencia": "Recifes de coral"
+  },
+  {
+   "pistas": [
+    "IA water_buffalo"
+   ],
+   "resposta": "Búfalo",
+   "explicacao": "O búfalo adora ficar na lama para se refrescar!",
+   "referencia": "Ilha de Marajó"
+  },
+  {
+   "pistas": [
+    "IA chinchilla"
+   ],
+   "resposta": "Chinchila",
+   "explicacao": "A chinchila tem o pelo mais macio do mundo e toma banho de areia!",
+   "referencia": "Montanhas dos Andes"
+  },
+  {
+   "pistas": [
+    "IA serval"
+   ],
+   "resposta": "Serval",
+   "explicacao": "O serval tem as orelhas enormes para ouvir ratinhos debaixo do capim!",
+   "referencia": "Savana africana"
+  },
+  {
+   "pistas": [
+    "IA agouti"
+   ],
+   "resposta": "Cutia",
+   "explicacao": "A cutia enterra sementes e ajuda a plantar novas árvores na floresta!",
+   "referencia": "Matas do Brasil"
+  },
+  {
+   "pistas": [
+    "IA cock_of_the_rock"
+   ],
+   "resposta": "Galo-da-serra",
+   "explicacao": "O galo-da-serra é laranja forte e tem uma crista em forma de leque!",
+   "referencia": "Amazônia"
+  },
+  {
+   "pistas": [
+    "IA roadrunner"
+   ],
+   "resposta": "Papa-léguas",
+   "explicacao": "O papa-léguas prefere correr do que voar!",
+   "referencia": "Desertos da América"
+  },
+  {
+   "pistas": [
+    "IA coypu"
+   ],
+   "resposta": "Ratão-do-banhado",
+   "explicacao": "O ratão-do-banhado tem dentes laranja e vive perto da água!",
+   "referencia": "Sul do Brasil"
+  },
+  {
+   "pistas": [
+    "IA opossum"
+   ],
+   "resposta": "Gambá",
+   "explicacao": "O gambá carrega os filhotes nas costas e também numa bolsinha!",
+   "referencia": "Brasil"
+  },
+  {
+   "pistas": [
+    "IA cicada"
+   ],
+   "resposta": "Cigarra",
+   "explicacao": "A cigarra canta bem alto nos dias quentes de verão!",
+   "referencia": "Árvores"
+  },
+  {
+   "pistas": [
+    "IA quoll"
+   ],
+   "resposta": "Quoll",
+   "explicacao": "O quoll é um bichinho com bolinhas brancas espalhadas pelo corpo!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA moose"
+   ],
+   "resposta": "Alce",
+   "explicacao": "O alce é o maior cervo do mundo, e o macho troca de chifres todo ano!",
+   "referencia": "Florestas geladas"
+  }
+ ]
+}
