@@ -1,0 +1,208 @@
+{
+ "id": "ep031-sombra",
+ "tipo": "emoji",
+ "categoria": "animais",
+ "canal": "Quiz do Reino",
+ "marca": "Reino Animal",
+ "selo": "🐾",
+ "craque": "Craque dos Animais",
+ "tema": "Animais",
+ "fonte": "Curiosidades de animais (texto infantil próprio)",
+ "pergunta": "De quem é essa sombra?",
+ "sombra": true,
+ "unico": true,
+ "titulo": "🔍 De Quem é Essa Sombra? 22 Animais Misteriosos! | Quiz de Animais para Crianças",
+ "chamada": "DE QUEM É A SOMBRA?",
+ "faixa": "22 Sombras",
+ "icones": [
+  "IA tamandua",
+  "IA anaconda"
+ ],
+ "capa": {
+  "texto": "DE QUEM É A SOMBRA?",
+  "misterio": "IA tamandua",
+  "revelado": "IA anaconda",
+  "faixa": "22 sombras"
+ },
+ "licao": "Cada animal tem um formato único: olhando com atenção, a gente descobre tudo!",
+ "abertura": "Oi, criançada! Hoje o desafio é pela sombra! São 22 animais misteriosos. Olhe bem o formato e descubra: de quem é essa sombra? Vamos lá!",
+ "encerramento": "Uau, que olhos espertos! Quantas sombras você acertou? Conte para a família e até o próximo quiz!",
+ "perguntas": [
+  {
+   "pistas": [
+    "IA tamandua"
+   ],
+   "resposta": "Tamanduá-mirim",
+   "explicacao": "O tamanduá-mirim usa o rabo para se segurar nos galhos!",
+   "referencia": "Brasil"
+  },
+  {
+   "pistas": [
+    "IA anaconda"
+   ],
+   "resposta": "Sucuri",
+   "explicacao": "A sucuri é uma das maiores cobras do mundo e adora nadar!",
+   "referencia": "Amazônia"
+  },
+  {
+   "pistas": [
+    "IA wallaby"
+   ],
+   "resposta": "Wallaby",
+   "explicacao": "O wallaby parece um canguru pequenininho!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA narwhal"
+   ],
+   "resposta": "Narval",
+   "explicacao": "O narval tem um dente comprido em espiral que parece um chifre!",
+   "referencia": "Mares gelados"
+  },
+  {
+   "pistas": [
+    "IA chameleon"
+   ],
+   "resposta": "Camaleão",
+   "explicacao": "O camaleão muda de cor e mexe cada olho para um lado!",
+   "referencia": "Florestas quentes"
+  },
+  {
+   "pistas": [
+    "IA meerkat"
+   ],
+   "resposta": "Suricato",
+   "explicacao": "Enquanto o grupo come, um suricato fica de pé vigiando!",
+   "referencia": "Desertos da África"
+  },
+  {
+   "pistas": [
+    "IA wasp"
+   ],
+   "resposta": "Vespa",
+   "explicacao": "A vespa faz ninhos com papel que ela mesma fabrica mastigando madeira!",
+   "referencia": "Jardins"
+  },
+  {
+   "pistas": [
+    "IA thorny_devil"
+   ],
+   "resposta": "Diabo-espinhoso",
+   "explicacao": "Esse lagarto bebe água pela pele cheia de espinhos!",
+   "referencia": "Austrália"
+  },
+  {
+   "pistas": [
+    "IA termite"
+   ],
+   "resposta": "Cupim",
+   "explicacao": "Os cupins constroem montes de terra que podem ser mais altos que uma pessoa!",
+   "referencia": "Cerrado"
+  },
+  {
+   "pistas": [
+    "IA seahorse"
+   ],
+   "resposta": "Cavalo-marinho",
+   "explicacao": "No cavalo-marinho, é o papai que carrega os filhotes na barriga!",
+   "referencia": "Mares quentes"
+  },
+  {
+   "pistas": [
+    "IA piranha"
+   ],
+   "resposta": "Piranha",
+   "explicacao": "A piranha tem dentes afiados e vive em grupos nos rios!",
+   "referencia": "Rios da Amazônia"
+  },
+  {
+   "pistas": [
+    "IA hoatzin"
+   ],
+   "resposta": "Cigana",
+   "explicacao": "Os filhotes da cigana têm garrinhas nas asas para subir nos galhos!",
+   "referencia": "Amazônia"
+  },
+  {
+   "pistas": [
+    "IA heron"
+   ],
+   "resposta": "Garça",
+   "explicacao": "A garça fica paradinha na água esperando o peixe passar!",
+   "referencia": "Lagos e rios"
+  },
+  {
+   "pistas": [
+    "IA blobfish"
+   ],
+   "resposta": "Peixe-bolha",
+   "explicacao": "No fundo do mar o peixe-bolha tem forma normal; ele só fica molenga fora da água!",
+   "referencia": "Fundo do mar"
+  },
+  {
+   "pistas": [
+    "IA pangolin"
+   ],
+   "resposta": "Pangolim",
+   "explicacao": "É o único mamífero coberto de escamas e vira uma bola quando tem medo!",
+   "referencia": "África e Ásia"
+  },
+  {
+   "pistas": [
+    "IA giant_anteater"
+   ],
+   "resposta": "Tamanduá-bandeira",
+   "explicacao": "Ele tem uma língua bem comprida para comer formigas e cupins!",
+   "referencia": "Cerrado"
+  },
+  {
+   "pistas": [
+    "IA rufous_hornero"
+   ],
+   "resposta": "João-de-barro",
+   "explicacao": "O joão-de-barro constrói a própria casinha com barro, em formato de forno!",
+   "referencia": "Brasil"
+  },
+  {
+   "pistas": [
+    "IA clouded_leopard"
+   ],
+   "resposta": "Pantera-nebulosa",
+   "explicacao": "A pantera-nebulosa tem manchas que parecem nuvens!",
+   "referencia": "Florestas da Ásia"
+  },
+  {
+   "pistas": [
+    "IA kea"
+   ],
+   "resposta": "Kea",
+   "explicacao": "O kea é um papagaio muito curioso que brinca na neve!",
+   "referencia": "Nova Zelândia"
+  },
+  {
+   "pistas": [
+    "IA jaguarundi"
+   ],
+   "resposta": "Gato-mourisco",
+   "explicacao": "O gato-mourisco tem corpo comprido e caça de dia, diferente de outros gatos!",
+   "referencia": "Brasil"
+  },
+  {
+   "pistas": [
+    "IA mandarin_duck"
+   ],
+   "resposta": "Pato-mandarim",
+   "explicacao": "O pato-mandarim é um dos patos mais coloridos do mundo!",
+   "referencia": "Ásia"
+  },
+  {
+   "pistas": [
+    "IA ibex"
+   ],
+   "resposta": "Íbex",
+   "explicacao": "O íbex sobe montanhas bem íngremes sem escorregar!",
+   "referencia": "Montanhas da Europa"
+  }
+ ]
+}
